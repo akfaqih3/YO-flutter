@@ -3,7 +3,7 @@ import 'colors.dart';
 import 'text_styles.dart';
 
 class AppTheme {
-  static ThemeData lightTheme = ThemeData(
+  static ThemeData lightTheme = ThemeData.light().copyWith(
     brightness: Brightness.light,
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: AppColors.background,
@@ -18,7 +18,7 @@ class AppTheme {
     ),
   );
 
-  static ThemeData darkTheme = ThemeData(
+  static ThemeData darkTheme = ThemeData.dark().copyWith(
     brightness: Brightness.dark,
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: Colors.black,
