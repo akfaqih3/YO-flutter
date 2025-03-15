@@ -5,7 +5,7 @@ import '../errors/dio_exception.dart';
 class ApiService {
   final Dio dio = DioConfig.createDio();
 
-  Future<Response> getRequest(String endpoint, {Map<String, dynamic>? queryParams}) async {
+  Future<Response> get(String endpoint, {Map<String, dynamic>? queryParams}) async {
     try {
       final response = await dio.get(endpoint, queryParameters: queryParams);
       return response;
@@ -14,7 +14,7 @@ class ApiService {
     }
   }
 
-  Future<Response> postRequest(String endpoint, Map<String, dynamic> data) async {
+  Future<Response> post(String endpoint, Map<String, dynamic> data) async {
     try {
       final response = await dio.post(endpoint, data: data);
       return response;
@@ -23,7 +23,7 @@ class ApiService {
     }
   }
 
-  Future<Response> putRequest(String endpoint, Map<String, dynamic> data) async {
+  Future<Response> put(String endpoint, Map<String, dynamic> data) async {
     try {
       final response = await dio.put(endpoint, data: data);
       return response;
@@ -32,7 +32,7 @@ class ApiService {
     }
   }
 
-  Future<Response> deleteRequest(String endpoint) async {
+  Future<Response> delete(String endpoint) async {
     try {
       final response = await dio.delete(endpoint);
       return response;

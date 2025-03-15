@@ -1,33 +1,33 @@
-import '../entities/login.dart';
-import '../repositories/login_repository.dart';
+import 'package:dartz/dartz.dart';
+import 'package:yemen_offers/core/errors/failures.dart';
+import 'package:yemen_offers/features/auth/data/repos/login_repo_impl.dart';
 
+import '../entities/login_entity.dart';
+import '../repos/login_repo.dart';
 
-class LoginUseCase {
-  final LoginRepository _loginRepository;
+abstract class UseCase<Type, Params> {
+  Future<Either<Failure, Type>> excute(Params email, Params password);
+}
 
-  LoginUseCase(this._loginRepository);
+class LoginUseCase extends UseCase<LoginEntity, String> {
+  final LoginRepo _loginRepo;
 
-  Future<Login> execute(String email, String password) async {
-    return _loginRepository.login(email, password);
+  LoginUseCase(this._loginRepo);
+
+  @override
+  Future<Either<Failure, LoginEntity>> excute(String email, String password) {
+    return _loginRepo.login(email, password);
   }
 }
 
-class RefreshTokenUseCase {
-  final LoginRepository _loginRepository;
+class LogoutUseCase extends UseCase<void, void> {
+  final LoginRepo _loginRepo;
 
-  RefreshTokenUseCase(this._loginRepository);
+  LogoutUseCase(this._loginRepo);
 
-  Future<Login> execute(String refresh) async {
-    return _loginRepository.refreshToken(refresh);
+  @override
+  Future<Either<Failure, void>> excute([void email, void password]) {
+    return _loginRepo.logout();
   }
-}
-
-class LogoutUseCase {
-  final LoginRepository _loginRepository;
-
-  LogoutUseCase(this._loginRepository);
-
-  Future<void> execute() async {
-    return _loginRepository.logout();
-  }
+  
 }
