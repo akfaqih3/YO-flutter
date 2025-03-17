@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:yemen_offers/core/errors/exceptions.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
 import 'package:yemen_offers/features/auth/data/data_sources/login_local_data_source.dart';
@@ -17,14 +18,11 @@ class LoginRepoImpl implements LoginRepo {
   });
 
   @override
-  Future<Either<Failure, LoginEntity>> login(
-    String email,
-    String password,
-  ) async {
+  Future<Either<Failure, bool>> login(String email, String password) async {
     try {
       final loginEntity = await loginRemoteDataSource.login(email, password);
       await loginLocalDataSource.saveToken(loginEntity);
-      return right(loginEntity);
+      return right(true);
     } catch (e) {
       return left(Exceptions.handleCatch(e));
     }
@@ -51,7 +49,6 @@ class LoginRepoImpl implements LoginRepo {
         await loginLocalDataSource.saveToken(loginEntity);
       }
       return right(null);
-    
     } catch (e) {
       return left(Exceptions.handleCatch(e));
     }

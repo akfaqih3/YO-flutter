@@ -1,5 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:yemen_offers/core/constants/storage_keys.dart';
+import 'package:yemen_offers/core/constants/cache_constants.dart';
 
 class HiveConfig {
   static Future<void> init() async {

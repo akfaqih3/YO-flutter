@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:yemen_offers/core/constants/storage_keys.dart';
+import 'package:yemen_offers/core/constants/cache_constants.dart';
 
 class CacheHelper {
   static final Box _box = Hive.box(CacheKeys.appCache);

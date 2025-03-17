@@ -4,8 +4,8 @@ import 'package:yemen_offers/features/auth/domain/entities/login_entity.dart';
 import '../models/login_model.dart';
 
 abstract class LoginRemoteDataSource {
-  Future<LoginEntity> login(String email, String password);
-  Future<LoginEntity> refreshToken(String refresh);
+  Future<LoginModel> login(String email, String password);
+  Future<LoginModel> refreshToken(String refresh);
   Future<void> logout(String refresh);
 }
 
@@ -15,8 +15,8 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
   LoginRemoteDataSourceImpl(this._apiService);
 
   @override
-  Future<LoginEntity> login(String email, String password) async {
-    final response = await _apiService.post(ApiConstants.login, {
+  Future<LoginModel> login(String email, String password) async {
+    final response = await _apiService.post(ApiConst.login, {
       ApiKeys.loginEmail: email,
       ApiKeys.loginPassword: password,
     });
@@ -24,8 +24,8 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
   }
 
   @override
-  Future<LoginEntity> refreshToken(String refresh) async {
-    final response = await _apiService.post(ApiConstants.refresh, {
+  Future<LoginModel> refreshToken(String refresh) async {
+    final response = await _apiService.post(ApiConst.refresh, {
       ApiKeys.refreshToken: refresh,
     });
     return LoginModel.fromJson(response.data);
@@ -33,8 +33,6 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
 
   @override
   Future<void> logout(String refresh) async {
-    await _apiService.post(ApiConstants.logout, {
-      ApiKeys.refreshToken: refresh,
-    });
+    await _apiService.post(ApiConst.logout, {ApiKeys.refreshToken: refresh});
   }
 }

@@ -1,38 +1,44 @@
 import 'package:dio/dio.dart';
+import 'package:yemen_offers/core/cache/cache_helper.dart';
+import 'package:yemen_offers/core/constants/api_constants.dart';
 
 class DioConfig {
-  static Dio createDio() {
-    Dio dio = Dio(
-      BaseOptions(
-        baseUrl:
-            "https://api.yourwebsite.com/", // ✨ غيّر هذا بعنوان API الخاص بك
-        connectTimeout: const Duration(seconds: 10),
-        receiveTimeout: const Duration(seconds: 10),
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-      ),
-    );
+  final Dio _dio = Dio(
+    BaseOptions(
+      baseUrl: ApiConst.baseUrl,
+      connectTimeout: Duration(milliseconds: ApiConst.connectTimeout),
+      receiveTimeout: Duration(milliseconds: ApiConst.receiveTimeout),
+    ),
+  );
 
-    // إضافة Interceptor لتسجيل الطلبات والاستجابات
-    dio.interceptors.add(
+  Dio get dio => _dio;
+
+  DioConfig() {
+    _setIntercepter();
+  }
+
+  _setIntercepter() {
+    _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          print("🔵 [Request] ${options.method} ${options.path}");
+          String? accessToken = _getAccessToken();
+          if (accessToken != null) {
+            options.headers['Authorization'] = 'Bearer $accessToken';
+          }
           return handler.next(options);
         },
         onResponse: (response, handler) {
-          print("🟢 [Response] ${response.statusCode} ${response.data}");
           return handler.next(response);
         },
-        onError: (DioException e, handler) {
-          print("🔴 [Dio Error] ${e.message}");
-          return handler.next(e);
+        onError: (error, handler) {
+          return handler.next(error);
         },
       ),
     );
+  }
 
-    return dio;
+  _getAccessToken() {
+    String? access = CacheHelper.getData(ApiKeys.accessToken);
+    return access;
   }
 }
