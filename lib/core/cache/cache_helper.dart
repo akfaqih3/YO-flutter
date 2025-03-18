@@ -9,7 +9,7 @@ class CacheHelper {
   }
 
   static dynamic getData(String key) {
-    return _box.get(key);
+    return _box.get(key, defaultValue: null);
   }
 
   static Future<void> removeData(String key) async {

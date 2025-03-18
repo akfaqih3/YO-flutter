@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:yemen_offers/core/cache/cache_helper.dart';
 import 'package:yemen_offers/core/constants/api_constants.dart';
+import 'package:yemen_offers/core/constants/cache_constants.dart';
 
 class DioConfig {
   final Dio _dio = Dio(
@@ -20,8 +21,11 @@ class DioConfig {
   _setIntercepter() {
     _dio.interceptors.add(
       InterceptorsWrapper(
-        onRequest: (options, handler) {
-          String? accessToken = _getAccessToken();
+        onRequest: (options, handler) async {
+          String? accessToken = await CacheHelper.getData(
+            CacheKeys.accessToken,
+          );
+
           if (accessToken != null) {
             options.headers['Authorization'] = 'Bearer $accessToken';
           }
@@ -35,10 +39,5 @@ class DioConfig {
         },
       ),
     );
-  }
-
-  _getAccessToken() {
-    String? access = CacheHelper.getData(ApiKeys.accessToken);
-    return access;
   }
 }

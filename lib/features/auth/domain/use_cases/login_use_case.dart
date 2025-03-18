@@ -14,10 +14,7 @@ class LoginUseCase extends UseCase<bool, String> {
   LoginUseCase(this._loginRepo);
 
   @override
-  Future<Either<Failure, bool>> excute(
-    String email,
-    String password,
-  ) async {
+  Future<Either<Failure, bool>> excute(String email, String password) async {
     return await _loginRepo.login(email, password);
   }
 }
@@ -28,7 +25,7 @@ class LogoutUseCase extends UseCase<void, void> {
   LogoutUseCase(this._loginRepo);
 
   @override
-  Future<Either<Failure, void>> excute([void email, void password]) {
-    return _loginRepo.logout();
+  Future<Either<Failure, void>> excute([void email, void password]) async {
+    return await _loginRepo.logout();
   }
 }
