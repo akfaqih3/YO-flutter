@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
+import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/auth/data/data_sources/login_local_data_source.dart';
 import 'package:yemen_offers/features/auth/data/data_sources/login_remote_data_source.dart';
 import 'package:yemen_offers/features/auth/data/repos/login_repo_impl.dart';
@@ -30,8 +31,23 @@ class LoginController extends GetxController {
       },
       (right) {
         Get.snackbar("Success", "تم تسجيل الدخول بنجاح");
+        Get.toNamed(AppRoutes.home);
       },
     );
     isLoading(false);
+  }
+
+  static void logout() async {
+    final loginRepo = Get.find<LoginRepoImpl>();
+    final result = await LogoutUseCase(loginRepo).excute();
+    result.fold(
+      (left) {
+        Get.snackbar("Error", left.message);
+      },
+      (right) {
+        Get.snackbar("Success", "تم تسجيل الخروج بنجاح");
+        Get.offAllNamed(AppRoutes.login);
+      },
+    );
   }
 }

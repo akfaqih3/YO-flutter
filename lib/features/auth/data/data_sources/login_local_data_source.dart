@@ -1,10 +1,11 @@
 import 'package:yemen_offers/core/cache/cache_helper.dart';
 import 'package:yemen_offers/core/constants/cache_constants.dart';
+import 'package:yemen_offers/features/auth/data/models/login_model.dart';
 import 'package:yemen_offers/features/auth/domain/entities/login_entity.dart';
 
 abstract class LoginLocalDataSource {
-  Future<void> saveToken(LoginEntity token);
-  Future<LoginEntity?>getToken();
+  Future<void> saveToken(LoginModel token);
+  Future<LoginModel> getToken();
   Future<String?> getRefreshToken();
   Future<String?> getAccessToken();
   Future<void> clearToken();
@@ -12,16 +13,16 @@ abstract class LoginLocalDataSource {
 
 class LoginLocalDataSourceImpl implements LoginLocalDataSource {
   @override
-  Future<void> saveToken(LoginEntity token) async {
+  Future<void> saveToken(LoginModel token) async {
     await CacheHelper.saveData(CacheKeys.refreshToken, token.refresh);
     await CacheHelper.saveData(CacheKeys.accessToken, token.access);
   }
 
   @override
-  Future<LoginEntity?> getToken() async {
-    String refresh = await CacheHelper.getData(CacheKeys.refreshToken);
-    String access = await CacheHelper.getData(CacheKeys.accessToken);
-    return LoginEntity(access: access, refresh: refresh);
+  Future<LoginModel> getToken() async {
+    String? refresh = await CacheHelper.getData(CacheKeys.refreshToken);
+    String? access = await CacheHelper.getData(CacheKeys.accessToken);
+    return LoginModel(access: access, refresh: refresh);
   }
 
   @override
@@ -29,12 +30,12 @@ class LoginLocalDataSourceImpl implements LoginLocalDataSource {
     await CacheHelper.removeData(CacheKeys.refreshToken);
     await CacheHelper.removeData(CacheKeys.accessToken);
   }
-  
+
   @override
   Future<String?> getAccessToken() async {
     return await CacheHelper.getData(CacheKeys.accessToken);
   }
-  
+
   @override
   Future<String?> getRefreshToken() async {
     return await CacheHelper.getData(CacheKeys.refreshToken);

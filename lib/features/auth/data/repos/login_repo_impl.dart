@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:yemen_offers/core/errors/exceptions.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
 import 'package:yemen_offers/features/auth/data/data_sources/login_local_data_source.dart';
+import 'package:yemen_offers/features/auth/data/models/login_model.dart';
 
 import '../../domain/entities/login_entity.dart';
 import '../../domain/repos/login_repo.dart';
@@ -20,8 +21,8 @@ class LoginRepoImpl implements LoginRepo {
   @override
   Future<Either<Failure, bool>> login(String email, String password) async {
     try {
-      final loginEntity = await loginRemoteDataSource.login(email, password);
-      await loginLocalDataSource.saveToken(loginEntity);
+      final loginModel = await loginRemoteDataSource.login(email, password);
+      await loginLocalDataSource.saveToken(loginModel);
       return right(true);
     } catch (e) {
       return left(Exceptions.handleCatch(e));
@@ -31,8 +32,11 @@ class LoginRepoImpl implements LoginRepo {
   @override
   Future<Either<Failure, void>> logout() async {
     try {
-      LoginEntity? token = await loginLocalDataSource.getToken();
-      await loginRemoteDataSource.logout(token!.refresh);
+      LoginModel token = await loginLocalDataSource.getToken();
+      if (token.refresh == null) {
+        return right(null);
+      }
+      await loginRemoteDataSource.logout(token.refresh!);
       await loginLocalDataSource.clearToken();
       return right(null);
     } catch (e) {
@@ -48,6 +52,29 @@ class LoginRepoImpl implements LoginRepo {
         final loginEntity = await loginRemoteDataSource.refreshToken(refresh);
         await loginLocalDataSource.saveToken(loginEntity);
       }
+      return right(null);
+    } catch (e) {
+      return left(Exceptions.handleCatch(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> resetPassword(String email) async {
+    try {
+      await loginRemoteDataSource.resetPassword(email);
+      return right(null);
+    } catch (e) {
+      return left(Exceptions.handleCatch(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> confirmResetPassword(
+    String password,
+    String token,
+  ) async {
+    try {
+      await loginRemoteDataSource.confirmResetPassword(password, token);
       return right(null);
     } catch (e) {
       return left(Exceptions.handleCatch(e));

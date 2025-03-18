@@ -2,8 +2,11 @@ import 'package:yemen_offers/core/constants/api_constants.dart';
 
 import '../../domain/entities/login_entity.dart';
 
-class LoginModel extends LoginEntity {
-  LoginModel({required super.access, required super.refresh});
+class LoginModel {
+  String? access;
+  String? refresh;
+
+  LoginModel({this.access, this.refresh});
 
   factory LoginModel.fromJson(Map<String, dynamic> json) {
     return LoginModel(

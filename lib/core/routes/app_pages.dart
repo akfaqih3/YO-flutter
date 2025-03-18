@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
-import 'package:yemen_offers/app_home.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/binding.dart';
+import 'package:yemen_offers/features/auth/presentation/pages/confirm_reset_password_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/login_page.dart';
+import 'package:yemen_offers/features/auth/presentation/pages/reset_password_page.dart';
+import 'package:yemen_offers/features/home/presentation/pages/home_page.dart';
 
 class AppPages {
   static final String initialRoute = AppRoutes.login;
@@ -13,6 +15,16 @@ class AppPages {
       page: () => LoginPage(),
       binding: LoginBinding(),
     ),
-    GetPage(name: AppRoutes.home, page: () => AppHome()),
+    GetPage(name: AppRoutes.home, page: () => HomePage(), binding: LoginBinding()),
+    GetPage(
+      name: AppRoutes.resetPassword,
+      page: () => ResetPasswordPage(),
+      binding: LoginBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.confirmResetPassword,
+      page: () => ConfirmResetPasswordPage(),
+      binding: LoginBinding(),
+    ),
   ];
 }
