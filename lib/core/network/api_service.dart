@@ -4,12 +4,10 @@ import 'dio_config.dart';
 import '../errors/dio_exception.dart';
 
 class ApiService extends getx.GetxService {
-  final DioConfig dioConfig = DioConfig();
-  late Dio dio;
+  final Dio dio = DioConfig().dio;
   @override
   void onInit() {
     super.onInit();
-    dio = dioConfig.dio;
   }
 
   Future<Response> get(

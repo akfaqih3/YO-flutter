@@ -14,6 +14,10 @@ class Endpoint {
   static const String logout = "${ApiConst.accountsApp}/logout/";
   static const String resetPassword = "password_reset/";
   static const String confirmResetPassword = "password_reset/confirm/";
+
+  static const String register = "${ApiConst.accountsApp}/user/register/";
+  static const String confirmOtpEmail = "${ApiConst.accountsApp}/verify-otp/";
+  static const String resendOtpEmail = "${ApiConst.accountsApp}/send-otp/";
 }
 
 class ApiKeys {
@@ -23,4 +27,12 @@ class ApiKeys {
 
   static const String email = "email";
   static const String password = "password";
+  static const String confirmPassword = "confirm_password";
+
+  static const String name = "name";
+  static const String gender = "gender";
+  static const String longitude = "longitude";
+  static const String latitude = "latitude";
+
+  static const String otp = "otp";
 }

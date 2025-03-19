@@ -16,6 +16,7 @@ class ConfirmResetPasswordController extends GetxController {
   void onInit() {
     super.onInit();
     token.value = Get.arguments;
+
     _confirmResetPassword = ConfirmResetPassword(loginRepo);
   }
 
