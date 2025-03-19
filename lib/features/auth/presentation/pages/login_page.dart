@@ -43,6 +43,15 @@ class LoginPage extends GetView<LoginController> {
                     child: Text('Login'),
                   );
             }),
+            SizedBox(height: 16),
+            Obx(() {
+              return controller.isLoading.value
+                  ? CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: () => controller.toRegister(),
+                      child: Text('Register'),
+                    );
+            }),
           ],
         ),
       ),

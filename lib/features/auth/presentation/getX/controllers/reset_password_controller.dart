@@ -30,6 +30,7 @@ class ResetPasswordController extends GetxController {
           "Success",
           "تم إرسال رابط إعادة تعيين كلمة المرور الى البريد ${email.value}",
         );
+        Get.offAllNamed(AppRoutes.login);
       },
     );
     isLoading(false);
