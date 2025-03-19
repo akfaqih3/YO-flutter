@@ -26,10 +26,7 @@ class RegisterController extends GetxController {
   }
 
   void register() async {
-    final LocationService locationService = Get.find<LocationService>();
-    final double latitude = locationService.latitude.value;
-    final double longitude = locationService.longitude.value;
-
+    
     final registerUseCase = RegisterUseCase(registerRepoImpl);
     final result = await registerUseCase.excute(
       name.value,
@@ -37,6 +34,7 @@ class RegisterController extends GetxController {
       gender.value,
       password.value,
       confirmPassword.value,
+     
     );
     result.fold(
       (left) {

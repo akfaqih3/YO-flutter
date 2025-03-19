@@ -26,11 +26,13 @@ class RegisterRepoImpl implements RegisterRepo {
     String email,
     String gender,
     String password,
-    String confirmPassword
+    String confirmPassword,
   ) async {
     try {
+      final LocationService locationService = Get.find<LocationService>();
       final double latitude = locationService.latitude.value;
       final double longitude = locationService.longitude.value;
+
       await registerRemoteDataSource.register(
         name,
         email,
