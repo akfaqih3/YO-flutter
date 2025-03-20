@@ -7,11 +7,10 @@ class LocationService extends GetxService {
   RxDouble longitude = 0.0.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
-    getCurrentLocation();
+    await getCurrentLocation();
   }
-
 
   /// ✅ التأكد من صلاحيات الموقع والخدمات
   Future<bool> ensurePermissions() async {
@@ -48,8 +47,8 @@ class LocationService extends GetxService {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
-      latitude.value = position.latitude;
-      longitude.value = position.longitude;
+      latitude.value = _roundTo6Decimals(position.latitude);
+      longitude.value = _roundTo6Decimals(position.longitude);
       print("📍 الموقع عبر GPS: ${latitude.value}, ${longitude.value}");
     } catch (e) {
       print("⚠️ فشل في جلب الموقع عبر GPS، محاولة عبر IP...");
@@ -62,8 +61,8 @@ class LocationService extends GetxService {
     try {
       var response = await Dio().get("http://ip-api.com/json/");
       if (response.statusCode == 200) {
-        latitude.value = response.data['lat'];
-        longitude.value = response.data['lon'];
+        latitude.value = _roundTo6Decimals(response.data['lat']);
+        longitude.value = _roundTo6Decimals(response.data['lon']);
         print("🌍 الموقع عبر IP: ${latitude.value}, ${longitude.value}");
       } else {
         print("❌ فشل في استرداد الموقع عبر IP.");
@@ -71,5 +70,9 @@ class LocationService extends GetxService {
     } catch (e) {
       print("❌ خطأ أثناء جلب الموقع عبر IP: $e");
     }
+  }
+
+  double _roundTo6Decimals(double value) {
+    return double.parse(value.toStringAsFixed(6));
   }
 }

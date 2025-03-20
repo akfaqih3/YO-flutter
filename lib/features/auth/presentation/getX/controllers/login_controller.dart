@@ -46,9 +46,9 @@ class LoginController extends GetxController {
       },
       (right) {
         Get.snackbar("Success", "تم تسجيل الخروج بنجاح");
-        Get.offAllNamed(AppRoutes.login);
       },
     );
+    Get.offAllNamed(AppRoutes.login);
   }
 
   void toRegister() {

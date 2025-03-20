@@ -14,13 +14,23 @@ class Endpoint {
   static const String logout = "${ApiConst.accountsApp}/logout/";
   static const String resetPassword = "password_reset/";
   static const String confirmResetPassword = "password_reset/confirm/";
-
   static const String register = "${ApiConst.accountsApp}/user/register/";
   static const String confirmOtpEmail = "${ApiConst.accountsApp}/verify-otp/";
   static const String resendOtpEmail = "${ApiConst.accountsApp}/send-otp/";
+
+  static const String userProfile = "${ApiConst.accountsApp}/user/profile/";
+  static const String userUpdate = "${ApiConst.accountsApp}/user/update/";
+  static const String merchantProfile =
+      "${ApiConst.offersApp}/merchant/profile/";
+  static const String merchantUpdate = "${ApiConst.offersApp}/merchant/update/";
+  static const String changePassword =
+      "${ApiConst.accountsApp}/change-password/";
 }
 
 class ApiKeys {
+  static const String user = "user";
+  static const String merchant = "merchant";
+
   static const String accessToken = "access";
   static const String refreshToken = "refresh";
   static const String token = "token";
@@ -35,4 +45,7 @@ class ApiKeys {
   static const String latitude = "latitude";
 
   static const String otp = "otp";
+
+  static const String oldPassword = "old_password";
+  static const String newPassword = "new_password";
 }
