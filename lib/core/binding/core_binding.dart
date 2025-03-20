@@ -7,7 +7,7 @@ class AppBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ApiService>(() => ApiService(), fenix: true);
-    Get.lazyPut<LocationService>(() => LocationService(), fenix: true);
+    Get.put<LocationService>(LocationService(), permanent: true);
     // Get.lazyPut<LinkHandlerService>(() => LinkHandlerService(), fenix: true);
   }
 }

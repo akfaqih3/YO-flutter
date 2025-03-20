@@ -28,7 +28,7 @@ class DioConfig {
   _setIntercepter() {
     _dio.interceptors.add(
       InterceptorsWrapper(
-        onRequest: (options, handler) async {          
+        onRequest: (options, handler) async {
           String? accessToken = await CacheHelper.getData(
             CacheKeys.accessToken,
           );
@@ -36,13 +36,13 @@ class DioConfig {
           if (accessToken != null) {
             options.headers['Authorization'] = 'Bearer $accessToken';
           }
+
           return handler.next(options);
         },
         onResponse: (response, handler) {
           return handler.next(response);
         },
         onError: (error, handler) {
-        
           return handler.next(error);
         },
       ),
