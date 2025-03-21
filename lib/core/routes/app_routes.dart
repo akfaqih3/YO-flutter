@@ -8,4 +8,9 @@ class AppRoutes {
 
   static const String userProfile = '/user_profile';
   static const String merchantProfile = '/merchant_profile';
+
+  // merchant store
+  static const String merchantStores = '/merchant_stores';
+  static const String merchantAddStore = '/merchant_add_store';
+  static const String merchantStoreDetails = '/merchant_store_details';
 }

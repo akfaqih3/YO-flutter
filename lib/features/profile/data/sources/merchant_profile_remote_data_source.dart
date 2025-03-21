@@ -22,7 +22,7 @@ class MerchantProfileRemoteDataSourceImpl implements MerchantProfileRemoteDataSo
   Future<MerchantModel> updateProfile(MerchantModel profile) async {
     final response = await _apiService.put(
       Endpoint.merchantUpdate,
-      profile.toJson(),
+      data: profile.toJson(),
     );
     return MerchantModel.fromJson(response.data[ApiKeys.user]);
   }

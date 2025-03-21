@@ -24,6 +24,12 @@ class HomePage extends GetView<HomeController> {
             },
             child: Text("الملف الشخصي"),
           ),
+          ElevatedButton(
+            onPressed: () {
+              Get.toNamed(AppRoutes.merchantStores);
+            },
+            child: Text("المتاجر"),
+          ),
         ],
       ),
     );

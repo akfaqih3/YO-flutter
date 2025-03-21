@@ -5,7 +5,8 @@ class ApiConst {
   static const int receiveTimeout = 5000;
 
   static const String accountsApp = "accounts";
-  static const String offersApp = "offers";
+  static const String merchantApp = "merchants";
+  static const String coreApp = "core";
 }
 
 class Endpoint {
@@ -21,10 +22,17 @@ class Endpoint {
   static const String userProfile = "${ApiConst.accountsApp}/user/profile/";
   static const String userUpdate = "${ApiConst.accountsApp}/user/update/";
   static const String merchantProfile =
-      "${ApiConst.offersApp}/merchant/profile/";
-  static const String merchantUpdate = "${ApiConst.offersApp}/merchant/update/";
+      "${ApiConst.accountsApp}/merchant/profile/";
+  static const String merchantUpdate =
+      "${ApiConst.accountsApp}/merchant/update/";
   static const String changePassword =
       "${ApiConst.accountsApp}/change-password/";
+
+  // Merchant store
+  static const String merchantStores = "${ApiConst.merchantApp}/stores/";
+
+  // core
+  static const String categories = "${ApiConst.coreApp}/categories/";
 }
 
 class ApiKeys {
@@ -48,4 +56,17 @@ class ApiKeys {
 
   static const String oldPassword = "old_password";
   static const String newPassword = "new_password";
+
+  // store keys
+  static const String storeSlug = "slug";
+  static const String storeName = "name";
+  static const String storeDescription = "description";
+  static const String storeCategory = "category";
+  static const String storeImage = "image";
+  static const String storePhone = "phone";
+  static const String storeWebsite = "website";
+  static const String storeAddress = "address";
+  static const String storeLongitude = "longitude";
+  static const String storeLatitude = "latitude";
+  static const String storeSocialMedia = "social_media";
 }
