@@ -32,29 +32,35 @@ class RegisterRemoteDataSourceImpl implements RegisterRemoteDataSource {
     double latitude,
     double longitude,
   ) async {
-    final response = await _apiService.post(Endpoint.register, {
-      ApiKeys.name: name,
-      ApiKeys.email: email,
-      ApiKeys.gender: gender,
-      ApiKeys.password: password,
-      ApiKeys.confirmPassword: confirmPassword,
-      ApiKeys.latitude: latitude,
-      ApiKeys.longitude: longitude,
-    });
+    final response = await _apiService.post(
+      Endpoint.register,
+      data: {
+        ApiKeys.name: name,
+        ApiKeys.email: email,
+        ApiKeys.gender: gender,
+        ApiKeys.password: password,
+        ApiKeys.confirmPassword: confirmPassword,
+        ApiKeys.latitude: latitude,
+        ApiKeys.longitude: longitude,
+      },
+    );
     return RegisterModel.fromJson(response.data['user']);
   }
 
   @override
   Future<LoginModel> confirmOtpEmail(String email, String otp) async {
-    final response = await _apiService.post(Endpoint.confirmOtpEmail, {
-      ApiKeys.email: email,
-      ApiKeys.otp: otp,
-    });
+    final response = await _apiService.post(
+      Endpoint.confirmOtpEmail,
+      data: {ApiKeys.email: email, ApiKeys.otp: otp},
+    );
     return LoginModel.fromJson(response.data);
   }
 
   @override
   Future<void> resendOtpEmail(String email) async {
-    await _apiService.post(Endpoint.resendOtpEmail, {ApiKeys.email: email});
+    await _apiService.post(
+      Endpoint.resendOtpEmail,
+      data: {ApiKeys.email: email},
+    );
   }
 }

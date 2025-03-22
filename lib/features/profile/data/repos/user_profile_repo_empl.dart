@@ -46,9 +46,13 @@ class UserProfileRepoImpl implements UserProfileRepo {
       return Left(Exceptions.handleCatch(e));
     }
   }
-  
+
   @override
-  Future<Either<Failure, void>> changePassword(String oldPassword, String newPassword, String confirmPassword) async {
+  Future<Either<Failure, void>> changePassword(
+    String oldPassword,
+    String newPassword,
+    String confirmPassword,
+  ) async {
     try {
       final ChangePasswordModel model = ChangePasswordModel(
         oldPassword: oldPassword,

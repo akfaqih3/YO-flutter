@@ -9,6 +9,10 @@ import 'package:yemen_offers/features/auth/presentation/pages/reset_password_pag
 import 'package:yemen_offers/features/home/presentation/pages/home_page.dart';
 import 'package:yemen_offers/features/profile/presentation/getX/profile_binding.dart';
 import 'package:yemen_offers/features/profile/presentation/pages/user_profile_page.dart';
+import 'package:yemen_offers/features/store/presentation/getX/store_binding.dart';
+import 'package:yemen_offers/features/store/presentation/pages/merchant_add_store_page.dart';
+import 'package:yemen_offers/features/store/presentation/pages/merchant_store_details_page.dart';
+import 'package:yemen_offers/features/store/presentation/pages/merchant_stores_page.dart';
 
 class AppPages {
   static final String initialRoute = AppRoutes.home;
@@ -44,6 +48,23 @@ class AppPages {
       name: AppRoutes.userProfile,
       page: () => UserProfilePage(),
       binding: ProfileBinding(),
+    ),
+
+    // merchant 
+    GetPage(
+      name: AppRoutes.merchantStores,
+      page: () => MerchantStoresPage(),
+      binding: StoreBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.merchantAddStore,
+      page: () => MerchantAddStorePage(),
+      binding: StoreBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.merchantStoreDetails,
+      page: () => MerchantStoreDetailsPage(),
+      binding: StoreBinding(),
     ),
   ];
 }

@@ -24,16 +24,13 @@ class UserProfileRemoteDataSourceImpl implements UserProfileRemoteDataSource {
   Future<UserModel> updateProfile(UserModel profile) async {
     final response = await _apiService.put(
       Endpoint.userUpdate,
-      profile.toJson(),
+      data: profile.toJson(),
     );
     return UserModel.fromJson(response.data[ApiKeys.user]);
   }
-  
+
   @override
   Future<void> changePassword(model) async {
-    await  _apiService.put(
-      Endpoint.changePassword,
-      model.toJson(),
-    );
+    await _apiService.put(Endpoint.changePassword, data: model.toJson());
   }
 }

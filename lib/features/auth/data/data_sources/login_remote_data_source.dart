@@ -17,36 +17,43 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
 
   @override
   Future<LoginModel> login(String email, String password) async {
-    final response = await _apiService.post(Endpoint.login, {
-      ApiKeys.email: email,
-      ApiKeys.password: password,
-    });
+    final response = await _apiService.post(
+      Endpoint.login,
+      data: {ApiKeys.email: email, ApiKeys.password: password},
+    );
     return LoginModel.fromJson(response.data);
   }
 
   @override
   Future<LoginModel> refreshToken(String refresh) async {
-    final response = await _apiService.post(Endpoint.refresh, {
-      ApiKeys.refreshToken: refresh,
-    });
+    final response = await _apiService.post(
+      Endpoint.refresh,
+      data: {ApiKeys.refreshToken: refresh},
+    );
     return LoginModel.fromJson(response.data);
   }
 
   @override
   Future<void> logout(String refresh) async {
-    await _apiService.post(Endpoint.logout, {ApiKeys.refreshToken: refresh});
+    await _apiService.post(
+      Endpoint.logout,
+      data: {ApiKeys.refreshToken: refresh},
+    );
   }
 
   @override
   Future<void> resetPassword(String email) async {
-    await _apiService.post(Endpoint.resetPassword, {ApiKeys.email: email});
+    await _apiService.post(
+      Endpoint.resetPassword,
+      data: {ApiKeys.email: email},
+    );
   }
 
   @override
   Future<void> confirmResetPassword(String password, String token) async {
-    await _apiService.post(Endpoint.confirmResetPassword, {
-      ApiKeys.password: password,
-      ApiKeys.token: token,
-    });
+    await _apiService.post(
+      Endpoint.confirmResetPassword,
+      data: {ApiKeys.password: password, ApiKeys.token: token},
+    );
   }
 }

@@ -6,7 +6,7 @@ import 'package:yemen_offers/core/utils/redirect_urls.dart';
 class AppBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ApiService>(() => ApiService(), fenix: true);
+    Get.put<ApiService>(ApiService(), permanent: true);
     Get.put<LocationService>(LocationService(), permanent: true);
     // Get.lazyPut<LinkHandlerService>(() => LinkHandlerService(), fenix: true);
   }

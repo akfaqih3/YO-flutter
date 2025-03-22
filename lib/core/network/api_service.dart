@@ -14,34 +14,33 @@ class ApiService extends getx.GetxService {
     String endpoint, {
     Map<String, dynamic>? queryParams,
   }) async {
-    try {
-      final response = await dio.get(endpoint, queryParameters: queryParams);
-      return response;
-    } on DioException catch (e) {
-      throw Exception(DioErrorHandler.getDioErrorMessage(e));
-    }
+    final response = await dio.get(endpoint, queryParameters: queryParams);
+    return response;
   }
 
-  Future<Response> post(String endpoint, Map<String, dynamic> data) async {
+  Future<Response> post(
+    String endpoint, {
+    Object? data,
+    Map<String, dynamic>? queryParams,
+  }) async {
     final response = await dio.post(endpoint, data: data);
     return response;
   }
 
-  Future<Response> put(String endpoint, Map<String, dynamic> data) async {
-    try {
-      final response = await dio.put(endpoint, data: data);
-      return response;
-    } on DioException catch (e) {
-      throw Exception(DioErrorHandler.getDioErrorMessage(e));
-    }
+  Future<Response> put(
+    String endpoint, {
+    Object? data,
+    Map<String, dynamic>? queryParams,
+  }) async {
+    final response = await dio.put(endpoint, data: data);
+    return response;
   }
 
-  Future<Response> delete(String endpoint) async {
-    try {
-      final response = await dio.delete(endpoint);
-      return response;
-    } on DioException catch (e) {
-      throw Exception(DioErrorHandler.getDioErrorMessage(e));
-    }
+  Future<Response> delete(
+    String endpoint, {
+    Map<String, dynamic>? queryParams,
+  }) async {
+    final response = await dio.delete(endpoint);
+    return response;
   }
 }
