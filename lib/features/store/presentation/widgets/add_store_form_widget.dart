@@ -2,8 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:yemen_offers/core/utils/map_util.dart';
 import 'package:yemen_offers/features/store/domain/entities/category_entity.dart';
-import 'package:yemen_offers/features/store/domain/entities/store_etity.dart';
 import 'package:yemen_offers/features/store/presentation/getX/controllers/merchant_add_store_controller.dart';
 
 class AddStoreFormWidget extends StatelessWidget {
@@ -43,7 +43,7 @@ class AddStoreFormWidget extends StatelessWidget {
             children: [
               _buildTextField(controller.nameController, "الاسم"),
               _buildTextField(controller.phoneController, "الرقم الالكتروني"),
-              _buildTextField(controller.addressController, "العنوان"),
+              _buildAddressField(),
               _buildTextField(controller.websiteController, "الموقع"),
               _buildTextField(controller.descriptionController, "الوصف"),
               _buildCategoryDropdown(categories),
@@ -66,6 +66,31 @@ class AddStoreFormWidget extends StatelessWidget {
         decoration: InputDecoration(
           labelText: label,
           border: OutlineInputBorder(),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAddressField() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: TextFormField(
+        controller: controller.addressController,
+        readOnly: true, // اجعل الحقل غير قابل للتحرير مباشرة
+        decoration: InputDecoration(
+          labelText: "العنوان",
+          border: OutlineInputBorder(),
+          suffixIcon: IconButton(
+            icon: Icon(Icons.map, color: Colors.blue),
+            onPressed:
+                () => {
+                  MapUtil.selectLocation(
+                    addressController: controller.addressController,
+                    latitude: controller.latitude,
+                    longitude: controller.longitude,
+                  ),
+                },
+          ),
         ),
       ),
     );

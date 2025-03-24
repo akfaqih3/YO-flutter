@@ -13,6 +13,7 @@ class ApiService extends getx.GetxService {
   Future<Response> get(
     String endpoint, {
     Map<String, dynamic>? queryParams,
+    Options? options,
   }) async {
     final response = await dio.get(endpoint, queryParameters: queryParams);
     return response;
@@ -22,6 +23,7 @@ class ApiService extends getx.GetxService {
     String endpoint, {
     Object? data,
     Map<String, dynamic>? queryParams,
+    Options? options,
   }) async {
     final response = await dio.post(endpoint, data: data);
     return response;
@@ -31,6 +33,7 @@ class ApiService extends getx.GetxService {
     String endpoint, {
     Object? data,
     Map<String, dynamic>? queryParams,
+    Options? options,
   }) async {
     final response = await dio.put(endpoint, data: data);
     return response;
@@ -39,6 +42,7 @@ class ApiService extends getx.GetxService {
   Future<Response> delete(
     String endpoint, {
     Map<String, dynamic>? queryParams,
+    Options? options,
   }) async {
     final response = await dio.delete(endpoint);
     return response;

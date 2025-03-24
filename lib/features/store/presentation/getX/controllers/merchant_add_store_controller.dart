@@ -16,6 +16,9 @@ class MerchantAddStoreController extends GetxController {
 
   final Rx<StoreEntity?> storeToUpdate = Rx<StoreEntity?>(null);
 
+  Rx<double> latitude = 0.0.obs;
+  Rx<double> longitude = 0.0.obs;
+
   RxBool isLoading = false.obs;
 
   final nameController = TextEditingController();
@@ -62,6 +65,19 @@ class MerchantAddStoreController extends GetxController {
   void addStore() async {
     isLoading(true);
     final AddStoreUseCase addStoreUseCase = AddStoreUseCase(_storeRepoImpl);
+    final Map<String, String> socialMedia = {};
+    if (facebookController.value.text.isNotEmpty) {
+      socialMedia["facebook"] = facebookController.value.text;
+    }
+    if (instagramController.value.text.isNotEmpty) {
+      socialMedia["instagram"] = instagramController.value.text;
+    }
+    if (twitterController.value.text.isNotEmpty) {
+      socialMedia["twitter"] = twitterController.value.text;
+    }
+    if (youtubeController.value.text.isNotEmpty) {
+      socialMedia["youtube"] = youtubeController.value.text;
+    }
     final result = await addStoreUseCase.execute(
       name: nameController.value.text,
       description: descriptionController.value.text,
@@ -72,12 +88,7 @@ class MerchantAddStoreController extends GetxController {
       address: addressController.value.text,
       longitude: 0.0,
       latitude: 0.0,
-      socialMedia: {
-        "facebook": facebookController.value.text,
-        "instagram": instagramController.value.text,
-        "twitter": twitterController.value.text,
-        "youtube": youtubeController.value.text,
-      },
+      socialMedia: socialMedia,
     );
 
     result.fold(
@@ -96,6 +107,20 @@ class MerchantAddStoreController extends GetxController {
     final UpdateStoreUseCase updateStoreUseCase = UpdateStoreUseCase(
       _storeRepoImpl,
     );
+    final Map<String, String> socialMedia = {};
+    if (facebookController.value.text.isNotEmpty) {
+      socialMedia["facebook"] = facebookController.value.text;
+    }
+    if (instagramController.value.text.isNotEmpty) {
+      socialMedia["instagram"] = instagramController.value.text;
+    }
+    if (twitterController.value.text.isNotEmpty) {
+      socialMedia["twitter"] = twitterController.value.text;
+    }
+    if (youtubeController.value.text.isNotEmpty) {
+      socialMedia["youtube"] = youtubeController.value.text;
+    }
+
     final result = await updateStoreUseCase.execute(
       slug: storeToUpdate.value!.slug!,
       name: nameController.value.text,
@@ -107,12 +132,7 @@ class MerchantAddStoreController extends GetxController {
       address: addressController.value.text,
       longitude: 0.0,
       latitude: 0.0,
-      socialMedia: {
-        "facebook": facebookController.value.text,
-        "instagram": instagramController.value.text,
-        "twitter": twitterController.value.text,
-        "youtube": youtubeController.value.text,
-      },
+      socialMedia: socialMedia,
     );
 
     result.fold(

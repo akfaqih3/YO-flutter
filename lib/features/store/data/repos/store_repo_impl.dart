@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:yemen_offers/core/constants/api_constants.dart';
@@ -61,7 +62,7 @@ class StoreRepoImpl implements StoreRepo {
         ApiKeys.storeAddress: address,
         ApiKeys.storeLongitude: longitude,
         ApiKeys.storeLatitude: latitude,
-        ApiKeys.storeSocialMedia: socialMedia,
+        ApiKeys.storeSocialMedia: jsonEncode(socialMedia),
       };
       await _remoteDataSource.addStore(storeData);
       return Right(null);
@@ -95,7 +96,7 @@ class StoreRepoImpl implements StoreRepo {
         ApiKeys.storeAddress: address,
         ApiKeys.storeLongitude: longitude,
         ApiKeys.storeLatitude: latitude,
-        ApiKeys.storeSocialMedia: socialMedia,
+        ApiKeys.storeSocialMedia: jsonEncode(socialMedia),
       };
       await _remoteDataSource.updateStore(slug, storeData);
       return Right(null);
@@ -113,11 +114,13 @@ class StoreRepoImpl implements StoreRepo {
       return Left(Exceptions.handleCatch(e));
     }
   }
-  
+
   @override
-  Future<Either<Failure, StoreEntity>> getStoreDetails(String slug)async {
+  Future<Either<Failure, StoreEntity>> getStoreDetails(String slug) async {
     try {
-      final StoreModel storeModel = await _remoteDataSource.getStoreDetails(slug);
+      final StoreModel storeModel = await _remoteDataSource.getStoreDetails(
+        slug,
+      );
       return Right(StoreEntity.fromModel(storeModel));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));
