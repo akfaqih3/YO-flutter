@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:yemen_offers/features/store/data/repos/store_repo_impl.dart';
 import 'package:yemen_offers/features/store/domain/entities/store_etity.dart';
 import 'package:yemen_offers/features/store/domain/use_cases/get_store_details_use_case.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MerchantStoreDetailsController extends GetxController {
   final StoreRepoImpl _storeRepoImpl = Get.find<StoreRepoImpl>();

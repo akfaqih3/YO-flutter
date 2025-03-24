@@ -42,6 +42,9 @@ class DioConfig {
           return handler.next(response);
         },
         onError: (error, handler) {
+          print("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+          print(error.response?.statusCode);
+          print(error.response?.data);
           return handler.next(error);
         },
       ),

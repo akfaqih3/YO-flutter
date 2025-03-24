@@ -63,11 +63,11 @@ class StoreRemoteDataSourceImpl implements StoreRemoteDataSource {
     final String url = "${Endpoint.merchantStores}$slug/";
     await _apiService.delete(url);
   }
-  
+
   @override
-  Future<StoreModel> getStoreDetails(String slug) async{
+  Future<StoreModel> getStoreDetails(String slug) async {
     final String url = "${Endpoint.merchantStores}$slug/";
-    final  response = await _apiService.get(url);
+    final response = await _apiService.get(url);
     return StoreModel.fromJson(response.data);
   }
 }
