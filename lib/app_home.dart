@@ -10,7 +10,11 @@ import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/theme/app_theme.dart';
 
 class AppHome extends StatefulWidget {
-  const AppHome({super.key});
+  // const AppHome({super.key});
+
+  const AppHome._internal();
+  static final AppHome _singleton = AppHome._internal();
+  factory AppHome() => _singleton;
 
   @override
   State<AppHome> createState() => _AppHomeState();
@@ -53,7 +57,6 @@ class _AppHomeState extends State<AppHome> {
   }
 
   void openAppLink(Uri uri) {
-    
     if (uri.path.contains('/api/password_reset/confirm/')) {
       try {
         String token = uri.queryParameters['token'] ?? '';
