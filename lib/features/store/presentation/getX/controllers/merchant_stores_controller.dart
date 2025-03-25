@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/store/data/repos/store_repo_impl.dart';
@@ -38,7 +37,9 @@ class MerchantStoresController extends GetxController {
 
   void deleteStore(String slug) async {
     isLoading(true);
-    final DeleteStoreUseCase deleteStoreUseCase = DeleteStoreUseCase(_storeRepoImpl);
+    final DeleteStoreUseCase deleteStoreUseCase = DeleteStoreUseCase(
+      _storeRepoImpl,
+    );
     final result = await deleteStoreUseCase.execute(slug);
 
     result.fold(
@@ -57,5 +58,4 @@ class MerchantStoresController extends GetxController {
     Get.toNamed(AppRoutes.merchantAddStore, arguments: store);
     isLoading(false);
   }
-
 }

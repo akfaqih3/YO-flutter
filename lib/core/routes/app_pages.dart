@@ -7,6 +7,9 @@ import 'package:yemen_offers/features/auth/presentation/pages/login_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/register_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/reset_password_page.dart';
 import 'package:yemen_offers/features/home/presentation/pages/home_page.dart';
+import 'package:yemen_offers/features/offer/presentation/getX/offer_binding.dart';
+import 'package:yemen_offers/features/offer/presentation/views/pages/merchant_add_update_offer_page.dart';
+import 'package:yemen_offers/features/offer/presentation/views/pages/merchant_offer_details_page.dart';
 import 'package:yemen_offers/features/profile/presentation/getX/profile_binding.dart';
 import 'package:yemen_offers/features/profile/presentation/pages/user_profile_page.dart';
 import 'package:yemen_offers/features/store/presentation/getX/store_binding.dart';
@@ -23,7 +26,11 @@ class AppPages {
       page: () => LoginPage(),
       binding: LoginBinding(),
     ),
-    GetPage(name: AppRoutes.home, page: () => HomePage(), binding: LoginBinding()),
+    GetPage(
+      name: AppRoutes.home,
+      page: () => HomePage(),
+      binding: LoginBinding(),
+    ),
     GetPage(
       name: AppRoutes.resetPassword,
       page: () => ResetPasswordPage(),
@@ -50,7 +57,7 @@ class AppPages {
       binding: ProfileBinding(),
     ),
 
-    // merchant 
+    // merchant store
     GetPage(
       name: AppRoutes.merchantStores,
       page: () => MerchantStoresPage(),
@@ -59,12 +66,23 @@ class AppPages {
     GetPage(
       name: AppRoutes.merchantAddStore,
       page: () => MerchantAddStorePage(),
-      binding: StoreBinding(),
     ),
     GetPage(
       name: AppRoutes.merchantStoreDetails,
       page: () => MerchantStoreDetailsPage(),
-      binding: StoreBinding(),
+      binding: OfferBinding(),
+    ),
+
+    // merchant offer
+    GetPage(
+      name: AppRoutes.merchantAddUpdateOffer,
+      page: () => MerchantAddUpdateOfferPage(),
+      binding: OfferBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.merchantOfferDetails,
+      page: () => MerchantOfferDetailsPage(),
+      binding: OfferBinding(),
     ),
   ];
 }

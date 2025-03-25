@@ -31,8 +31,17 @@ class Endpoint {
   // Merchant store
   static const String merchantStores = "${ApiConst.merchantApp}/stores/";
 
+  // Merchant offer
+  static String merchantOffers(String storeSlug) =>
+      "${ApiConst.merchantApp}/stores/$storeSlug/offers/";
+  static String merchantOfferCRUD(String storeSlug, String slug) =>
+      "${merchantOffers(storeSlug)}$slug/";
+
   // core
   static const String categories = "${ApiConst.coreApp}/categories/";
+
+  static String offerCategoryByCategory(String categorySlug) =>
+      "$categories$categorySlug/offer-categories/";
 }
 
 class ApiKeys {
@@ -69,4 +78,15 @@ class ApiKeys {
   static const String storeLongitude = "longitude";
   static const String storeLatitude = "latitude";
   static const String storeSocialMedia = "social_media";
+
+  // offer keys
+  static const String offerSlug = "slug";
+  static const String offerTitle = "title";
+  static const String offerDescription = "description";
+  static const String offerCategory = "category";
+  static const String offerImage = "image";
+  static const String offerPriceBefore = "price_before";
+  static const String offerPriceAfter = "price_after";
+  static const String offerStartDate = "start_date";
+  static const String offerEndDate = "end_date";
 }

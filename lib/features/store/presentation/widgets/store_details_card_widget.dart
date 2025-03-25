@@ -106,10 +106,10 @@ class StoreDetailsCardWidget extends StatelessWidget {
               ],
             ),
             SizedBox(height: 10),
-            StoreMapWidget(
-              storeLatitude: double.parse(store.latitude!),
-              storeLongitude: double.parse(store.longitude!),
-            ),
+            // StoreMapWidget(
+            //   storeLatitude: double.parse(store.latitude!),
+            //   storeLongitude: double.parse(store.longitude!),
+            // ),
           ],
         ),
       ),
