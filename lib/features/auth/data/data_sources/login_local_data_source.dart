@@ -1,7 +1,6 @@
 import 'package:yemen_offers/core/cache/cache_helper.dart';
 import 'package:yemen_offers/core/constants/cache_constants.dart';
 import 'package:yemen_offers/features/auth/data/models/login_model.dart';
-import 'package:yemen_offers/features/auth/domain/entities/login_entity.dart';
 
 abstract class LoginLocalDataSource {
   Future<void> saveToken(LoginModel token);

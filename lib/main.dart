@@ -8,5 +8,5 @@ void main() async {
   HiveConfig.init();
   AppBinding().dependencies();
 
-  runApp(const AppHome());
+  runApp(AppHome());
 }

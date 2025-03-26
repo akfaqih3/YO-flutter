@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
 
-import '../entities/login_entity.dart';
 import '../repos/login_repo.dart';
 
 abstract class UseCase<Type, Params> {

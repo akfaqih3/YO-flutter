@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
-import 'package:yemen_offers/features/store/data/models/store_model.dart';
 import 'package:yemen_offers/features/store/domain/entities/store_etity.dart';
 import 'package:yemen_offers/features/store/domain/repos/store_repo.dart';
 

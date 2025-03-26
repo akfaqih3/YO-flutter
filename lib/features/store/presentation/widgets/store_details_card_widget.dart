@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yemen_offers/core/utils/map_util.dart';
 import 'package:yemen_offers/features/store/domain/entities/store_etity.dart';
-import 'package:yemen_offers/features/store/presentation/getX/controllers/merchant_store_details_controller.dart';
-import 'package:yemen_offers/features/store/presentation/widgets/store_map_widget.dart';
 
 class StoreDetailsCardWidget extends StatelessWidget {
   final StoreEntity store;
@@ -106,10 +104,10 @@ class StoreDetailsCardWidget extends StatelessWidget {
               ],
             ),
             SizedBox(height: 10),
-            StoreMapWidget(
-              storeLatitude: double.parse(store.latitude!),
-              storeLongitude: double.parse(store.longitude!),
-            ),
+            // StoreMapWidget(
+            //   storeLatitude: double.parse(store.latitude!),
+            //   storeLongitude: double.parse(store.longitude!),
+            // ),
           ],
         ),
       ),

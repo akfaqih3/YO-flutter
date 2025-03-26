@@ -12,11 +12,19 @@ class StoreBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<StoreRepoImpl>(
       () => StoreRepoImpl(StoreRemoteDataSourceImpl(_apiService)),
+      fenix: true,
     );
-    Get.lazyPut<MerchantStoresController>(() => MerchantStoresController());
-    Get.lazyPut<MerchantAddStoreController>(() => MerchantAddStoreController());
+    Get.lazyPut<MerchantStoresController>(
+      () => MerchantStoresController(),
+      fenix: true,
+    );
+    Get.lazyPut<MerchantAddStoreController>(
+      () => MerchantAddStoreController(),
+      fenix: true,
+    );
     Get.lazyPut<MerchantStoreDetailsController>(
       () => MerchantStoreDetailsController(),
+      fenix: true,
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/controllers/confirm_reset_password_controller.dart';
-import 'package:yemen_offers/features/auth/presentation/getX/controllers/reset_password_controller.dart';
 
 class ConfirmResetPasswordPage extends GetView<ConfirmResetPasswordController> {
   @override

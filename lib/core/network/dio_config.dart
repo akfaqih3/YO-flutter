@@ -36,15 +36,13 @@ class DioConfig {
           if (accessToken != null) {
             options.headers['Authorization'] = 'Bearer $accessToken';
           }
+
           return handler.next(options);
         },
         onResponse: (response, handler) {
           return handler.next(response);
         },
         onError: (error, handler) {
-          print("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-          print(error.response?.statusCode);
-          print(error.response?.data);
           return handler.next(error);
         },
       ),

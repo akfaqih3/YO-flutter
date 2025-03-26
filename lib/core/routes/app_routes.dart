@@ -13,4 +13,9 @@ class AppRoutes {
   static const String merchantStores = '/merchant_stores';
   static const String merchantAddStore = '/merchant_add_store';
   static const String merchantStoreDetails = '/merchant_store_details';
+
+  // merchant offer
+  static const String merchantOffers = '/merchant_offers';
+  static const String merchantAddUpdateOffer = '/merchant_add_update_offer';
+  static const String merchantOfferDetails = '/merchant_offer_details';
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/controllers/confirmation_account_controller.dart';
 
 class ConfirmAccountPage extends GetView<ConfirmAccountController> {

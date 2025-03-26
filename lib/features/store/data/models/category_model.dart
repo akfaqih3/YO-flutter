@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 List<CategoryModel> categoryModelFromJson(List<dynamic> json) =>
     List<CategoryModel>.from(json.map((x) => CategoryModel.fromJson(x)));
