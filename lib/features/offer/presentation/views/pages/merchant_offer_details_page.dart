@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yemen_offers/features/offer/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/offer/presentation/getX/controllers/merchant_offer_details_controller.dart';
 
 class MerchantOfferDetailsPage extends GetView<MerchantOfferDetailsController> {
@@ -103,6 +102,25 @@ class MerchantOfferDetailsPage extends GetView<MerchantOfferDetailsController> {
                     color: offer.isActive == true ? Colors.green : Colors.red,
                   ),
                 ),
+              ),
+              // bottons to update and delete 
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      controller.updateOffer();
+                    },
+                    child: Text("تحديث العرض"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      controller.deleteOffer();
+                    },
+                    child: Text("حذف العرض"),
+                  ),
+                ],
               ),
             ],
           ),

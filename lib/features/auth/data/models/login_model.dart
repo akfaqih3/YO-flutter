@@ -1,6 +1,5 @@
 import 'package:yemen_offers/core/constants/api_constants.dart';
 
-import '../../domain/entities/login_entity.dart';
 
 class LoginModel {
   String? access;

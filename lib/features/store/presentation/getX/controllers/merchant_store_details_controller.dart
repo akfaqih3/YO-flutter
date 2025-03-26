@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/offer/data/repos/offer_repo_impl.dart';
@@ -66,7 +65,7 @@ class MerchantStoreDetailsController extends GetxController {
   void getOfferDetails(OfferEntity offer) async {
     Get.toNamed(
       AppRoutes.merchantOfferDetails,
-      arguments: {'offer': offer, 'storeSlug': store.value!.slug!},
+      arguments: {'offer': offer, 'store': store.value},
     );
   }
 

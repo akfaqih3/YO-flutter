@@ -1,11 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:yemen_offers/core/errors/exceptions.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
 import 'package:yemen_offers/features/auth/data/data_sources/login_local_data_source.dart';
 import 'package:yemen_offers/features/auth/data/models/login_model.dart';
 
-import '../../domain/entities/login_entity.dart';
 import '../../domain/repos/login_repo.dart';
 import '../data_sources/login_remote_data_source.dart';
 

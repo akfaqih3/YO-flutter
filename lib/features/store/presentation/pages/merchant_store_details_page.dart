@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/offer/presentation/views/pages/merchant_offers_page.dart';
 import 'package:yemen_offers/features/store/presentation/getX/controllers/merchant_store_details_controller.dart';
 import 'package:yemen_offers/features/store/presentation/widgets/store_details_card_widget.dart';

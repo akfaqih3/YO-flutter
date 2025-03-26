@@ -33,7 +33,7 @@ class Endpoint {
 
   // Merchant offer
   static String merchantOffers(String storeSlug) =>
-      "${ApiConst.merchantApp}/stores/$storeSlug/offers/";
+      "${merchantStores}$storeSlug/offers/";
   static String merchantOfferCRUD(String storeSlug, String slug) =>
       "${merchantOffers(storeSlug)}$slug/";
 

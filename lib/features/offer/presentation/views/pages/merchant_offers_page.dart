@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yemen_offers/core/routes/app_routes.dart';
-import 'package:yemen_offers/features/offer/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/offer/presentation/views/widgets/offer_list_item_widget.dart';
 import 'package:yemen_offers/features/store/presentation/getX/controllers/merchant_store_details_controller.dart';
 

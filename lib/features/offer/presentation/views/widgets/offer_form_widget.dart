@@ -1,22 +1,37 @@
 import 'dart:io';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:yemen_offers/features/offer/domain/entities/offer_category_entity.dart';
 import 'package:yemen_offers/features/offer/presentation/getX/controllers/merchant_add_update_offer_controller.dart';
 
 class OfferFormWidget extends StatelessWidget {
   final MerchantAddUpdateOfferController controller;
-  final bool isUpdate;
 
-  const OfferFormWidget({
-    super.key,
-    required this.controller,
-    required this.isUpdate,
-  });
+  OfferFormWidget({super.key, required this.controller});
+
+  var offerToUpdate;
 
   @override
   Widget build(BuildContext context) {
+    offerToUpdate = controller.offer;
+
+    if (offerToUpdate.value != null) {
+      controller.titleController.text = offerToUpdate.value!.title;
+      controller.descriptionController.text =
+          offerToUpdate.value!.description ?? "";
+      controller.selectedOfferCategory(offerToUpdate.value!.category);
+      controller.priceBeforeController.text =
+          offerToUpdate.value!.priceBefore.toString();
+      controller.priceAfterController.text =
+          offerToUpdate.value!.priceAfter.toString();
+
+      controller.startDateController.text =
+          offerToUpdate.value!.startDate.toString();
+      controller.endDateController.text =
+          offerToUpdate.value!.endDate.toString();
+    }
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -48,7 +63,9 @@ class OfferFormWidget extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               onPressed:
-                  isUpdate ? controller.updateOffer : controller.addOffer,
+                  offerToUpdate.value != null
+                      ? controller.updateOffer
+                      : controller.addOffer,
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(
@@ -56,7 +73,7 @@ class OfferFormWidget extends StatelessWidget {
                 ),
               ),
               child: Text(
-                isUpdate ? "تحديث العرض" : "إضافة العرض",
+                offerToUpdate.value != null ? "تحديث العرض" : "إضافة العرض",
                 style: const TextStyle(fontSize: 16),
               ),
             ),
@@ -68,13 +85,20 @@ class OfferFormWidget extends StatelessWidget {
 
   Widget _buildImagePicker() {
     return InkWell(
-      onTap: () {
-        controller.chooseImage();
+      onTap: () async {
+        final XFile? pickedFile = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+        );
+        if (pickedFile != null) {
+          controller.imageFile.value = File(pickedFile.path);
+        }
       },
       child: Center(
         child: Obx(
           () =>
-              controller.imageFile.value != null
+              offerToUpdate.value?.image != null
+                  ? Image.network(offerToUpdate.value!.image!)
+                  : controller.imageFile.value != null
                   ? Card(
                     elevation: 4,
                     shape: RoundedRectangleBorder(
@@ -83,7 +107,7 @@ class OfferFormWidget extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: Image.file(
-                        File(controller.imageFile.value!.path),
+                        controller.imageFile.value!,
                         height: 120,
                         width: 120,
                         fit: BoxFit.cover,

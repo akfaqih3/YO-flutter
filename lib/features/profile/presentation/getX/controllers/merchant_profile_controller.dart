@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/features/profile/data/repos/merchant_profile_repo_empl.dart';
 import 'package:yemen_offers/features/profile/domain/entities/merchant_entity.dart';
@@ -6,7 +5,7 @@ import 'package:yemen_offers/features/profile/domain/use_cases/merchant_profile_
 
 class MerchantProfileController extends GetxController {
   final MerchantProfileRepoImpl _merchantProfileRepo = Get.find<MerchantProfileRepoImpl>();
-  MerchantEntity? _merchant;
+  MerchantEntity? merchant;
   @override
   void onInit() {
     super.onInit();
@@ -23,7 +22,7 @@ class MerchantProfileController extends GetxController {
         Get.snackbar("Error", left.message);
       },
       (right) {
-        _merchant = right;
+        merchant = right;
       },
     );
   }

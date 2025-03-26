@@ -1,4 +1,3 @@
-import 'package:yemen_offers/features/profile/domain/entities/merchant_entity.dart';
 
 class UserEntity {
   final String email;

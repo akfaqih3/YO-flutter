@@ -10,8 +10,15 @@ abstract class OfferRemoteDataSource {
   Future<List<OfferCategoryModel>> getOfferCategoriesByCategory(
     String categorySlug,
   );
-  Future<void> addOffer(String storeSlug, {required Map<String, dynamic> offerData});
-  Future<void> updateOffer(String storeSlug, String slug, {required Map<String, dynamic> offerData});
+  Future<void> addOffer(
+    String storeSlug, {
+    required Map<String, dynamic> offerData,
+  });
+  Future<void> updateOffer(
+    String storeSlug,
+    String slug, {
+    required Map<String, dynamic> offerData,
+  });
   Future<void> deleteOffer(String storeSlug, String slug);
 }
 
@@ -25,9 +32,10 @@ class OfferRemoteDataSourceImpl implements OfferRemoteDataSource {
     String categorySlug,
   ) async {
     
-    return await _apiService
-        .get(Endpoint.offerCategoryByCategory(categorySlug))
-        .then((response) => offerCategoryModelFromJson(response.data));
+    final response = await _apiService.get(
+      Endpoint.offerCategoryByCategory(categorySlug),
+    );
+    return offerCategoryModelFromJson(response.data);
   }
 
   @override
@@ -37,7 +45,10 @@ class OfferRemoteDataSourceImpl implements OfferRemoteDataSource {
   }
 
   @override
-  Future<void> addOffer(String storeSlug, {required Map<String, dynamic> offerData}) async {
+  Future<void> addOffer(
+    String storeSlug, {
+    required Map<String, dynamic> offerData,
+  }) async {
     if (offerData[ApiKeys.offerImage] != null) {
       offerData[ApiKeys.offerImage] = dio.MultipartFile.fromFileSync(
         offerData[ApiKeys.offerImage]!.path,
@@ -50,7 +61,11 @@ class OfferRemoteDataSourceImpl implements OfferRemoteDataSource {
   }
 
   @override
-  Future<void> updateOffer(String storeSlug, String slug, {required Map<String, dynamic> offerData}) async {
+  Future<void> updateOffer(
+    String storeSlug,
+    String slug, {
+    required Map<String, dynamic> offerData,
+  }) async {
     if (offerData[ApiKeys.offerImage] != null) {
       offerData[ApiKeys.offerImage] = dio.MultipartFile.fromFileSync(
         offerData[ApiKeys.offerImage]!.path,
@@ -58,17 +73,22 @@ class OfferRemoteDataSourceImpl implements OfferRemoteDataSource {
       );
     }
     final dio.FormData formData = dio.FormData.fromMap(offerData);
-    await _apiService.put('${Endpoint.merchantOffers}/$slug', data: formData);
+    await _apiService.put(
+      Endpoint.merchantOfferCRUD(storeSlug, slug),
+      data: formData,
+    );
   }
 
   @override
   Future<void> deleteOffer(String storeSlug, String slug) async {
-    await _apiService.delete('${Endpoint.merchantOffers}/$slug');
+    await _apiService.delete(Endpoint.merchantOfferCRUD(storeSlug, slug));
   }
 
   @override
   Future<OfferModel> getOfferDetails(String storeSlug, String slug) async {
-    final response = await _apiService.get(Endpoint.merchantOfferCRUD(storeSlug, slug));
+    final response = await _apiService.get(
+      Endpoint.merchantOfferCRUD(storeSlug, slug),
+    );
     return OfferModel.fromJson(response.data);
   }
 }

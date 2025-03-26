@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
-import 'package:yemen_offers/core/services/location_service.dart';
 import 'package:yemen_offers/features/auth/data/repos/register_repo_impl.dart';
 import 'package:yemen_offers/features/auth/domain/use_cases/register_use_case.dart';
 

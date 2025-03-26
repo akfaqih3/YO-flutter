@@ -11,13 +11,15 @@ List<OfferCategoryEntity> offerCategoryEntityFromModel(
 class OfferCategoryEntity {
   final String name;
   final String slug;
+  final String? image;
 
-  const OfferCategoryEntity({required this.name, required this.slug});
+  const OfferCategoryEntity({required this.name, required this.slug, this.image});
 
   factory OfferCategoryEntity.fromModel(OfferCategoryModel offerCategoryModel) {
     return OfferCategoryEntity(
       name: offerCategoryModel.name,
       slug: offerCategoryModel.slug,
+      image: offerCategoryModel.image,
     );
   }
 }

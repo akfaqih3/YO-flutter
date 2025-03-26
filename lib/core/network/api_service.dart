@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as getx;
 import 'dio_config.dart';
-import '../errors/dio_exception.dart';
 
 class ApiService extends getx.GetxService {
   final Dio dio = DioConfig().dio;

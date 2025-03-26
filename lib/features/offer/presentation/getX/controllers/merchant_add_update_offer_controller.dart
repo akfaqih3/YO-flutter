@@ -2,21 +2,20 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:yemen_offers/features/offer/data/repos/offer_repo_impl.dart';
 import 'package:yemen_offers/features/offer/domain/entities/offer_category_entity.dart';
 import 'package:yemen_offers/features/offer/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/offer/domain/use_cases/get_offer_category_by_categories_use_case.dart';
 import 'package:yemen_offers/features/offer/domain/use_cases/merchant_add_offer_use_case.dart';
 import 'package:yemen_offers/features/offer/domain/use_cases/merchant_update_offer_use_case.dart';
-import 'package:yemen_offers/features/store/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/store/domain/entities/store_etity.dart';
 
 class MerchantAddUpdateOfferController extends GetxController {
   final OfferRepoImpl _offerRepoImpl = Get.find<OfferRepoImpl>();
 
-  Rx<List<OfferCategoryEntity>> offerCategories = Rx<List<OfferCategoryEntity>>( []);
+  Rx<List<OfferCategoryEntity>> offerCategories = Rx<List<OfferCategoryEntity>>(
+    [],
+  );
   RxString selectedOfferCategory = RxString("");
   Rx<OfferEntity?> offer = Rx<OfferEntity?>(null);
   Rx<StoreEntity?> store = Rx<StoreEntity?>(null);
@@ -58,15 +57,6 @@ class MerchantAddUpdateOfferController extends GetxController {
         offerCategories(right);
       },
     );
-  }
-
-  void chooseImage() async {
-    final XFile? pickedFile = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-    );
-    if (pickedFile != null) {
-      imageFile.value = File(pickedFile.path);
-    }
   }
 
   void addOffer() async {

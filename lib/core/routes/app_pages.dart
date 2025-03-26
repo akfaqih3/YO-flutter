@@ -77,12 +77,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.merchantAddUpdateOffer,
       page: () => MerchantAddUpdateOfferPage(),
-      binding: OfferBinding(),
     ),
     GetPage(
       name: AppRoutes.merchantOfferDetails,
       page: () => MerchantOfferDetailsPage(),
-      binding: OfferBinding(),
     ),
   ];
 }
