@@ -16,9 +16,7 @@ class OfferListItemWidget extends StatelessWidget {
         children: [
           // صورة العرض
           ClipRRect(
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(12),
-            ),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
             child: Image.network(
               offer.image ?? "",
               height: 120,
@@ -45,7 +43,7 @@ class OfferListItemWidget extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 4),
-    
+
                 // الأسعار قبل وبعد الخصم
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,10 +66,7 @@ class OfferListItemWidget extends StatelessWidget {
                     ),
                     Text(
                       '-${offer.discountPercentage}%',
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.green,
-                      ),
+                      style: const TextStyle(fontSize: 12, color: Colors.green),
                     ),
                   ],
                 ),

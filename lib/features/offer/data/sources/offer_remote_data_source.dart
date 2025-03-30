@@ -31,7 +31,6 @@ class OfferRemoteDataSourceImpl implements OfferRemoteDataSource {
   Future<List<OfferCategoryModel>> getOfferCategoriesByCategory(
     String categorySlug,
   ) async {
-    
     final response = await _apiService.get(
       Endpoint.offerCategoryByCategory(categorySlug),
     );
