@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
-import 'package:yemen_offers/features/store/domain/entities/store_etity.dart';
+import 'package:yemen_offers/features/store/domain/entities/merchant_store_etity.dart';
 import 'package:yemen_offers/features/store/presentation/getX/controllers/merchant_stores_controller.dart';
 
 class StoreItem extends StatelessWidget {
-  final StoreEntity store;
+  final MerchantStoreEtity store;
   final MerchantStoresController controller;
 
   const StoreItem({Key? key, required this.store, required this.controller})

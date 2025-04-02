@@ -1,12 +1,12 @@
 import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
 import 'package:yemen_offers/features/store/data/models/category_model.dart';
-import 'package:yemen_offers/features/store/data/models/store_model.dart';
+import 'package:yemen_offers/features/store/data/models/merchant_store_model.dart';
 import 'package:dio/dio.dart' as dio;
 
 abstract class StoreRemoteDataSource {
-  Future<List<StoreModel>> getStores();
-  Future<StoreModel> getStoreDetails(String slug);
+  Future<List<MerchantStoreModel>> getStores();
+  Future<MerchantStoreModel> getStoreDetails(String slug);
   Future<List<CategoryModel>> getCategories();
   Future<void> addStore(Map<String, dynamic> storeData);
   Future<void> updateStore(String slug, Map<String, dynamic> storeData);
@@ -19,9 +19,9 @@ class StoreRemoteDataSourceImpl implements StoreRemoteDataSource {
   StoreRemoteDataSourceImpl(this._apiService);
 
   @override
-  Future<List<StoreModel>> getStores() async {
+  Future<List<MerchantStoreModel>> getStores() async {
     final response = await _apiService.get(Endpoint.merchantStores);
-    return storeModelFromJson(response.data);
+    return MerchantStoreModelFromJson(response.data);
   }
 
   @override
@@ -64,9 +64,9 @@ class StoreRemoteDataSourceImpl implements StoreRemoteDataSource {
   }
 
   @override
-  Future<StoreModel> getStoreDetails(String slug) async {
+  Future<MerchantStoreModel> getStoreDetails(String slug) async {
     final String url = "${Endpoint.merchantStores}$slug/";
     final response = await _apiService.get(url);
-    return StoreModel.fromJson(response.data);
+    return MerchantStoreModel.fromJson(response.data);
   }
 }

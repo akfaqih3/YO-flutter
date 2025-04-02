@@ -1,12 +1,12 @@
 import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
-import 'package:yemen_offers/features/offer/data/models/offer_model.dart';
+import 'package:yemen_offers/features/offer/data/models/merchant_offer_model.dart';
 import 'package:yemen_offers/features/offer/data/models/offer_category_model.dart';
 import 'package:dio/dio.dart' as dio;
 
 abstract class OfferRemoteDataSource {
-  Future<List<OfferModel>> getOffersByStore(String storeSlug);
-  Future<OfferModel> getOfferDetails(String storeSlug, String slug);
+  Future<List<MerchantOfferModel>> getOffersByStore(String storeSlug);
+  Future<MerchantOfferModel> getOfferDetails(String storeSlug, String slug);
   Future<List<OfferCategoryModel>> getOfferCategoriesByCategory(
     String categorySlug,
   );
@@ -31,7 +31,6 @@ class OfferRemoteDataSourceImpl implements OfferRemoteDataSource {
   Future<List<OfferCategoryModel>> getOfferCategoriesByCategory(
     String categorySlug,
   ) async {
-    
     final response = await _apiService.get(
       Endpoint.offerCategoryByCategory(categorySlug),
     );
@@ -39,9 +38,9 @@ class OfferRemoteDataSourceImpl implements OfferRemoteDataSource {
   }
 
   @override
-  Future<List<OfferModel>> getOffersByStore(String storeSlug) async {
+  Future<List<MerchantOfferModel>> getOffersByStore(String storeSlug) async {
     final response = await _apiService.get(Endpoint.merchantOffers(storeSlug));
-    return offerModelFromJson(response.data);
+    return MerchantOfferModelFromJson(response.data);
   }
 
   @override
@@ -85,10 +84,13 @@ class OfferRemoteDataSourceImpl implements OfferRemoteDataSource {
   }
 
   @override
-  Future<OfferModel> getOfferDetails(String storeSlug, String slug) async {
+  Future<MerchantOfferModel> getOfferDetails(
+    String storeSlug,
+    String slug,
+  ) async {
     final response = await _apiService.get(
       Endpoint.merchantOfferCRUD(storeSlug, slug),
     );
-    return OfferModel.fromJson(response.data);
+    return MerchantOfferModel.fromJson(response.data);
   }
 }

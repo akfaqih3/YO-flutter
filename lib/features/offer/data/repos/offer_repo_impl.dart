@@ -5,10 +5,10 @@ import 'package:yemen_offers/core/errors/exceptions.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:yemen_offers/features/offer/data/models/offer_category_model.dart';
-import 'package:yemen_offers/features/offer/data/models/offer_model.dart';
+import 'package:yemen_offers/features/offer/data/models/merchant_offer_model.dart';
 import 'package:yemen_offers/features/offer/data/sources/offer_remote_data_source.dart';
 import 'package:yemen_offers/features/offer/domain/entities/offer_category_entity.dart';
-import 'package:yemen_offers/features/offer/domain/entities/offer_entity.dart';
+import 'package:yemen_offers/features/offer/domain/entities/merchant_offer_entity.dart';
 import 'package:yemen_offers/features/offer/domain/repos/offer_repo.dart';
 
 class OfferRepoImpl implements OfferRepo {
@@ -29,28 +29,28 @@ class OfferRepoImpl implements OfferRepo {
   }
 
   @override
-  Future<Either<Failure, List<OfferEntity>>> getOffers(String storeSlug) async {
+  Future<Either<Failure, List<MerchantOfferEntity>>> getOffers(String storeSlug) async {
     try {
-      final List<OfferModel> offers = await _remoteDataSource.getOffersByStore(
+      final List<MerchantOfferModel> offers = await _remoteDataSource.getOffersByStore(
         storeSlug,
       );
-      return Right(offerEntityFromModel(offers));
+      return Right(MerchantOfferEntityFromModel(offers));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));
     }
   }
 
   @override
-  Future<Either<Failure, OfferEntity>> getOfferDetails(
+  Future<Either<Failure, MerchantOfferEntity>> getOfferDetails(
     String storeSlug,
     String slug,
   ) async {
     try {
-      final OfferModel offerModel = await _remoteDataSource.getOfferDetails(
+      final MerchantOfferModel offerModel = await _remoteDataSource.getOfferDetails(
         storeSlug,
         slug,
       );
-      return Right(OfferEntity.fromModel(offerModel));
+      return Right(MerchantOfferEntity.fromModel(offerModel));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));
     }

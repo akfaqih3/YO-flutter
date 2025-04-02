@@ -7,6 +7,7 @@ class ApiConst {
   static const String accountsApp = "accounts";
   static const String merchantApp = "merchants";
   static const String coreApp = "core";
+  static const String recommendationsApp = "recommendations";
 }
 
 class Endpoint {
@@ -42,6 +43,10 @@ class Endpoint {
 
   static String offerCategoryByCategory(String categorySlug) =>
       "$categories$categorySlug/offer-categories/";
+
+  
+  // recommendations
+  static String recommendations = "${ApiConst.recommendationsApp}/behavior-based/";
 }
 
 class ApiKeys {

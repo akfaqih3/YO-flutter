@@ -5,7 +5,7 @@ import 'package:yemen_offers/core/cache/hive_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  HiveConfig.init();
+  await HiveConfig.init();
   AppBinding().dependencies();
 
   runApp(AppHome());
