@@ -7,7 +7,9 @@ class GetOfferCategoryByCategoriesUseCase {
   final OfferRepo _offerRepo;
   GetOfferCategoryByCategoriesUseCase(this._offerRepo);
 
-  Future<Either<Failure, List<OfferCategoryEntity>>> execute(String categorySlug) async {
+  Future<Either<Failure, List<OfferCategoryEntity>>> execute(
+    String categorySlug,
+  ) async {
     return await _offerRepo.getOfferCategoriesByCategory(categorySlug);
   }
-} 
+}

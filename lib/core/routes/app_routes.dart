@@ -19,4 +19,7 @@ class AppRoutes {
   static const String merchantOffers = '/merchant_offers';
   static const String merchantAddUpdateOffer = '/merchant_add_update_offer';
   static const String merchantOfferDetails = '/merchant_offer_details';
+
+  // consumer
+  static const String favorites = '/favorites';
 }
