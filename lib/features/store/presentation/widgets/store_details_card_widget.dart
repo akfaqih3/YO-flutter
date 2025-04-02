@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yemen_offers/core/utils/map_util.dart';
-import 'package:yemen_offers/features/store/domain/entities/store_etity.dart';
+import 'package:yemen_offers/features/store/domain/entities/merchant_store_etity.dart';
 
 class StoreDetailsCardWidget extends StatelessWidget {
-  final StoreEntity store;
+  final MerchantStoreEtity store;
   const StoreDetailsCardWidget({Key? key, required this.store})
     : super(key: key);
 

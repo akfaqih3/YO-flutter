@@ -1,16 +1,16 @@
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/offer/data/repos/offer_repo_impl.dart';
-import 'package:yemen_offers/features/offer/domain/entities/offer_entity.dart';
+import 'package:yemen_offers/features/offer/domain/entities/merchant_offer_entity.dart';
 import 'package:yemen_offers/features/offer/domain/use_cases/merchant_delete_offer_use_case.dart';
 import 'package:yemen_offers/features/offer/domain/use_cases/merchant_get_offer_details_use_case.dart';
-import 'package:yemen_offers/features/store/domain/entities/store_etity.dart';
+import 'package:yemen_offers/features/store/domain/entities/merchant_store_etity.dart';
 
 class MerchantOfferDetailsController extends GetxController {
   final OfferRepoImpl _offerRepoImpl = Get.find<OfferRepoImpl>();
 
-  Rx<OfferEntity?> offer = Rx<OfferEntity?>(null);
-  Rx<StoreEntity?> store = Rx<StoreEntity?>(null);
+  Rx<MerchantOfferEntity?> offer = Rx<MerchantOfferEntity?>(null);
+  Rx<MerchantStoreEtity?> store = Rx<MerchantStoreEtity?>(null);
 
   @override
   void onInit() async {

@@ -6,7 +6,11 @@ import 'package:yemen_offers/features/auth/presentation/pages/confirm_reset_pass
 import 'package:yemen_offers/features/auth/presentation/pages/login_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/register_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/reset_password_page.dart';
-import 'package:yemen_offers/features/home/presentation/pages/home_page.dart';
+import 'package:yemen_offers/features/home/presentation/getX/home_binding.dart';
+import 'package:yemen_offers/features/home/presentation/views/pages/home_page.dart';
+import 'package:yemen_offers/features/home/presentation/views/pages/main_page.dart';
+import 'package:yemen_offers/features/favorite/presentation/getX/favorite_binding.dart';
+import 'package:yemen_offers/features/favorite/presentation/views/pages/favorite_page.dart';
 import 'package:yemen_offers/features/offer/presentation/getX/offer_binding.dart';
 import 'package:yemen_offers/features/offer/presentation/views/pages/merchant_add_update_offer_page.dart';
 import 'package:yemen_offers/features/offer/presentation/views/pages/merchant_offer_details_page.dart';
@@ -18,9 +22,10 @@ import 'package:yemen_offers/features/store/presentation/pages/merchant_store_de
 import 'package:yemen_offers/features/store/presentation/pages/merchant_stores_page.dart';
 
 class AppPages {
-  static final String initialRoute = AppRoutes.home;
+  static final String initialRoute = AppRoutes.main;
 
   static List<GetPage> routes = [
+    GetPage(name: AppRoutes.main, page: () => MainPage(), binding: HomeBinding()),
     GetPage(
       name: AppRoutes.login,
       page: () => LoginPage(),
@@ -81,6 +86,13 @@ class AppPages {
     GetPage(
       name: AppRoutes.merchantOfferDetails,
       page: () => MerchantOfferDetailsPage(),
+    ),
+
+    // consumer
+    GetPage(
+      name: AppRoutes.favorites,
+      page: () => FavoritePage(),
+      binding: FavoriteBinding(),
     ),
   ];
 }

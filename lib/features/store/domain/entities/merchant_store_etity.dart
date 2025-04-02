@@ -1,10 +1,10 @@
-import 'package:yemen_offers/features/store/data/models/store_model.dart';
+import 'package:yemen_offers/features/store/data/models/merchant_store_model.dart';
 
-List<StoreEntity> storeEntityFromModel(List<StoreModel> stores) {
-  return stores.map((store) => StoreEntity.fromModel(store)).toList();
+List<MerchantStoreEtity> MerchantStoreEtityFromModel(List<MerchantStoreModel> stores) {
+  return stores.map((store) => MerchantStoreEtity.fromModel(store)).toList();
 }
 
-class StoreEntity {
+class MerchantStoreEtity {
   final String? slug;
   final String name;
   final String? description;
@@ -18,7 +18,7 @@ class StoreEntity {
   final Map<String, dynamic>? socialMedia;
   final bool? isActive;
 
-  const StoreEntity({
+  const MerchantStoreEtity({
     required this.slug,
     required this.name,
     required this.description,
@@ -33,8 +33,8 @@ class StoreEntity {
     required this.isActive,
   });
 
-  factory StoreEntity.fromModel(StoreModel storeModel) {
-    return StoreEntity(
+  factory MerchantStoreEtity.fromModel(MerchantStoreModel storeModel) {
+    return MerchantStoreEtity(
       slug: storeModel.slug,
       name: storeModel.name,
       description: storeModel.description,

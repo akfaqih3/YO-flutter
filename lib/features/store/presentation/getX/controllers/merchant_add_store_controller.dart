@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/features/store/data/repos/store_repo_impl.dart';
 import 'package:yemen_offers/features/store/domain/entities/category_entity.dart';
-import 'package:yemen_offers/features/store/domain/entities/store_etity.dart';
+import 'package:yemen_offers/features/store/domain/entities/merchant_store_etity.dart';
 import 'package:yemen_offers/features/store/domain/use_cases/add_store_use_case.dart';
 import 'package:yemen_offers/features/store/domain/use_cases/get_categories_use_case.dart';
 import 'package:yemen_offers/features/store/domain/use_cases/update_store_use_case.dart';
@@ -14,7 +14,7 @@ class MerchantAddStoreController extends GetxController {
 
   RxList<CategoryEntity> categories = RxList<CategoryEntity>();
 
-  final Rx<StoreEntity?> storeToUpdate = Rx<StoreEntity?>(null);
+  final Rx<MerchantStoreEtity?> storeToUpdate = Rx<MerchantStoreEtity?>(null);
 
   Rx<double> latitude = 0.0.obs;
   Rx<double> longitude = 0.0.obs;

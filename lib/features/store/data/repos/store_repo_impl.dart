@@ -6,10 +6,10 @@ import 'package:yemen_offers/core/errors/exceptions.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:yemen_offers/features/store/data/models/category_model.dart';
-import 'package:yemen_offers/features/store/data/models/store_model.dart';
+import 'package:yemen_offers/features/store/data/models/merchant_store_model.dart';
 import 'package:yemen_offers/features/store/data/sources/store_remote_data_source.dart';
 import 'package:yemen_offers/features/store/domain/entities/category_entity.dart';
-import 'package:yemen_offers/features/store/domain/entities/store_etity.dart';
+import 'package:yemen_offers/features/store/domain/entities/merchant_store_etity.dart';
 import 'package:yemen_offers/features/store/domain/repos/store_repo.dart';
 
 class StoreRepoImpl implements StoreRepo {
@@ -29,10 +29,10 @@ class StoreRepoImpl implements StoreRepo {
   }
 
   @override
-  Future<Either<Failure, List<StoreEntity>>> getStores() async {
+  Future<Either<Failure, List<MerchantStoreEtity>>> getStores() async {
     try {
-      final List<StoreModel> stores = await _remoteDataSource.getStores();
-      return Right(storeEntityFromModel(stores));
+      final List<MerchantStoreModel> stores = await _remoteDataSource.getStores();
+      return Right(MerchantStoreEtityFromModel(stores));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));
     }
@@ -116,12 +116,12 @@ class StoreRepoImpl implements StoreRepo {
   }
 
   @override
-  Future<Either<Failure, StoreEntity>> getStoreDetails(String slug) async {
+  Future<Either<Failure, MerchantStoreEtity>> getStoreDetails(String slug) async {
     try {
-      final StoreModel storeModel = await _remoteDataSource.getStoreDetails(
+      final MerchantStoreModel storeModel = await _remoteDataSource.getStoreDetails(
         slug,
       );
-      return Right(StoreEntity.fromModel(storeModel));
+      return Right(MerchantStoreEtity.fromModel(storeModel));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));
     }

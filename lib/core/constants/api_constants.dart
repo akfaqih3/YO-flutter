@@ -6,7 +6,9 @@ class ApiConst {
 
   static const String accountsApp = "accounts";
   static const String merchantApp = "merchants";
+  static const String consumerApp = "consumers";
   static const String coreApp = "core";
+  static const String recommendationsApp = "recommendations";
 }
 
 class Endpoint {
@@ -37,11 +39,19 @@ class Endpoint {
   static String merchantOfferCRUD(String storeSlug, String slug) =>
       "${merchantOffers(storeSlug)}$slug/";
 
+  // consumer favorite
+  static String favorites = "${ApiConst.consumerApp}/favorites/";
+  static String favoritesDelete(int id) => "$favorites$id/";
+
   // core
   static const String categories = "${ApiConst.coreApp}/categories/";
 
   static String offerCategoryByCategory(String categorySlug) =>
       "$categories$categorySlug/offer-categories/";
+
+  
+  // recommendations
+  static String recommendations = "${ApiConst.recommendationsApp}/behavior-based/";
 }
 
 class ApiKeys {

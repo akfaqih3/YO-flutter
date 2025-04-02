@@ -1,10 +1,12 @@
-import 'package:yemen_offers/features/offer/data/models/offer_model.dart';
+import 'package:yemen_offers/features/offer/data/models/merchant_offer_model.dart';
 
-List<OfferEntity> offerEntityFromModel(List<OfferModel> offers) {
-  return offers.map((offer) => OfferEntity.fromModel(offer)).toList();
+List<MerchantOfferEntity> MerchantOfferEntityFromModel(
+  List<MerchantOfferModel> offers,
+) {
+  return offers.map((offer) => MerchantOfferEntity.fromModel(offer)).toList();
 }
 
-class OfferEntity {
+class MerchantOfferEntity {
   final String? slug;
   final String title;
   final String? description;
@@ -17,7 +19,7 @@ class OfferEntity {
   final String? endDate;
   final bool? isActive;
 
-  const OfferEntity({
+  const MerchantOfferEntity({
     required this.slug,
     required this.title,
     required this.description,
@@ -31,8 +33,8 @@ class OfferEntity {
     required this.isActive,
   });
 
-  factory OfferEntity.fromModel(OfferModel offerModel) {
-    return OfferEntity(
+  factory MerchantOfferEntity.fromModel(MerchantOfferModel offerModel) {
+    return MerchantOfferEntity(
       slug: offerModel.slug,
       title: offerModel.title,
       description: offerModel.description,

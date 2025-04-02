@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-List<OfferModel> offerModelFromJson(List<dynamic> json) =>
-    List<OfferModel>.from(json.map((x) => OfferModel.fromJson(x)));
+List<MerchantOfferModel> MerchantOfferModelFromJson(List<dynamic> json) =>
+    List<MerchantOfferModel>.from(json.map((x) => MerchantOfferModel.fromJson(x)));
 
-String offerModelToJson(OfferModel data) => json.encode(data.toJson());
+String MerchantOfferModelToJson(MerchantOfferModel data) => json.encode(data.toJson());
 
-class OfferModel {
+class MerchantOfferModel {
   String category;
   String? description;
   double? discountPercentage;
@@ -18,7 +18,7 @@ class OfferModel {
   String startDate;
   String title;
 
-  OfferModel({
+  MerchantOfferModel({
     required this.category,
     this.description,
     this.discountPercentage,
@@ -32,7 +32,7 @@ class OfferModel {
     required this.title,
   });
 
-  factory OfferModel.fromJson(Map<String, dynamic> json) => OfferModel(
+  factory MerchantOfferModel.fromJson(Map<String, dynamic> json) => MerchantOfferModel(
     category: json["category"],
     description: json["description"],
     discountPercentage: double.tryParse(json["discount_percentage"].toString()),
