@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:yemen_offers/core/utils/map_util.dart';
-import 'package:yemen_offers/features/store/domain/entities/category_entity.dart';
+import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/store/presentation/getX/controllers/merchant_add_store_controller.dart';
 
 class AddStoreFormWidget extends StatelessWidget {

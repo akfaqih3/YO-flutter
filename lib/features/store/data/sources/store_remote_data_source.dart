@@ -1,6 +1,6 @@
 import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
-import 'package:yemen_offers/features/store/data/models/category_model.dart';
+import 'package:yemen_offers/features/browse/data/models/category_model.dart';
 import 'package:yemen_offers/features/store/data/models/merchant_store_model.dart';
 import 'package:dio/dio.dart' as dio;
 
