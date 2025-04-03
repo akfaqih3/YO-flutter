@@ -29,7 +29,7 @@ class CarouselWidget extends StatelessWidget {
                     )
                     .toList(),
             options: CarouselOptions(
-              height: 300,
+              height: 330,
               viewportFraction: 1,
               autoPlay: true,
               autoPlayInterval: Duration(seconds: 3),
@@ -40,7 +40,7 @@ class CarouselWidget extends StatelessWidget {
           ),
           SizedBox(height: 3),
           Positioned(
-            bottom: 4,
+            bottom: 36,
             width: MediaQuery.of(context).size.width,
             child: Center(
               child: Obx(() {
