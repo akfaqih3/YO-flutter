@@ -12,8 +12,8 @@ class HomeCategoryWidget extends StatelessWidget {
     
 
     return SizedBox(
-      height: 200,
-      width: 400,
+      height: 108,
+      width: MediaQuery.of(context).size.width,
       child: CategoryImageWidget(
         categories: categories, 
       ),

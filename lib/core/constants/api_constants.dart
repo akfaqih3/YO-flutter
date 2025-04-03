@@ -49,14 +49,20 @@ class Endpoint {
   static String offerCategoryByCategory(String categorySlug) =>
       "$categories$categorySlug/offer-categories/";
 
-  
+  static String mostPopularOffers = "${ApiConst.coreApp}/offers-most-popular/";
+  static String latestOffers = "${ApiConst.coreApp}/offers-latest/";
+
   // recommendations
-  static String recommendations = "${ApiConst.recommendationsApp}/behavior-based/";
+  static String recommendations =
+      "${ApiConst.recommendationsApp}/behavior-based/";
 }
 
 class ApiKeys {
   static const String user = "user";
   static const String merchant = "merchant";
+
+  static const String result = "results";
+  static const String limit = "limit";
 
   static const String accessToken = "access";
   static const String refreshToken = "refresh";

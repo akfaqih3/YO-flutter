@@ -25,8 +25,8 @@ class CategoryImageWidget extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 16),
                   child: Container(
-                    width: 120,
-                    height: 150,
+                    width: 88,
+                    height: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.orange),
