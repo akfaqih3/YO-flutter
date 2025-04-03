@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:yemen_offers/core/routes/app_routes.dart';
 
 class NotificationIconWidget extends StatelessWidget {
   final int notificationCount;
@@ -12,7 +14,7 @@ class NotificationIconWidget extends StatelessWidget {
         IconButton(
           icon: Icon(Icons.notifications, size: 36, color: Colors.white),
           onPressed: () {
-            // افتح صفحة الإشعارات هنا
+            Get.toNamed(AppRoutes.login);
           },
         ),
         if (notificationCount > 0) // إظهار العدد فقط إذا كان هناك إشعارات

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/features/home/presentation/getX/controller/main_controller.dart';
-import 'package:yemen_offers/features/home/presentation/views/widgets/app_bottom_navigation_bar_widget.dart';
+import 'package:yemen_offers/features/home/presentation/views/widgets/footer/app_bottom_navigation_bar_widget.dart';
+import 'package:yemen_offers/features/home/presentation/views/widgets/footer/floating_action_bar_widget.dart';
 
 class MainPage extends GetView<MainController> {
   const MainPage({super.key});
@@ -14,6 +15,11 @@ class MainPage extends GetView<MainController> {
         selectedPage: controller.selectedPage,
       ),
       body: Obx(() => controller.pages[controller.selectedPage.value]),
+      floatingActionButton: FloatingActionBarWidget(
+        selectedPage: controller.selectedPage,
+      ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
     );
   }
 }

@@ -13,38 +13,47 @@ class HomeBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Obx(() {
-            return HomeCategoriesWidget(
-              categories: controller.browseController.categories.value,
-            );
-          }),
-          HomeSectionHeadingWidget(
-            title: 'Most Popular Offers',
-            showActionButton: true,
-            onPressed: () {},
-            textColor: Colors.black,
-          ),
-          Obx(() {
-            return HomeMostPopularOffersSectionWidget(
-              offers: controller.mostPopularOffers.value,
-            );
-          }),
-          const SizedBox(height: 8),
-          HomeSectionHeadingWidget(
-            title: 'Latest Offers',
-            showActionButton: true,
-            onPressed: () {},
-            textColor: Colors.black,
-          ),
-          Obx(() {
-            return HomeLatestOffersWidget(
-              offers: controller.latestOffers.value,
-            );
-          }),
-        ],
+    return Container(
+      padding: const EdgeInsets.only(left: 8, top: 16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        color: Colors.white,
+      ),
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height - 380,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Obx(() {
+              return HomeCategoriesWidget(
+                categories: controller.browseController.categories.value,
+              );
+            }),
+            HomeSectionHeadingWidget(
+              title: 'Most Popular Offers',
+              showActionButton: true,
+              onPressed: () {},
+              textColor: Colors.black,
+            ),
+            Obx(() {
+              return HomeMostPopularOffersSectionWidget(
+                offers: controller.mostPopularOffers.value,
+              );
+            }),
+            const SizedBox(height: 8),
+            HomeSectionHeadingWidget(
+              title: 'Latest Offers',
+              showActionButton: true,
+              onPressed: () {},
+              textColor: Colors.black,
+            ),
+            Obx(() {
+              return HomeLatestOffersWidget(
+                offers: controller.latestOffers.value,
+              );
+            }),
+          ],
+        ),
       ),
     );
   }
