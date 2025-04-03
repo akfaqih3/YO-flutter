@@ -1,4 +1,4 @@
-import 'package:yemen_offers/features/store/data/models/category_model.dart';
+import 'package:yemen_offers/features/browse/data/models/category_model.dart';
 
 List<CategoryEntity> categoryEntityFromModel(List<CategoryModel> categories) {
   return categories

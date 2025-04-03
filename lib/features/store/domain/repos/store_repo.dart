@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
-import 'package:yemen_offers/features/store/domain/entities/category_entity.dart';
+import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/store/domain/entities/merchant_store_etity.dart';
 
 abstract class StoreRepo {

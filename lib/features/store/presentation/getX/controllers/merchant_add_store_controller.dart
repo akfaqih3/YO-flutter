@@ -2,15 +2,17 @@ import 'dart:io';
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/features/browse/presentation/getX/controllers/browse_controller.dart';
 import 'package:yemen_offers/features/store/data/repos/store_repo_impl.dart';
-import 'package:yemen_offers/features/store/domain/entities/category_entity.dart';
+import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/store/domain/entities/merchant_store_etity.dart';
 import 'package:yemen_offers/features/store/domain/use_cases/add_store_use_case.dart';
-import 'package:yemen_offers/features/store/domain/use_cases/get_categories_use_case.dart';
+import 'package:yemen_offers/features/browse/domain/use_cases/get_categories_use_case.dart';
 import 'package:yemen_offers/features/store/domain/use_cases/update_store_use_case.dart';
 
 class MerchantAddStoreController extends GetxController {
   final StoreRepoImpl _storeRepoImpl = Get.find<StoreRepoImpl>();
+  final BrowseController browseController = Get.find<BrowseController>();
 
   RxList<CategoryEntity> categories = RxList<CategoryEntity>();
 
@@ -36,7 +38,7 @@ class MerchantAddStoreController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    getCategories();
+    await getCategories();
     storeToUpdate(Get.arguments);
   }
 
@@ -46,20 +48,9 @@ class MerchantAddStoreController extends GetxController {
     Get.delete<StoreRepoImpl>();
   }
 
-  void getCategories() async {
-    final GetCategoriesUseCase getCategoriesUseCase = GetCategoriesUseCase(
-      _storeRepoImpl,
-    );
-    final result = await getCategoriesUseCase.execute();
-
-    result.fold(
-      (left) {
-        Get.snackbar("خطاء", left.message.toString());
-      },
-      (right) {
-        categories.addAll(right);
-      },
-    );
+  Future<void> getCategories() async {
+    final result = await browseController.getCategories();
+    categories(result);
   }
 
   void addStore() async {
