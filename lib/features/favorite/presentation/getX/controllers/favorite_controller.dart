@@ -68,6 +68,5 @@ class FavoriteController extends GetxController {
     final FavoriteController favoriteController =
         Get.find<FavoriteController>();
     await favoriteController._removeFromFavorites(id);
-    favoriteController._getFavorites();
   }
 }
