@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/browse/presentation/views/widgets/offer_card_widgets.dart';
 
-class OffersListHorizontal extends StatelessWidget {
-  const OffersListHorizontal({
+class OffersListHorizontalWidget extends StatelessWidget {
+  const OffersListHorizontalWidget({
     super.key,
     required this.offers,
     this.textColor = Colors.black,

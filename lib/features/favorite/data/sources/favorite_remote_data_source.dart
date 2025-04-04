@@ -1,6 +1,6 @@
 import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
-import 'package:yemen_offers/features/favorite/data/models/favorie_model.dart';
+import 'package:yemen_offers/features/favorite/data/models/favorite_model.dart';
 import 'package:dio/dio.dart' as dio;
 
 abstract class FavoriteRemoteDataSource {
@@ -17,7 +17,7 @@ class FavoriteRemoteDataSourceImpl implements FavoriteRemoteDataSource {
   @override
   Future<List<FavoriteModel>> getFavorites() async {
     final response = await _apiService.get(Endpoint.favorites);
-    return favoriteModelFromJson(response.data);
+    return FavoriteModelFromJson(response.data);
   }
 
   @override

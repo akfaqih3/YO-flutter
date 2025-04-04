@@ -42,7 +42,7 @@ class FavoriteController extends GetxController {
     final result = await saveToFavoriteUseCase.execute(slug);
     result.fold(
       (failure) => Get.snackbar("erroe", failure.message),
-      (_) => Get.snackbar("success", "Favorite added"),
+      (_) => _getFavorites(),
     );
   }
 
@@ -52,8 +52,9 @@ class FavoriteController extends GetxController {
     final result = await removeFromFavoriteUseCase.execute(id);
     result.fold(
       (failure) => Get.snackbar("erroe", failure.message),
-      (_) => Get.snackbar("success", "Favorite removed"),
+      (_) =>  _getFavorites(),
     );
+    ;
   }
 
   static saveOffer(String slug) async {

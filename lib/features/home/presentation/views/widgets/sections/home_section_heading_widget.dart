@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomeHeadingWidget extends StatelessWidget {
-  const HomeHeadingWidget({
+class HomeSectionHeadingWidget extends StatelessWidget {
+  const HomeSectionHeadingWidget({
     super.key,
     this.textColor,
     this.showActionButton = true,

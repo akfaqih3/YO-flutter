@@ -26,9 +26,9 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
           ),
           NavigationDestination(
             icon: Icon(Icons.favorite_outline, color: Colors.orange),
-            label: 'Stores',
+            label: 'Favorite',
           ),
-           NavigationDestination(
+          NavigationDestination(
             icon: Icon(Icons.person, color: Colors.orange),
             label: 'Profile',
           ),

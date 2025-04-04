@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
+import 'package:yemen_offers/features/browse/presentation/views/widgets/offer_favorite_icon_widget.dart';
+import 'package:yemen_offers/features/favorite/presentation/getX/controllers/favorite_controller.dart';
 
 class OfferCardWidgets extends StatelessWidget {
   const OfferCardWidgets({super.key, required this.offer});
@@ -93,15 +95,7 @@ class OfferCardWidgets extends StatelessWidget {
               Positioned(
                 top: 250,
                 right: 8,
-                child: IconButton(
-                  onPressed: () {
-                    // Handle wishlist action
-                  },
-                  icon: Icon(
-                    Icons.favorite_border,
-                    color: Colors.grey.shade600,
-                  ),
-                ),
+                child: OfferFavoriteIconWidget(offer: offer),
               ),
 
               // Title

@@ -92,7 +92,6 @@ class AppPages {
     GetPage(
       name: AppRoutes.favorites,
       page: () => FavoritePage(),
-      binding: FavoriteBinding(),
     ),
   ];
 }

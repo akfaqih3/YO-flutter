@@ -48,6 +48,7 @@ class CarouselImageWidget extends StatelessWidget {
                     ? NetworkImage(offer.image ?? "")
                     : AssetImage(offer.image ?? "") as ImageProvider,
             fit: fit,
+            onError: (exception, stackTrace) => Icon(Icons.image_not_supported),
           ),
         ),
         child: Column(
