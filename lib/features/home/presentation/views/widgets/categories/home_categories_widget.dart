@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/home/presentation/views/widgets/categories/category_widget.dart';
 import 'package:yemen_offers/features/home/presentation/views/widgets/categories/discover_category_widget.dart';
@@ -18,6 +19,14 @@ class HomeCategoriesWidget extends StatelessWidget {
             children: [
               DiscoverCategoryWidget(),
               CategoryWidget(categories: categories),
+              // arrow clickable when pressed nav you to show all categories
+              const SizedBox(width: 10),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(AppRoutes.categories);
+                },
+                child: const Icon(Icons.arrow_forward),
+              ),
             ],
           ),
         ),

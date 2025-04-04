@@ -26,7 +26,7 @@ class HomeBodyWidget extends StatelessWidget {
           children: [
             Obx(() {
               return HomeCategoriesWidget(
-                categories: controller.browseController.categories.value,
+                categories: controller.categoriesController.categories.value,
               );
             }),
             HomeSectionHeadingWidget(

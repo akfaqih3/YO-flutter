@@ -22,4 +22,10 @@ class AppRoutes {
 
   // consumer
   static const String favorites = '/favorites';
+
+  // browse
+  static const String categories = '/categories';
+  static const String stores = '/stores';
+  static const String offers = '/offers';
+  static const String offerSearch = '/offer_search';
 }

@@ -1,4 +1,4 @@
-List<StoreModel> storeModelFromJson(List<dynamic> json) =>
+List<StoreModel> storesModelFromJson(List<dynamic> json) =>
     List<StoreModel>.from(json.map((x) => StoreModel.fromJson(x)));
 
 ///Store
@@ -65,12 +65,13 @@ class SocialMediaModel {
 
   SocialMediaModel({this.facebook, this.instagram, this.twitter, this.youtube});
 
-  factory SocialMediaModel.fromJson(Map<String, dynamic> json) => SocialMediaModel(
-    facebook: json["facebook"],
-    instagram: json["instagram"],
-    twitter: json["twitter"],
-    youtube: json["youtube"],
-  );
+  factory SocialMediaModel.fromJson(Map<String, dynamic> json) =>
+      SocialMediaModel(
+        facebook: json["facebook"],
+        instagram: json["instagram"],
+        twitter: json["twitter"],
+        youtube: json["youtube"],
+      );
 
   Map<String, dynamic> toJson() => {
     "facebook": facebook,

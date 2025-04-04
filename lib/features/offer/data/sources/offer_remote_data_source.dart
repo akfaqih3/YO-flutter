@@ -1,7 +1,7 @@
 import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
 import 'package:yemen_offers/features/offer/data/models/merchant_offer_model.dart';
-import 'package:yemen_offers/features/offer/data/models/offer_category_model.dart';
+import 'package:yemen_offers/features/browse/data/models/offer_category_model.dart';
 import 'package:dio/dio.dart' as dio;
 
 abstract class OfferRemoteDataSource {
@@ -34,7 +34,7 @@ class OfferRemoteDataSourceImpl implements OfferRemoteDataSource {
     final response = await _apiService.get(
       Endpoint.offerCategoryByCategory(categorySlug),
     );
-    return offerCategoryModelFromJson(response.data);
+    return offerCategoriesModelFromJson(response.data);
   }
 
   @override
