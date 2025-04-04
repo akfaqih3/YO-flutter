@@ -10,7 +10,7 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipPath(
-      clipper: BottomNavClipper(fabSize: 48), // حجم الزر العائم
+      clipper: BottomNavClipper(fabSize: 48),
       child: Obx(() {
         return Container(
           decoration: BoxDecoration(
@@ -21,18 +21,17 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.2), // الظل سيكون أكثر وضوحًا
-                blurRadius: 15, // جعل الظل ناعمًا أكبر
+                color: Colors.black.withOpacity(0.2), 
+                blurRadius: 15,
                 spreadRadius: 4,
-                offset: Offset(0, 4), // اتجاه الظل للأسفل قليلاً
+                offset: Offset(0, 4),
               ),
             ],
-            borderRadius: BorderRadius.circular(16),
           ),
           child: NavigationBar(
             height: 80,
-            elevation: 0, // إزالة التظليل الافتراضي
-            backgroundColor: Colors.transparent, // جعل الخلفية شفافة
+            elevation: 0, 
+            backgroundColor: Colors.transparent,
             indicatorColor: Colors.deepOrange.withOpacity(0.3),
             selectedIndex: selectedPage.value,
             onDestinationSelected: (index) => selectedPage.value = index,
@@ -58,7 +57,6 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
   }
 }
 
-// ✅ الاقتصاص الناعم مع تأثير الظل
 class BottomNavClipper extends CustomClipper<Path> {
   final double fabSize;
 
@@ -68,15 +66,15 @@ class BottomNavClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     double width = size.width;
     double height = size.height;
-    double radius = fabSize / 2 + 10; // نصف قطر أكبر للقص الناعم
+    double radius = fabSize / 2 + 10; 
 
     Path path =
         Path()
           ..moveTo(0, 0)
-          ..lineTo((width / 2) - radius, 4)
+          ..lineTo((width / 2) - radius, 0)
           ..arcToPoint(
-            Offset((width / 2) + radius, 4),
-            radius: Radius.circular(radius), 
+            Offset((width / 2) + radius, 0),
+            radius: Radius.circular(radius),
             clockwise: false,
           )
           ..lineTo(width, 0)
