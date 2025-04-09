@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/features/home/presentation/getX/controller/main_controller.dart';
+import 'package:yemen_offers/features/home/presentation/views/pages/home_page.dart';
+import 'package:yemen_offers/features/profile/presentation/pages/user_profile_page.dart';
 
 class AppBottomNavigationBarWidget extends StatelessWidget {
   const AppBottomNavigationBarWidget({Key? key, required this.selectedPage})
@@ -21,7 +24,7 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.2), 
+                color: Colors.black.withOpacity(0.2),
                 blurRadius: 15,
                 spreadRadius: 4,
                 offset: Offset(0, 4),
@@ -30,11 +33,16 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
           ),
           child: NavigationBar(
             height: 80,
-            elevation: 0, 
+            elevation: 0,
             backgroundColor: Colors.transparent,
             indicatorColor: Colors.deepOrange.withOpacity(0.3),
             selectedIndex: selectedPage.value,
-            onDestinationSelected: (index) => selectedPage.value = index,
+            onDestinationSelected: (index) {
+              selectedPage.value = index;
+              index == 0
+                  ? Get.find<MainController>().selected.value = HomePage()
+                  : Get.find<MainController>().selected.value = UserProfilePage();
+            },
             destinations: [
               _navItem(Icons.home, "Home", selectedPage.value == 0),
               _navItem(Icons.person, "Profile", selectedPage.value == 1),
@@ -66,7 +74,7 @@ class BottomNavClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     double width = size.width;
     double height = size.height;
-    double radius = fabSize / 2 + 10; 
+    double radius = fabSize / 2 + 10;
 
     Path path =
         Path()

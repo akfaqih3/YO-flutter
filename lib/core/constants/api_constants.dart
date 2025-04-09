@@ -45,9 +45,20 @@ class Endpoint {
 
   // core
   static const String categories = "${ApiConst.coreApp}/categories/";
-
+  static String offerCategories = "${ApiConst.coreApp}/offer-categories/";
+  static String stores = "${ApiConst.coreApp}/stores/";
+  static String offers = "${ApiConst.coreApp}/offers/";
   static String offerCategoryByCategory(String categorySlug) =>
       "$categories$categorySlug/offer-categories/";
+  static String storeByCategory(String categorySlug) =>
+      "$categories$categorySlug/stores/";
+  static String offerByCategory(String categorySlug) =>
+      "$categories$categorySlug/offers/";
+  static String offerByStore(String storeSlug) => "$stores$storeSlug/offers/";
+  static String offerByOfferCategory(String offerCategorySlug) =>
+      "$offerCategories$offerCategorySlug/offers/";
+  static String offerSearch = "$offers/search/";
+  static String offerSearchByImage = "$offers/image-search/";
 
   static String mostPopularOffers = "${ApiConst.coreApp}/offers-most-popular/";
   static String latestOffers = "${ApiConst.coreApp}/offers-latest/";

@@ -6,10 +6,11 @@ import 'package:yemen_offers/features/auth/presentation/pages/confirm_reset_pass
 import 'package:yemen_offers/features/auth/presentation/pages/login_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/register_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/reset_password_page.dart';
+import 'package:yemen_offers/features/browse/presentation/getX/browse_binding.dart';
+import 'package:yemen_offers/features/browse/presentation/views/pages/categories_page.dart';
 import 'package:yemen_offers/features/home/presentation/getX/home_binding.dart';
 import 'package:yemen_offers/features/home/presentation/views/pages/home_page.dart';
 import 'package:yemen_offers/features/home/presentation/views/pages/main_page.dart';
-import 'package:yemen_offers/features/favorite/presentation/getX/favorite_binding.dart';
 import 'package:yemen_offers/features/favorite/presentation/views/pages/favorite_page.dart';
 import 'package:yemen_offers/features/offer/presentation/getX/offer_binding.dart';
 import 'package:yemen_offers/features/offer/presentation/views/pages/merchant_add_update_offer_page.dart';
@@ -92,6 +93,13 @@ class AppPages {
     GetPage(
       name: AppRoutes.favorites,
       page: () => FavoritePage(),
+    ),
+
+    // browse
+    GetPage(
+      name: AppRoutes.categories,
+      page: () => CategoriesPage(),
+      binding: BrowseBinding(),
     ),
   ];
 }

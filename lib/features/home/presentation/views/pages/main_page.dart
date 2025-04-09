@@ -14,7 +14,7 @@ class MainPage extends GetView<MainController> {
       bottomNavigationBar: AppBottomNavigationBarWidget(
         selectedPage: controller.selectedPage,
       ),
-      body: Obx(() => controller.pages[controller.selectedPage.value]),
+      body: Obx(() => controller.selected.value),
       floatingActionButton: FloatingActionBarWidget(
         selectedPage: controller.selectedPage,
       ),

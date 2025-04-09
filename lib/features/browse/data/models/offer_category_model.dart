@@ -1,10 +1,8 @@
-// To parse this JSON data, do
-//
-//     final offerCategoryModel = offerCategoryModelFromJson(jsonString);
+
 
 import 'dart:convert';
 
-List<OfferCategoryModel> offerCategoryModelFromJson(dynamic json) => List<OfferCategoryModel>.from(json.map((x) => OfferCategoryModel.fromJson(x)));
+List<OfferCategoryModel> offerCategoriesModelFromJson(dynamic json) => List<OfferCategoryModel>.from(json.map((x) => OfferCategoryModel.fromJson(x)));
 
 String offerCategoryModelToJson(List<OfferCategoryModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 

@@ -3,6 +3,7 @@ import 'package:yemen_offers/core/network/api_service.dart';
 import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/browse/presentation/getX/controllers/browse_controller.dart';
+import 'package:yemen_offers/features/browse/presentation/getX/controllers/categories_controller.dart';
 import 'package:yemen_offers/features/favorite/presentation/getX/controllers/favorite_controller.dart';
 import 'package:yemen_offers/features/home/data/repos/home_repo_impl.dart';
 import 'package:yemen_offers/features/home/data/sources/home_remote_data_source.dart';
@@ -10,7 +11,7 @@ import 'package:yemen_offers/features/home/domain/entities/recommendations_offer
 
 class HomeController extends GetxController {
   final ApiService _apiService = Get.find<ApiService>();
-  final BrowseController browseController = Get.find<BrowseController>();
+  final CategoriesController categoriesController = Get.find<CategoriesController>();
   final FavoriteController favoriteController = Get.find<FavoriteController>();
   late final HomeRepoImpl _homeRepo;
 
@@ -38,7 +39,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> getCategories() async {
-    final result = await browseController.getCategories();
+    final result = await categoriesController.getCategories();
     categories(result);
   }
 

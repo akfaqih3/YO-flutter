@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:yemen_offers/features/offer/domain/entities/offer_category_entity.dart';
+import 'package:yemen_offers/features/browse/domain/entities/offer_category_entity.dart';
 import 'package:yemen_offers/features/offer/presentation/getX/controllers/merchant_add_update_offer_controller.dart';
 
 class OfferFormWidget extends StatelessWidget {

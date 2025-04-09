@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/features/offer/data/repos/offer_repo_impl.dart';
-import 'package:yemen_offers/features/offer/domain/entities/offer_category_entity.dart';
+import 'package:yemen_offers/features/browse/domain/entities/offer_category_entity.dart';
 import 'package:yemen_offers/features/offer/domain/entities/merchant_offer_entity.dart';
 import 'package:yemen_offers/features/offer/domain/use_cases/get_offer_category_by_categories_use_case.dart';
 import 'package:yemen_offers/features/offer/domain/use_cases/merchant_add_offer_use_case.dart';

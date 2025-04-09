@@ -27,7 +27,7 @@ class StoreRemoteDataSourceImpl implements StoreRemoteDataSource {
   @override
   Future<List<CategoryModel>> getCategories() async {
     final response = await _apiService.get(Endpoint.categories);
-    return categoryModelFromJson(response.data);
+    return categoriesModelFromJson(response.data);
   }
 
   @override

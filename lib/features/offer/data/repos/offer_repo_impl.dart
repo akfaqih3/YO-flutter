@@ -4,10 +4,10 @@ import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/errors/exceptions.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
-import 'package:yemen_offers/features/offer/data/models/offer_category_model.dart';
+import 'package:yemen_offers/features/browse/data/models/offer_category_model.dart';
 import 'package:yemen_offers/features/offer/data/models/merchant_offer_model.dart';
 import 'package:yemen_offers/features/offer/data/sources/offer_remote_data_source.dart';
-import 'package:yemen_offers/features/offer/domain/entities/offer_category_entity.dart';
+import 'package:yemen_offers/features/browse/domain/entities/offer_category_entity.dart';
 import 'package:yemen_offers/features/offer/domain/entities/merchant_offer_entity.dart';
 import 'package:yemen_offers/features/offer/domain/repos/offer_repo.dart';
 

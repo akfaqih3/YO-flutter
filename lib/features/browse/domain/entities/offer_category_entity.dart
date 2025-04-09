@@ -1,4 +1,4 @@
-import 'package:yemen_offers/features/offer/data/models/offer_category_model.dart';
+import 'package:yemen_offers/features/browse/data/models/offer_category_model.dart';
 
 List<OfferCategoryEntity> offerCategoryEntityFromModel(
   List<OfferCategoryModel> offerCategories,
@@ -13,7 +13,11 @@ class OfferCategoryEntity {
   final String slug;
   final String? image;
 
-  const OfferCategoryEntity({required this.name, required this.slug, this.image});
+  const OfferCategoryEntity({
+    required this.name,
+    required this.slug,
+    this.image,
+  });
 
   factory OfferCategoryEntity.fromModel(OfferCategoryModel offerCategoryModel) {
     return OfferCategoryEntity(

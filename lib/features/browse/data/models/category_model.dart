@@ -1,5 +1,5 @@
 
-List<CategoryModel> categoryModelFromJson(List<dynamic> json) =>
+List<CategoryModel> categoriesModelFromJson(List<dynamic> json) =>
     List<CategoryModel>.from(json.map((x) => CategoryModel.fromJson(x)));
 
 ///StoreCategory

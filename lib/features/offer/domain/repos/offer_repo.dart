@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
-import 'package:yemen_offers/features/offer/domain/entities/offer_category_entity.dart';
+import 'package:yemen_offers/features/browse/domain/entities/offer_category_entity.dart';
 import 'package:yemen_offers/features/offer/domain/entities/merchant_offer_entity.dart';
 
 abstract class OfferRepo {
