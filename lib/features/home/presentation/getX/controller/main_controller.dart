@@ -6,11 +6,8 @@ import 'package:yemen_offers/features/profile/presentation/pages/user_profile_pa
 
 class MainController extends GetxController {
   final selectedPage = 0.obs;
-  final List<Widget> pages = [
-    HomePage(),
-    FavoritePage(),
-    UserProfilePage(),
-  ];
+  final Rx<Widget> selected = Rx(HomePage());
+  final List<Widget> pages = [HomePage(), FavoritePage(), UserProfilePage()];
 
   @override
   void onInit() {

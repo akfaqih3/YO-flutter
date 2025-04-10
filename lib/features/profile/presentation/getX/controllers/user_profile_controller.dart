@@ -1,10 +1,14 @@
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/network/api_service.dart';
 import 'package:yemen_offers/features/profile/data/repos/user_profile_repo_empl.dart';
+import 'package:yemen_offers/features/profile/data/sources/user_profile_remote_data_source.dart';
 import 'package:yemen_offers/features/profile/domain/entities/user_entity.dart';
 import 'package:yemen_offers/features/profile/domain/use_cases/user_profile_use_case.dart';
 
 class UserProfileController extends GetxController {
-  final UserProfileRepoImpl _userProfileRepo = Get.find<UserProfileRepoImpl>();
+  final UserProfileRepoImpl _userProfileRepo = UserProfileRepoImpl(
+    UserProfileRemoteDataSourceImpl(Get.find<ApiService>()),
+  );
   final loading = false.obs;
   Rx<UserEntity?> user = Rx<UserEntity?>(null);
 

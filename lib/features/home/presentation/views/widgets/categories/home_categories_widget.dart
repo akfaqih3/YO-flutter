@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
+import 'package:yemen_offers/features/browse/presentation/views/pages/categories_page.dart';
+import 'package:yemen_offers/features/home/presentation/getX/controller/main_controller.dart';
 import 'package:yemen_offers/features/home/presentation/views/widgets/categories/category_widget.dart';
 import 'package:yemen_offers/features/home/presentation/views/widgets/categories/discover_category_widget.dart';
 
@@ -23,7 +25,7 @@ class HomeCategoriesWidget extends StatelessWidget {
               const SizedBox(width: 10),
               InkWell(
                 onTap: () {
-                  Get.toNamed(AppRoutes.categories);
+                  Get.find<MainController>().selected.value=CategoriesPage();
                 },
                 child: const Icon(Icons.arrow_forward),
               ),
