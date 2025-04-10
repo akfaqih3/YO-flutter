@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/get.dart';
+import 'package:yemen_offers/core/routes/app_routes.dart';
 
 class FloatingActionBarWidget extends StatelessWidget {
   const FloatingActionBarWidget({super.key, required this.selectedPage});
@@ -9,7 +10,7 @@ class FloatingActionBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        selectedPage.value = 1;
+        Get.toNamed(AppRoutes.search);
       },
       child: Icon(Icons.search),
       backgroundColor: Colors.deepOrange,
