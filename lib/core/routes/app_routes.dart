@@ -28,4 +28,7 @@ class AppRoutes {
   static const String stores = '/stores';
   static const String offers = '/offers';
   static const String offerSearch = '/offer_search';
+
+  // search
+  static const String search = '/search';
 }

@@ -29,7 +29,8 @@ class BrowseRepoImpl implements BrowseRepo {
   }
 
   @override
-  Future<Either<Failure, List<OfferCategoryEntity>>> getOfferCategories() async {
+  Future<Either<Failure, List<OfferCategoryEntity>>>
+  getOfferCategories() async {
     try {
       final List<OfferCategoryModel> offerCategories =
           await _remoteDataSource.getOfferCategories();
@@ -43,8 +44,8 @@ class BrowseRepoImpl implements BrowseRepo {
   Future<Either<Failure, List<OfferCategoryEntity>>>
   getOfferCategoriesByCategory(String categorySlug) async {
     try {
-      final List<OfferCategoryModel> offerCategories =
-          await _remoteDataSource.getOfferCategoriesByCategory(categorySlug);
+      final List<OfferCategoryModel> offerCategories = await _remoteDataSource
+          .getOfferCategoriesByCategory(categorySlug);
       return Right(offerCategoryEntityFromModel(offerCategories));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));
@@ -66,8 +67,8 @@ class BrowseRepoImpl implements BrowseRepo {
     String categorySlug,
   ) async {
     try {
-      final List<StoreModel> stores =
-          await _remoteDataSource.getStoresByCategory(categorySlug);
+      final List<StoreModel> stores = await _remoteDataSource
+          .getStoresByCategory(categorySlug);
       return Right(storeEntityFromModel(stores));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));
@@ -89,8 +90,8 @@ class BrowseRepoImpl implements BrowseRepo {
     String categorySlug,
   ) async {
     try {
-      final List<OfferModel> offers =
-          await _remoteDataSource.getOffersByCategory(categorySlug);
+      final List<OfferModel> offers = await _remoteDataSource
+          .getOffersByCategory(categorySlug);
       return Right(offerEntityFromModel(offers));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));
@@ -102,8 +103,9 @@ class BrowseRepoImpl implements BrowseRepo {
     String storeSlug,
   ) async {
     try {
-      final List<OfferModel> offers =
-          await _remoteDataSource.getOffersByStore(storeSlug);
+      final List<OfferModel> offers = await _remoteDataSource.getOffersByStore(
+        storeSlug,
+      );
       return Right(offerEntityFromModel(offers));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));
@@ -115,15 +117,11 @@ class BrowseRepoImpl implements BrowseRepo {
     String offerCategorySlug,
   ) async {
     try {
-      final List<OfferModel> offers =
-          await _remoteDataSource.getOffersByOfferCategory(offerCategorySlug);
+      final List<OfferModel> offers = await _remoteDataSource
+          .getOffersByOfferCategory(offerCategorySlug);
       return Right(offerEntityFromModel(offers));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));
     }
   }
-
-
-
-
 }

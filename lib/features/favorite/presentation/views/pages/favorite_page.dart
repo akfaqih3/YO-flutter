@@ -19,7 +19,7 @@ class FavoritePage extends GetView<FavoriteController> {
               return const Center(child: CircularProgressIndicator());
             } else {
               final _favorites = controller.favorites.value;
-              final offers = _favorites.map((e) => e.offer!).toList();
+              final offers = _favorites.map((e) => e.offer).toList();
               return OffersListVerticalWidget(offers: offers, spacing: 16);
             }
           }),

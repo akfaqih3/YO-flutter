@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
 import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
-import 'package:yemen_offers/features/browse/presentation/getX/controllers/browse_controller.dart';
 import 'package:yemen_offers/features/browse/presentation/getX/controllers/categories_controller.dart';
 import 'package:yemen_offers/features/favorite/presentation/getX/controllers/favorite_controller.dart';
 import 'package:yemen_offers/features/home/data/repos/home_repo_impl.dart';
