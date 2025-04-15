@@ -1,5 +1,5 @@
 class ApiConst {
-  static const String domain = "http://192.168.0.40:8000";
+  static const String domain = "http://yemeni-offers.com";
   static const String baseUrl = "$domain/api/";
   static const int connectTimeout = 5000;
   static const int receiveTimeout = 5000;
@@ -9,6 +9,7 @@ class ApiConst {
   static const String consumerApp = "consumers";
   static const String coreApp = "core";
   static const String recommendationsApp = "recommendations";
+  static const String notificationsApp = "notifications";
 }
 
 class Endpoint {
@@ -20,6 +21,8 @@ class Endpoint {
   static const String register = "${ApiConst.accountsApp}/user/register/";
   static const String confirmOtpEmail = "${ApiConst.accountsApp}/verify-otp/";
   static const String resendOtpEmail = "${ApiConst.accountsApp}/send-otp/";
+
+  static const String fcmToken = "${ApiConst.notificationsApp}/fcm-token/";
 
   static const String userProfile = "${ApiConst.accountsApp}/user/profile/";
   static const String userUpdate = "${ApiConst.accountsApp}/user/update/";
@@ -82,6 +85,8 @@ class ApiKeys {
   static const String accessToken = "access";
   static const String refreshToken = "refresh";
   static const String token = "token";
+
+  static const String fcmToken = "fcm_token";
 
   static const String email = "email";
   static const String password = "password";

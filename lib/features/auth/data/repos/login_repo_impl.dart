@@ -3,6 +3,7 @@ import 'package:yemen_offers/core/errors/exceptions.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
 import 'package:yemen_offers/features/auth/data/data_sources/login_local_data_source.dart';
 import 'package:yemen_offers/features/auth/data/models/login_model.dart';
+import 'package:yemen_offers/core/services/fcm_token_services.dart';
 
 import '../../domain/repos/login_repo.dart';
 import '../data_sources/login_remote_data_source.dart';
@@ -21,6 +22,7 @@ class LoginRepoImpl implements LoginRepo {
     try {
       final loginModel = await loginRemoteDataSource.login(email, password);
       await loginLocalDataSource.saveToken(loginModel);
+      await FcmTokenServices.sendFCMTokenToServer();
       return right(true);
     } catch (e) {
       return left(Exceptions.handleCatch(e));
@@ -35,6 +37,7 @@ class LoginRepoImpl implements LoginRepo {
         return right(null);
       }
       await loginRemoteDataSource.logout(token.refresh!);
+      await FcmTokenServices.deleteFCMTokenFromServer();
       await loginLocalDataSource.clearToken();
       return right(null);
     } catch (e) {
