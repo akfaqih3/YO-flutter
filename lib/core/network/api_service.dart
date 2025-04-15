@@ -3,6 +3,16 @@ import 'package:get/get.dart' as getx;
 import 'dio_config.dart';
 
 class ApiService extends getx.GetxService {
+
+  // make it singleton
+  static ApiService? _instance;
+  factory ApiService() {
+    _instance ??= ApiService._();
+    return _instance!;
+  }
+  ApiService._();
+
+
   final Dio dio = DioConfig().dio;
   @override
   void onInit() {
@@ -40,10 +50,11 @@ class ApiService extends getx.GetxService {
 
   Future<Response> delete(
     String endpoint, {
+    Object? data,
     Map<String, dynamic>? queryParams,
     Options? options,
   }) async {
-    final response = await dio.delete(endpoint);
+    final response = await dio.delete(endpoint,data: data);
     return response;
   }
 }

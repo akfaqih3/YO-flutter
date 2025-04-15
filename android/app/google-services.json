@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "459555928701",
+    "project_id": "yemen-offers",
+    "storage_bucket": "yemen-offers.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459555928701:android:c2c49a922e176a247f4f14",
+        "android_client_info": {
+          "package_name": "com.yemenoffers.yemen_offers"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWmGr78EfGyzCI-mR-GG8Ns9ka6Wu-pNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

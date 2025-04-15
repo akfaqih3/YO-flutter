@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/features/profile/presentation/getX/controllers/user_profile_controller.dart';
+import 'package:yemen_offers/features/profile/presentation/widgets/profile_logo_out_widget.dart';
 
 class UserProfilePage extends GetView<UserProfileController> {
   @override
@@ -57,6 +58,7 @@ class UserProfilePage extends GetView<UserProfileController> {
                       _buildProfileItem('Email:', user.email),
                       _buildProfileItem('Gender:', user.gender),
                       _buildProfileItem('User Type:', user.userType),
+                      
                     ],
                   ),
                 ),
@@ -75,6 +77,8 @@ class UserProfilePage extends GetView<UserProfileController> {
               },
               child: Text('Change Password'),
             ),
+            SizedBox(height: 32),
+            ProfileLogoOutWidget(),
           ],
         ),
       ),

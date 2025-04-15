@@ -48,9 +48,9 @@ class LoginPage extends GetView<LoginController> {
               return controller.isLoading.value
                   ? CircularProgressIndicator()
                   : ElevatedButton(
-                      onPressed: () => controller.toRegister(),
-                      child: Text('Register'),
-                    );
+                    onPressed: () => controller.toRegister(),
+                    child: Text('Register'),
+                  );
             }),
           ],
         ),
