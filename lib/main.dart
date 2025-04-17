@@ -14,7 +14,7 @@ void main() async {
   AppBinding().dependencies();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
   await FirebaseMessagingService.initializeFCM();
 
