@@ -1,6 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:yemen_offers/core/services/notifications/show_rich_notification.dart';
 
 class FirebaseMessagingService {
   static final _firebaseMessaging = FirebaseMessaging.instance;
@@ -15,7 +16,9 @@ class FirebaseMessagingService {
     print('🔑 FCM Token: $fcmToken');
 
     // إعداد الإشعارات المحلية لعرضها أثناء التشغيل
-    const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const androidSettings = AndroidInitializationSettings(
+      '@mipmap/ic_launcher',
+    );
     const initSettings = InitializationSettings(android: androidSettings);
     await _localNotifications.initialize(initSettings);
 
@@ -24,7 +27,8 @@ class FirebaseMessagingService {
       print('📨 Foreground message: ${message.notification?.title}');
 
       if (message.notification != null) {
-        _showLocalNotification(message);
+        // _showLocalNotification(message);
+        showRichNotification(message);
       }
     });
 
