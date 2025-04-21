@@ -52,6 +52,8 @@ class Endpoint {
   static String offerCategories = "${ApiConst.coreApp}/offer-categories/";
   static String stores = "${ApiConst.coreApp}/stores/";
   static String offers = "${ApiConst.coreApp}/offers/";
+  static String offerDetails(String offerSlug) =>
+      "$offers$offerSlug/";
   static String offerCategoryByCategory(String categorySlug) =>
       "$categories$categorySlug/offer-categories/";
   static String storeByCategory(String categorySlug) =>
@@ -73,6 +75,10 @@ class Endpoint {
   // recommendations
   static String recommendations =
       "${ApiConst.recommendationsApp}/behavior-based/";
+
+  // notifications
+  static String notifications = "${ApiConst.notificationsApp}/notifications/";
+  static String notificationsOpen(int id) => "$notifications$id/";
 }
 
 class ApiKeys {

@@ -8,10 +8,13 @@ import 'package:yemen_offers/features/auth/presentation/pages/register_page.dart
 import 'package:yemen_offers/features/auth/presentation/pages/reset_password_page.dart';
 import 'package:yemen_offers/features/browse/presentation/getX/browse_binding.dart';
 import 'package:yemen_offers/features/browse/presentation/views/pages/categories_page.dart';
+import 'package:yemen_offers/features/browse/presentation/views/pages/offer_details_page.dart';
 import 'package:yemen_offers/features/home/presentation/getX/home_binding.dart';
 import 'package:yemen_offers/features/home/presentation/views/pages/home_page.dart';
 import 'package:yemen_offers/features/home/presentation/views/pages/main_page.dart';
 import 'package:yemen_offers/features/favorite/presentation/views/pages/favorite_page.dart';
+import 'package:yemen_offers/features/notification/presentation/getX/notification_binding.dart';
+import 'package:yemen_offers/features/notification/presentation/pages/notification_page.dart';
 import 'package:yemen_offers/features/offer/presentation/getX/offer_binding.dart';
 import 'package:yemen_offers/features/offer/presentation/views/pages/merchant_add_update_offer_page.dart';
 import 'package:yemen_offers/features/offer/presentation/views/pages/merchant_offer_details_page.dart';
@@ -104,11 +107,25 @@ class AppPages {
       binding: BrowseBinding(),
     ),
 
+    GetPage(
+      name: AppRoutes.offerDetails,
+      page: () => OfferDetailsPage(),
+      binding: BrowseBinding(),
+    ),
+
     // search
     GetPage(
       name: AppRoutes.search,
       page: () => SearchPage(),
       binding: SearchBinding(),
     ),
+
+    // notification
+    GetPage(
+      name: AppRoutes.notifications,
+      page: () => NotificationPage(),
+      binding: NotificationBinding(),
+    ),
   ];
+  
 }
