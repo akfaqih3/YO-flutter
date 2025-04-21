@@ -124,4 +124,15 @@ class BrowseRepoImpl implements BrowseRepo {
       return Left(Exceptions.handleCatch(e));
     }
   }
+
+  @override
+  Future<Either<Failure, OfferEntity>> getOfferDetails(String offerSlug) async {
+    try {
+      final OfferModel offers = await _remoteDataSource
+          .getOfferDetails(offerSlug);
+      return Right(OfferEntity.fromModel(offers));
+    } catch (e) {
+      return Left(Exceptions.handleCatch(e));
+    }
+  }
 }

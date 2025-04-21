@@ -17,6 +17,7 @@ abstract class BrowseRemoteDataSource {
   Future<List<OfferModel>> getOffersByCategory(String categorySlug);
   Future<List<OfferModel>> getOffersByStore(String storeSlug);
   Future<List<OfferModel>> getOffersByOfferCategory(String offerCategorySlug);
+  Future<OfferModel> getOfferDetails(String offerSlug);
 }
 
 class BrowseRemoteDataSourceImpl implements BrowseRemoteDataSource {
@@ -88,5 +89,11 @@ class BrowseRemoteDataSourceImpl implements BrowseRemoteDataSource {
       Endpoint.offerByOfferCategory(offerCategorySlug),
     );
     return offersModelFromJson(response.data);
+  }
+
+  @override
+  Future<OfferModel> getOfferDetails(String offerSlug) async {
+    final response = await _apiService.get(Endpoint.offerDetails(offerSlug));
+    return OfferModel.fromJson(response.data);
   }
 }

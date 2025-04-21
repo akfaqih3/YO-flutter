@@ -1,10 +1,10 @@
-
-
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/favorite/data/models/favorite_model.dart';
 
 List<FavoriteEntity> favoriteEntityFromModel(List<FavoriteModel> favorites) {
-  return favorites.map((favorite) => FavoriteEntity.fromModel(favorite)).toList();
+  return favorites
+      .map((favorite) => FavoriteEntity.fromModel(favorite))
+      .toList();
 }
 
 class FavoriteEntity {
@@ -18,9 +18,10 @@ class FavoriteEntity {
     required this.createdAt,
   });
 
-  factory FavoriteEntity.fromModel(FavoriteModel favoriteModel) => FavoriteEntity(
-    id: favoriteModel.id,
-    offer: OfferEntity.fromModel(favoriteModel.offer),
-    createdAt: favoriteModel.createdAt,
-  );
+  factory FavoriteEntity.fromModel(FavoriteModel favoriteModel) =>
+      FavoriteEntity(
+        id: favoriteModel.id,
+        offer: OfferEntity.fromModel(favoriteModel.offer),
+        createdAt: favoriteModel.createdAt,
+      );
 }

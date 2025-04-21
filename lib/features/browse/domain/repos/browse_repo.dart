@@ -23,4 +23,6 @@ abstract class BrowseRepo {
   Future<Either<Failure, List<OfferEntity>>> getOffersByOfferCategory(
     String offerCategorySlug,
   );
+
+  Future<Either<Failure, OfferEntity>> getOfferDetails(String offerSlug);
 }

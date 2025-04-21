@@ -14,7 +14,7 @@ class NotificationIconWidget extends StatelessWidget {
         IconButton(
           icon: Icon(Icons.notifications, size: 36, color: Colors.white),
           onPressed: () {
-            Get.toNamed(AppRoutes.login);
+            Get.toNamed(AppRoutes.notifications);
           },
         ),
         if (notificationCount > 0) // إظهار العدد فقط إذا كان هناك إشعارات
