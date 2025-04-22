@@ -1,5 +1,6 @@
 class CacheKeys {
   static const String appCache = "APP_CACHE";
+  static const String appLang = "APP_LANG";
 
   // static const String tokenBox = "TOKEN_BOX";
   static const String accessToken = "ACCESS_TOKEN";
