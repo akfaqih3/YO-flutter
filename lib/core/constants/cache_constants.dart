@@ -4,4 +4,7 @@ class CacheKeys {
   // static const String tokenBox = "TOKEN_BOX";
   static const String accessToken = "ACCESS_TOKEN";
   static const String refreshToken = "REFRESH_TOKEN";
+
+
+  static const String isFirstOpen = "IS_FIRST_OPEN";
 }
