@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/middlewares/main_middleware.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/binding.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/confirm_account_page.dart';
@@ -18,6 +19,7 @@ import 'package:yemen_offers/features/notification/presentation/pages/notificati
 import 'package:yemen_offers/features/offer/presentation/getX/offer_binding.dart';
 import 'package:yemen_offers/features/offer/presentation/views/pages/merchant_add_update_offer_page.dart';
 import 'package:yemen_offers/features/offer/presentation/views/pages/merchant_offer_details_page.dart';
+import 'package:yemen_offers/features/onboarding/presentation/views/pages/onboarding_page.dart';
 import 'package:yemen_offers/features/profile/presentation/getX/profile_binding.dart';
 import 'package:yemen_offers/features/profile/presentation/pages/user_profile_page.dart';
 import 'package:yemen_offers/features/search/presentation/getX/search_binding.dart';
@@ -31,7 +33,8 @@ class AppPages {
   static final String initialRoute = AppRoutes.main;
 
   static List<GetPage> routes = [
-    GetPage(name: AppRoutes.main, page: () => MainPage(), binding: HomeBinding()),
+    GetPage(name: AppRoutes.main, page: () => MainPage(), binding: HomeBinding(),middlewares: [MainMiddleware()]),
+    GetPage(name: AppRoutes.onboarding, page: () => OnboardingPage()),
     GetPage(
       name: AppRoutes.login,
       page: () => LoginPage(),
