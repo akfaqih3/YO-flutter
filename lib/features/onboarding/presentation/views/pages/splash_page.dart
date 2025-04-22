@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_offers/core/constants/managers/app_assets.dart';
+import 'package:yemen_offers/core/constants/app_assets.dart';
 
 class SplashPage extends StatelessWidget {
   @override

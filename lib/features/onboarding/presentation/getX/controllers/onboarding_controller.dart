@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/cache/cache_helper.dart';
+import 'package:yemen_offers/core/constants/app_assets.dart';
+import 'package:yemen_offers/core/constants/app_contants.dart';
 import 'package:yemen_offers/core/constants/cache_constants.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 
 class OnboardingController extends GetxController {
   final currentPage = 0.obs;
@@ -25,21 +28,19 @@ class OnboardingController extends GetxController {
 
   final List<Map<String, String>> onboardingData = [
     {
-      "image": "assets/images/onboarding/onboarding_map.png",
-      "title": "اكتشف العروض القريبة منك",
-      "description": "بدون تعب ولا دوار، شوف أقرب العروض من حولك بكل سهولة، ووفّر وقتك وفلوسك.",
+      "image": AppAssets.onboardingMap,
+      "title": lblOnboardingMap.tr,
+      "description": txtOnboardingMap.tr,
     },
     {
-      "image": "assets/images/onboarding/onboarding_YO.png",
-      "title": "عروض تناسب ذوقك",
-      "description":
-          "نختار لك العروض اللي تهمك، حسب اللي يعجبك وتشوفه بالتطبيق، علشان تلاقي كل جديد بسرعة.",
+      "image": AppAssets.onboardingYO,
+      "title": lblOnboardingYO.tr,
+      "description": txtOnboardingYO.tr,
     },
     {
-      "image": "assets/images/onboarding/onboarding_fav.png",
-      "title": "تابع متاجرك واحفظ اللي يعجبك",
-      "description":
-          "ما يفوتك شي! احفظ العروض اللي تحبها، وخليك أوّل من يعرف لما ينزل عرض جديد.",
+      "image": AppAssets.onboardingFav,
+      "title": lblOnboardingFav.tr,
+      "description": txtOnboardingFav.tr,
     },
   ];
 
@@ -48,5 +49,4 @@ class OnboardingController extends GetxController {
     super.dispose();
     pageController.dispose();
   }
-
 }

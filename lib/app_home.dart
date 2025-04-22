@@ -34,7 +34,7 @@ class _AppHomeState extends State<AppHome> {
       getPages: AppPages.routes,
       initialRoute: AppPages.initialRoute,
       translations: Translate(),
-      locale: Get.deviceLocale,
+      locale: Locale(AppConstants.defaultLanguage),
     );
   }
 

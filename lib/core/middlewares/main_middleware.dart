@@ -8,7 +8,6 @@ class MainMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     if (CacheHelper.getData(CacheKeys.isFirstOpen) == null) {
-     
       return const RouteSettings(name: AppRoutes.onboarding);
     } else {
       return null;

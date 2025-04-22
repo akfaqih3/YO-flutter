@@ -1,7 +1,19 @@
 import 'keys.dart';
 
 Map<String, String> ar = {
-  appName: 'lomfu',
+  appName: 'يمن عروض',
+
+  //onboarding
+  lblOnboardingMap: 'اكتشف العروض القريبة منك',
+  lblOnboardingYO: 'عروض تناسب ذوقك',
+  lblOnboardingFav: 'تابع متاجرك واحفظ اللي يعجبك',
+  txtOnboardingMap:
+      'بدون تعب ولا دوار، شوف أقرب العروض من حولك بكل سهولة، ووفّر وقتك وفلوسك.',
+  txtOnboardingYO:
+      'نختار لك العروض اللي تهمك، حسب اللي يعجبك وتشوفه بالتطبيق، علشان تلاقي كل جديد بسرعة.',
+  txtOnboardingFav:
+      'ما يفوتك شي! احفظ العروض اللي تحبها، وخليك أوّل من يعرف لما ينزل عرض جديد.',
+
   lblTeacher: 'المعلم',
   lblStudent: 'الطالب',
   lblWelcome: 'مرحبا بك في',
@@ -53,6 +65,7 @@ Map<String, String> ar = {
   // btn
   btnNext: 'التالي',
   btnSkip: 'تخطي',
+  btnLetsGo:'إبدا',
   btnLogin: 'تسجيل الدخول',
   btnRegister: 'تسجيل حساب',
   btnLogout: 'تسجيل الخروج',

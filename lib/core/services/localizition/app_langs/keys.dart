@@ -1,5 +1,13 @@
 const String appName = 'appName';
 
+// onboarding keys
+const String lblOnboardingMap = "onboardignMapTitle";
+const String lblOnboardingYO = "onboardignYOTitle";
+const String lblOnboardingFav = "onboardignFavTitle";
+const String txtOnboardingMap = "onboardingMapText";
+const String txtOnboardingYO = "onboardingYOText";
+const String txtOnboardingFav = "onboardingFavText";
+
 const String lblTeacher = 'Teacher';
 const String lblStudent = 'Student';
 
@@ -50,6 +58,7 @@ const String hntPleaseSelectASubject = 'hint_please_select_a_subject';
 
 const String btnNext = 'btn_next';
 const String btnSkip = 'btn_skip';
+const String btnLetsGo = 'btn_lets_go';
 const String btnLogin = 'btn_login';
 const String btnRegister = 'btn_register';
 const String btnLogout = 'btn_logout';

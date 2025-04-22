@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yemen_offers/core/constants/managers/app_colors.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
+import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/onboarding/presentation/getX/controllers/onboarding_controller.dart';
 
@@ -41,7 +42,7 @@ class OnboardingPage extends GetView<OnboardingController> {
                           fontWeight: FontWeight.bold,
                           color:
                               Get.isDarkMode
-                                  ? AppColors.lightText
+                                  ? AppColors.textSecondary
                                   : AppColors.primary,
                         ),
                         textAlign: TextAlign.center,
@@ -95,8 +96,8 @@ class OnboardingPage extends GetView<OnboardingController> {
                     onPressed: () {
                       Get.offNamed(AppRoutes.login);
                     },
-                    child: const Text(
-                      "Skip",
+                    child:  Text(
+                      btnSkip.tr,
                       style: TextStyle(color: AppColors.primary),
                     ),
                   ),
@@ -115,8 +116,8 @@ class OnboardingPage extends GetView<OnboardingController> {
                     child: Text(
                       style: TextStyle(color: AppColors.primary),
                       currentPage.value == onboardingData.length - 1
-                          ? "Get Started"
-                          : "Next",
+                          ? btnLetsGo.tr
+                          : btnNext.tr,
                     ),
                   ),
                 ],
