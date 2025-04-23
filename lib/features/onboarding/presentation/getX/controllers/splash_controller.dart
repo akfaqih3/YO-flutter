@@ -9,19 +9,13 @@ class SplashController extends GetxController {
     super.onInit();
 
     
-    // تشغيل الأنيميشن تدريجياً
     Future.delayed(Duration(milliseconds: 500), () {
       opacity.value = 1.0;
     });
 
-    // يمكن تعديل هذه للانتقال إلى الصفحة الرئيسية
     Future.delayed(Duration(seconds: 3), () {
-      // Get.offAll(() => HomePage());
+      Get.offAllNamed(AppRoutes.main);
     });
   }
 
-  @override
-  void onReady() {
-    // Get.offAllNamed(AppRoutes.main);
-  }
 }
