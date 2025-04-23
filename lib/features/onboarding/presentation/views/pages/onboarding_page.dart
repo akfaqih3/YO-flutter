@@ -14,7 +14,6 @@ class OnboardingPage extends GetView<OnboardingController> {
 
   @override
   Widget build(BuildContext context) {
-    final PageController _pageController = controller.pageController;
     final currentPage = controller.currentPage;
     final onboardingData = controller.onboardingData;
 
@@ -27,7 +26,7 @@ class OnboardingPage extends GetView<OnboardingController> {
             children: [
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.03,
-                child: const OnboardingHeaderWidget(),
+                child: OnboardingHeaderWidget(controller: controller),
               ),
               Positioned(
                 bottom: MediaQuery.of(context).size.width * 0.5,
@@ -55,7 +54,7 @@ class OnboardingPage extends GetView<OnboardingController> {
                   return OnboardingBottomWidget(
                     currentPageIndex: currentPage.value,
                     onboardingDataLeng: onboardingData.length,
-                    pageController: _pageController,
+                    controller: controller,
                   );
                 }),
               ),

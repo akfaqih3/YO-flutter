@@ -4,9 +4,11 @@ import 'package:yemen_offers/core/constants/app_assets.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
+import 'package:yemen_offers/features/onboarding/presentation/getX/controllers/onboarding_controller.dart';
 
 class OnboardingHeaderWidget extends StatelessWidget {
-  const OnboardingHeaderWidget({super.key});
+  const OnboardingHeaderWidget({super.key, required this.controller});
+  final OnboardingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class OnboardingHeaderWidget extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.offAllNamed(AppRoutes.login);
+              controller.goToLoginPage();
             },
             child: Text(
               btnSkip.tr,

@@ -1,40 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:yemen_offers/core/constants/app_assets.dart';
-import 'dart:math';
-
 import 'package:yemen_offers/core/theme/colors.dart';
+import 'package:yemen_offers/features/onboarding/presentation/getX/controllers/splash_controller.dart';
 
-class SplashPage extends StatefulWidget {
-  @override
-  _SplashPageState createState() => _SplashPageState();
-}
-
-class _SplashPageState extends State<SplashPage> {
-  double _opacity = 0.0;
-
-  @override
-  void initState() {
-    super.initState();
-
-    Future.delayed(Duration(milliseconds: 500), () {
-      setState(() {
-        _opacity = 1.0;
-      });
-    });
-
-    // يمكنك استبدال هذا بالانتقال إلى الصفحة الرئيسية لاحقًا
-    Future.delayed(Duration(seconds: 3), () {
-      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomePage()));
-    });
-  }
+class SplashPage extends StatelessWidget {
+  final controller = Get.put(SplashController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary, // خلفية برتقالية
+      backgroundColor: AppColors.primary,
       body: Stack(
         children: [
-          // الجزء العلوي المنحني الأبيض
           Center(
             child: TweenAnimationBuilder(
               tween: Tween<double>(begin: 0.8, end: 1.0),
@@ -43,64 +21,65 @@ class _SplashPageState extends State<SplashPage> {
               builder: (context, value, child) {
                 return Transform.scale(
                   scale: value,
-                  child: AnimatedOpacity(
-                    opacity: _opacity,
-                    duration: Duration(seconds: 1),
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.only(bottom: 16),
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        // borderRadius: BorderRadius.circular(100),
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 10,
-                            offset: Offset(0, 4),
+                  child: Obx(() => AnimatedOpacity(
+                        opacity: controller.opacity.value,
+                        duration: Duration(seconds: 1),
+                        child: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.only(bottom: 16),
+                          decoration: BoxDecoration(
+                            color: AppColors.white,
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 10,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      width: 128,
-                      height: 128,
-                      child: Image.asset(
-                        AppAssets.appLogo,
-                        width: 120,
-                        height: 120,
-                      ),
-                    ),
-                  ),
+                          width: 128,
+                          height: 128,
+                          child: Image.asset(
+                            AppAssets.appLogo,
+                            width: 120,
+                            height: 120,
+                          ),
+                        ),
+                      )),
                 );
               },
             ),
           ),
-          // النصوص السفلية
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.only(bottom: 60.0),
-              child: AnimatedOpacity(
-                opacity: _opacity,
-                duration: Duration(seconds: 2),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'Yemen Offers',
-                      style: TextStyle(
-                        fontSize: 28,
-                        color: AppColors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+              child: Obx(() => AnimatedOpacity(
+                    opacity: controller.opacity.value,
+                    duration: Duration(seconds: 2),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Yemen Offers',
+                          style: TextStyle(
+                            fontSize: 28,
+                            color: AppColors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'كل العروض بين يديك، الأقرب إليك أولاً!',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.secondary,
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 8),
-                    Text(
-                      'كل العروض بين يديك، الأقرب إليك أولاً!',
-                      style: TextStyle(fontSize: 16, color:AppColors.secondary),
-                    ),
-                  ],
-                ),
-              ),
+                  )),
             ),
           ),
         ],

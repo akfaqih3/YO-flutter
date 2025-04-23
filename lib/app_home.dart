@@ -33,6 +33,7 @@ class _AppHomeState extends State<AppHome> {
       initialBinding: AppBinding(),
       getPages: AppPages.routes,
       initialRoute: AppPages.initialRoute,
+      smartManagement: SmartManagement.full,
       translations: Translate(),
       locale: Locale(AppConstants.defaultLanguage),
     );
