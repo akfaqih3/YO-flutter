@@ -1,0 +1,83 @@
+import 'keys.dart';
+
+Map<String, String> en = {
+  appName: 'Yemen offers',
+
+  //onboarding
+  lblOnboardingMap: 'discover',
+  lblOnboardingYO: 'عروض تناسب ذوقك',
+  lblOnboardingFav: 'تابع متاجرك واحفظ اللي يعجبك',
+  txtOnboardingMap:
+      'بدون تعب ولا دوار، شوف أقرب العروض من حولك بكل سهولة، ووفّر وقتك وفلوسك.',
+  txtOnboardingYO:
+      'نختار لك العروض اللي تهمك، حسب اللي يعجبك وتشوفه بالتطبيق، علشان تلاقي كل جديد بسرعة.',
+  txtOnboardingFav:
+      'ما يفوتك شي! احفظ العروض اللي تحبها، وخليك أوّل من يعرف لما ينزل عرض جديد.',
+
+  lblTeacher: 'Teacher',
+  lblStudent: 'Student',
+  lblWelcome: 'Welcome to ',
+  lblHome: 'Home',
+  lblLogin: 'Login',
+  lblRegister: 'Register',
+  lblLogout: 'Logout',
+  lblForgotPassword: 'Forgot Password',
+  lblOrLoginWith: 'Or login with',
+  lblDontHaveAccount: 'Don\'t have an account?',
+  lblAlreadyHaveAccount: 'Already have an account?',
+  lblProfile: 'Profile',
+  lblSubjects: 'Subjects',
+  lblCourses: 'Courses',
+  lblMyCourses: 'My Courses',
+  lblArabicLang: 'Arabic',
+  lblEnglishLang: 'English',
+  lblEnterYourDetails: 'Enter your details below to create your account',
+  lblPolicyPrivacy:
+      'By creating an account, you agree to our Terms & Conditions.',
+  lblVerifyEmail: 'Verify Email',
+  lblCodeSentTo: 'Code is sent to',
+  lblDontRecieveCode: 'Didn\'t receive the code?',
+  lblResendCode: 'Resend Code',
+  lblResetPassword: 'Reset Password',
+  lblNoSubjects: 'No Subjects',
+  lblNoCourses: 'No Courses',
+  lblLearning: 'Learning',
+  lblNewCourse: 'New Course',
+  lblEditCourse: 'Edit Course',
+  lblchooseCoursePhoto: 'Choose Course Photo',
+  lblEditPhoto: 'Edit Photo',
+  lblNoPhotoAvailable: 'No Photo Available',
+  lblNoPhotoSelected: 'No Photo Selected',
+  lblDeleteCourse: 'Delete Course',
+  lblAreYouSureYouWantToDeleteThisCourse:
+      'Are you sure you want to delete this course?',
+  lblError: 'Error',
+
+  // hnt
+  hntEmail: 'Email',
+  hntPassword: 'Password',
+  hntConfirmPassword: 'Confirm Password',
+  hntName: 'Name',
+  hntRole: 'Role',
+  hntPhone: 'Phone',
+  hntSelectSubject: 'Select Subject',
+  hntPleaseSelectASubject: 'Please select a subject',
+
+  // btn
+  btnNext: 'Next',
+  btnSkip: 'Skip',
+  btnLetsGo:'lets go',
+  btnLogin: 'Login',
+  btnRegister: 'Register',
+  btnLogout: 'Logout',
+  btnForgotPassword: 'Forgot Password',
+  btnSend: 'Send',
+  btnSubmit: 'Submit',
+  btnVerify: 'Verify',
+  btnCancel: 'Cancel',
+  btnDelete: 'Delete',
+  btnAdd: 'Add',
+  btnUpdate: 'Update',
+  btnYes: 'Yes',
+  btnNo: 'No',
+};

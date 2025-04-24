@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/home/presentation/getX/controller/home_controller.dart';
 import 'package:yemen_offers/features/home/presentation/views/widgets/categories/home_categories_widget.dart';
 import 'package:yemen_offers/features/home/presentation/views/widgets/sections/home_section_heading_widget.dart';
@@ -17,7 +18,7 @@ class HomeBodyWidget extends StatelessWidget {
       padding: const EdgeInsets.only(left: 8, top: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        color: Colors.white,
+        color: AppColors.background,
       ),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height - 380,

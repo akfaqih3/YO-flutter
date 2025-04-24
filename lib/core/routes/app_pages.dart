@@ -20,6 +20,7 @@ import 'package:yemen_offers/features/offer/presentation/getX/offer_binding.dart
 import 'package:yemen_offers/features/offer/presentation/views/pages/merchant_add_update_offer_page.dart';
 import 'package:yemen_offers/features/offer/presentation/views/pages/merchant_offer_details_page.dart';
 import 'package:yemen_offers/features/onboarding/presentation/views/pages/onboarding_page.dart';
+import 'package:yemen_offers/features/onboarding/presentation/views/pages/splash_page.dart';
 import 'package:yemen_offers/features/profile/presentation/getX/profile_binding.dart';
 import 'package:yemen_offers/features/profile/presentation/pages/user_profile_page.dart';
 import 'package:yemen_offers/features/search/presentation/getX/search_binding.dart';
@@ -30,9 +31,10 @@ import 'package:yemen_offers/features/store/presentation/pages/merchant_store_de
 import 'package:yemen_offers/features/store/presentation/pages/merchant_stores_page.dart';
 
 class AppPages {
-  static final String initialRoute = AppRoutes.main;
+  static final String initialRoute = AppRoutes.splash;
 
   static List<GetPage> routes = [
+    GetPage(name: AppRoutes.splash, page: () => SplashPage()),
     GetPage(name: AppRoutes.main, page: () => MainPage(), binding: HomeBinding(),middlewares: [MainMiddleware()]),
     GetPage(name: AppRoutes.onboarding, page: () => OnboardingPage()),
     GetPage(

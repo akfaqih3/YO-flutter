@@ -7,6 +7,7 @@ import 'package:yemen_offers/core/binding/core_binding.dart';
 import 'package:yemen_offers/core/constants/app_contants.dart';
 import 'package:yemen_offers/core/routes/app_pages.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
+import 'package:yemen_offers/core/services/localizition/translate.dart';
 import 'package:yemen_offers/core/theme/app_theme.dart';
 
 class AppHome extends StatefulWidget {
@@ -32,6 +33,9 @@ class _AppHomeState extends State<AppHome> {
       initialBinding: AppBinding(),
       getPages: AppPages.routes,
       initialRoute: AppPages.initialRoute,
+      smartManagement: SmartManagement.full,
+      translations: Translate(),
+      locale: Locale(AppConstants.defaultLanguage),
     );
   }
 

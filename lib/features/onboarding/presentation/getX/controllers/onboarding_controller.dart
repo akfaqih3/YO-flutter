@@ -1,52 +1,72 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/cache/cache_helper.dart';
+import 'package:yemen_offers/core/constants/app_assets.dart';
+import 'package:yemen_offers/core/constants/app_contants.dart';
 import 'package:yemen_offers/core/constants/cache_constants.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
+import 'package:yemen_offers/features/onboarding/data/repos/onboarding_repo_impl.dart';
+import 'package:yemen_offers/features/onboarding/data/sources/onboarding_local_data_source.dart';
+import 'package:yemen_offers/features/onboarding/domain/use_cases/set_false_first_open_app_use_case.dart';
 
 class OnboardingController extends GetxController {
   final currentPage = 0.obs;
-  final isFirstOpen = CacheHelper.getData(CacheKeys.isFirstOpen) ?? true;
   final pageController = PageController();
 
   @override
   void onInit() async {
     super.onInit();
-    if (!isFirstOpen) {
-      Get.offAllNamed(AppRoutes.main);
-    }
   }
 
   @override
   void onReady() {
     super.onReady();
-    CacheHelper.saveData(CacheKeys.isFirstOpen, false);
   }
 
   final List<Map<String, String>> onboardingData = [
     {
-      "image": "assets/images/onboarding/onboarding_map.png",
-      "title": "اكتشف العروض القريبة منك",
-      "description": "بدون تعب ولا دوار، شوف أقرب العروض من حولك بكل سهولة، ووفّر وقتك وفلوسك.",
+      "image": AppAssets.onboardingMap,
+      "title": lblOnboardingMap.tr,
+      "description": txtOnboardingMap.tr,
     },
     {
-      "image": "assets/images/onboarding/onboarding_YO.png",
-      "title": "عروض تناسب ذوقك",
-      "description":
-          "نختار لك العروض اللي تهمك، حسب اللي يعجبك وتشوفه بالتطبيق، علشان تلاقي كل جديد بسرعة.",
+      "image": AppAssets.onboardingYO,
+      "title": lblOnboardingYO.tr,
+      "description": txtOnboardingYO.tr,
     },
     {
-      "image": "assets/images/onboarding/onboarding_fav.png",
-      "title": "تابع متاجرك واحفظ اللي يعجبك",
-      "description":
-          "ما يفوتك شي! احفظ العروض اللي تحبها، وخليك أوّل من يعرف لما ينزل عرض جديد.",
+      "image": AppAssets.onboardingFav,
+      "title": lblOnboardingFav.tr,
+      "description": txtOnboardingFav.tr,
     },
   ];
 
+  void goToLoginPage() async {
+    await _closeOnboarding();
+    Get.offAllNamed(AppRoutes.login);
+  }
+
+  Future<void> _closeOnboarding() async {
+    final SetFalseFirstOpenAppUseCase setFalseFirstOpenAppUseCase =
+        SetFalseFirstOpenAppUseCase(
+          OnboardingRepoImpl(OnboardingLocalDataSourceImpl()),
+        );
+    final restult = await setFalseFirstOpenAppUseCase.execute();
+    restult.fold(
+      (left) {
+        Get.snackbar("error", left.message);
+      },
+      (right) {
+        return right;
+      },
+    );
+  }
+
   @override
-  void dispose() {
+  void dispose() async {
     super.dispose();
     pageController.dispose();
   }
-
 }
