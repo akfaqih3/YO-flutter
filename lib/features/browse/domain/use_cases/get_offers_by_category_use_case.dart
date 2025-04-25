@@ -8,8 +8,21 @@ class GetOffersByCategoryUseCase {
   GetOffersByCategoryUseCase(this._browseRepoImpl);
 
   Future<Either<Failure, List<OfferEntity>>> execute(
-    String categorySlug,
+    String categorySlug,{
+      List<String>? offerCategories ,
+      String sortBy = 'end_date',
+      String searchQuery = '',
+      int index = 0,
+      int size = 10,
+    }
   ) async {
-    return await _browseRepoImpl.getOffersByCategory(categorySlug);
+    return await _browseRepoImpl.getOffersByCategory(
+      categorySlug,
+      offerCategories: offerCategories,
+      sortBy: sortBy,
+      searchQuery: searchQuery,
+      index: index,
+      size: size,
+    );
   }
 }

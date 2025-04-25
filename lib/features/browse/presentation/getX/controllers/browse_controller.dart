@@ -20,7 +20,7 @@ class BrowseController extends GetxController {
   late BrowseRepoImpl _browseRepoImpl;
 
   final Rx<CategoryEntity?> selectedCategory = Rx(null);
-  final RxList<OfferCategoryEntity> selectedOfferCategories = RxList([]);
+  final RxList<String> selectedOfferCategories = RxList([]);
 
   final RxList<OfferCategoryEntity> offerCategories = RxList([]);
   final RxList<OfferEntity> offers = RxList([]);
@@ -28,6 +28,17 @@ class BrowseController extends GetxController {
 
   final ScrollController scrollController = ScrollController();
   final RxBool showTabs = true.obs;
+
+  final sortOptions = ["price", "rating", "distance"];
+
+  // query params
+  final RxString sortBy = "price".obs;
+  bool isAscending = true;
+  String searchQuery = "";
+  int index = 0;
+  int size = 10;
+
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() async {
@@ -57,34 +68,9 @@ class BrowseController extends GetxController {
     selectedCategory(Get.arguments['category']);
   }
 
-  void selectOfferCategory(OfferCategoryEntity offerCategory) {
-    final List<OfferCategoryEntity> tempSelectedOfferCategories =
-        selectedOfferCategories.toList();
-    if (tempSelectedOfferCategories.contains(offerCategory)) {
-      tempSelectedOfferCategories.remove(offerCategory);
-    } else {
-      tempSelectedOfferCategories.add(offerCategory);
-    }
-    selectedOfferCategories.assignAll(tempSelectedOfferCategories);
-  }
-
   Future<void> getOfferCategories() async {
-    dynamic result;
-    if (selectedCategory.value == null) {
-      final GetOfferCategoriesUseCase getOfferCategoriesUseCase =
-          GetOfferCategoriesUseCase(_browseRepoImpl);
-      result = await getOfferCategoriesUseCase.execute();
-    } else {
-      final GetOfferCategoriesByCategoryUseCase getOfferCategoriesUseCase =
-          GetOfferCategoriesByCategoryUseCase(_browseRepoImpl);
-      result = await getOfferCategoriesUseCase.execute(
-        selectedCategory.value!.slug,
-      );
-    }
-
-    // final GetOfferCategoriesUseCase getOfferCategoriesUseCase =
-    //     GetOfferCategoriesUseCase(_browseRepoImpl);
-    // result = await getOfferCategoriesUseCase.execute();
+    final GetOfferCategoriesByCategoryUseCase getOfferCategoriesByCategoryUseCase = GetOfferCategoriesByCategoryUseCase(_browseRepoImpl);
+    final result = await getOfferCategoriesByCategoryUseCase.execute(selectedCategory.value!.slug);
 
     result.fold(
       (failure) {
@@ -96,26 +82,59 @@ class BrowseController extends GetxController {
     );
   }
 
-  Future<void> getOffers() async {
-    final result;
-    if (selectedCategory.value == null) {
-      final GetOffersUseCase getOffersUseCase = GetOffersUseCase(
-        _browseRepoImpl,
-      );
-      result = await getOffersUseCase.execute();
+  void selectOfferCategory(OfferCategoryEntity offerCategory) async {
+    final List<String> tempSelectedOfferCategories =
+        selectedOfferCategories.toList();
+    if (tempSelectedOfferCategories.contains(offerCategory.slug)) {
+      tempSelectedOfferCategories.remove(offerCategory.slug);
     } else {
-      final GetOffersByCategoryUseCase getOffersUseCase =
-          GetOffersByCategoryUseCase(_browseRepoImpl);
-      result = await getOffersUseCase.execute(selectedCategory.value!.slug);
+      tempSelectedOfferCategories.add(offerCategory.slug);
     }
+    selectedOfferCategories.assignAll(tempSelectedOfferCategories);
+    
+    await getOffers();
+  }
+
+  _getOffersByCategoryUseCase() {
+    if (selectedCategory.value == null) {
+      return GetOffersUseCase(_browseRepoImpl);
+    } else {
+      return GetOffersByCategoryUseCase(_browseRepoImpl);
+    }
+  }
+
+  Future<dynamic> _ImplOffersUseCase() async {
+    final useCase = _getOffersByCategoryUseCase();
+    if (useCase is GetOffersUseCase) {
+      return await useCase.execute();
+    } else if (useCase is GetOffersByCategoryUseCase) {
+      
+      return await useCase.execute(
+        selectedCategory.value!.slug,
+        offerCategories: selectedOfferCategories.value,
+        sortBy: isAscending ? sortBy.value : "-${sortBy.value}",
+        searchQuery: searchQuery,
+        index: index,
+        size: size,
+      );
+    }
+    return null;
+  }
+
+  Future<void> getOffers() async {
+    isLoading(true);
+    final result = await _ImplOffersUseCase();
+    if (result == null) return;
+
     result.fold(
       (failure) {
         Get.snackbar("error", failure.message);
       },
       (success) {
-        offers.value = success;
+        offers.assignAll(success);
       },
     );
+    isLoading(false);
   }
 
   Future<void> getStores() async {

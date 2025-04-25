@@ -17,7 +17,13 @@ abstract class BrowseRepo {
 
   Future<Either<Failure, List<OfferEntity>>> getOffers();
   Future<Either<Failure, List<OfferEntity>>> getOffersByCategory(
-    String categorySlug,
+    String categorySlug,{
+      List<String>? offerCategories ,
+      String sortBy = 'end_date',
+      String searchQuery = '',
+      int index = 0,
+      int size = 10,
+    }
   );
   Future<Either<Failure, List<OfferEntity>>> getOffersByStore(String storeSlug);
   Future<Either<Failure, List<OfferEntity>>> getOffersByOfferCategory(

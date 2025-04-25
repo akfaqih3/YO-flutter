@@ -14,7 +14,7 @@ abstract class BrowseRemoteDataSource {
   Future<List<StoreModel>> getStores();
   Future<List<StoreModel>> getStoresByCategory(String categorySlug);
   Future<List<OfferModel>> getOffers();
-  Future<List<OfferModel>> getOffersByCategory(String categorySlug);
+  Future<List<OfferModel>> getOffersByCategory(String categorySlug, Map<String, dynamic> queryParams);
   Future<List<OfferModel>> getOffersByStore(String storeSlug);
   Future<List<OfferModel>> getOffersByOfferCategory(String offerCategorySlug);
   Future<OfferModel> getOfferDetails(String offerSlug);
@@ -68,10 +68,10 @@ class BrowseRemoteDataSourceImpl implements BrowseRemoteDataSource {
   }
 
   @override
-  Future<List<OfferModel>> getOffersByCategory(String categorySlug) async {
+  Future<List<OfferModel>> getOffersByCategory(String categorySlug, Map<String, dynamic> queryParams) async {
     final response = await _apiService.get(
       Endpoint.offerByCategory(categorySlug),
-      queryParams: {ApiKeys.size: 15},
+      queryParams: queryParams,
     );
     return offersModelFromJson(response.data[ApiKeys.results]);
   }

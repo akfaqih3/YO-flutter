@@ -24,7 +24,7 @@ class BrowseOfferCategoryWidget extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 8),
           constraints: const BoxConstraints(minWidth: 80),
           decoration: BoxDecoration(
-            color: AppColors.primary.withAlpha(isSelected ? 100 : 0),
+            color: AppColors.primary.withAlpha(isSelected ? 500 : 0),
             borderRadius: BorderRadius.circular(32),
             border: Border.all(color: AppColors.secondary.withAlpha(100)),
           ),
@@ -39,7 +39,7 @@ class BrowseOfferCategoryWidget extends StatelessWidget {
               child: Text(
                 offerCategoy.name,
                 style: TextStyle(
-                  color: AppColors.textPrimary.withAlpha(200),
+                  color: isSelected? AppColors.white: AppColors.textPrimary.withAlpha(200),
                   fontSize: 16,
                 ),
                 textAlign: TextAlign.center,

@@ -21,7 +21,6 @@ class BrowseSearchBarWidget extends StatelessWidget {
         textAlign: TextAlign.start,
         textAlignVertical: TextAlignVertical.center,
         strutStyle: StrutStyle(
-          
           forceStrutHeight: true,
           height: 1.0,
           leading: 1.0,

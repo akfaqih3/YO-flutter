@@ -45,7 +45,16 @@ class BrowseHeaderSectionWidget extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1 / 2,
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      // open sort dialog
+                      Get.bottomSheet(
+                        SortDialogWidget(controller: controller),
+                        enterBottomSheetDuration: const Duration(milliseconds: 200),
+                        exitBottomSheetDuration: const Duration(milliseconds: 200),
+                        barrierColor: Colors.transparent,
+                        isScrollControlled: true,
+                      );
+                    },
                     child: const Icon(
                       Icons.sort_rounded,
                       size: 36,
@@ -73,7 +82,7 @@ class BrowseHeaderSectionWidget extends StatelessWidget {
                       final OfferCategoryEntity offerCategory =
                           offerCategories[index];
                       return Obx(() {
-                        final List<OfferCategoryEntity>
+                        final List<String>
                         selectedOfferCategories =
                             controller.selectedOfferCategories.value;
                         return BrowseOfferCategoryWidget(
@@ -82,13 +91,87 @@ class BrowseHeaderSectionWidget extends StatelessWidget {
                             controller.selectOfferCategory(offerCategory);
                           },
                           isSelected: selectedOfferCategories.contains(
-                            offerCategory,
+                            offerCategory.slug,
                           ),
                         );
                       });
                     },
                   );
             }),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SortDialogWidget extends StatelessWidget {
+   SortDialogWidget({super.key, required this.controller});
+  final BrowseController controller;
+
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.8,
+      width: MediaQuery.of(context).size.width * 0.8,
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 16),
+          Text(
+            "hntSort.tr",
+            style: TextStyle(
+              color: AppColors.textPrimary,
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: controller.sortOptions.length,
+              itemBuilder: (context, index) {
+                final String sortOption = controller.sortOptions[index];
+                return ListTile(
+                  title: Text(
+                    sortOption,
+                    style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize: 16,
+                    ),
+                  ),
+                  trailing: Radio(
+                    value: sortOption,
+                    groupValue: controller.sortBy.value,
+                    onChanged: (value) {
+                      controller.sortBy.value = value ?? "price";
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: () {
+                  Get.back();
+                },
+                child: Text(
+                  "hntClose.tr",
+                  style: TextStyle(
+                    color: AppColors.primary,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

@@ -4,6 +4,7 @@ import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/core/widgets/app_bottom_navigation_bar_widget.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_category_entity.dart';
+import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/browse/presentation/getX/controllers/browse_controller.dart';
 import 'package:yemen_offers/features/browse/presentation/views/widgets/browse/header/browse_header_section_widget.dart';
 import 'package:yemen_offers/features/browse/presentation/views/widgets/browse/header/browse_offer_category_widget.dart';
@@ -50,16 +51,24 @@ class BrowsePage extends GetView<BrowseController> {
                   child: TabBarView(
                     children: [
                       Obx(() {
-                        return controller.offers.value.isEmpty
-                            ? const CircularProgressIndicator(
+                        final List<OfferEntity> offers = controller.offers.value;
+                        return (offers.isEmpty || controller.isLoading.value)?
+                        Align(
+                          alignment: Alignment.center,
+                          child: SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: const CircularProgressIndicator(
                               color: AppColors.primary,
                               strokeWidth: 2,
                               valueColor: AlwaysStoppedAnimation<Color>(
                                 AppColors.secondary,
                               ),
                               semanticsLabel: 'العروض',
-                            )
-                            : OfferTabWidget(offers: controller.offers.value, scrollController: controller.scrollController);
+                            ),
+                          ),
+                        ):
+                        OfferTabWidget(offers: offers, scrollController: controller.scrollController);
                       }), 
                       Obx(() {
                         return controller.stores.value.isEmpty
