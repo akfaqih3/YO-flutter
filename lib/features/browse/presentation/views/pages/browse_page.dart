@@ -34,7 +34,7 @@ class BrowsePage extends GetView<BrowseController> {
                       ? OfferCategoryListWidget(controller: controller)
                       : const SizedBox();
                 }),
-                SizedBox(height: 4,),
+                SizedBox(height: 4),
                 Obx(
                   () => BrowseTapBarWidget(isShow: controller.showTabs.value),
                 ),

@@ -17,6 +17,10 @@ Map<String, String> en = {
 
   lblOffers: 'Offers',
   lblStores: 'Stores',
+  lblNoOffers: 'No Offers',
+  lblNoStores: 'No Stores',
+
+  //end
 
 
   lblWelcome: 'Welcome to ',

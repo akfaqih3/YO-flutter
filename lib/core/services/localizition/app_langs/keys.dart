@@ -10,6 +10,8 @@ const String txtOnboardingFav = "onboardingFavText";
 
 const String lblOffers = 'offersLabel';
 const String lblStores = 'storesLabel';
+const String lblNoOffers = 'no_offers';
+const String lblNoStores = 'no_stores';
 
 const String lblWelcome = 'Welcome';
 const String lblHome = 'home';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/browse/presentation/getX/controllers/browse_controller.dart';
@@ -23,7 +24,7 @@ class BrowseTapBarViewWidget extends StatelessWidget {
           Obx(() {
             final List<OfferEntity> offers =
                 controller.offers.value;
-            return (offers.isEmpty || controller.isLoading.value)
+            return ( controller.isLoading.value)
                 ? Align(
                   alignment: Alignment.center,
                   child: SizedBox(
@@ -39,7 +40,10 @@ class BrowseTapBarViewWidget extends StatelessWidget {
                     ),
                   ),
                 )
-                : OfferTabWidget(
+                : (offers.isEmpty)
+                ?  Center(
+                  child: Text(lblNoOffers.tr,style: TextStyle(color: AppColors.secondary),),
+                ):OfferTabWidget(
                   offers: offers,
                   scrollController: controller.scrollController,
                 );
