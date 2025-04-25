@@ -53,6 +53,7 @@ Map<String, String> ar = {
   lblError: 'خطأ',
 
   // hnt
+  hntSearch: 'بحث',
   hntEmail: 'البريد الإلكتروني',
   hntPassword: 'كلمة المرور',
   hntConfirmPassword: 'تأكيد كلمة المرور',

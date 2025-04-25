@@ -54,6 +54,7 @@ Map<String, String> en = {
   lblError: 'Error',
 
   // hnt
+  hntSearch: 'Search',
   hntEmail: 'Email',
   hntPassword: 'Password',
   hntConfirmPassword: 'Confirm Password',

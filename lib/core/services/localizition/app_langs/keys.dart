@@ -47,6 +47,7 @@ const String lblAreYouSureYouWantToDeleteThisCourse =
     'are_you_sure_you_want_to_delete_this_course';
 const String lblError = 'error';
 
+const String hntSearch = 'hint_search';
 const String hntEmail = 'hint_email';
 const String hntPassword = 'hint_password';
 const String hntConfirmPassword = 'hint_confirm_password';

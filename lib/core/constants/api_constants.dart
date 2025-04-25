@@ -85,9 +85,10 @@ class ApiKeys {
   static const String user = "user";
   static const String merchant = "merchant";
 
-  static const String result = "results";
+  static const String results = "results";
   static const String searchKeyword = "search";
   static const String limit = "limit";
+  static const String size = "size";
 
   static const String accessToken = "access";
   static const String refreshToken = "refresh";

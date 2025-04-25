@@ -15,7 +15,7 @@ class NotificationRemoteDataSourceImpl implements NotificationRemoteDataSource {
   @override
   Future<List<NotificationModel>> getListNotifications() async {
     final response = await _apiService.get(Endpoint.notifications);
-    return NotificationModelsFromJson(response.data[ApiKeys.result]);
+    return NotificationModelsFromJson(response.data[ApiKeys.results]);
   }
 
   @override
