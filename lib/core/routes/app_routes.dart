@@ -26,9 +26,8 @@ class AppRoutes {
   static const String favorites = '/favorites';
 
   // browse
+  static const String browse = '/browse';
   static const String categories = '/categories';
-  static const String stores = '/stores';
-  static const String offers = '/offers';
   static const String offerSearch = '/offer_search';
   static const String offerDetails = '/offer_details';
 
@@ -37,5 +36,4 @@ class AppRoutes {
 
   // notification
   static const String notifications = '/notifications';
-  
 }

@@ -14,7 +14,7 @@ abstract class BrowseRemoteDataSource {
   Future<List<StoreModel>> getStores();
   Future<List<StoreModel>> getStoresByCategory(String categorySlug);
   Future<List<OfferModel>> getOffers();
-  Future<List<OfferModel>> getOffersByCategory(String categorySlug);
+  Future<List<OfferModel>> getOffersByCategory(String categorySlug, Map<String, dynamic> queryParams);
   Future<List<OfferModel>> getOffersByStore(String storeSlug);
   Future<List<OfferModel>> getOffersByOfferCategory(String offerCategorySlug);
   Future<OfferModel> getOfferDetails(String offerSlug);
@@ -50,7 +50,7 @@ class BrowseRemoteDataSourceImpl implements BrowseRemoteDataSource {
   @override
   Future<List<StoreModel>> getStores() async {
     final response = await _apiService.get(Endpoint.stores);
-    return storesModelFromJson(response.data);
+    return storesModelFromJson(response.data[ApiKeys.results]);
   }
 
   @override
@@ -58,27 +58,28 @@ class BrowseRemoteDataSourceImpl implements BrowseRemoteDataSource {
     final response = await _apiService.get(
       Endpoint.storeByCategory(categorySlug),
     );
-    return storesModelFromJson(response.data);
+    return storesModelFromJson(response.data[ApiKeys.results]);
   }
 
   @override
   Future<List<OfferModel>> getOffers() async {
     final response = await _apiService.get(Endpoint.offers);
-    return offersModelFromJson(response.data);
+    return offersModelFromJson(response.data[ApiKeys.results]);
   }
 
   @override
-  Future<List<OfferModel>> getOffersByCategory(String categorySlug) async {
+  Future<List<OfferModel>> getOffersByCategory(String categorySlug, Map<String, dynamic> queryParams) async {
     final response = await _apiService.get(
       Endpoint.offerByCategory(categorySlug),
+      queryParams: queryParams,
     );
-    return offersModelFromJson(response.data);
+    return offersModelFromJson(response.data[ApiKeys.results]);
   }
 
   @override
   Future<List<OfferModel>> getOffersByStore(String storeSlug) async {
     final response = await _apiService.get(Endpoint.offerByStore(storeSlug));
-    return offersModelFromJson(response.data);
+    return offersModelFromJson(response.data[ApiKeys.results]);
   }
 
   @override
@@ -88,7 +89,7 @@ class BrowseRemoteDataSourceImpl implements BrowseRemoteDataSource {
     final response = await _apiService.get(
       Endpoint.offerByOfferCategory(offerCategorySlug),
     );
-    return offersModelFromJson(response.data);
+    return offersModelFromJson(response.data[ApiKeys.results]);
   }
 
   @override

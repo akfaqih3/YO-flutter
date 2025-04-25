@@ -52,8 +52,7 @@ class Endpoint {
   static String offerCategories = "${ApiConst.coreApp}/offer-categories/";
   static String stores = "${ApiConst.coreApp}/stores/";
   static String offers = "${ApiConst.coreApp}/offers/";
-  static String offerDetails(String offerSlug) =>
-      "$offers$offerSlug/";
+  static String offerDetails(String offerSlug) => "$offers$offerSlug/";
   static String offerCategoryByCategory(String categorySlug) =>
       "$categories$categorySlug/offer-categories/";
   static String storeByCategory(String categorySlug) =>
@@ -85,9 +84,15 @@ class ApiKeys {
   static const String user = "user";
   static const String merchant = "merchant";
 
-  static const String result = "results";
+  static const String results = "results";
   static const String searchKeyword = "search";
   static const String limit = "limit";
+  static const String index = "index";
+  static const String size = "size";
+  static const String ordering = "ordering";
+
+  // filters keys
+  static const String offerCategories = "offer_category";
 
   static const String accessToken = "access";
   static const String refreshToken = "refresh";

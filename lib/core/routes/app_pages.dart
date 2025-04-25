@@ -8,8 +8,10 @@ import 'package:yemen_offers/features/auth/presentation/pages/login_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/register_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/reset_password_page.dart';
 import 'package:yemen_offers/features/browse/presentation/getX/browse_binding.dart';
+import 'package:yemen_offers/features/browse/presentation/views/pages/browse_page.dart';
 import 'package:yemen_offers/features/browse/presentation/views/pages/categories_page.dart';
 import 'package:yemen_offers/features/browse/presentation/views/pages/offer_details_page.dart';
+import 'package:yemen_offers/features/browse/presentation/views/pages/offer_list_page.dart';
 import 'package:yemen_offers/features/home/presentation/getX/home_binding.dart';
 import 'package:yemen_offers/features/home/presentation/views/pages/home_page.dart';
 import 'package:yemen_offers/features/home/presentation/views/pages/main_page.dart';
@@ -35,7 +37,12 @@ class AppPages {
 
   static List<GetPage> routes = [
     GetPage(name: AppRoutes.splash, page: () => SplashPage()),
-    GetPage(name: AppRoutes.main, page: () => MainPage(), binding: HomeBinding(),middlewares: [MainMiddleware()]),
+    GetPage(
+      name: AppRoutes.main,
+      page: () => MainPage(),
+      binding: HomeBinding(),
+      middlewares: [MainMiddleware()],
+    ),
     GetPage(name: AppRoutes.onboarding, page: () => OnboardingPage()),
     GetPage(
       name: AppRoutes.login,
@@ -100,12 +107,10 @@ class AppPages {
     ),
 
     // consumer
-    GetPage(
-      name: AppRoutes.favorites,
-      page: () => FavoritePage(),
-    ),
+    GetPage(name: AppRoutes.favorites, page: () => FavoritePage()),
 
     // browse
+    GetPage(name: AppRoutes.browse, page: () => BrowsePage(),binding: BrowseBinding()),
     GetPage(
       name: AppRoutes.categories,
       page: () => CategoriesPage(),
@@ -118,6 +123,7 @@ class AppPages {
       binding: BrowseBinding(),
     ),
 
+    
     // search
     GetPage(
       name: AppRoutes.search,
@@ -132,5 +138,4 @@ class AppPages {
       binding: NotificationBinding(),
     ),
   ];
-  
 }

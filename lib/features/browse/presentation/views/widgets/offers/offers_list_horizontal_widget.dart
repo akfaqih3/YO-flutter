@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
-import 'package:yemen_offers/features/browse/presentation/views/widgets/offer_card_widgets.dart';
+import 'package:yemen_offers/features/browse/presentation/views/widgets/offers/offer_card_widget.dart';
 
 class OffersListHorizontalWidget extends StatelessWidget {
   const OffersListHorizontalWidget({
@@ -25,7 +25,7 @@ class OffersListHorizontalWidget extends StatelessWidget {
                 onTap: () {
                   // Handle tap action here
                 },
-                child: OfferCardWidgets(offer: offer),
+                child: OfferCardWidget(offer: offer,width: MediaQuery.of(context).size.width * 0.7 ),
               );
             }).toList(),
       ),

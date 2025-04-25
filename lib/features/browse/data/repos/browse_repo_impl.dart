@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/errors/exceptions.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
 import 'package:yemen_offers/features/browse/data/models/category_model.dart';
@@ -87,11 +88,24 @@ class BrowseRepoImpl implements BrowseRepo {
 
   @override
   Future<Either<Failure, List<OfferEntity>>> getOffersByCategory(
-    String categorySlug,
-  ) async {
+    String categorySlug, {
+    List<String>? offerCategories,
+    String sortBy = 'end_date',
+    String searchQuery = '',
+    int index = 0,
+    int size = 10,
+  }) async {
     try {
+      final Map<String, dynamic> queryParams = {
+        ApiKeys.offerCategories: offerCategories,
+        ApiKeys.ordering: sortBy,
+        ApiKeys.searchKeyword: searchQuery,
+        ApiKeys.index: index,
+        ApiKeys.size: size,
+      };
+
       final List<OfferModel> offers = await _remoteDataSource
-          .getOffersByCategory(categorySlug);
+          .getOffersByCategory(categorySlug, queryParams);
       return Right(offerEntityFromModel(offers));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));
@@ -128,8 +142,9 @@ class BrowseRepoImpl implements BrowseRepo {
   @override
   Future<Either<Failure, OfferEntity>> getOfferDetails(String offerSlug) async {
     try {
-      final OfferModel offers = await _remoteDataSource
-          .getOfferDetails(offerSlug);
+      final OfferModel offers = await _remoteDataSource.getOfferDetails(
+        offerSlug,
+      );
       return Right(OfferEntity.fromModel(offers));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));

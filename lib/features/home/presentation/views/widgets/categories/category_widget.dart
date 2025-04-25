@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/home/presentation/views/widgets/categories/category_image_widget.dart';
 
@@ -24,7 +26,12 @@ class CategoryWidget extends StatelessWidget {
             children:
                 categories.map((category) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(
+                        AppRoutes.browse,
+                        arguments: {"category": category},
+                      );
+                    },
                     child: CategoryImageWidget(category: category),
                   );
                 }).toList(),

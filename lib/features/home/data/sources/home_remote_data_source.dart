@@ -25,12 +25,12 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   @override
   Future<List<OfferModel>> getMostPopularOffers() async {
     final response = await _apiService.get(Endpoint.mostPopularOffers);
-    return offersModelFromJson(response.data[ApiKeys.result]);
+    return offersModelFromJson(response.data[ApiKeys.results]);
   }
 
   @override
   Future<List<OfferModel>> getLatestOffers() async {
     final response = await _apiService.get(Endpoint.latestOffers);
-    return offersModelFromJson(response.data[ApiKeys.result]);
+    return offersModelFromJson(response.data[ApiKeys.results]);
   }
 }
