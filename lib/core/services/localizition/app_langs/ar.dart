@@ -14,8 +14,9 @@ Map<String, String> ar = {
   txtOnboardingFav:
       'ما يفوتك شي! احفظ العروض اللي تحبها، وخليك أوّل من يعرف لما ينزل عرض جديد.',
 
-  lblTeacher: 'المعلم',
-  lblStudent: 'الطالب',
+  lblOffers: 'العروض',
+  lblStores: 'المتاجر',
+
   lblWelcome: 'مرحبا بك في',
   lblHome: 'الرئيسية',
   lblLogin: 'تسجيل الدخول',
@@ -51,6 +52,8 @@ Map<String, String> ar = {
   lblAreYouSureYouWantToDeleteThisCourse:
       'هل أنت متأكد أنك تريد حذف هذه الدورة؟',
   lblError: 'خطأ',
+
+  txtNoDescription: 'لا يوجد وصف',
 
   // hnt
   hntSearch: 'بحث',

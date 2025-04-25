@@ -15,7 +15,7 @@ import 'package:yemen_offers/features/browse/domain/use_cases/get_offers_use_cas
 import 'package:yemen_offers/features/browse/domain/use_cases/get_stores_by_category_use_case.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_stores_use_case.dart';
 
-class BrowseController extends GetxController {
+class BrowseController extends GetxController with GetSingleTickerProviderStateMixin {
   final ApiService _apiService = Get.find<ApiService>();
   late BrowseRepoImpl _browseRepoImpl;
 
@@ -28,6 +28,8 @@ class BrowseController extends GetxController {
 
   final ScrollController scrollController = ScrollController();
   final RxBool showTabs = true.obs;
+  late TabController tabController;
+  final selectedTabIndex = 0.obs;
 
   final sortOptions = ["price", "rating", "distance"];
 
@@ -42,6 +44,7 @@ class BrowseController extends GetxController {
 
   @override
   void onInit() async {
+    _initTabController();
     super.onInit();
     _browseRepoImpl = BrowseRepoImpl(BrowseRemoteDataSourceImpl(_apiService));
     _getSelectedCategory();
@@ -49,6 +52,13 @@ class BrowseController extends GetxController {
     await getOffers();
     await getStores();
 
+    _listenScrollController();
+
+
+    
+  }
+
+  void _listenScrollController() {
     scrollController.addListener(() {
       if (scrollController.position.userScrollDirection ==
           ScrollDirection.reverse) {
@@ -60,6 +70,15 @@ class BrowseController extends GetxController {
         if (!showTabs.value) {
           showTabs.value = true;
         }
+      }
+    });
+  }
+
+  void _initTabController() {
+    tabController = TabController(length: 2, vsync: this);
+    tabController.addListener(() {
+      if (!tabController.indexIsChanging) {
+        selectedTabIndex.value = tabController.index;
       }
     });
   }
@@ -158,4 +177,12 @@ class BrowseController extends GetxController {
       },
     );
   }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    scrollController.dispose();
+    super.dispose();
+  }
+
 }

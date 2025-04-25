@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yemen_offers/features/browse/presentation/views/widgets/offers_list_vertical_widget.dart';
+import 'package:yemen_offers/features/browse/presentation/views/widgets/offers/offers_list_vertical_widget.dart';
 import 'package:yemen_offers/features/favorite/presentation/getX/controllers/favorite_controller.dart';
 
 class FavoritePage extends GetView<FavoriteController> {

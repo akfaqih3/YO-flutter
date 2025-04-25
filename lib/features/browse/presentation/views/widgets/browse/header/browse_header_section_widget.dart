@@ -36,7 +36,7 @@ class BrowseHeaderSectionWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.08,
+            height: MediaQuery.of(context).size.height * 0.06,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -49,10 +49,16 @@ class BrowseHeaderSectionWidget extends StatelessWidget {
                       // open sort dialog
                       Get.bottomSheet(
                         SortDialogWidget(controller: controller),
-                        enterBottomSheetDuration: const Duration(milliseconds: 200),
-                        exitBottomSheetDuration: const Duration(milliseconds: 200),
+                        elevation: 4,
+                        enterBottomSheetDuration: const Duration(
+                          milliseconds: 256,
+                        ),
+                        exitBottomSheetDuration: const Duration(
+                          milliseconds: 256,
+                        ),
                         barrierColor: Colors.transparent,
                         isScrollControlled: true,
+                        backgroundColor: AppColors.white,
                       );
                     },
                     child: const Icon(
@@ -65,40 +71,6 @@ class BrowseHeaderSectionWidget extends StatelessWidget {
               ],
             ),
           ),
-
-          // offer category
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.04,
-            child: Obx(() {
-              final List<OfferCategoryEntity> offerCategories =
-                  controller.offerCategories.value;
-              return offerCategories.isEmpty
-                  ? const CircularProgressIndicator()
-                  : ListView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: offerCategories.length,
-                    itemBuilder: (context, index) {
-                      final OfferCategoryEntity offerCategory =
-                          offerCategories[index];
-                      return Obx(() {
-                        final List<String>
-                        selectedOfferCategories =
-                            controller.selectedOfferCategories.value;
-                        return BrowseOfferCategoryWidget(
-                          offerCategoy: offerCategory,
-                          onTap: () {
-                            controller.selectOfferCategory(offerCategory);
-                          },
-                          isSelected: selectedOfferCategories.contains(
-                            offerCategory.slug,
-                          ),
-                        );
-                      });
-                    },
-                  );
-            }),
-          ),
         ],
       ),
     );
@@ -106,20 +78,14 @@ class BrowseHeaderSectionWidget extends StatelessWidget {
 }
 
 class SortDialogWidget extends StatelessWidget {
-   SortDialogWidget({super.key, required this.controller});
+  SortDialogWidget({super.key, required this.controller});
   final BrowseController controller;
-
-  
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.8,
-      width: MediaQuery.of(context).size.width * 0.8,
-      decoration: BoxDecoration(
-        color: AppColors.primary,
-        borderRadius: BorderRadius.circular(16),
-      ),
+      height: MediaQuery.of(context).size.height * 0.5,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -165,10 +131,7 @@ class SortDialogWidget extends StatelessWidget {
                 },
                 child: Text(
                   "hntClose.tr",
-                  style: TextStyle(
-                    color: AppColors.primary,
-                    fontSize: 16,
-                  ),
+                  style: TextStyle(color: AppColors.primary, fontSize: 16),
                 ),
               ),
             ],

@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:yemen_offers/core/theme/colors.dart';
+import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
+import 'package:yemen_offers/features/browse/presentation/getX/controllers/browse_controller.dart';
+import 'package:yemen_offers/features/browse/presentation/views/widgets/browse/tabs/offer_tab_widget.dart';
+import 'package:yemen_offers/features/browse/presentation/views/widgets/browse/tabs/store_tab_widget.dart';
+
+class BrowseTapBarViewWidget extends StatelessWidget {
+  const BrowseTapBarViewWidget({
+    super.key,
+    required this.controller,
+  });
+
+  final BrowseController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: TabBarView(
+        controller: controller.tabController,
+        children: [
+          Obx(() {
+            final List<OfferEntity> offers =
+                controller.offers.value;
+            return (offers.isEmpty || controller.isLoading.value)
+                ? Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: const CircularProgressIndicator(
+                      color: AppColors.primary,
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        AppColors.secondary,
+                      ),
+                      semanticsLabel: 'العروض',
+                    ),
+                  ),
+                )
+                : OfferTabWidget(
+                  offers: offers,
+                  scrollController: controller.scrollController,
+                );
+          }),
+          Obx(() {
+            return controller.stores.value.isEmpty
+                ? const CircularProgressIndicator(
+                  color: AppColors.primary,
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    AppColors.secondary,
+                  ),
+                  semanticsLabel: 'المتاجر',
+                )
+                : StoreTabWidget(
+                  stores: controller.stores.value,
+                  scrollController: controller.scrollController,
+                );
+          }),
+        ],
+      ),
+    );
+  }
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
-import 'package:yemen_offers/features/browse/presentation/views/widgets/offer_card_widgets.dart';
+import 'package:yemen_offers/features/browse/presentation/views/widgets/offers/offer_card_widget.dart';
+import 'package:yemen_offers/features/browse/presentation/views/widgets/offers/offers_list_vertical_widget.dart';
 
 class SearchOffersWidget extends StatelessWidget {
   const SearchOffersWidget({super.key, required this.offers});
@@ -9,13 +10,6 @@ class SearchOffersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: offers.length,
-        itemBuilder: (context, index) {
-          return OfferCardWidgets(offer: offers[index]);
-        },
-      ),
-    );
+    return Expanded(child: OffersListVerticalWidget(offers: offers));
   }
 }

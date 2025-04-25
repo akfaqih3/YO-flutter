@@ -14,8 +14,11 @@ Map<String, String> en = {
   txtOnboardingFav:
       'ما يفوتك شي! احفظ العروض اللي تحبها، وخليك أوّل من يعرف لما ينزل عرض جديد.',
 
-  lblTeacher: 'Teacher',
-  lblStudent: 'Student',
+
+  lblOffers: 'Offers',
+  lblStores: 'Stores',
+
+
   lblWelcome: 'Welcome to ',
   lblHome: 'Home',
   lblLogin: 'Login',
@@ -52,6 +55,8 @@ Map<String, String> en = {
   lblAreYouSureYouWantToDeleteThisCourse:
       'Are you sure you want to delete this course?',
   lblError: 'Error',
+
+  txtNoDescription: 'No Description',
 
   // hnt
   hntSearch: 'Search',

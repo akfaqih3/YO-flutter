@@ -8,8 +8,8 @@ const String txtOnboardingMap = "onboardingMapText";
 const String txtOnboardingYO = "onboardingYOText";
 const String txtOnboardingFav = "onboardingFavText";
 
-const String lblTeacher = 'Teacher';
-const String lblStudent = 'Student';
+const String lblOffers = 'offersLabel';
+const String lblStores = 'storesLabel';
 
 const String lblWelcome = 'Welcome';
 const String lblHome = 'home';
@@ -46,6 +46,8 @@ const String lblDeleteCourse = 'delete_course';
 const String lblAreYouSureYouWantToDeleteThisCourse =
     'are_you_sure_you_want_to_delete_this_course';
 const String lblError = 'error';
+
+const String txtNoDescription = 'no_description';
 
 const String hntSearch = 'hint_search';
 const String hntEmail = 'hint_email';
