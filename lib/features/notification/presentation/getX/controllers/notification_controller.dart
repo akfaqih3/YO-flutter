@@ -40,19 +40,5 @@ class NotificationController extends GetxController {
     );
   }
 
-  Future<void> openNotification(int id) async {
-    final OpenNotificationUseCase openNotificationUseCase =
-        OpenNotificationUseCase(_notificationRepoImpl);
-
-    final result = await openNotificationUseCase.execute(id);
-
-    result.fold(
-      (left) {
-        Get.snackbar("خطاء", left.message.toString());
-      },
-      (right) {
-        Get.toNamed(AppRoutes.offerDetails, arguments: {'offer': right});
-      },
-    );
-  }
+ 
 }

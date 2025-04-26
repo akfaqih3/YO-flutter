@@ -30,6 +30,7 @@ class _AppHomeState extends State<AppHome> {
       title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       initialBinding: AppBinding(),
       getPages: AppPages.routes,
       initialRoute: AppPages.initialRoute,

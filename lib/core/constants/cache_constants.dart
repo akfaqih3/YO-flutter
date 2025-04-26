@@ -8,4 +8,6 @@ class CacheKeys {
 
 
   static const String isFirstOpen = "IS_FIRST_OPEN";
+
+  static const String isDarkMode = "IS_DARK_MODE";
 }

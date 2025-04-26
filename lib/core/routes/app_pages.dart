@@ -11,7 +11,6 @@ import 'package:yemen_offers/features/browse/presentation/getX/browse_binding.da
 import 'package:yemen_offers/features/browse/presentation/views/pages/browse_page.dart';
 import 'package:yemen_offers/features/browse/presentation/views/pages/categories_page.dart';
 import 'package:yemen_offers/features/browse/presentation/views/pages/offer_details_page.dart';
-import 'package:yemen_offers/features/browse/presentation/views/pages/offer_list_page.dart';
 import 'package:yemen_offers/features/home/presentation/getX/home_binding.dart';
 import 'package:yemen_offers/features/home/presentation/views/pages/home_page.dart';
 import 'package:yemen_offers/features/home/presentation/views/pages/main_page.dart';

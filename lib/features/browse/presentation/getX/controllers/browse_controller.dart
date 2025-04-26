@@ -9,7 +9,6 @@ import 'package:yemen_offers/features/browse/domain/entities/offer_category_enti
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/browse/domain/entities/store_entity.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_offer_categories_by_category_use_case.dart';
-import 'package:yemen_offers/features/browse/domain/use_cases/get_offer_categories_use_case.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_offers_by_category_use_case.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_offers_use_case.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_stores_by_category_use_case.dart';

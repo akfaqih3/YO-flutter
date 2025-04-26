@@ -10,7 +10,8 @@ import 'package:yemen_offers/features/home/domain/entities/recommendations_offer
 
 class HomeController extends GetxController {
   final ApiService _apiService = Get.find<ApiService>();
-  final CategoriesController categoriesController = Get.find<CategoriesController>();
+  final CategoriesController categoriesController =
+      Get.find<CategoriesController>();
   final FavoriteController favoriteController = Get.find<FavoriteController>();
   late final HomeRepoImpl _homeRepo;
 
@@ -22,6 +23,7 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     _homeRepo = HomeRepoImpl(HomeRemoteDataSourceImpl(_apiService));
+    
     await getRecommendations();
     await getCategories();
     await getMostPopularOffers();

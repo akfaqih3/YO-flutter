@@ -16,11 +16,9 @@ class BrowseSearchBarWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(0),
       margin: EdgeInsets.only(left: 8),
-      decoration: BoxDecoration(
-        border: Border.all(color: AppColors.secondary.withAlpha(100)),
-        borderRadius: BorderRadius.circular(32),
-      ),
+      
       child: TextFormField(
+        
         onChanged: (value) {
           controller.searchQuery.value = value;
         },
@@ -29,18 +27,11 @@ class BrowseSearchBarWidget extends StatelessWidget {
         },
         textAlign: TextAlign.start,
         textAlignVertical: TextAlignVertical.center,
-        strutStyle: StrutStyle(
-          forceStrutHeight: true,
-          height: 1.0,
-          leading: 1.0,
-          fontSize: 16,
-        ),
-        style: TextStyle(color: AppColors.secondary, fontSize: 16),
+       
         decoration: InputDecoration(
-          alignLabelWithHint: true,
+          
           hintText: hntSearch.tr,
           border: InputBorder.none,
-          hintStyle: TextStyle(color: AppColors.secondary.withAlpha(100)),
           prefixIcon: Icon(Icons.search, color: AppColors.secondary.withAlpha(100)),
         ),
         showCursor: true,
