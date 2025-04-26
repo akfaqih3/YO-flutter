@@ -20,6 +20,9 @@ class HomeController extends GetxController {
   RxList<OfferEntity> mostPopularOffers = RxList([]);
   RxList<OfferEntity> latestOffers = RxList([]);
 
+  RxBool mostPopularOffersLoading = true.obs;
+  RxBool latestOffersLoading = true.obs;
+
   @override
   void onInit() async {
     _homeRepo = HomeRepoImpl(HomeRemoteDataSourceImpl(_apiService));
@@ -45,18 +48,22 @@ class HomeController extends GetxController {
   }
 
   Future<void> getMostPopularOffers() async {
+    mostPopularOffersLoading(true);
     final result = await _homeRepo.getMostPopularOffers();
     result.fold(
       (failure) => Get.snackbar("error", failure.message),
       (success) => mostPopularOffers.value = success,
     );
+    mostPopularOffersLoading(false);
   }
 
   Future<void> getLatestOffers() async {
+    latestOffersLoading(true);
     final result = await _homeRepo.getLatestOffers();
     result.fold(
       (failure) => Get.snackbar("error", failure.message),
       (success) => latestOffers.value = success,
     );
+    latestOffersLoading(false);
   }
 }

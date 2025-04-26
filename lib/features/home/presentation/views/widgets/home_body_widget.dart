@@ -6,6 +6,7 @@ import 'package:yemen_offers/features/home/presentation/views/widgets/categories
 import 'package:yemen_offers/features/home/presentation/views/widgets/sections/home_section_heading_widget.dart';
 import 'package:yemen_offers/features/home/presentation/views/widgets/sections/home_latest_offers_widget.dart';
 import 'package:yemen_offers/features/home/presentation/views/widgets/sections/home_most_popular_offers_section_widget.dart';
+import 'package:yemen_offers/features/home/presentation/views/widgets/skeleton/offer_list_horizontal_skeleton_widget.dart';
 
 class HomeBodyWidget extends StatelessWidget {
   const HomeBodyWidget({super.key, required this.controller});
@@ -37,9 +38,12 @@ class HomeBodyWidget extends StatelessWidget {
               textColor: Colors.black,
             ),
             Obx(() {
-              return HomeMostPopularOffersSectionWidget(
-                offers: controller.mostPopularOffers.value,
-              );
+              return controller.mostPopularOffersLoading.value
+                  ? const OfferListHorizontalSkeletonWidget()
+                  : HomeMostPopularOffersSectionWidget(
+                    offers: controller.mostPopularOffers.value,
+                  );
+             
             }),
             const SizedBox(height: 8),
             HomeSectionHeadingWidget(
@@ -49,9 +53,11 @@ class HomeBodyWidget extends StatelessWidget {
               textColor: Colors.black,
             ),
             Obx(() {
-              return HomeLatestOffersWidget(
-                offers: controller.latestOffers.value,
-              );
+              return controller.latestOffersLoading.value
+                  ? const OfferListHorizontalSkeletonWidget()
+                  : HomeLatestOffersWidget(
+                    offers: controller.mostPopularOffers.value,
+                  );
             }),
           ],
         ),
