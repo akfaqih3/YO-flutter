@@ -8,5 +8,10 @@ class AppColors {
   static const Color textPrimary = Color(0xFF1C1C1E); // لون النص الأساسي
   static const Color textSecondary = Color(0xFF8E8E93); // لون النص الثانوي
   static const Color error = Color(0xFFFF3B30); // لون الخطأ
-  static const Color white = Color(0xFFFFFFFF); // لون الخطأ
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color black = Color(0xFF000000);
+
+  static const Color lightSurface = white;
+  static const Color darkSurface = black;
+  static const Color shadow = black;
 }

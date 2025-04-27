@@ -28,14 +28,9 @@ class OffersListVerticalWidget extends StatelessWidget {
           spacing: spacing!,
           children:
               offers.map((offer) {
-                return GestureDetector(
-                  onTap: () {
-                    // Handle tap action here
-                  },
-                  child: OfferCardWidget(
-                    offer: offer,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                  ),
+                return OfferCardWidget(
+                  offer: offer,
+                  width: MediaQuery.of(context).size.width * 0.8,
                 );
               }).toList(),
         ),

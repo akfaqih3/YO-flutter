@@ -10,7 +10,8 @@ import 'package:yemen_offers/features/home/domain/entities/recommendations_offer
 
 class HomeController extends GetxController {
   final ApiService _apiService = Get.find<ApiService>();
-  final CategoriesController categoriesController = Get.find<CategoriesController>();
+  final CategoriesController categoriesController =
+      Get.find<CategoriesController>();
   final FavoriteController favoriteController = Get.find<FavoriteController>();
   late final HomeRepoImpl _homeRepo;
 
@@ -19,9 +20,13 @@ class HomeController extends GetxController {
   RxList<OfferEntity> mostPopularOffers = RxList([]);
   RxList<OfferEntity> latestOffers = RxList([]);
 
+  RxBool mostPopularOffersLoading = true.obs;
+  RxBool latestOffersLoading = true.obs;
+
   @override
   void onInit() async {
     _homeRepo = HomeRepoImpl(HomeRemoteDataSourceImpl(_apiService));
+    
     await getRecommendations();
     await getCategories();
     await getMostPopularOffers();
@@ -43,18 +48,22 @@ class HomeController extends GetxController {
   }
 
   Future<void> getMostPopularOffers() async {
+    mostPopularOffersLoading(true);
     final result = await _homeRepo.getMostPopularOffers();
     result.fold(
       (failure) => Get.snackbar("error", failure.message),
       (success) => mostPopularOffers.value = success,
     );
+    mostPopularOffersLoading(false);
   }
 
   Future<void> getLatestOffers() async {
+    latestOffersLoading(true);
     final result = await _homeRepo.getLatestOffers();
     result.fold(
       (failure) => Get.snackbar("error", failure.message),
       (success) => latestOffers.value = success,
     );
+    latestOffersLoading(false);
   }
 }

@@ -9,13 +9,13 @@ import 'package:yemen_offers/features/browse/domain/entities/offer_category_enti
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/browse/domain/entities/store_entity.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_offer_categories_by_category_use_case.dart';
-import 'package:yemen_offers/features/browse/domain/use_cases/get_offer_categories_use_case.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_offers_by_category_use_case.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_offers_use_case.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_stores_by_category_use_case.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_stores_use_case.dart';
 
-class BrowseController extends GetxController with GetSingleTickerProviderStateMixin {
+class BrowseController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   final ApiService _apiService = Get.find<ApiService>();
   late BrowseRepoImpl _browseRepoImpl;
 
@@ -36,11 +36,13 @@ class BrowseController extends GetxController with GetSingleTickerProviderStateM
   // query params
   final RxString sortBy = "price".obs;
   bool isAscending = true;
-  String searchQuery = "";
+  RxString searchQuery = "".obs;
   int index = 0;
   int size = 10;
 
-  RxBool isLoading = false.obs;
+  RxBool offerCategoriesIsLoading = true.obs;
+  RxBool offersIsLoading = true.obs;
+  RxBool storesIsLoading = true.obs;
 
   @override
   void onInit() async {
@@ -53,9 +55,6 @@ class BrowseController extends GetxController with GetSingleTickerProviderStateM
     await getStores();
 
     _listenScrollController();
-
-
-    
   }
 
   void _listenScrollController() {
@@ -88,8 +87,14 @@ class BrowseController extends GetxController with GetSingleTickerProviderStateM
   }
 
   Future<void> getOfferCategories() async {
-    final GetOfferCategoriesByCategoryUseCase getOfferCategoriesByCategoryUseCase = GetOfferCategoriesByCategoryUseCase(_browseRepoImpl);
-    final result = await getOfferCategoriesByCategoryUseCase.execute(selectedCategory.value!.slug);
+    offerCategoriesIsLoading(true);
+    final GetOfferCategoriesByCategoryUseCase
+    getOfferCategoriesByCategoryUseCase = GetOfferCategoriesByCategoryUseCase(
+      _browseRepoImpl,
+    );
+    final result = await getOfferCategoriesByCategoryUseCase.execute(
+      selectedCategory.value!.slug,
+    );
 
     result.fold(
       (failure) {
@@ -99,6 +104,7 @@ class BrowseController extends GetxController with GetSingleTickerProviderStateM
         offerCategories.value = success;
       },
     );
+    offerCategoriesIsLoading(false);
   }
 
   void selectOfferCategory(OfferCategoryEntity offerCategory) async {
@@ -110,7 +116,7 @@ class BrowseController extends GetxController with GetSingleTickerProviderStateM
       tempSelectedOfferCategories.add(offerCategory.slug);
     }
     selectedOfferCategories.assignAll(tempSelectedOfferCategories);
-    
+
     await getOffers();
   }
 
@@ -127,12 +133,11 @@ class BrowseController extends GetxController with GetSingleTickerProviderStateM
     if (useCase is GetOffersUseCase) {
       return await useCase.execute();
     } else if (useCase is GetOffersByCategoryUseCase) {
-      
       return await useCase.execute(
         selectedCategory.value!.slug,
         offerCategories: selectedOfferCategories.value,
         sortBy: isAscending ? sortBy.value : "-${sortBy.value}",
-        searchQuery: searchQuery,
+        searchQuery: searchQuery.value.trim(),
         index: index,
         size: size,
       );
@@ -141,7 +146,7 @@ class BrowseController extends GetxController with GetSingleTickerProviderStateM
   }
 
   Future<void> getOffers() async {
-    isLoading(true);
+    offersIsLoading(true);
     final result = await _ImplOffersUseCase();
     if (result == null) return;
 
@@ -153,10 +158,12 @@ class BrowseController extends GetxController with GetSingleTickerProviderStateM
         offers.assignAll(success);
       },
     );
-    isLoading(false);
+    offersIsLoading(false);
   }
+  
 
   Future<void> getStores() async {
+    storesIsLoading(true);
     final dynamic result;
     if (selectedCategory.value == null) {
       final GetStoresUseCase getStoresUseCase = GetStoresUseCase(
@@ -176,6 +183,7 @@ class BrowseController extends GetxController with GetSingleTickerProviderStateM
         stores.value = success;
       },
     );
+    storesIsLoading(false);
   }
 
   @override
@@ -184,5 +192,4 @@ class BrowseController extends GetxController with GetSingleTickerProviderStateM
     scrollController.dispose();
     super.dispose();
   }
-
 }

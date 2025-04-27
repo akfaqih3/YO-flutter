@@ -1,5 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:yemen_offers/features/browse/presentation/views/widgets/browse/header/browse_search_bar_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

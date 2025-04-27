@@ -16,6 +16,10 @@ Map<String, String> ar = {
 
   lblOffers: 'العروض',
   lblStores: 'المتاجر',
+  lblNoOffers: 'لا توجد عروض',
+  lblNoStores: 'لا توجد متاجر',
+  lblMostPopularOffers: 'الأكثر شعبية',
+  lblLatestOffers: 'الأحدث',
 
   lblWelcome: 'مرحبا بك في',
   lblHome: 'الرئيسية',
@@ -70,6 +74,8 @@ Map<String, String> ar = {
   btnNext: 'التالي',
   btnSkip: 'تخطي',
   btnLetsGo:'إبدا',
+  btnViewAll: 'عرض الكل',
+
   btnLogin: 'تسجيل الدخول',
   btnRegister: 'تسجيل حساب',
   btnLogout: 'تسجيل الخروج',

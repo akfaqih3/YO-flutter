@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/services/theme_service.dart';
 import 'package:yemen_offers/features/profile/presentation/getX/controllers/user_profile_controller.dart';
 import 'package:yemen_offers/features/profile/presentation/widgets/profile_logo_out_widget.dart';
 
@@ -58,7 +59,6 @@ class UserProfilePage extends GetView<UserProfileController> {
                       _buildProfileItem('Email:', user.email),
                       _buildProfileItem('Gender:', user.gender),
                       _buildProfileItem('User Type:', user.userType),
-                      
                     ],
                   ),
                 ),
@@ -79,6 +79,13 @@ class UserProfilePage extends GetView<UserProfileController> {
             ),
             SizedBox(height: 32),
             ProfileLogoOutWidget(),
+            SizedBox(height: 32),
+            ElevatedButton(
+              onPressed: () {
+                Get.find<ThemeService>().toggleMode();
+              },
+              child: Text('toggle mode'),
+            ),
           ],
         ),
       ),

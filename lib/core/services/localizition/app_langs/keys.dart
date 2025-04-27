@@ -10,6 +10,10 @@ const String txtOnboardingFav = "onboardingFavText";
 
 const String lblOffers = 'offersLabel';
 const String lblStores = 'storesLabel';
+const String lblNoOffers = 'no_offers';
+const String lblNoStores = 'no_stores';
+const String lblMostPopularOffers = 'most_popular_offers';
+const String lblLatestOffers = 'latest_offers';
 
 const String lblWelcome = 'Welcome';
 const String lblHome = 'home';
@@ -62,6 +66,8 @@ const String hntPleaseSelectASubject = 'hint_please_select_a_subject';
 const String btnNext = 'btn_next';
 const String btnSkip = 'btn_skip';
 const String btnLetsGo = 'btn_lets_go';
+const String btnViewAll = 'btn_view_all';
+
 const String btnLogin = 'btn_login';
 const String btnRegister = 'btn_register';
 const String btnLogout = 'btn_logout';

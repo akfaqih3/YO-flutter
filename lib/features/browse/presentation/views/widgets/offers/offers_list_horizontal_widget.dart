@@ -21,12 +21,7 @@ class OffersListHorizontalWidget extends StatelessWidget {
       child: Row(
         children:
             offers.map((offer) {
-              return GestureDetector(
-                onTap: () {
-                  // Handle tap action here
-                },
-                child: OfferCardWidget(offer: offer,width: MediaQuery.of(context).size.width * 0.7 ),
-              );
+              return OfferCardWidget(offer: offer,width: MediaQuery.of(context).size.width * 0.7 );
             }).toList(),
       ),
     );
