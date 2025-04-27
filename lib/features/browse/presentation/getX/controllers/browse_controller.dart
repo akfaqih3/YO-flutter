@@ -40,7 +40,9 @@ class BrowseController extends GetxController
   int index = 0;
   int size = 10;
 
-  RxBool isLoading = false.obs;
+  RxBool offerCategoriesIsLoading = true.obs;
+  RxBool offersIsLoading = true.obs;
+  RxBool storesIsLoading = true.obs;
 
   @override
   void onInit() async {
@@ -85,6 +87,7 @@ class BrowseController extends GetxController
   }
 
   Future<void> getOfferCategories() async {
+    offerCategoriesIsLoading(true);
     final GetOfferCategoriesByCategoryUseCase
     getOfferCategoriesByCategoryUseCase = GetOfferCategoriesByCategoryUseCase(
       _browseRepoImpl,
@@ -101,6 +104,7 @@ class BrowseController extends GetxController
         offerCategories.value = success;
       },
     );
+    offerCategoriesIsLoading(false);
   }
 
   void selectOfferCategory(OfferCategoryEntity offerCategory) async {
@@ -142,7 +146,7 @@ class BrowseController extends GetxController
   }
 
   Future<void> getOffers() async {
-    isLoading(true);
+    offersIsLoading(true);
     final result = await _ImplOffersUseCase();
     if (result == null) return;
 
@@ -154,11 +158,12 @@ class BrowseController extends GetxController
         offers.assignAll(success);
       },
     );
-    isLoading(false);
+    offersIsLoading(false);
   }
   
 
   Future<void> getStores() async {
+    storesIsLoading(true);
     final dynamic result;
     if (selectedCategory.value == null) {
       final GetStoresUseCase getStoresUseCase = GetStoresUseCase(
@@ -178,6 +183,7 @@ class BrowseController extends GetxController
         stores.value = success;
       },
     );
+    storesIsLoading(false);
   }
 
   @override

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/home/presentation/getX/controller/home_controller.dart';
 import 'package:yemen_offers/features/home/presentation/views/widgets/categories/home_categories_widget.dart';
 import 'package:yemen_offers/features/home/presentation/views/widgets/sections/home_section_heading_widget.dart';
 import 'package:yemen_offers/features/home/presentation/views/widgets/sections/home_latest_offers_widget.dart';
 import 'package:yemen_offers/features/home/presentation/views/widgets/sections/home_most_popular_offers_section_widget.dart';
-import 'package:yemen_offers/features/home/presentation/views/widgets/skeleton/offer_list_horizontal_skeleton_widget.dart';
+import 'package:yemen_offers/features/browse/presentation/views/widgets/skeleton/offer_list_horizontal_skeleton_widget.dart';
+import 'package:yemen_offers/features/home/presentation/views/widgets/skeleton/category_skeleton_widget.dart';
 
 class HomeBodyWidget extends StatelessWidget {
   const HomeBodyWidget({super.key, required this.controller});
@@ -27,33 +29,42 @@ class HomeBodyWidget extends StatelessWidget {
         child: Column(
           children: [
             Obx(() {
-              return HomeCategoriesWidget(
-                categories: controller.categoriesController.categories.value,
-              );
+              final categories =
+                  controller.categoriesController.categories.value;
+
+              return categories.isEmpty
+                  ? const CategorySkeletonWidget()
+                  : HomeCategoriesWidget(
+                    categories:
+                        categories,
+                  );
             }),
             HomeSectionHeadingWidget(
-              title: 'Most Popular Offers',
+              title: lblMostPopularOffers.tr,
               showActionButton: true,
               onPressed: () {},
               textColor: Colors.black,
+              buttonTitle: btnViewAll.tr,
             ),
             Obx(() {
-              return controller.mostPopularOffersLoading.value
+              return controller.mostPopularOffersLoading.value ||
+                      controller.mostPopularOffers.value.isEmpty
                   ? const OfferListHorizontalSkeletonWidget()
                   : HomeMostPopularOffersSectionWidget(
                     offers: controller.mostPopularOffers.value,
                   );
-             
             }),
             const SizedBox(height: 8),
             HomeSectionHeadingWidget(
-              title: 'Latest Offers',
+              title: lblLatestOffers.tr,
               showActionButton: true,
               onPressed: () {},
               textColor: Colors.black,
+              buttonTitle: btnViewAll.tr,
             ),
             Obx(() {
-              return controller.latestOffersLoading.value
+              return controller.latestOffersLoading.value ||
+                      controller.latestOffers.value.isEmpty
                   ? const OfferListHorizontalSkeletonWidget()
                   : HomeLatestOffersWidget(
                     offers: controller.mostPopularOffers.value,

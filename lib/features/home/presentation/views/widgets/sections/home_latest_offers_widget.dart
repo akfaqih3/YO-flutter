@@ -7,10 +7,9 @@ class HomeLatestOffersWidget extends StatelessWidget {
   final List<OfferEntity> offers;
   @override
   Widget build(BuildContext context) {
-    
     return SizedBox(
-      child: 
-      OffersListHorizontalWidget(offers: offers)
+      height: 330,
+      child: OffersListHorizontalWidget(offers: offers),
     );
   }
 }

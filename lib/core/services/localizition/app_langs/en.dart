@@ -19,6 +19,8 @@ Map<String, String> en = {
   lblStores: 'Stores',
   lblNoOffers: 'No Offers',
   lblNoStores: 'No Stores',
+  lblMostPopularOffers: 'Most Popular Offers',
+  lblLatestOffers: 'Latest Offers',
 
   //end
 
@@ -77,6 +79,8 @@ Map<String, String> en = {
   btnNext: 'Next',
   btnSkip: 'Skip',
   btnLetsGo:'lets go',
+  btnViewAll: 'View All',
+
   btnLogin: 'Login',
   btnRegister: 'Register',
   btnLogout: 'Logout',

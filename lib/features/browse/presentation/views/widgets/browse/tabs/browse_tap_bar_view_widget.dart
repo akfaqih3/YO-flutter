@@ -6,12 +6,10 @@ import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/browse/presentation/getX/controllers/browse_controller.dart';
 import 'package:yemen_offers/features/browse/presentation/views/widgets/browse/tabs/offer_tab_widget.dart';
 import 'package:yemen_offers/features/browse/presentation/views/widgets/browse/tabs/store_tab_widget.dart';
+import 'package:yemen_offers/features/browse/presentation/views/widgets/skeleton/offer_list_vertical_skeleton_widget.dart';
 
 class BrowseTapBarViewWidget extends StatelessWidget {
-  const BrowseTapBarViewWidget({
-    super.key,
-    required this.controller,
-  });
+  const BrowseTapBarViewWidget({super.key, required this.controller});
 
   final BrowseController controller;
 
@@ -22,28 +20,17 @@ class BrowseTapBarViewWidget extends StatelessWidget {
         controller: controller.tabController,
         children: [
           Obx(() {
-            final List<OfferEntity> offers =
-                controller.offers.value;
-            return ( controller.isLoading.value)
-                ? Align(
-                  alignment: Alignment.center,
-                  child: SizedBox(
-                    height: 50,
-                    width: 50,
-                    child: const CircularProgressIndicator(
-                      color: AppColors.primary,
-                      strokeWidth: 2,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        AppColors.secondary,
-                      ),
-                      semanticsLabel: 'العروض',
-                    ),
+            final List<OfferEntity> offers = controller.offers.value;
+            return (controller.offersIsLoading.value)
+                ? OfferListVerticalSkeletonWidget()
+                : (offers.isEmpty)
+                ? Center(
+                  child: Text(
+                    lblNoOffers.tr,
+                    style: TextStyle(color: AppColors.secondary),
                   ),
                 )
-                : (offers.isEmpty)
-                ?  Center(
-                  child: Text(lblNoOffers.tr,style: TextStyle(color: AppColors.secondary),),
-                ):OfferTabWidget(
+                : OfferTabWidget(
                   offers: offers,
                   scrollController: controller.scrollController,
                 );

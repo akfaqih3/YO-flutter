@@ -10,6 +10,7 @@ class HomeMostPopularOffersSectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      height: 330,
       child: OffersListHorizontalWidget(offers: offers),
     );
   }

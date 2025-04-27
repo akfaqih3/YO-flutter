@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:yemen_offers/features/browse/presentation/views/widgets/skeleton/offer_card_skeleton_widget.dart';
 
@@ -13,7 +12,7 @@ class OfferListHorizontalSkeletonWidget extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: 5,
         itemBuilder: (context, index) {
-          return OfferCardSkeletonWidget(width: 300,);
+          return OfferCardSkeletonWidget(width: 300);
         },
       ),
     );
