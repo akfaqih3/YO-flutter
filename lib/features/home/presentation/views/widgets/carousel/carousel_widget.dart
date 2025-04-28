@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/home/domain/entities/recommendations_offer_entity.dart';
 import 'package:yemen_offers/features/home/presentation/getX/controller/carousel_controller.dart';
 import 'carousel_image_widget.dart';
@@ -9,7 +10,7 @@ import 'carousel_indicator_widget.dart';
 class CarouselWidget extends StatelessWidget {
   const CarouselWidget({super.key, required this.offers});
 
-  final List<RecommendationsOfferEntity> offers;
+  final List<OfferEntity> offers;
 
   @override
   Widget build(BuildContext context) {

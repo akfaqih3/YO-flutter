@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
+import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/home/domain/entities/recommendations_offer_entity.dart';
 
 class CarouselImageWidget extends StatelessWidget {
@@ -21,7 +22,7 @@ class CarouselImageWidget extends StatelessWidget {
 
   final double? height;
   final double width;
-  final RecommendationsOfferEntity offer;
+  final OfferEntity offer;
   final bool applyImageRadius;
   final BoxBorder? border;
   final Color backgroundColor;

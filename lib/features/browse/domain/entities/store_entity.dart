@@ -1,4 +1,5 @@
 import 'package:yemen_offers/features/browse/data/models/store_model.dart';
+import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 
 List<StoreEntity> storeEntityFromModel(List<StoreModel> stores) {
   return stores.map((store) => StoreEntity.fromModel(store)).toList();
@@ -6,6 +7,7 @@ List<StoreEntity> storeEntityFromModel(List<StoreModel> stores) {
 
 ///Store
 class StoreEntity {
+  CategoryEntity category;
   String? address;
   String? description;
   String? image;
@@ -18,6 +20,7 @@ class StoreEntity {
   String? website;
 
   StoreEntity({
+    required this.category,
     this.address,
     this.description,
     this.image,
@@ -31,6 +34,7 @@ class StoreEntity {
   });
 
   factory StoreEntity.fromModel(StoreModel storeModel) => StoreEntity(
+    category: CategoryEntity.fromModel(storeModel.category),
     address: storeModel.address,
     description: storeModel.description,
     image: storeModel.image,

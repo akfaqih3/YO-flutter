@@ -1,3 +1,4 @@
+import 'package:yemen_offers/features/browse/data/models/offer_category_model.dart';
 import 'package:yemen_offers/features/browse/data/models/store_model.dart';
 
 List<OfferModel> offersModelFromJson(List<dynamic> json) =>
@@ -5,9 +6,9 @@ List<OfferModel> offersModelFromJson(List<dynamic> json) =>
 
 ///Offer
 class OfferModel {
-  String category;
+  OfferCategoryModel category;
   String? description;
-  double? discountPercentage;
+  int? discountPercentage;
   DateTime? endDate;
   String? image;
   String priceAfter;
@@ -32,7 +33,7 @@ class OfferModel {
   });
 
   factory OfferModel.fromJson(Map<String, dynamic> json) => OfferModel(
-    category: json["category"],
+    category: OfferCategoryModel.fromJson(json["category"]),
     description: json["description"],
     discountPercentage: json["discount_percentage"],
     endDate: json["end_date"] == null ? null : DateTime.parse(json["end_date"]),
@@ -47,7 +48,7 @@ class OfferModel {
   );
 
   Map<String, dynamic> toJson() => {
-    "category": category,
+    "category": category.slug,
     "description": description,
     "discount_percentage": discountPercentage,
     "end_date": endDate?.toIso8601String(),

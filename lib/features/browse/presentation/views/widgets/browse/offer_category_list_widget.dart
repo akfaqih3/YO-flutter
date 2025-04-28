@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_category_entity.dart';
@@ -13,7 +12,8 @@ class OfferCategoryListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      final List<OfferCategoryEntity> offerCategories =controller.offerCategories.value;
+      final List<OfferCategoryEntity> offerCategories =
+          controller.offerCategories.value;
       return SizedBox(
         height: MediaQuery.of(context).size.height * 0.04,
         child: ListView.builder(

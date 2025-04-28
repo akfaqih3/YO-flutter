@@ -16,7 +16,7 @@ class HomeController extends GetxController {
   late final HomeRepoImpl _homeRepo;
 
   final RxList<CategoryEntity> categories = RxList<CategoryEntity>([]);
-  RxList<RecommendationsOfferEntity> recommendationsOffers = RxList([]);
+  RxList<OfferEntity> recommendationsOffers = RxList([]);
   RxList<OfferEntity> mostPopularOffers = RxList([]);
   RxList<OfferEntity> latestOffers = RxList([]);
 

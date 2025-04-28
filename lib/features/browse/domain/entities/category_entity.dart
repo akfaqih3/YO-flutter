@@ -8,14 +8,16 @@ List<CategoryEntity> categoryEntityFromModel(List<CategoryModel> categories) {
 
 class CategoryEntity {
   final String name;
+  final String nameAr;
   final String slug;
   final String? image;
 
-  const CategoryEntity({required this.name, required this.slug, this.image});
+  const CategoryEntity({required this.name, required this.nameAr ,required this.slug, this.image});
 
   factory CategoryEntity.fromModel(CategoryModel categoryModel) {
     return CategoryEntity(
       name: categoryModel.name,
+      nameAr: categoryModel.nameAr,
       slug: categoryModel.slug,
       image: categoryModel.image,
     );
