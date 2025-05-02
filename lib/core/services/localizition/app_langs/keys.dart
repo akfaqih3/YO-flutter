@@ -14,6 +14,7 @@ const String lblNoOffers = 'no_offers';
 const String lblNoStores = 'no_stores';
 const String lblMostPopularOffers = 'most_popular_offers';
 const String lblLatestOffers = 'latest_offers';
+const String lblOffersCount = 'offers_count';
 
 const String lblWelcome = 'Welcome';
 const String lblHome = 'home';

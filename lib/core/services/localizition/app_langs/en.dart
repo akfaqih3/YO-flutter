@@ -21,6 +21,7 @@ Map<String, String> en = {
   lblNoStores: 'No Stores',
   lblMostPopularOffers: 'Most Popular Offers',
   lblLatestOffers: 'Latest Offers',
+  lblOffersCount: 'Offers Count',
 
   //end
 

@@ -8,13 +8,13 @@ List<OfferModel> offersModelFromJson(List<dynamic> json) =>
 class OfferModel {
   OfferCategoryModel category;
   String? description;
-  int? discountPercentage;
-  DateTime? endDate;
+  String? discountPercentage;
+  String? endDate;
   String? image;
   String priceAfter;
   String priceBefore;
   String slug;
-  DateTime? startDate;
+  String? startDate;
   StoreModel store;
   String title;
 
@@ -35,14 +35,13 @@ class OfferModel {
   factory OfferModel.fromJson(Map<String, dynamic> json) => OfferModel(
     category: OfferCategoryModel.fromJson(json["category"]),
     description: json["description"],
-    discountPercentage: json["discount_percentage"],
-    endDate: json["end_date"] == null ? null : DateTime.parse(json["end_date"]),
+    discountPercentage: json["discount_percentage"].toString(),
+    endDate: json["end_date"].toString(),
     image: json["image"],
-    priceAfter: json["price_after"],
-    priceBefore: json["price_before"],
+    priceAfter: json["price_after"].toString(),
+    priceBefore: json["price_before"].toString(),
     slug: json["slug"],
-    startDate:
-        json["start_date"] == null ? null : DateTime.parse(json["start_date"]),
+    startDate: json["start_date"].toString(),
     store: StoreModel.fromJson(json["store"]),
     title: json["title"],
   );
@@ -51,12 +50,12 @@ class OfferModel {
     "category": category.slug,
     "description": description,
     "discount_percentage": discountPercentage,
-    "end_date": endDate?.toIso8601String(),
+    "end_date": endDate?.toString(),
     "image": image,
     "price_after": priceAfter,
     "price_before": priceBefore,
     "slug": slug,
-    "start_date": startDate?.toIso8601String(),
+    "start_date": startDate?.toString(),
     "store": store.toJson(),
     "title": title,
   };

@@ -1,5 +1,5 @@
 class ApiConst {
-  //   static const String domain = "http://192.168.0.40:8000";
+    // static const String domain = "http://192.168.0.40:8000";
   static const String domain = "http://yemeni-offers.com";
   static const String baseUrl = "$domain/api/";
   static const int connectTimeout = 5000;
@@ -52,6 +52,9 @@ class Endpoint {
   static String offerCategories = "${ApiConst.coreApp}/offer-categories/";
   static String stores = "${ApiConst.coreApp}/stores/";
   static String offers = "${ApiConst.coreApp}/offers/";
+  static String offersLatest = "${ApiConst.coreApp}/offers-latest/";
+  static String offersMostPopular = "${ApiConst.coreApp}/offers-most-popular/";
+  static String offersNearby = "${ApiConst.coreApp}/offers-nearby/";
   static String offerDetails(String offerSlug) => "$offers$offerSlug/";
   static String offerCategoryByCategory(String categorySlug) =>
       "$categories$categorySlug/offer-categories/";
@@ -62,17 +65,15 @@ class Endpoint {
   static String offerByStore(String storeSlug) => "$stores$storeSlug/offers/";
   static String offerByOfferCategory(String offerCategorySlug) =>
       "$offerCategories$offerCategorySlug/offers/";
-  static String offerSearch = "$offers/search/";
-  static String offerSearchByImage = "$offers/image-search/";
+  static String offerSearchByVector = "${ApiConst.coreApp}/offers-search/vector/";
+  static String offerSearchByImage = "${ApiConst.coreApp}/offers-search/image/";
 
   static String mostPopularOffers = "${ApiConst.coreApp}/offers-most-popular/";
   static String latestOffers = "${ApiConst.coreApp}/offers-latest/";
 
-  static String searchOffersByKeyword = "$offers/search/";
-  static String searchOffersByImage = "$offers/image-search/";
 
   // recommendations
-  static String recommendations =
+  static String offersRecommendations =
       "${ApiConst.recommendationsApp}/behavior-based/";
 
   // notifications
@@ -85,11 +86,37 @@ class ApiKeys {
   static const String merchant = "merchant";
 
   static const String results = "results";
-  static const String searchKeyword = "search";
+
+
+  // query params
+  static const String categoryParam = "category";
+  static const String storeSlugParam = "store_slug";
+  static const String offerCategoryParam = "offer_category";
+  static const String priceMinParam = "price_min";
+  static const String priceMaxParam = "price_max";
+  static const String priceBeforeMinParam = "price_before_min";
+  static const String priceBeforeMaxParam = "price_before_max";
+  static const String startDateMinParam = "start_date_after";
+  static const String startDateMaxParam = "start_date_before";
+  static const String endDateMinParam = "end_date_after";
+  static const String endDateMaxParam = "end_date_before";
+  static const String discountParam = "discount";
+  static const String orderingParam = "ordering";
+  static const String latitudeParam = "latitude";
+  static const String longitudeParam = "longitude";
+  static const String indexParam = "index";
+  static const String sizeParam = "size";
+  static const String searchParam = "search";
+  static const String searchVectorParam = "vector_search";
+  static const String limitParam = "limit";
+
+
+
   static const String limit = "limit";
   static const String index = "index";
   static const String size = "size";
   static const String ordering = "ordering";
+
 
   // filters keys
   static const String offerCategories = "offer_category";

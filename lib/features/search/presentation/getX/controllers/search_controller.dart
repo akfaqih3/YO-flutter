@@ -4,8 +4,10 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
+import 'package:yemen_offers/features/search/data/offers_response_model.dart';
 import 'package:yemen_offers/features/search/data/repos/search_repo_impl.dart';
 import 'package:yemen_offers/features/search/data/sources/search_remote_data_source.dart';
+import 'package:yemen_offers/features/search/domain/entities/offers_response_entity.dart';
 import 'package:yemen_offers/features/search/domain/use_cases/search_offers_by_image_use_case.dart';
 import 'package:yemen_offers/features/search/domain/use_cases/search_offers_by_key_word_use_case.dart';
 
@@ -13,9 +15,15 @@ class SearchOffersController extends GetxController {
   final SearchRepoImpl _searchRepo = SearchRepoImpl(
     SearchRemoteDataSourceImpl(Get.find<ApiService>()),
   );
-  final loading = false.obs;
+  final isloading = false.obs;
 
+  Rx<OffersResponseEntity?> offersResponseEntity = Rx<OffersResponseEntity?>(
+    null,
+  );
   Rx<List<OfferEntity>> offers = Rx<List<OfferEntity>>([]);
+  RxInt count = 0.obs;
+  Rx<String?> next = Rx<String?>(null);
+  Rx<String?> previous = Rx<String?>(null);
 
   final TextEditingController searchKeywordController = TextEditingController();
 
@@ -26,7 +34,7 @@ class SearchOffersController extends GetxController {
   }
 
   Future<void> searchOffersByKeyword(String searchKeyword) async {
-    loading(true);
+    isloading(true);
     final SearchOffersByKeyWordUseCase searchOffersByKeyWordUseCase =
         SearchOffersByKeyWordUseCase(_searchRepo);
     final result = await searchOffersByKeyWordUseCase.execute(searchKeyword);
@@ -35,14 +43,18 @@ class SearchOffersController extends GetxController {
         Get.snackbar("Error", left.message);
       },
       (right) {
-        offers(right);
+        offersResponseEntity(right);
+        offers(right.results);
+        count(right.count);
+        next(right.next);
+        previous(right.previous);
       },
     );
-    loading(false);
+    isloading(false);
   }
 
   Future<void> searchOffersByImage(File image) async {
-    loading(true);
+    isloading(true);
     final SearchOffersByImageUseCase searchOffersByImageUseCase =
         SearchOffersByImageUseCase(_searchRepo);
     final result = await searchOffersByImageUseCase.execute(image);
@@ -54,6 +66,6 @@ class SearchOffersController extends GetxController {
         offers(right);
       },
     );
-    loading(false);
+    isloading(false);
   }
 }

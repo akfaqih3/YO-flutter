@@ -2,10 +2,12 @@ import 'package:get/get.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
 import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
+import 'package:yemen_offers/features/browse/domain/use_cases/get_offers_latest_use_case.dart';
+import 'package:yemen_offers/features/browse/domain/use_cases/get_offers_most_popular_use_case.dart';
 import 'package:yemen_offers/features/browse/presentation/getX/controllers/categories_controller.dart';
 import 'package:yemen_offers/features/favorite/presentation/getX/controllers/favorite_controller.dart';
-import 'package:yemen_offers/features/home/data/repos/home_repo_impl.dart';
-import 'package:yemen_offers/features/home/data/sources/home_remote_data_source.dart';
+import 'package:yemen_offers/features/browse/data/repos/offer_list_repo_impl.dart';
+import 'package:yemen_offers/features/browse/data/sources/offer_list_remote_data_source.dart';
 import 'package:yemen_offers/features/home/domain/entities/recommendations_offer_entity.dart';
 
 class HomeController extends GetxController {
@@ -13,7 +15,7 @@ class HomeController extends GetxController {
   final CategoriesController categoriesController =
       Get.find<CategoriesController>();
   final FavoriteController favoriteController = Get.find<FavoriteController>();
-  late final HomeRepoImpl _homeRepo;
+  late final OfferListRepoImpl _offerListRepoImpl;
 
   final RxList<CategoryEntity> categories = RxList<CategoryEntity>([]);
   RxList<OfferEntity> recommendationsOffers = RxList([]);
@@ -25,7 +27,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() async {
-    _homeRepo = HomeRepoImpl(HomeRemoteDataSourceImpl(_apiService));
+    _offerListRepoImpl = OfferListRepoImpl(OfferListRemoteDataSourceImpl(_apiService));
     
     await getRecommendations();
     await getCategories();
@@ -35,7 +37,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> getRecommendations() async {
-    final result = await _homeRepo.getRecommendations(limit: 3);
+    final result = await _offerListRepoImpl.getOffersRecommendations(limit: 3);
     result.fold(
       (failure) => Get.snackbar("error", failure.message),
       (success) => recommendationsOffers.value = success,
@@ -49,7 +51,8 @@ class HomeController extends GetxController {
 
   Future<void> getMostPopularOffers() async {
     mostPopularOffersLoading(true);
-    final result = await _homeRepo.getMostPopularOffers();
+    GetOffersMostPopularUseCase getOffersMostPopularUseCase = GetOffersMostPopularUseCase(_offerListRepoImpl);
+    final result = await getOffersMostPopularUseCase.execute();
     result.fold(
       (failure) => Get.snackbar("error", failure.message),
       (success) => mostPopularOffers.value = success,
@@ -59,7 +62,8 @@ class HomeController extends GetxController {
 
   Future<void> getLatestOffers() async {
     latestOffersLoading(true);
-    final result = await _homeRepo.getLatestOffers();
+    GetOffersLatestUseCase getOffersLatestUseCase = GetOffersLatestUseCase(_offerListRepoImpl);
+    final result = await getOffersLatestUseCase.execute();
     result.fold(
       (failure) => Get.snackbar("error", failure.message),
       (success) => latestOffers.value = success,
