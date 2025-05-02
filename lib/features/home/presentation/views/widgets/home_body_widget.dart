@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/constants/app_enums.dart';
+import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/home/presentation/getX/controller/home_controller.dart';
@@ -17,8 +19,13 @@ class HomeBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isRTL = Get.locale?.languageCode == 'ar';
     return Container(
-      padding: const EdgeInsets.only(left: 8, top: 16),
+      padding:  EdgeInsets.only(
+        left: isRTL? 0 :8, 
+        right: isRTL ? 8:0,
+        top: 16,
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         color: AppColors.background,
@@ -34,15 +41,16 @@ class HomeBodyWidget extends StatelessWidget {
 
               return categories.isEmpty
                   ? const CategorySkeletonWidget()
-                  : HomeCategoriesWidget(
-                    categories:
-                        categories,
-                  );
+                  : HomeCategoriesWidget(categories: categories);
             }),
             HomeSectionHeadingWidget(
               title: lblMostPopularOffers.tr,
               showActionButton: true,
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(AppRoutes.offerList, arguments: {
+                  'offerListType': OfferListType.mostPopular,
+                });
+              },
               textColor: Colors.black,
               buttonTitle: btnViewAll.tr,
             ),
@@ -58,7 +66,11 @@ class HomeBodyWidget extends StatelessWidget {
             HomeSectionHeadingWidget(
               title: lblLatestOffers.tr,
               showActionButton: true,
-              onPressed: () {},
+              onPressed: () {
+                 Get.toNamed(AppRoutes.offerList, arguments: {
+                  'offerListType': OfferListType.latest,
+                });
+              },
               textColor: Colors.black,
               buttonTitle: btnViewAll.tr,
             ),
@@ -67,7 +79,7 @@ class HomeBodyWidget extends StatelessWidget {
                       controller.latestOffers.value.isEmpty
                   ? const OfferListHorizontalSkeletonWidget()
                   : HomeLatestOffersWidget(
-                    offers: controller.mostPopularOffers.value,
+                    offers: controller.latestOffers.value,
                   );
             }),
           ],

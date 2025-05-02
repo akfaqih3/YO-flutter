@@ -20,6 +20,7 @@ Map<String, String> ar = {
   lblNoStores: 'لا توجد متاجر',
   lblMostPopularOffers: 'الأكثر شعبية',
   lblLatestOffers: 'الأحدث',
+  lblOffersCount: 'عدد العروض',
 
   lblWelcome: 'مرحبا بك في',
   lblHome: 'الرئيسية',

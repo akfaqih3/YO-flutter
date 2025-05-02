@@ -10,6 +10,7 @@ class AppColors {
   static const Color error = Color(0xFFFF3B30); // لون الخطأ
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
+  static const Color grey = Color(0xFF8E8E93);
 
   static const Color lightSurface = white;
   static const Color darkSurface = black;

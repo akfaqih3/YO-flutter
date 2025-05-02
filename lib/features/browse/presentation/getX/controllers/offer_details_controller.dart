@@ -11,23 +11,34 @@ class OfferDetailsController extends GetxController {
 
   RxString offerSlug = RxString("");
   Rx<OfferEntity?> offer = Rx<OfferEntity?>(null);
+  final RxBool isDescriptionExpanded = false.obs;
 
   @override
   void onInit() async {
     super.onInit();
     offerSlug(Get.arguments['offerSlug'] ?? "");
     _browseRepoImpl = BrowseRepoImpl(BrowseRemoteDataSourceImpl(_apiService));
-    getOfferDetails();
+    await getOfferDetails();
   }
 
-  void getOfferDetails() async {
+  Future<void> getOfferDetails() async {
     final GetOfferDetailsUseCase getOfferDetailsUseCase =
         GetOfferDetailsUseCase(_browseRepoImpl);
 
     final result = await getOfferDetailsUseCase.execute(offerSlug.value);
     result.fold(
-      (failure) => Get.snackbar("error", failure.message),
-      (offerEntity) => offer(offerEntity),
+      (failure) {
+        Get.snackbar("error", failure.message);
+      },
+      (offerEntity) {
+        offer(offerEntity);
+      },
     );
   }
+
+   void toggleDescriptionExpanded() {
+    isDescriptionExpanded.value = !isDescriptionExpanded.value;
+  }
+
+
 }

@@ -11,23 +11,27 @@ String offerCategoryModelToJson(List<OfferCategoryModel> data) => json.encode(Li
 class OfferCategoryModel {
     String? image;
     String name;
+    String nameAr;
     String slug;
 
     OfferCategoryModel({
         this.image,
         required this.name,
+        required this.nameAr,
         required this.slug,
     });
 
     factory OfferCategoryModel.fromJson(Map<String, dynamic> json) => OfferCategoryModel(
         image: json["image"],
         name: json["name"],
+        nameAr: json["name_ar"],
         slug: json["slug"],
     );
 
     Map<String, dynamic> toJson() => {
         "image": image,
         "name": name,
+        "name_ar": nameAr,
         "slug": slug,
     };
 }

@@ -1,8 +1,11 @@
+import 'package:yemen_offers/features/browse/data/models/category_model.dart';
+
 List<StoreModel> storesModelFromJson(List<dynamic> json) =>
     List<StoreModel>.from(json.map((x) => StoreModel.fromJson(x)));
 
 ///Store
 class StoreModel {
+  CategoryModel category;
   String? address;
   String? description;
   String? image;
@@ -15,6 +18,7 @@ class StoreModel {
   String? website;
 
   StoreModel({
+    required this.category,
     this.address,
     this.description,
     this.image,
@@ -28,11 +32,12 @@ class StoreModel {
   });
 
   factory StoreModel.fromJson(Map<String, dynamic> json) => StoreModel(
+    category: CategoryModel.fromJson(json["category"]),
     address: json["address"],
     description: json["description"],
     image: json["image"],
-    latitude: json["latitude"],
-    longitude: json["longitude"],
+    latitude: json["latitude"].toString(),
+    longitude: json["longitude"].toString(),
     name: json["name"],
     phone: json["phone"],
     slug: json["slug"],
@@ -44,6 +49,7 @@ class StoreModel {
   );
 
   Map<String, dynamic> toJson() => {
+    "category": category.slug,
     "address": address,
     "description": description,
     "image": image,

@@ -1,4 +1,5 @@
 import 'package:yemen_offers/features/browse/data/models/offer_model.dart';
+import 'package:yemen_offers/features/browse/domain/entities/offer_category_entity.dart';
 import 'package:yemen_offers/features/browse/domain/entities/store_entity.dart';
 
 List<OfferEntity> offerEntityFromModel(List<OfferModel> offers) {
@@ -7,7 +8,7 @@ List<OfferEntity> offerEntityFromModel(List<OfferModel> offers) {
 
 ///Offer
 class OfferEntity {
-  String category;
+  OfferCategoryEntity category;
   String? description;
   String discountPercentage;
   DateTime? endDate;
@@ -34,15 +35,15 @@ class OfferEntity {
   });
 
   factory OfferEntity.fromModel(OfferModel offerModel) => OfferEntity(
-    category: offerModel.category,
+    category: OfferCategoryEntity.fromModel(offerModel.category),
     description: offerModel.description,
     discountPercentage: offerModel.discountPercentage.toString(),
-    endDate: offerModel.endDate,
+    endDate: DateTime.parse(offerModel.endDate ?? ""),
     image: offerModel.image,
     priceAfter: offerModel.priceAfter,
     priceBefore: offerModel.priceBefore,
     slug: offerModel.slug,
-    startDate: offerModel.startDate,
+    startDate:  DateTime.parse(offerModel.startDate ?? ""),
     store: StoreEntity.fromModel(offerModel.store),
     title: offerModel.title,
   );

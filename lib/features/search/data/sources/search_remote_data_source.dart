@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
 import 'package:yemen_offers/features/browse/data/models/offer_model.dart';
-
+import 'package:yemen_offers/features/search/data/offers_response_model.dart';
 
 abstract class SearchRemoteDataSource {
-  Future<List<OfferModel>> searchOffersByKeyword(String searchKeyword);
+  Future<OffersResponseModel> searchOffersByKeyword( Map<String, dynamic> queryParams);
   Future<List<OfferModel>> searchOffersByImage(File image);
 }
 
@@ -16,20 +16,21 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
   SearchRemoteDataSourceImpl(this._apiService);
 
   @override
-  Future<List<OfferModel>> searchOffersByKeyword(String searchKeyword) async {
+  Future<OffersResponseModel> searchOffersByKeyword(
+    Map<String, dynamic> queryParams,
+  ) async {
     final response = await _apiService.get(
-      Endpoint.searchOffersByKeyword,
-      queryParams: {
-        ApiKeys.searchKeyword: searchKeyword,
-      },
+      Endpoint.offerSearchByVector,
+      queryParams: queryParams,
     );
-    return offersModelFromJson(response.data);
+    
+    return OffersResponseModel.fromJson(response.data);
   }
 
   @override
   Future<List<OfferModel>> searchOffersByImage(File image) async {
     final response = await _apiService.post(
-      Endpoint.searchOffersByImage,
+      Endpoint.offerSearchByImage,
       data: image,
     );
     return offersModelFromJson(response.data);

@@ -99,7 +99,7 @@ class BrowseRepoImpl implements BrowseRepo {
       final Map<String, dynamic> queryParams = {
         ApiKeys.offerCategories: offerCategories,
         ApiKeys.ordering: sortBy,
-        ApiKeys.searchKeyword: searchQuery,
+        ApiKeys.searchParam: searchQuery,
         ApiKeys.index: index,
         ApiKeys.size: size,
       };

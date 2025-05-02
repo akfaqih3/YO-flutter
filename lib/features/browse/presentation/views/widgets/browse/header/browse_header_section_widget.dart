@@ -22,7 +22,7 @@ class BrowseHeaderSectionWidget extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(child: BrowseSearchBarWidget()),
+                Expanded(child: BrowseSearchBarWidget(controller: controller,)),
                 const SizedBox(width: 8),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1 / 2,

@@ -10,6 +10,11 @@ class SearchOffersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: OffersListVerticalWidget(offers: offers));
+    return Expanded(
+      child: SizedBox(
+        width: double.infinity,
+        child: OffersListVerticalWidget(offers: offers)
+      ),
+    );
   }
 }

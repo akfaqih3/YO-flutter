@@ -7,15 +7,16 @@ class OfferListVerticalSkeletonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
-      child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return OfferCardSkeletonWidget();
-        },
-      ),
+    return ListView.separated(
+      padding: const EdgeInsets.only(top: 16),
+      separatorBuilder: (context, index) {
+        return const SizedBox(height: 16);
+      },
+      scrollDirection: Axis.vertical,
+      itemCount: 5,
+      itemBuilder: (context, index) {
+        return OfferCardSkeletonWidget();
+      },
     );
   }
 }

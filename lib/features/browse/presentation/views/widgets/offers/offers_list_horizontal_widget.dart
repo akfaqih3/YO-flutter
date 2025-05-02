@@ -7,18 +7,20 @@ class OffersListHorizontalWidget extends StatelessWidget {
     super.key,
     required this.offers,
     this.textColor = Colors.black,
-    this.backgroundColor = Colors.white,
+    this.backgroundColor = Colors.white,  this.spacing=16,
   });
 
   final List<OfferEntity> offers;
   final Color textColor;
   final Color? backgroundColor;
+  final double spacing;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
+        spacing: 16,
         children:
             offers.map((offer) {
               return OfferCardWidget(offer: offer,width: MediaQuery.of(context).size.width * 0.7 );

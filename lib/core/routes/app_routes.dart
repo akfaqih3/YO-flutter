@@ -26,10 +26,12 @@ class AppRoutes {
   static const String favorites = '/favorites';
 
   // browse
+  static const String offerList = '/offer_list';
   static const String browse = '/browse';
   static const String categories = '/categories';
   static const String offerSearch = '/offer_search';
   static const String offerDetails = '/offer_details';
+
 
   // search
   static const String search = '/search';
