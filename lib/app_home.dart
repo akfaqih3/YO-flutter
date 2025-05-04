@@ -58,7 +58,6 @@ class _AppHomeState extends State<AppHome> {
   }
 
   Future<void> initDeepLinks() async {
-    // Handle links
     _linkSubscription = AppLinks().uriLinkStream.listen((uri) {
       openAppLink(uri);
     });
@@ -75,6 +74,7 @@ class _AppHomeState extends State<AppHome> {
         Get.snackbar('Error', e.toString());
       }
     }
+
     if (uri.path.contains('/login-success/')) {
       String accesstoken = uri.queryParameters['access_token'] ?? '';
       String refreshToken = uri.queryParameters['refresh_token'] ?? '';
@@ -86,12 +86,16 @@ class _AppHomeState extends State<AppHome> {
         _login(loginModel);
       }
     }
+    if (uri.path.contains('/confirm-email/')) {
+      String otp = uri.queryParameters['otp'] ?? '';
+      if (otp.isNotEmpty) {}
+    }
   }
 
   _login(LoginModel loginModel) async {
-    final LoginLocalDataSource loginLocalDataSource = LoginLocalDataSourceImpl();
+    final LoginLocalDataSource loginLocalDataSource =
+        LoginLocalDataSourceImpl();
     await loginLocalDataSource.saveToken(loginModel);
     await FcmTokenServices.sendFCMTokenToServer();
-    Get.offAllNamed(AppRoutes.main);
   }
 }

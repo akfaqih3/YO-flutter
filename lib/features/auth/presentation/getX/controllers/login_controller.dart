@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
@@ -12,6 +13,9 @@ import 'package:yemen_offers/features/auth/domain/use_cases/login_use_case.dart'
 class LoginController extends GetxController {
   final LoginRepoImpl loginRepo = Get.find<LoginRepoImpl>();
   late LoginUseCase _loginUseCase;
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   var email = ''.obs;
   var password = ''.obs;

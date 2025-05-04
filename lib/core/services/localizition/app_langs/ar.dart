@@ -14,6 +14,8 @@ Map<String, String> ar = {
   txtOnboardingFav:
       'ما يفوتك شي! احفظ العروض اللي تحبها، وخليك أوّل من يعرف لما ينزل عرض جديد.',
 
+
+  lblLoginWelcome: ' تسجيل الدخول ',
   lblOffers: 'العروض',
   lblStores: 'المتاجر',
   lblNoOffers: 'لا توجد عروض',
@@ -76,6 +78,7 @@ Map<String, String> ar = {
   btnSkip: 'تخطي',
   btnLetsGo:'إبدا',
   btnViewAll: 'عرض الكل',
+  btnGoogleLogin: 'تسجيل الدخول بواسطة جوجل',
 
   btnLogin: 'تسجيل الدخول',
   btnRegister: 'تسجيل حساب',

@@ -15,6 +15,8 @@ Map<String, String> en = {
       'ما يفوتك شي! احفظ العروض اللي تحبها، وخليك أوّل من يعرف لما ينزل عرض جديد.',
 
 
+
+  lblLoginWelcome: ' Login ',
   lblOffers: 'Offers',
   lblStores: 'Stores',
   lblNoOffers: 'No Offers',
@@ -81,6 +83,7 @@ Map<String, String> en = {
   btnSkip: 'Skip',
   btnLetsGo:'lets go',
   btnViewAll: 'View All',
+  btnGoogleLogin: 'Login with Google',
 
   btnLogin: 'Login',
   btnRegister: 'Register',

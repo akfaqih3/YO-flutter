@@ -8,6 +8,8 @@ const String txtOnboardingMap = "onboardingMapText";
 const String txtOnboardingYO = "onboardingYOText";
 const String txtOnboardingFav = "onboardingFavText";
 
+
+const String lblLoginWelcome = 'login_welcome';
 const String lblOffers = 'offersLabel';
 const String lblStores = 'storesLabel';
 const String lblNoOffers = 'no_offers';
@@ -68,6 +70,7 @@ const String btnNext = 'btn_next';
 const String btnSkip = 'btn_skip';
 const String btnLetsGo = 'btn_lets_go';
 const String btnViewAll = 'btn_view_all';
+const String btnGoogleLogin = 'btn_google_login';
 
 const String btnLogin = 'btn_login';
 const String btnRegister = 'btn_register';
