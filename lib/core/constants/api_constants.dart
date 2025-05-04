@@ -1,5 +1,5 @@
 class ApiConst {
-    // static const String domain = "http://192.168.0.40:8000";
+  // static const String domain = "http://192.168.0.40:8000";
   static const String domain = "http://yemeni-offers.com";
   static const String baseUrl = "$domain/api/";
   static const int connectTimeout = 5000;
@@ -16,6 +16,7 @@ class ApiConst {
 class Endpoint {
   static const String login = "token/";
   static const String refresh = "refresh/";
+  static const String googleLogin = "${ApiConst.accountsApp}/google-login/";
   static const String logout = "${ApiConst.accountsApp}/logout/";
   static const String resetPassword = "password_reset/";
   static const String confirmResetPassword = "password_reset/confirm/";
@@ -65,12 +66,12 @@ class Endpoint {
   static String offerByStore(String storeSlug) => "$stores$storeSlug/offers/";
   static String offerByOfferCategory(String offerCategorySlug) =>
       "$offerCategories$offerCategorySlug/offers/";
-  static String offerSearchByVector = "${ApiConst.coreApp}/offers-search/vector/";
+  static String offerSearchByVector =
+      "${ApiConst.coreApp}/offers-search/vector/";
   static String offerSearchByImage = "${ApiConst.coreApp}/offers-search/image/";
 
   static String mostPopularOffers = "${ApiConst.coreApp}/offers-most-popular/";
   static String latestOffers = "${ApiConst.coreApp}/offers-latest/";
-
 
   // recommendations
   static String offersRecommendations =
@@ -86,7 +87,6 @@ class ApiKeys {
   static const String merchant = "merchant";
 
   static const String results = "results";
-
 
   // query params
   static const String categoryParam = "category";
@@ -110,13 +110,10 @@ class ApiKeys {
   static const String searchVectorParam = "vector_search";
   static const String limitParam = "limit";
 
-
-
   static const String limit = "limit";
   static const String index = "index";
   static const String size = "size";
   static const String ordering = "ordering";
-
 
   // filters keys
   static const String offerCategories = "offer_category";

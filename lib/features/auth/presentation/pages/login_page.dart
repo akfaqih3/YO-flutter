@@ -90,6 +90,18 @@ Widget build(BuildContext context) {
                           ),
                         );
                 }),
+                const SizedBox(height: 32),
+                Obx(() {
+                  return controller.isLoading.value
+                      ? const SizedBox.shrink()
+                      : SizedBox(
+                          width: double.infinity,
+                          child: OutlinedButton(
+                            onPressed: () => controller.googleLogin(),
+                            child: const Text('login with google'),
+                          ),
+                        );
+                }),
               ],
             ),
           ),
