@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yemen_offers/core/presentation/widgets/action_button_widget.dart';
 
 class OfferHeaderActionsWidget extends StatelessWidget {
   final VoidCallback onBackPressed;
@@ -24,46 +25,18 @@ class OfferHeaderActionsWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // Back button
-            _buildActionButton(
-              icon: Icons.arrow_back,
-              onPressed: onBackPressed,
-            ),
+            ActionButtonWidget(icon: Icons.arrow_back, onPressed: onBackPressed),
             
             // Right side actions
             Row(
               children: [
-                _buildActionButton(
-                  icon: Icons.favorite_border,
-                  onPressed: onFavoritePressed,
-                ),
+                ActionButtonWidget(icon: Icons.favorite_border, onPressed: onFavoritePressed),
                 const SizedBox(width: 12),
-                _buildActionButton(
-                  icon: Icons.share,
-                  onPressed: onSharePressed,
-                ),
+                ActionButtonWidget(icon: Icons.share, onPressed: onSharePressed),
               ],
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildActionButton({
-    required IconData icon,
-    required VoidCallback onPressed,
-  }) {
-    return Container(
-      height: 40,
-      width: 40,
-      decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.4),
-        borderRadius: BorderRadius.circular(50),
-      ),
-      child: IconButton(
-        icon: Icon(icon, color: Colors.white, size: 20),
-        onPressed: onPressed,
-        padding: EdgeInsets.zero,
       ),
     );
   }

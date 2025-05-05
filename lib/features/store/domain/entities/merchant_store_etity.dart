@@ -1,3 +1,5 @@
+import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
+import 'package:yemen_offers/features/browse/domain/entities/store_entity.dart';
 import 'package:yemen_offers/features/store/data/models/merchant_store_model.dart';
 
 List<MerchantStoreEtity> MerchantStoreEtityFromModel(List<MerchantStoreModel> stores) {
@@ -9,14 +11,15 @@ class MerchantStoreEtity {
   final String name;
   final String? description;
   final String? image;
-  final String category;
+  final CategoryEntity category;
   final String phone;
   final String? website;
   final String? address;
-  final String? longitude;
-  final String? latitude;
-  final Map<String, dynamic>? socialMedia;
+  final double? longitude;
+  final double? latitude;
+  final StoreSocialMediaEntity? socialMedia;
   final bool? isActive;
+  final int? totalOffers;
 
   const MerchantStoreEtity({
     required this.slug,
@@ -31,6 +34,7 @@ class MerchantStoreEtity {
     required this.latitude,
     required this.socialMedia,
     required this.isActive,
+    this.totalOffers,
   });
 
   factory MerchantStoreEtity.fromModel(MerchantStoreModel storeModel) {
@@ -39,14 +43,17 @@ class MerchantStoreEtity {
       name: storeModel.name,
       description: storeModel.description,
       image: storeModel.image,
-      category: storeModel.category,
+      category: CategoryEntity.fromModel(storeModel.category),
       phone: storeModel.phone,
       website: storeModel.website,
       address: storeModel.address,
       longitude: storeModel.longitude,
       latitude: storeModel.latitude,
-      socialMedia: storeModel.socialMedia?.toJson(),
+      socialMedia: storeModel.socialMedia == null
+          ? null
+          : StoreSocialMediaEntity.fromModel(storeModel.socialMedia!),
       isActive: storeModel.isActive,
+      totalOffers: storeModel.totalOffers,
     );
   }
 }

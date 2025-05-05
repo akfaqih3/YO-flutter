@@ -3,13 +3,12 @@ import 'package:get/get.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
-import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
-import 'package:yemen_offers/features/browse/presentation/views/widgets/offers/offer_favorite_icon_widget.dart';
+import 'package:yemen_offers/features/offer/domain/entities/merchant_offer_entity.dart';
 
-class OfferCardWidget extends StatelessWidget {
-  const OfferCardWidget({super.key, required this.offer, this.width=350});
+class MerchantOfferCardWidget extends StatelessWidget {
+  const MerchantOfferCardWidget({super.key, required this.offer, this.width=350});
 
-  final OfferEntity offer;
+  final MerchantOfferEntity offer;
   final double width;
 
   @override
@@ -63,33 +62,9 @@ class OfferCardWidget extends StatelessWidget {
                   ),
                 ),
               
-                // store Logo image
-                Positioned(
-                  top: 120,
-                  right: isRTL ? 8 : null,
-                  left: isRTL ? null : 8,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(60),
-                      border: Border.all(color: Colors.deepOrange),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(60),
-                      child: Image.network(
-                        offer.store.image ?? "",
-                        fit: BoxFit.fill,
-                        width: 80,
-                        height: 80,
-                        errorBuilder:
-                            (context, error, stackTrace) =>
-                                const Icon(Icons.image_not_supported,size: 64),
-                      ),
-                    ),
-                  ),
-                ),
               
                 // Discount tag
-                if (offer.discountPercentage.isNotEmpty)
+                if (offer.discountPercentage != null)
                   Positioned(
                     top: 8,
                     right: isRTL ? null : 8,
@@ -116,26 +91,19 @@ class OfferCardWidget extends StatelessWidget {
                     ),
                   ),
               
-                // Wishlist button
-                Positioned(
-                  bottom: 4,
-                  right: isRTL ? null : 8,
-                  left: isRTL ? 8 : null,
-                  child: OfferFavoriteIconWidget(offer: offer),
-                ),
               
                 // Title
                 Positioned(
-                  top: 180,
-                  right: isRTL ? 90 : null,
-                  left: isRTL ? null : 90,
+                  top: 170,
+                  right: isRTL ? 16 : null,
+                  left: isRTL ? null : 16,
                   child: SizedBox(
                     width: 180,
                     child: Text(
-                      offer.store.name,
+                      offer.title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.labelLarge!.apply(
+                      style: Theme.of(context).textTheme.headlineSmall!.apply(
                         color: AppColors.textPrimary,
                       ),
                     ),
@@ -150,13 +118,13 @@ class OfferCardWidget extends StatelessWidget {
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: Text(
-                      offer.title ?? lblNoOffers.tr,
-                      maxLines: 1,
+                      offer.description ?? lblNoOffers.tr,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
               
                       style: Theme.of(
                         context,
-                      ).textTheme.headlineSmall!.apply( color: AppColors.textPrimary),
+                      ).textTheme.labelLarge!.apply( color: AppColors.textSecondary),
                     ),
                   ),
                 ),
@@ -201,6 +169,8 @@ class OfferCardWidget extends StatelessWidget {
                     ],
                   ),
                 ),
+
+
               ],
             ),
           ),

@@ -91,15 +91,15 @@ class MerchantOfferDetailsPage extends GetView<MerchantOfferDetailsController> {
               // حالة العرض
               ListTile(
                 leading: Icon(
-                  offer.isActive == true ? Icons.check_circle : Icons.cancel,
-                  color: offer.isActive == true ? Colors.green : Colors.red,
+                  offer.isExpired == false ? Icons.check_circle : Icons.cancel,
+                  color: offer.isExpired == false ? Colors.green : Colors.red,
                 ),
                 title: Text(
-                  offer.isActive == true ? "العرض متاح" : "العرض غير متاح",
+                  offer.isExpired == false ? "العرض متاح" : "العرض غير متاح",
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: offer.isActive == true ? Colors.green : Colors.red,
+                    color: offer.isExpired == false ? Colors.green : Colors.red,
                   ),
                 ),
               ),

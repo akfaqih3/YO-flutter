@@ -1,25 +1,38 @@
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/network/api_service.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/offer/data/repos/offer_repo_impl.dart';
+import 'package:yemen_offers/features/offer/data/sources/offer_remote_data_source.dart';
 import 'package:yemen_offers/features/offer/domain/entities/merchant_offer_entity.dart';
 import 'package:yemen_offers/features/offer/domain/use_cases/merchant_get_offers_use_case.dart';
 import 'package:yemen_offers/features/store/data/repos/store_repo_impl.dart';
+import 'package:yemen_offers/features/store/data/sources/store_remote_data_source.dart';
 import 'package:yemen_offers/features/store/domain/entities/merchant_store_etity.dart';
 import 'package:yemen_offers/features/store/domain/use_cases/get_store_details_use_case.dart';
 
 class MerchantStoreDetailsController extends GetxController {
-  final StoreRepoImpl _storeRepoImpl = Get.find<StoreRepoImpl>();
+  final ApiService apiService = Get.find<ApiService>();
+  late StoreRepoImpl _storeRepoImpl;
 
   Rx<MerchantStoreEtity?> store = Rx<MerchantStoreEtity?>(null);
   RxList<MerchantOfferEntity> offers = RxList<MerchantOfferEntity>();
 
   RxBool isLoading = false.obs;
+  RxBool isOffersLoading = false.obs;
 
   @override
   void onInit() async {
+    initRepoImpl();
     super.onInit();
     store(Get.arguments);
     getOffers();
+  }
+
+  
+  void initRepoImpl() {
+    _storeRepoImpl = StoreRepoImpl(
+      StoreRemoteDataSourceImpl(apiService),
+    );
   }
 
   void getStoreDetails() async {
@@ -40,8 +53,10 @@ class MerchantStoreDetailsController extends GetxController {
   }
 
   void getOffers() async {
-    final OfferRepoImpl _offerRepoImpl = Get.find<OfferRepoImpl>();
-    isLoading(true);
+    final OfferRepoImpl _offerRepoImpl = OfferRepoImpl(
+      OfferRemoteDataSourceImpl(apiService),
+    );
+    isOffersLoading(true);
     if (store.value == null) {
       Get.snackbar("خطاء", "لم تقم بإختيار متجر");
       return;
@@ -59,7 +74,7 @@ class MerchantStoreDetailsController extends GetxController {
         offers.addAll(right);
       },
     );
-    isLoading(false);
+    isOffersLoading(false);
   }
 
   void getOfferDetails(MerchantOfferEntity offer) async {

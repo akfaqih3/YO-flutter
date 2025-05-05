@@ -30,7 +30,7 @@ class OffersListVerticalWidget extends StatelessWidget {
               offers.map((offer) {
                 return OfferCardWidget(
                   offer: offer,
-                  width: MediaQuery.of(context).size.width * 0.8,
+                  width: MediaQuery.of(context).size.width * 0.9,
                 );
               }).toList(),
         ),

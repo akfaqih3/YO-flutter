@@ -66,23 +66,20 @@ class StoreModel {
 class SocialMediaModel {
   String? facebook;
   String? instagram;
-  String? twitter;
-  String? youtube;
+  String? snapchat;
 
-  SocialMediaModel({this.facebook, this.instagram, this.twitter, this.youtube});
+  SocialMediaModel({this.facebook, this.instagram, this.snapchat});
 
   factory SocialMediaModel.fromJson(Map<String, dynamic> json) =>
       SocialMediaModel(
         facebook: json["facebook"],
         instagram: json["instagram"],
-        twitter: json["twitter"],
-        youtube: json["youtube"],
+        snapchat: json["snapchat"],
       );
 
   Map<String, dynamic> toJson() => {
     "facebook": facebook,
     "instagram": instagram,
-    "twitter": twitter,
-    "youtube": youtube,
+    "snapchat": snapchat,
   };
 }

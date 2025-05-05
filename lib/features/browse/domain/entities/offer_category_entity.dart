@@ -29,4 +29,12 @@ class OfferCategoryEntity {
       image: offerCategoryModel.image,
     );
   }
+  toModel() {
+    return OfferCategoryModel(
+      name: name,
+      nameAr: nameAr,
+      slug: slug,
+      image: image,
+    );
+  }
 }

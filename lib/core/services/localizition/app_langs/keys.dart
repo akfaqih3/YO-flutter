@@ -30,6 +30,7 @@ const String lblVersion = 'version';
 const String lblJoinAsMerchant = 'join_as_merchant';
 const String lblTapToLogin = 'tap_to_login';
 const String lblGuest = 'guest';
+const String lblcategory = 'category';
 
 const String lblWelcome = 'Welcome';
 const String lblHome = 'home';

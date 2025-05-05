@@ -1,3 +1,4 @@
+import 'package:yemen_offers/features/browse/domain/entities/offer_category_entity.dart';
 import 'package:yemen_offers/features/offer/data/models/merchant_offer_model.dart';
 
 List<MerchantOfferEntity> MerchantOfferEntityFromModel(
@@ -10,14 +11,18 @@ class MerchantOfferEntity {
   final String? slug;
   final String title;
   final String? description;
-  final String category;
+  final OfferCategoryEntity category;
   final String? image;
   final double? priceBefore;
   final double? priceAfter;
   final double? discountPercentage;
   final String? startDate;
   final String? endDate;
-  final bool? isActive;
+  final bool? isExpired;
+  final int? totalViews;
+  final int? totalClicks;
+  final int? totalShares;
+  final int? totalFavorites;
 
   const MerchantOfferEntity({
     required this.slug,
@@ -30,7 +35,11 @@ class MerchantOfferEntity {
     required this.discountPercentage,
     required this.startDate,
     required this.endDate,
-    required this.isActive,
+    required this.isExpired,
+    this.totalViews,
+    this.totalClicks,
+    this.totalShares,
+    this.totalFavorites,
   });
 
   factory MerchantOfferEntity.fromModel(MerchantOfferModel offerModel) {
@@ -38,14 +47,37 @@ class MerchantOfferEntity {
       slug: offerModel.slug,
       title: offerModel.title,
       description: offerModel.description,
-      category: offerModel.category,
+      category: OfferCategoryEntity.fromModel(offerModel.category),
       image: offerModel.image,
       priceBefore: offerModel.priceBefore,
       priceAfter: offerModel.priceAfter,
       discountPercentage: offerModel.discountPercentage,
       startDate: offerModel.startDate,
       endDate: offerModel.endDate,
-      isActive: offerModel.isActive,
+      isExpired: offerModel.isExpired,
+      totalViews: offerModel.totalViews,
+      totalClicks: offerModel.totalClicks,
+      totalShares: offerModel.totalShares,
+      totalFavorites: offerModel.totalFavorites,
+    );
+  }
+
+  toModel() {
+    return MerchantOfferModel(
+      category: category.toModel(),
+      description: description,
+      discountPercentage: discountPercentage,
+      endDate: endDate ?? '',
+      image: image,
+      priceAfter: priceAfter ?? 0,
+      priceBefore: priceBefore ?? 0,
+      slug: slug,
+      startDate: startDate ?? '',
+      title: title,
+      totalViews: totalViews,
+      totalClicks: totalClicks,
+      totalShares: totalShares,
+      totalFavorites: totalFavorites,
     );
   }
 }
