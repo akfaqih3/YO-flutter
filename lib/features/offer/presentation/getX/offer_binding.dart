@@ -9,10 +9,7 @@ class OfferBinding extends Bindings {
   final ApiService _apiService = Get.find<ApiService>();
   @override
   void dependencies() {
-    Get.lazyPut<OfferRepoImpl>(
-      () => OfferRepoImpl(OfferRemoteDataSourceImpl(_apiService)),
-      fenix: true,
-    );
+   
     Get.lazyPut<MerchantAddUpdateOfferController>(
       () => MerchantAddUpdateOfferController(),
       fenix: true,

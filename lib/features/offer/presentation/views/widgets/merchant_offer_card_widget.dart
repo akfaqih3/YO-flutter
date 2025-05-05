@@ -6,7 +6,11 @@ import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/offer/domain/entities/merchant_offer_entity.dart';
 
 class MerchantOfferCardWidget extends StatelessWidget {
-  const MerchantOfferCardWidget({super.key, required this.offer, this.width=350});
+  const MerchantOfferCardWidget({
+    super.key,
+    required this.offer,
+    this.width = 350,
+  });
 
   final MerchantOfferEntity offer;
   final double width;
@@ -17,9 +21,10 @@ class MerchantOfferCardWidget extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRoutes.offerDetails, arguments: {
-          'offerSlug': offer.slug,
-        });
+        Get.toNamed(
+          AppRoutes.merchantOfferDetails,
+          arguments: {'offer': offer},
+        );
       },
       child: Directionality(
         textDirection: isRTL ? TextDirection.rtl : TextDirection.ltr,
@@ -61,8 +66,7 @@ class MerchantOfferCardWidget extends StatelessWidget {
                             const Icon(Icons.image_not_supported),
                   ),
                 ),
-              
-              
+
                 // Discount tag
                 if (offer.discountPercentage != null)
                   Positioned(
@@ -81,17 +85,16 @@ class MerchantOfferCardWidget extends StatelessWidget {
                       child: Center(
                         child: Text(
                           '${offer.discountPercentage}%',
-                          
-                            style: const TextStyle(
-                              color: AppColors.white,
-                              fontSize: 16,
-                            ),
+
+                          style: const TextStyle(
+                            color: AppColors.white,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ),
                   ),
-              
-              
+
                 // Title
                 Positioned(
                   top: 170,
@@ -109,7 +112,7 @@ class MerchantOfferCardWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-              
+
                 // offer title
                 Positioned(
                   top: 210,
@@ -121,14 +124,14 @@ class MerchantOfferCardWidget extends StatelessWidget {
                       offer.description ?? lblNoOffers.tr,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-              
-                      style: Theme.of(
-                        context,
-                      ).textTheme.labelLarge!.apply( color: AppColors.textSecondary),
+
+                      style: Theme.of(context).textTheme.labelLarge!.apply(
+                        color: AppColors.textSecondary,
+                      ),
                     ),
                   ),
                 ),
-              
+
                 // Price section
                 Positioned(
                   bottom: 8,
@@ -142,7 +145,7 @@ class MerchantOfferCardWidget extends StatelessWidget {
                             horizontal: 8,
                             vertical: 4,
                           ),
-                         
+
                           child: Text(
                             '${offer.priceAfter}',
                             style: Theme.of(
@@ -163,14 +166,12 @@ class MerchantOfferCardWidget extends StatelessWidget {
                             color: AppColors.grey,
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.lineThrough,
-                            decorationColor: AppColors.primary
+                            decorationColor: AppColors.primary,
                           ),
                         ),
                     ],
                   ),
                 ),
-
-
               ],
             ),
           ),
