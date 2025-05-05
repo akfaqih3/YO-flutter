@@ -8,8 +8,8 @@ const String txtOnboardingMap = "onboardingMapText";
 const String txtOnboardingYO = "onboardingYOText";
 const String txtOnboardingFav = "onboardingFavText";
 
-const String txtEnterTheCodeSentToThisEmail = "enter_the_code_sent_to_this_email";
-
+const String txtEnterTheCodeSentToThisEmail =
+    "enter_the_code_sent_to_this_email";
 
 const String lblLoginWelcome = 'login_welcome';
 const String lblOffers = 'offersLabel';
@@ -22,6 +22,14 @@ const String lblOffersCount = 'offers_count';
 const String lblNoAccount = 'no_account';
 const String lblConfirmAccount = 'confirm_account';
 const String lblConfirmResetPassword = 'confirm_reset_password';
+const String lblFavorites = 'favorites';
+const String lbldarkMode = 'dark_mode';
+const String lbllanguage = 'language';
+const String lblContact = 'contact';
+const String lblVersion = 'version';
+const String lblJoinAsMerchant = 'join_as_merchant';
+const String lblTapToLogin = 'tap_to_login';
+const String lblGuest = 'guest';
 
 const String lblWelcome = 'Welcome';
 const String lblHome = 'home';

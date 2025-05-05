@@ -29,6 +29,14 @@ Map<String, String> en = {
   lblNoAccount: 'No Account',
   lblConfirmAccount: 'Confirm Account',
   lblConfirmResetPassword: 'Confirm Reset Password',
+  lblFavorites: 'Favorites',
+  lbldarkMode: 'Dark Mode',
+  lbllanguage: 'Language',
+  lblContact: 'Contact',
+  lblVersion: 'Version',
+  lblJoinAsMerchant: 'Join as Merchant',
+  lblTapToLogin: 'Tap to Login',
+  lblGuest: 'Guest',
 
   //end
 

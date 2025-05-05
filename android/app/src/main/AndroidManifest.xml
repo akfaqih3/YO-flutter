@@ -53,7 +53,7 @@
                     android:host="yemeni-offers.com"
                     android:pathPrefix="/" />
                 <data
-                    android:scheme="com.yemeni-offers"
+                    android:scheme="yemen-offer.com"
                     android:host="google-login-success" />
                 <!-- <data android:scheme="http"/>
                 <data android:scheme="https"/>
