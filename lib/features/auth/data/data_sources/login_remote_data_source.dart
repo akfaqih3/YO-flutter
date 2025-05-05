@@ -4,6 +4,7 @@ import '../models/login_model.dart';
 
 abstract class LoginRemoteDataSource {
   Future<LoginModel> login(String email, String password);
+  Future<dynamic> gooleLogin();
   Future<LoginModel> refreshToken(String refresh);
   Future<void> logout(String refresh);
   Future<void> resetPassword(String email);
@@ -55,5 +56,11 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
       Endpoint.confirmResetPassword,
       data: {ApiKeys.password: password, ApiKeys.token: token},
     );
+  }
+
+  @override
+  Future<dynamic> gooleLogin() async {
+    final response = await _apiService.get(Endpoint.googleLogin);
+    return response;
   }
 }

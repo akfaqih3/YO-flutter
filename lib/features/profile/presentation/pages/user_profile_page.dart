@@ -1,90 +1,160 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/presentation/widgets/dropdown_text_field.dart';
+import 'package:yemen_offers/core/presentation/widgets/profile_item_switch_widget.dart';
+import 'package:yemen_offers/core/presentation/widgets/profile_item_widget.dart';
+import 'package:yemen_offers/core/routes/app_routes.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/services/theme_service.dart';
+import 'package:yemen_offers/core/theme/colors.dart';
+import 'package:yemen_offers/features/auth/presentation/getX/controllers/login_controller.dart';
+import 'package:yemen_offers/features/profile/domain/entities/user_entity.dart';
 import 'package:yemen_offers/features/profile/presentation/getX/controllers/user_profile_controller.dart';
+import 'package:yemen_offers/features/profile/presentation/widgets/custom_tile_widget.dart';
+import 'package:yemen_offers/features/profile/presentation/widgets/logout_button_widget.dart';
 import 'package:yemen_offers/features/profile/presentation/widgets/profile_logo_out_widget.dart';
+import 'package:yemen_offers/features/profile/presentation/widgets/profile_user_item_widget.dart';
 
 class UserProfilePage extends GetView<UserProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('User Profile'),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.edit),
-            onPressed: () {
-              if (controller.user.value != null) {
-                _showEditForm(context);
-              }
-            },
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      backgroundColor: const Color(0xFFE6E6E6),
+      body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Obx(() {
-              if (controller.loading.value) {
-                return Center(child: CircularProgressIndicator());
-              }
-              if (controller.user.value == null) {
-                return Center(
+        
+            // Header Texts
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
                   child: Text(
-                    'No User',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
+                    lblWelcome.tr,
+                    textAlign: TextAlign.right,
+                    style: Get.textTheme.headlineLarge?.copyWith(
+                      color: AppColors.primary,
                     ),
                   ),
-                );
-              }
-
-              final user = controller.user.value!;
-              return Card(
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildProfileItem('Name:', user.name),
-                      _buildProfileItem('Email:', user.email),
-                      _buildProfileItem('Gender:', user.gender),
-                      _buildProfileItem('User Type:', user.userType),
-                    ],
-                  ),
+                
+                // Profile Card
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                  child: Obx(() {
+                    return controller.loading.value
+                        ? const CircularProgressIndicator()
+                        : ProfileUserItemWidget(user: controller.user.value);
+                  }),
                 ),
-              );
-            }),
-            SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () {
-                _showEditForm(context);
-              },
-              child: Text('Edit User'),
+              ],
             ),
-            ElevatedButton(
-              onPressed: () {
-                _showChangePasswordForm(context);
-              },
-              child: Text('Change Password'),
-            ),
-            SizedBox(height: 32),
-            ProfileLogoOutWidget(),
-            SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () {
-                Get.find<ThemeService>().toggleMode();
-              },
-              child: Text('toggle mode'),
+        
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 16),
+                    CustomTileWidget(
+                      leadingIcon: Icons.favorite_border,
+                      title: lblFavorites.tr,
+                      onTap: () {
+                        Get.toNamed(AppRoutes.favorites);
+                      },
+                      iconColor: AppColors.primary,
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: AppColors.grey,
+                      ),
+                    ),
+                    Obx(() {
+                      return controller.user.value == null
+                          ? SizedBox()
+                          : controller.user.value?.userType == "consumer"
+                          ? CustomTileWidget(
+                            leadingIcon: Icons.store_rounded,
+                            title: lblJoinAsMerchant.tr,
+                            onTap: () {
+                              Get.toNamed(AppRoutes.register);
+                            },
+                            iconColor: AppColors.primary,
+                            trailing: const Icon(
+                              Icons.arrow_forward_ios,
+                              color: AppColors.grey,
+                            ),
+                          )
+                          : CustomTileWidget(
+                            leadingIcon: Icons.store_outlined,
+                            title: lblStores.tr,
+                            onTap: () {
+                              Get.toNamed(AppRoutes.merchantStores);
+                            },
+                            trailing: const Icon(
+                              Icons.arrow_forward_ios,
+                              color: AppColors.grey,
+                            ),
+                          );
+                    }),
+                    CustomTileWidget(
+                      leadingIcon: Icons.nightlight_round,
+                      title: lbldarkMode.tr,
+                      trailing: Obx(
+                        ()=> Switch(
+                        value: controller.isDark.value,
+                        onChanged: (value){
+                          controller.toggleMode(value);
+                        },
+                      ),
+                      )
+                    ),
+                    //drowp down to show language
+                    CustomTileWidget(
+                      leadingIcon: Icons.language,
+                      title: lbllanguage.tr,
+                      trailing: DropdownButtonHideUnderline(
+                        child: DropdownButton<dynamic>(
+                          value: controller.selectedLanguage.value,
+                          items:
+                              controller.languages.value.entries.map((e) {
+                                return DropdownMenuItem<dynamic>(
+                                  value: e.value,
+                                  child: Text(e.key),
+                                );
+                              }).toList(),
+                          icon: const Icon(Icons.arrow_drop_down),
+                          onChanged: (value) {
+                            controller.changeLanguage(value.toString());
+                          },
+                        ),
+                      ),
+                    ),
+                    CustomTileWidget(
+                      leadingIcon: Icons.call,
+                      title: lblContact.tr,
+                      onTap: () {},
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: AppColors.grey,
+                      ),
+                    ),
+                    CustomTileWidget(
+                      leadingIcon: Icons.info_outline,
+                      title: lblVersion.tr,
+                      trailing: const Text('1.0', textAlign: TextAlign.right),
+                      onTap: () {},
+                    ),
+                    
+                    // Logout Button
+                    Obx(
+                      () => controller.user.value == null? const SizedBox() : LogoutButtonWidget(),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

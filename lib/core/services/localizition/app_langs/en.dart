@@ -14,7 +14,11 @@ Map<String, String> en = {
   txtOnboardingFav:
       'ما يفوتك شي! احفظ العروض اللي تحبها، وخليك أوّل من يعرف لما ينزل عرض جديد.',
 
+  txtEnterTheCodeSentToThisEmail: 'Enter the code sent to this ',
 
+
+
+  lblLoginWelcome: ' Login ',
   lblOffers: 'Offers',
   lblStores: 'Stores',
   lblNoOffers: 'No Offers',
@@ -22,6 +26,17 @@ Map<String, String> en = {
   lblMostPopularOffers: 'Most Popular Offers',
   lblLatestOffers: 'Latest Offers',
   lblOffersCount: 'Offers Count',
+  lblNoAccount: 'No Account',
+  lblConfirmAccount: 'Confirm Account',
+  lblConfirmResetPassword: 'Confirm Reset Password',
+  lblFavorites: 'Favorites',
+  lbldarkMode: 'Dark Mode',
+  lbllanguage: 'Language',
+  lblContact: 'Contact',
+  lblVersion: 'Version',
+  lblJoinAsMerchant: 'Join as Merchant',
+  lblTapToLogin: 'Tap to Login',
+  lblGuest: 'Guest',
 
   //end
 
@@ -66,6 +81,8 @@ Map<String, String> en = {
   txtNoDescription: 'No Description',
 
   // hnt
+  hntOtp: 'Otp',
+  hntGender: 'Gender',
   hntSearch: 'Search',
   hntEmail: 'Email',
   hntPassword: 'Password',
@@ -81,6 +98,10 @@ Map<String, String> en = {
   btnSkip: 'Skip',
   btnLetsGo:'lets go',
   btnViewAll: 'View All',
+  btnGoogleLogin: 'Login with Google',
+  btnGoogleRegister: 'Register with Google',
+  btnResendOtpEmail: 'Resend Otp Email',
+  btnConfirmAccount: 'Confirm Account',
 
   btnLogin: 'Login',
   btnRegister: 'Register',

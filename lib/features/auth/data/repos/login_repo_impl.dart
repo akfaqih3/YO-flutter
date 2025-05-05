@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:yemen_offers/core/errors/exceptions.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
@@ -77,6 +79,18 @@ class LoginRepoImpl implements LoginRepo {
     try {
       await loginRemoteDataSource.confirmResetPassword(password, token);
       return right(null);
+    } catch (e) {
+      return left(Exceptions.handleCatch(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String?>> googleLogin() async {
+    try {
+      final response = await loginRemoteDataSource.gooleLogin();
+      final String auth_url = response.data['auth_url'];
+      // final String auth_url = jsonDecode(response.data)['auth_url'];
+      return right(auth_url);
     } catch (e) {
       return left(Exceptions.handleCatch(e));
     }

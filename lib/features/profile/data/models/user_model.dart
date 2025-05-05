@@ -1,15 +1,15 @@
 import 'package:yemen_offers/features/profile/domain/entities/user_entity.dart';
 
 class UserModel extends UserEntity {
-  String longitude;
-  String latitude;
+  String? longitude;
+  String? latitude;
   UserModel({
     int? id,
     required String email,
     required String name,
     required String gender,
-    required this.longitude,
-    required this.latitude,
+    this.longitude,
+    this.latitude,
     required String userType,
   }) : super(email: email, name: name, gender: gender, userType: userType);
 

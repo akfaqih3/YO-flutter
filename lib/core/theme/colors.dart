@@ -12,7 +12,22 @@ class AppColors {
   static const Color black = Color(0xFF000000);
   static const Color grey = Color(0xFF8E8E93);
 
+
+
+
+
+  // dark colors
+static const Color darkBackground = Color(0xFF1C1C1E); // خلفية عامة داكنة
+static const Color darkSurface = Color(0xFF2C2C2E); // بطاقات وعناصر على السطح
+static const Color darkTextPrimary = Color(0xFFFFFFFF); // نصوص بارزة (أبيض نقي)
+static const Color darkTextSecondary = Color(0xFFCCCCCC); // نصوص ثانوية فاتحة
+static const Color darkTextTertiary = Color(0xFFAAAAAA); // نصوص أقل وضوح
+static const Color darkTextFaded = Color(0xFF888888); // نصوص باهتة أكثر
+static const Color darkBorder = Color(0xFF444444); // حدود الحقول
+static const Color darkUnselected = Color(0xFF999999); // عناصر غير محددة
+
+
   static const Color lightSurface = white;
-  static const Color darkSurface = black;
+  // static const Color darkSurface = black;
   static const Color shadow = black;
 }

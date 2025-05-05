@@ -81,7 +81,7 @@ class OfferCardWidget extends StatelessWidget {
                         height: 70,
                         errorBuilder:
                             (context, error, stackTrace) =>
-                                const Icon(Icons.image_not_supported),
+                                const Icon(Icons.image_not_supported,size: 64),
                       ),
                     ),
                   ),

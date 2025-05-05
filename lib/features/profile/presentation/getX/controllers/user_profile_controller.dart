@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
+import 'package:yemen_offers/core/services/localizition/language_service.dart';
+import 'package:yemen_offers/core/services/theme_service.dart';
 import 'package:yemen_offers/features/profile/data/repos/user_profile_repo_empl.dart';
 import 'package:yemen_offers/features/profile/data/sources/user_profile_remote_data_source.dart';
 import 'package:yemen_offers/features/profile/domain/entities/user_entity.dart';
@@ -11,11 +13,40 @@ class UserProfileController extends GetxController {
   );
   final loading = false.obs;
   Rx<UserEntity?> user = Rx<UserEntity?>(null);
+  final RxBool isDark = RxBool(false);
+
+  // languages dropdown
+  final selectedLanguage = Rx<String>('ar');
+  final Rx<Map<String, String>> languages = Rx<Map<String, String>>({
+    'العربية': 'ar',
+    'English': 'en',
+  });
 
   @override
   void onInit() {
     super.onInit();
     getProfile();
+    getMode();
+    getLanguages();
+  }
+
+  void getLanguages() {
+    final languages = Get.locale!.languageCode;
+    selectedLanguage(languages);
+  }
+
+  void changeLanguage(String language) {
+    selectedLanguage(language);
+    LanguageService().changeLanguage(language);
+  }
+
+  void getMode() {
+    isDark(Get.isDarkMode);
+  }
+
+  void toggleMode(value) {
+    isDark(value);
+    ThemeService().toggleMode();
   }
 
   Future<void> getProfile() async {
