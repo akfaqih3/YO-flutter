@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/auth/data/repos/login_repo_impl.dart';
@@ -8,24 +9,42 @@ class ConfirmResetPasswordController extends GetxController {
   final LoginRepoImpl loginRepo = Get.find<LoginRepoImpl>();
   late ConfirmResetPassword _confirmResetPassword;
 
-  var password = ''.obs;
-  var token = ''.obs;
+  final TextEditingController password = TextEditingController();
+  final TextEditingController confirmPassword = TextEditingController();
+
+  final Rx<String?> token = Rx<String?>(null);
   var isLoading = false.obs;
+  final isReady = false.obs;
 
   @override
   void onInit() {
     super.onInit();
     token.value = Get.arguments;
-
     _confirmResetPassword = ConfirmResetPassword(loginRepo);
   }
 
   void confirmResetPassword() async {
+    if (password.text.isEmpty || confirmPassword.text.isEmpty) {
+      Get.snackbar("Error", "يرجى ملء الحقول المطلوبة");
+      return;
+    }
+    
+    if (password.text != confirmPassword.text) {
+      Get.snackbar("Error", "كلمات المرور غير متطابقة");
+      return;
+    }
+
+    if (token.value == null) {
+      Get.snackbar("Error", "رمز التحقق الخاص بك غير صالح");
+      return;
+    }
+
     isLoading(true);
     Either result = await _confirmResetPassword.excute(
-      password.value,
-      token.value,
+      password.text,
+      token.value!,
     );
+   
     result.fold(
       (left) {
         Get.snackbar("Error", left.message);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_offers/core/widgets/from_widget.dart';
+import 'package:yemen_offers/core/presentation/widgets/from_widget.dart';
 
 ////////////////////////////////////////
 // import 'package:flutter/material.dart';

@@ -68,7 +68,9 @@ class _AppHomeState extends State<AppHome> {
       try {
         String token = uri.queryParameters['token'] ?? '';
         if (token.isNotEmpty) {
-          Get.offAllNamed(AppRoutes.confirmResetPassword, arguments: token);
+          Future.delayed(Duration(milliseconds: 300), () {
+            Get.toNamed(AppRoutes.confirmResetPassword, arguments: token);
+          });
         }
       } catch (e) {
         Get.snackbar('Error', e.toString());
@@ -88,7 +90,11 @@ class _AppHomeState extends State<AppHome> {
     }
     if (uri.path.contains('/confirm-email/')) {
       String otp = uri.queryParameters['otp'] ?? '';
-      if (otp.isNotEmpty) {}
+      if (otp.isNotEmpty) {
+        Future.delayed(Duration(milliseconds: 300), () {
+          Get.offAllNamed(AppRoutes.confirmAccount, arguments: otp);
+        });
+      }
     }
   }
 

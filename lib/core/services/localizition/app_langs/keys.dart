@@ -8,6 +8,8 @@ const String txtOnboardingMap = "onboardingMapText";
 const String txtOnboardingYO = "onboardingYOText";
 const String txtOnboardingFav = "onboardingFavText";
 
+const String txtEnterTheCodeSentToThisEmail = "enter_the_code_sent_to_this_email";
+
 
 const String lblLoginWelcome = 'login_welcome';
 const String lblOffers = 'offersLabel';
@@ -17,6 +19,9 @@ const String lblNoStores = 'no_stores';
 const String lblMostPopularOffers = 'most_popular_offers';
 const String lblLatestOffers = 'latest_offers';
 const String lblOffersCount = 'offers_count';
+const String lblNoAccount = 'no_account';
+const String lblConfirmAccount = 'confirm_account';
+const String lblConfirmResetPassword = 'confirm_reset_password';
 
 const String lblWelcome = 'Welcome';
 const String lblHome = 'home';
@@ -56,6 +61,8 @@ const String lblError = 'error';
 
 const String txtNoDescription = 'no_description';
 
+const String hntOtp = 'hint_otp';
+const String hntGender = 'hint_gender';
 const String hntSearch = 'hint_search';
 const String hntEmail = 'hint_email';
 const String hntPassword = 'hint_password';
@@ -71,6 +78,9 @@ const String btnSkip = 'btn_skip';
 const String btnLetsGo = 'btn_lets_go';
 const String btnViewAll = 'btn_view_all';
 const String btnGoogleLogin = 'btn_google_login';
+const String btnGoogleRegister = 'btn_google_register';
+const String btnResendOtpEmail = 'btn_resend_otp_email';
+const String btnConfirmAccount = 'btn_confirm_account';
 
 const String btnLogin = 'btn_login';
 const String btnRegister = 'btn_register';

@@ -52,6 +52,9 @@
                     android:scheme="http"
                     android:host="yemeni-offers.com"
                     android:pathPrefix="/" />
+                <data
+                    android:scheme="com.yemeni-offers"
+                    android:host="google-login-success" />
                 <!-- <data android:scheme="http"/>
                 <data android:scheme="https"/>
                 <data android:host="yemeni-offers"/>

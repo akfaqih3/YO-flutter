@@ -14,6 +14,8 @@ Map<String, String> ar = {
   txtOnboardingFav:
       'ما يفوتك شي! احفظ العروض اللي تحبها، وخليك أوّل من يعرف لما ينزل عرض جديد.',
 
+  txtEnterTheCodeSentToThisEmail: 'أدخل رمز البريد الإلكتروني الذي أرسل إلى ',
+
 
   lblLoginWelcome: ' تسجيل الدخول ',
   lblOffers: 'العروض',
@@ -23,11 +25,14 @@ Map<String, String> ar = {
   lblMostPopularOffers: 'الأكثر شعبية',
   lblLatestOffers: 'الأحدث',
   lblOffersCount: 'عدد العروض',
+  lblNoAccount: 'لا يوجد حساب',
+  lblConfirmAccount: 'تأكيد الحساب',
+  lblConfirmResetPassword: 'تأكيد إعادة تعيين كلمة المرور',
 
   lblWelcome: 'مرحبا بك في',
   lblHome: 'الرئيسية',
   lblLogin: 'تسجيل الدخول',
-  lblRegister: 'تسجيل حساب',
+  lblRegister: 'إنشاء حساب',
   lblLogout: 'تسجيل الخروج',
   lblForgotPassword: 'نسيت كلمة المرور',
   lblOrLoginWith: 'أو تسجيل الدخول بواسطة',
@@ -63,6 +68,8 @@ Map<String, String> ar = {
   txtNoDescription: 'لا يوجد وصف',
 
   // hnt
+  hntOtp: 'الرمز',
+  hntGender: 'الجنس',
   hntSearch: 'بحث',
   hntEmail: 'البريد الإلكتروني',
   hntPassword: 'كلمة المرور',
@@ -79,9 +86,12 @@ Map<String, String> ar = {
   btnLetsGo:'إبدا',
   btnViewAll: 'عرض الكل',
   btnGoogleLogin: 'تسجيل الدخول بواسطة جوجل',
+  btnGoogleRegister: 'تسجيل الدخول بواسطة جوجل',
+  btnResendOtpEmail: 'إعادة إرسال رمز البريد الإلكتروني',
+  btnConfirmAccount: 'تأكيد الحساب',
 
   btnLogin: 'تسجيل الدخول',
-  btnRegister: 'تسجيل حساب',
+  btnRegister: 'إنشاء حساب',
   btnLogout: 'تسجيل الخروج',
   btnForgotPassword: 'نسيت كلمة المرور',
   btnSend: 'إرسال',

@@ -19,7 +19,9 @@ class LoginController extends GetxController {
 
   var email = ''.obs;
   var password = ''.obs;
-  var isLoading = false.obs;
+
+  final isLoginLoading = false.obs;
+  final isGoogleLoginLoading = false.obs;
 
   @override
   void onInit() {
@@ -27,9 +29,13 @@ class LoginController extends GetxController {
     _loginUseCase = LoginUseCase(loginRepo);
   }
 
-  void login() async {
-    isLoading(true);
-    Either result = await _loginUseCase.excute(email.value, password.value);
+  Future<void> login() async {
+    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+      Get.snackbar("Error", "البريد الإلكتروني وكلمة المرور لا يمكن ان تكون فارغة");
+      return;
+    }
+    isLoginLoading(true);
+    Either result = await _loginUseCase.excute(emailController.text, passwordController.text);
     result.fold(
       (left) {
         Get.snackbar("Error", left.message);
@@ -39,11 +45,11 @@ class LoginController extends GetxController {
         Get.offAllNamed(AppRoutes.main);
       },
     );
-    isLoading(false);
+    isLoginLoading(false);
   }
 
-  void googleLogin() async {
-    isLoading(true);
+   Future<void> googleLogin() async {
+    isGoogleLoginLoading(true);
     final GoogleLoginUseCase googleLoginUseCase = GoogleLoginUseCase(loginRepo);
     Either result = await googleLoginUseCase.excute();
     result.fold(
@@ -56,17 +62,17 @@ class LoginController extends GetxController {
         }
       },
     );
-    isLoading(false);
+    isGoogleLoginLoading(false);
   }
 
-  void openGoogleLogin(String url) async {
+  static Future<void> openGoogleLogin(String url) async {
     await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
     // if (await canLaunchUrl(Uri.parse(url))) {
     //   await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
     // }
   }
 
-  static void logout() async {
+  static Future<void> logout() async {
     final LoginRepoImpl loginRepoImpl = LoginRepoImpl(
       loginRemoteDataSource: LoginRemoteDataSourceImpl(Get.find<ApiService>()),
       loginLocalDataSource: LoginLocalDataSourceImpl(),
@@ -77,7 +83,6 @@ class LoginController extends GetxController {
         Get.snackbar("Error", left.message);
       },
       (right) {
-        Get.snackbar("Success", "تم تسجيل الخروج بنجاح");
       },
     );
     Get.offAllNamed(AppRoutes.login);
