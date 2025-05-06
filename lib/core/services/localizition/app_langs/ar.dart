@@ -36,6 +36,7 @@ Map<String, String> ar = {
   lblJoinAsMerchant: 'انضمام كتاجر',
   lblTapToLogin: 'انقر لتسجيل الدخول',
   lblGuest: 'زائر',
+  lblcategory: 'الفئة',
 
   lblWelcome: 'مرحبا بك ',
   lblHome: 'الرئيسية',

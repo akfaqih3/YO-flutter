@@ -16,16 +16,7 @@ class OfferDateSectionWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
       decoration: BoxDecoration(
-        color: AppColors.white,
         borderRadius: BorderRadius.circular(20),
-        boxShadow:  [
-          BoxShadow(
-            color: AppColors.shadow.withAlpha(80),
-            spreadRadius: 1,
-            blurRadius: 10,
-            offset: Offset(0, 2),
-          ),
-        ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

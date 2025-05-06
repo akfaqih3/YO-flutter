@@ -63,8 +63,8 @@ class StoreDetailsCardWidget extends StatelessWidget {
                           onPressed:
                               () => {
                                 MapUtil.openMap(
-                                  double.parse(store.latitude!),
-                                  double.parse(store.longitude!),
+                                  store.latitude!,
+                                  store.longitude!,
                                 ),
                               },
                         ),

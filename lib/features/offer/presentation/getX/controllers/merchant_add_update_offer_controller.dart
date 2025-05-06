@@ -46,7 +46,7 @@ class MerchantAddUpdateOfferController extends GetxController {
       _offerRepoImpl,
     );
     final result = await getOfferCategoryByCategoriesUseCase.execute(
-      store.value!.category,
+      store.value!.category.slug,
     );
 
     result.fold(

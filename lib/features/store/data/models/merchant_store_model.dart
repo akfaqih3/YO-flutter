@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:yemen_offers/features/browse/data/models/category_model.dart';
 import 'package:yemen_offers/features/browse/data/models/store_model.dart';
 
 List<MerchantStoreModel> MerchantStoreModelFromJson(List<dynamic> json) =>
@@ -10,18 +11,19 @@ String MerchantStoreModelToJson(List<MerchantStoreModel> data) =>
 
 class MerchantStoreModel {
   String? address;
-  String category;
+  CategoryModel category;
   String? description;
   int? id;
   String? image;
   bool? isActive;
-  String? latitude;
-  String? longitude;
+  double? latitude;
+  double? longitude;
   String name;
   String phone;
   String? slug;
   SocialMediaModel? socialMedia;
   String? website;
+  int? totalOffers;
 
   MerchantStoreModel({
     this.address,
@@ -37,11 +39,12 @@ class MerchantStoreModel {
     this.slug,
     this.socialMedia,
     this.website,
+    this.totalOffers,
   });
 
   factory MerchantStoreModel.fromJson(Map<String, dynamic> json) => MerchantStoreModel(
     address: json["address"],
-    category: json["category"],
+    category: CategoryModel.fromJson(json["category"]),
     description: json["description"],
     id: json["id"],
     image: json["image"],
@@ -53,11 +56,12 @@ class MerchantStoreModel {
     slug: json["slug"],
     socialMedia: SocialMediaModel.fromJson(json["social_media"]),
     website: json["website"],
+    totalOffers: json["total_offers"],
   );
 
   Map<String, dynamic> toJson() => {
     "address": address,
-    "category": category,
+    "category": category.toJson(),
     "description": description,
     "id": id,
     "image": image,
@@ -69,5 +73,6 @@ class MerchantStoreModel {
     "slug": slug,
     "social_media": socialMedia?.toJson(),
     "website": website,
+    "total_offers": totalOffers,
   };
 }

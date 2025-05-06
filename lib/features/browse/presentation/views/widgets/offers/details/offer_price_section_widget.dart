@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 
 class OfferPriceSectionWidget extends StatelessWidget {
@@ -13,40 +15,34 @@ class OfferPriceSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Container(
-          alignment: Alignment.center,
-          height: 36,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.primary.withAlpha(80),
-                blurRadius: 8,
-                offset: const Offset(0, 3),
+        Row(
+          children: [
+            Text("السعر قبل: ", style: Get.theme.textTheme.bodyMedium,),
+            Text(
+              priceAfter,
+              style: Get.theme.textTheme.headlineSmall!.copyWith(
+                color: AppColors.black,
+                fontSize: 16,
               ),
-            ],
-          ),
-          child: Text(
-            priceAfter,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
             ),
-          ),
+          ],
         ),
         const SizedBox(width: 12),
-        Text(
-          priceBefore,
-          style: TextStyle(
-            color: Colors.grey[600],
-            decoration: TextDecoration.lineThrough,
-            fontSize: 14,
-          ),
+        Row(
+          children: [
+            Text("السعر بعد: ", style: Get.theme.textTheme.bodyMedium,),
+            Text(
+              priceBefore,
+              style: Get.theme.textTheme.headlineSmall!.copyWith(
+                color: AppColors.black.withAlpha(0x80),
+                fontSize: 16,
+                decoration: TextDecoration.lineThrough,
+                decorationColor: AppColors.primary,
+              ),
+            ),
+          ],
         ),
       ],
     );

@@ -7,26 +7,29 @@ class OfferDescriptionSectionWidget extends StatelessWidget {
   final String description;
   final int maxLines = 3;
 
-  const OfferDescriptionSectionWidget({Key? key, required this.description, required this.controller})
-    : super(key: key);
-  final OfferDetailsController controller;
+  const OfferDescriptionSectionWidget({
+    Key? key,
+    required this.description,
+    required this.controller,
+  }) : super(key: key);
+  final controller;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.grey.withAlpha(10),
-            blurRadius: 5,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
+      // decoration: BoxDecoration(
+      //   color: AppColors.white,
+      //   borderRadius: BorderRadius.circular(12),
+      //   boxShadow: [
+      //     BoxShadow(
+      //       color: AppColors.grey.withAlpha(10),
+      //       blurRadius: 5,
+      //       offset: const Offset(0, 2),
+      //     ),
+      //   ],
+      // ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -39,7 +42,8 @@ class OfferDescriptionSectionWidget extends StatelessWidget {
             () => Text(
               description,
               style: TextStyle(color: Colors.grey[700], height: 1.5),
-              maxLines: controller.isDescriptionExpanded.value ? null : maxLines,
+              maxLines:
+                  controller.isDescriptionExpanded.value ? null : maxLines,
               overflow:
                   controller.isDescriptionExpanded.value
                       ? TextOverflow.visible

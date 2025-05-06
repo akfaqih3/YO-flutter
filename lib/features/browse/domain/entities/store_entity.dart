@@ -55,21 +55,32 @@ class StoreEntity {
 class StoreSocialMediaEntity {
   String? facebook;
   String? instagram;
-  String? twitter;
-  String? youtube;
+  String? snapchat;
 
   StoreSocialMediaEntity({
     this.facebook,
     this.instagram,
-    this.twitter,
-    this.youtube,
+    this.snapchat,
   });
 
   factory StoreSocialMediaEntity.fromModel(SocialMediaModel socialMediaModel) =>
       StoreSocialMediaEntity(
         facebook: socialMediaModel.facebook,
         instagram: socialMediaModel.instagram,
-        twitter: socialMediaModel.twitter,
-        youtube: socialMediaModel.youtube,
+        snapchat: socialMediaModel.snapchat,
       );
+
+  toModel() {
+    return SocialMediaModel(
+      facebook: facebook,
+      instagram: instagram,
+      snapchat: snapchat,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    "facebook": facebook,
+    "instagram": instagram,
+    "snapchat": snapchat,
+  };
 }

@@ -37,6 +37,7 @@ Map<String, String> en = {
   lblJoinAsMerchant: 'Join as Merchant',
   lblTapToLogin: 'Tap to Login',
   lblGuest: 'Guest',
+  lblcategory: 'Category',
 
   //end
 

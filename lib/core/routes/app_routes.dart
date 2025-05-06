@@ -8,6 +8,7 @@ class AppRoutes {
   static const String confirmResetPassword = '/confirm_reset_password';
   static const String register = '/register';
   static const String confirmAccount = '/confirm_account';
+  static const String joinAsMerchant = '/join_as_merchant';
 
   static const String userProfile = '/user_profile';
   static const String merchantProfile = '/merchant_profile';
@@ -31,7 +32,6 @@ class AppRoutes {
   static const String categories = '/categories';
   static const String offerSearch = '/offer_search';
   static const String offerDetails = '/offer_details';
-
 
   // search
   static const String search = '/search';

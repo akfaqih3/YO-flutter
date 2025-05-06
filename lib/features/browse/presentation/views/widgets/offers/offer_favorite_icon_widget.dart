@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/favorite/presentation/getX/controllers/favorite_controller.dart';
 
@@ -21,7 +22,8 @@ class OfferFavoriteIconWidget extends StatelessWidget {
               },
               icon: Icon(
                 Icons.favorite,
-                color: Colors.grey.shade600,
+                color: AppColors.primary,
+                size: 32,
               ),
             )
           : IconButton(
@@ -30,7 +32,8 @@ class OfferFavoriteIconWidget extends StatelessWidget {
               },
               icon: Icon(
                 Icons.favorite_border,
-                color: Colors.grey.shade600,
+                color: AppColors.primary,
+                size: 32,
               ),
             );
     });
