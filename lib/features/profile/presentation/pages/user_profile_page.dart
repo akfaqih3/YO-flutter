@@ -79,7 +79,7 @@ class UserProfilePage extends GetView<UserProfileController> {
                             leadingIcon: Icons.store_rounded,
                             title: lblJoinAsMerchant.tr,
                             onTap: () {
-                              Get.toNamed(AppRoutes.register);
+                              Get.toNamed(AppRoutes.joinAsMerchant);
                             },
                             iconColor: AppColors.primary,
                             trailing: const Icon(

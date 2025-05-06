@@ -4,6 +4,7 @@ import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/binding.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/confirm_account_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/confirm_reset_password_page.dart';
+import 'package:yemen_offers/features/auth/presentation/pages/join_as%20merchant_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/login_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/register_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/reset_password_page.dart';
@@ -78,6 +79,11 @@ class AppPages {
       name: AppRoutes.userProfile,
       page: () => UserProfilePage(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.joinAsMerchant,
+      page: () => JoinMerchantPage(),
+      // binding: ProfileBinding(),
     ),
 
     // merchant store
