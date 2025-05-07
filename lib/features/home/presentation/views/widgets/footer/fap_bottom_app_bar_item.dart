@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FABBottomAppBarItem {
-  FABBottomAppBarItem({required this.iconData,required  this.text});
+  FABBottomAppBarItem({required this.iconData, required this.text});
   IconData iconData;
   String text;
 }
@@ -10,8 +10,8 @@ class FABBottomAppBar extends StatefulWidget {
   FABBottomAppBar({
     required this.items,
     required this.centerItemText,
-    this.height= 60.0,
-     this.iconSize= 24.0,
+    this.height = 60.0,
+    this.iconSize = 24.0,
     required this.backgroundColor,
     required this.color,
     required this.selectedColor,
@@ -103,10 +103,7 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Icon(item.iconData, color: color, size: widget.iconSize),
-                Text(
-                  item.text,
-                  style: TextStyle(color: color),
-                )
+                Text(item.text, style: TextStyle(color: color)),
               ],
             ),
           ),

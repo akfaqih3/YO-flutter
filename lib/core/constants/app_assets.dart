@@ -1,5 +1,7 @@
 class AppAssets {
   static const String appLogo = "assets/images/YO_logo.png";
+  static const String map = "assets/images/app/map.png";
+  static const String noInternet = "assets/images/app/no_internet.png";
 
   // onboarding assets
   static const String onboardingMap =

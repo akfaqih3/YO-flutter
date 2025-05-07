@@ -9,32 +9,31 @@ class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final recommendationsOffer = controller.recommendationsOffers;
-    return SingleChildScrollView(
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height,
-                  color: Colors.transparent,
-                ),
-                Obx(() => CarouselWidget(offers: recommendationsOffer.value)),
-                Positioned(
-                  top: 32,
-                  left: 8,
-                  right: 8,
-                  child: HomeHeaderWidget(controller: controller),
-                ),
-                Positioned(
-                  bottom: 80,
-                  child: HomeBodyWidget(controller: controller),
-                ),
-              ],
+Widget build(BuildContext context) {
+  final recommendationsOffer = controller.recommendationsOffers;
+
+  return Scaffold(
+    body: RefreshIndicator(
+      onRefresh: () async {
+        await controller.refreshPage();
+      },
+      child: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: Colors.transparent,
+            expandedHeight: 240,
+            pinned: false,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Obx(() => CarouselWidget(offers: recommendationsOffer.value)),
             ),
-          ],
-        ),
-    );
-  }
+          ),
+          SliverToBoxAdapter(
+            child: HomeBodyWidget(controller: controller),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
 }

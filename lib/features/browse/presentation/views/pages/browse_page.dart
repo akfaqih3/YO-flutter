@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/browse/presentation/getX/controllers/browse_controller.dart';
 import 'package:yemen_offers/features/browse/presentation/views/widgets/browse/header/browse_header_section_widget.dart';
@@ -10,10 +11,13 @@ import 'package:yemen_offers/features/browse/presentation/views/widgets/browse/t
 class BrowsePage extends GetView<BrowseController> {
   @override
   Widget build(BuildContext context) {
+    final isRTL = Get.locale?.languageCode == 'ar';
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.background,
-        title: Obx(() => Text(controller.selectedCategory.value?.name ?? " ")),
+        title: Obx(() => Text(
+          isRTL? controller.selectedCategory.value?.nameAr ?? lblcategory.tr : controller.selectedCategory.value?.name ?? lblcategory.tr,
+        )),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(90),
           child: BrowseHeaderSectionWidget(controller: controller),

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
 import 'package:yemen_offers/features/browse/data/repos/browse_repo_impl.dart';
 import 'package:yemen_offers/features/browse/data/sources/browse_remote_data_source.dart';
@@ -16,7 +17,7 @@ class OfferDetailsController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    offerSlug(Get.arguments['offerSlug'] ?? "");
+    offerSlug(Get.arguments[ApiKeys.offerSlug] ?? "");
     _browseRepoImpl = BrowseRepoImpl(BrowseRemoteDataSourceImpl(_apiService));
     await getOfferDetails();
   }

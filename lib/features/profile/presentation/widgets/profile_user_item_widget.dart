@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
+import 'package:yemen_offers/features/home/presentation/getX/controller/main_controller.dart';
+import 'package:yemen_offers/features/home/presentation/views/pages/main_page.dart';
 import 'package:yemen_offers/features/profile/domain/entities/user_entity.dart';
+
 class ProfileUserItemWidget extends StatelessWidget {
   const ProfileUserItemWidget({super.key, this.user});
 
@@ -14,8 +18,8 @@ class ProfileUserItemWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         user == null
-            ? Get.offAllNamed(AppRoutes.login)
-            : Get.offAllNamed(AppRoutes.main);
+            ? Get.toNamed(AppRoutes.login)
+            : Get.find<MainController>().selected.value = MainPage();
       },
       child: SizedBox(
         height: 128,
@@ -30,9 +34,9 @@ class ProfileUserItemWidget extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 32,
-                  backgroundColor: const Color(0xFFF3F3F3),
+                  backgroundColor: AppColors.grey.withAlpha(300),
                   child: Icon(
-                    user == null ? Icons.login_outlined : Icons.person,
+                    user == null ? Iconsax.login_copy : Iconsax.user_copy,
                     size: 32,
                     color: AppColors.primary,
                   ),
@@ -65,7 +69,7 @@ class ProfileUserItemWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),

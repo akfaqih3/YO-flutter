@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yemen_offers/core/presentation/widgets/dropdown_text_field.dart';
-import 'package:yemen_offers/core/presentation/widgets/profile_item_switch_widget.dart';
-import 'package:yemen_offers/core/presentation/widgets/profile_item_widget.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:yemen_offers/core/constants/app_assets.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/dropdown_text_field.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/profile_item_switch_widget.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/profile_item_widget.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/services/theme_service.dart';
@@ -18,8 +20,8 @@ import 'package:yemen_offers/features/profile/presentation/widgets/profile_user_
 class UserProfilePage extends GetView<UserProfileController> {
   @override
   Widget build(BuildContext context) {
+    final isRTL = Get.locale?.languageCode == 'ar';
     return Scaffold(
-      backgroundColor: const Color(0xFFE6E6E6),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,16 +31,16 @@ class UserProfilePage extends GetView<UserProfileController> {
             // Header Texts
             Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    lblWelcome.tr,
-                    textAlign: TextAlign.right,
-                    style: Get.textTheme.headlineLarge?.copyWith(
-                      color: AppColors.primary,
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: EdgeInsets.symmetric(horizontal: 16),
+                //   child:Align(
+                //     alignment: isRTL? Alignment.centerLeft : Alignment.centerRight,
+                //     child: Image.asset(
+                //           AppAssets.appLogo,
+                //           width: MediaQuery.of(context).size.width * 0.13,
+                //         ),
+                //   ),
+                // ),
                 
                 // Profile Card
                 Padding(
@@ -88,7 +90,7 @@ class UserProfilePage extends GetView<UserProfileController> {
                             ),
                           )
                           : CustomTileWidget(
-                            leadingIcon: Icons.store_outlined,
+                            leadingIcon: Iconsax.shop_copy,
                             title: lblStores.tr,
                             onTap: () {
                               Get.toNamed(AppRoutes.merchantStores);
@@ -100,7 +102,7 @@ class UserProfilePage extends GetView<UserProfileController> {
                           );
                     }),
                     CustomTileWidget(
-                      leadingIcon: Icons.nightlight_round,
+                      leadingIcon: Iconsax.moon_copy,
                       title: lbldarkMode.tr,
                       trailing: Obx(
                         ()=> Switch(
@@ -113,7 +115,7 @@ class UserProfilePage extends GetView<UserProfileController> {
                     ),
                     //drowp down to show language
                     CustomTileWidget(
-                      leadingIcon: Icons.language,
+                      leadingIcon: Iconsax.global_copy,
                       title: lbllanguage.tr,
                       trailing: DropdownButtonHideUnderline(
                         child: DropdownButton<dynamic>(
@@ -133,7 +135,7 @@ class UserProfilePage extends GetView<UserProfileController> {
                       ),
                     ),
                     CustomTileWidget(
-                      leadingIcon: Icons.call,
+                      leadingIcon: Iconsax.call_copy,
                       title: lblContact.tr,
                       onTap: () {},
                       trailing: const Icon(
@@ -142,7 +144,7 @@ class UserProfilePage extends GetView<UserProfileController> {
                       ),
                     ),
                     CustomTileWidget(
-                      leadingIcon: Icons.info_outline,
+                      leadingIcon: Iconsax.info_circle_copy,
                       title: lblVersion.tr,
                       trailing: const Text('1.0', textAlign: TextAlign.right),
                       onTap: () {},

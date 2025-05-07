@@ -7,11 +7,12 @@ import 'package:yemen_offers/features/auth/data/repos/login_repo_impl.dart';
 import 'package:yemen_offers/features/auth/data/repos/register_repo_impl.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/controllers/confirm_reset_password_controller.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/controllers/confirmation_account_controller.dart';
+import 'package:yemen_offers/features/auth/presentation/getX/controllers/join_as_merchant_controller.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/controllers/login_controller.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/controllers/register_controller.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/controllers/reset_password_controller.dart';
 
-class LoginBinding extends Bindings {
+class AuthBinding extends Bindings {
   final ApiService _apiService = Get.find<ApiService>();
   @override
   void dependencies() {
@@ -43,5 +44,7 @@ class LoginBinding extends Bindings {
       () => ConfirmAccountController(),
       fenix: true,
     );
+
+    Get.lazyPut<JoinAsMerchantController>(() => JoinAsMerchantController(), fenix: true);
   }
 }

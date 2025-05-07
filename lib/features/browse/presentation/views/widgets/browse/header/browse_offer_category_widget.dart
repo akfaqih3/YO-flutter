@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_category_entity.dart';
+import 'package:yemen_offers/features/browse/presentation/getX/controllers/browse_controller.dart';
 
 class BrowseOfferCategoryWidget extends StatelessWidget {
   const BrowseOfferCategoryWidget({
@@ -16,6 +19,7 @@ class BrowseOfferCategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isRTL = Get.locale?.languageCode == 'ar';
     return Align(
       alignment: Alignment.center,
       child: SizedBox(
@@ -37,7 +41,7 @@ class BrowseOfferCategoryWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                offerCategoy.name,
+                isRTL ? offerCategoy.nameAr : offerCategoy.name,
                 style: TextStyle(
                   color: isSelected? AppColors.white: AppColors.textPrimary.withAlpha(200),
                   fontSize: 16,

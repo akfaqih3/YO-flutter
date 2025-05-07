@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/browse/presentation/views/pages/categories_page.dart';
 import 'package:yemen_offers/features/home/presentation/getX/controller/main_controller.dart';
@@ -13,6 +14,7 @@ class HomeCategoriesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      height: 150,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Container(
@@ -26,7 +28,7 @@ class HomeCategoriesWidget extends StatelessWidget {
                 onTap: () {
                   Get.find<MainController>().selected.value=CategoriesPage();
                 },
-                child: const Icon(Icons.arrow_forward),
+                child: const Icon(Icons.arrow_forward,color: AppColors.primary,),
               ),
             ],
           ),

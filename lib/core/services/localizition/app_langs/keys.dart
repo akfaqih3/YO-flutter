@@ -31,6 +31,17 @@ const String lblJoinAsMerchant = 'join_as_merchant';
 const String lblTapToLogin = 'tap_to_login';
 const String lblGuest = 'guest';
 const String lblcategory = 'category';
+const String lblNearbyOffers = 'nearby_offers';
+const String lblDiscoverNearby = 'discover_nearby';
+const String lblSearch = 'search';
+const String lblAdress = 'store_address';
+const String lblExpiresOn = 'expires_on';
+const String lblYemeniRial = 'yemeni_rial';
+const String lblNoInternet = 'no_internet';
+const String lblRefresh = 'refresh';
+const String lblNoInternetMessage = 'no_internet_message';
+const String lblOOOps = 'ooops';
+
 
 const String lblWelcome = 'Welcome';
 const String lblHome = 'home';
@@ -70,6 +81,13 @@ const String lblError = 'error';
 
 const String txtNoDescription = 'no_description';
 
+const String hntWebsite = 'hint_website';
+const String hntAddress = 'hint_address';
+const String hntStoreName = 'hint_store_name';
+const String hntStoreDescription = 'hint_store_description';
+const String hntStoreCategory = 'hint_store_category';
+const String hntStorePhone = 'hint_store_phone';
+
 const String hntOtp = 'hint_otp';
 const String hntGender = 'hint_gender';
 const String hntSearch = 'hint_search';
@@ -90,6 +108,8 @@ const String btnGoogleLogin = 'btn_google_login';
 const String btnGoogleRegister = 'btn_google_register';
 const String btnResendOtpEmail = 'btn_resend_otp_email';
 const String btnConfirmAccount = 'btn_confirm_account';
+const String btnDiscover = 'btn_discover';
+const String btnViewDetails = 'btn_view_details';
 
 const String btnLogin = 'btn_login';
 const String btnRegister = 'btn_register';

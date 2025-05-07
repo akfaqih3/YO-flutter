@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/common/presentation/no_internet_page.dart';
 import 'package:yemen_offers/core/middlewares/main_middleware.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
-import 'package:yemen_offers/features/auth/presentation/getX/binding.dart';
+import 'package:yemen_offers/features/auth/presentation/getX/auth_binding.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/confirm_account_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/confirm_reset_password_page.dart';
 import 'package:yemen_offers/features/auth/presentation/pages/join_as%20merchant_page.dart';
@@ -48,32 +49,32 @@ class AppPages {
     GetPage(
       name: AppRoutes.login,
       page: () => LoginPage(),
-      binding: LoginBinding(),
+      binding: AuthBinding(),
     ),
     GetPage(
       name: AppRoutes.home,
       page: () => HomePage(),
-      binding: LoginBinding(),
+      binding: AuthBinding(),
     ),
     GetPage(
       name: AppRoutes.resetPassword,
       page: () => ResetPasswordPage(),
-      binding: LoginBinding(),
+      binding: AuthBinding(),
     ),
     GetPage(
       name: AppRoutes.confirmResetPassword,
       page: () => ConfirmResetPasswordPage(),
-      binding: LoginBinding(),
+      binding: AuthBinding(),
     ),
     GetPage(
       name: AppRoutes.register,
       page: () => RegisterPage(),
-      binding: LoginBinding(),
+      binding: AuthBinding(),
     ),
     GetPage(
       name: AppRoutes.confirmAccount,
       page: () => ConfirmAccountPage(),
-      binding: LoginBinding(),
+      binding: AuthBinding(),
     ),
     GetPage(
       name: AppRoutes.userProfile,
@@ -82,8 +83,8 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.joinAsMerchant,
-      page: () => JoinMerchantPage(),
-      // binding: ProfileBinding(),
+      page: () => JoinAsMerchantPage(),
+      binding: AuthBinding(),
     ),
 
     // merchant store
@@ -116,8 +117,16 @@ class AppPages {
     GetPage(name: AppRoutes.favorites, page: () => FavoritePage()),
 
     // browse
-    GetPage(name: AppRoutes.offerList, page: () => OfferListPage(),binding: BrowseBinding()),
-    GetPage(name: AppRoutes.browse, page: () => BrowsePage(),binding: BrowseBinding()),
+    GetPage(
+      name: AppRoutes.offerList,
+      page: () => OfferListPage(),
+      binding: BrowseBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.browse,
+      page: () => BrowsePage(),
+      binding: BrowseBinding(),
+    ),
     GetPage(
       name: AppRoutes.categories,
       page: () => CategoriesPage(),
@@ -130,7 +139,6 @@ class AppPages {
       binding: BrowseBinding(),
     ),
 
-    
     // search
     GetPage(
       name: AppRoutes.search,
@@ -144,5 +152,8 @@ class AppPages {
       page: () => NotificationPage(),
       binding: NotificationBinding(),
     ),
+
+    // no internet
+    GetPage(name: AppRoutes.noInternet, page: () => NoInternetPage()),
   ];
 }

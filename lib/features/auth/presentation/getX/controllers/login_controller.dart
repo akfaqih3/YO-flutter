@@ -42,7 +42,7 @@ class LoginController extends GetxController {
       },
       (right) {
         Get.snackbar("Success", "تم تسجيل الدخول بنجاح");
-        Get.offAllNamed(AppRoutes.main);
+        Get.offAllNamed(AppRoutes.splash);
       },
     );
     isLoginLoading(false);

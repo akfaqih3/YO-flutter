@@ -16,7 +16,6 @@ Map<String, String> ar = {
 
   txtEnterTheCodeSentToThisEmail: 'أدخل رمز البريد الإلكتروني الذي أرسل إلى ',
 
-
   lblLoginWelcome: ' تسجيل الدخول ',
   lblOffers: 'العروض',
   lblStores: 'المتاجر',
@@ -37,6 +36,17 @@ Map<String, String> ar = {
   lblTapToLogin: 'انقر لتسجيل الدخول',
   lblGuest: 'زائر',
   lblcategory: 'الفئة',
+  lblNearbyOffers: 'العروض القريبة',
+  lblDiscoverNearby: 'اكتشف العروض القريبة',
+  lblSearch: 'بحث',
+  lblAdress: 'العنوان',
+  lblExpiresOn: 'ينتهي في',
+  lblYemeniRial: 'ر.ي',
+  lblNoInternet: 'لا يوجد اتصال بالإنترنت',
+  lblRefresh: 'إعادة المحاولة',
+  lblNoInternetMessage:
+      'لا يوجد اتصال بالإنترنت حالياً.\nيرجى التحقق من الاتصال والمحاولة مرة أخرى.',
+  lblOOOps: 'عذراً!',
 
   lblWelcome: 'مرحبا بك ',
   lblHome: 'الرئيسية',
@@ -77,6 +87,13 @@ Map<String, String> ar = {
   txtNoDescription: 'لا يوجد وصف',
 
   // hnt
+  hntWebsite: 'الموقع الإلكتروني',
+  hntAddress: 'العنوان',
+  hntStoreName: 'اسم المتجر',
+  hntStoreDescription: 'وصف المتجر',
+  hntStoreCategory: 'الفئة المتجر',
+  hntStorePhone: 'رقم الهاتف المتجر',
+
   hntOtp: 'الرمز',
   hntGender: 'الجنس',
   hntSearch: 'بحث',
@@ -92,12 +109,14 @@ Map<String, String> ar = {
   // btn
   btnNext: 'التالي',
   btnSkip: 'تخطي',
-  btnLetsGo:'إبدا',
+  btnLetsGo: 'إبدا',
   btnViewAll: 'عرض الكل',
   btnGoogleLogin: 'تسجيل الدخول بواسطة جوجل',
   btnGoogleRegister: 'تسجيل الدخول بواسطة جوجل',
   btnResendOtpEmail: 'إعادة إرسال رمز البريد الإلكتروني',
   btnConfirmAccount: 'تأكيد الحساب',
+  btnDiscover: 'اكتشف',
+  btnViewDetails: 'عرض التفاصيل',
 
   btnLogin: 'تسجيل الدخول',
   btnRegister: 'إنشاء حساب',

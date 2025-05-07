@@ -16,8 +16,6 @@ Map<String, String> en = {
 
   txtEnterTheCodeSentToThisEmail: 'Enter the code sent to this ',
 
-
-
   lblLoginWelcome: ' Login ',
   lblOffers: 'Offers',
   lblStores: 'Stores',
@@ -38,10 +36,19 @@ Map<String, String> en = {
   lblTapToLogin: 'Tap to Login',
   lblGuest: 'Guest',
   lblcategory: 'Category',
+  lblNearbyOffers: 'Nearby Offers',
+  lblDiscoverNearby: 'Discover Nearby',
+  lblSearch: 'Search',
+  lblAdress: 'Address',
+  lblExpiresOn: 'Expires on',
+  lblYemeniRial: 'Y.R',
+  lblNoInternet: 'No Internet',
+  lblRefresh: 'Refresh',
+  lblNoInternetMessage:
+      'No Internet Connection.\nPlease check your connection and try again.',
+  lblOOOps: 'Ooops!',
 
   //end
-
-
   lblWelcome: 'Welcome to ',
   lblHome: 'Home',
   lblLogin: 'Login',
@@ -82,6 +89,13 @@ Map<String, String> en = {
   txtNoDescription: 'No Description',
 
   // hnt
+  hntWebsite: 'Website',
+  hntAddress: 'Address',
+  hntStoreName: 'Store Name',
+  hntStoreDescription: 'Store Description',
+  hntStoreCategory: 'Store Category',
+  hntStorePhone: 'Store Phone',
+
   hntOtp: 'Otp',
   hntGender: 'Gender',
   hntSearch: 'Search',
@@ -97,13 +111,14 @@ Map<String, String> en = {
   // btn
   btnNext: 'Next',
   btnSkip: 'Skip',
-  btnLetsGo:'lets go',
+  btnLetsGo: 'lets go',
   btnViewAll: 'View All',
   btnGoogleLogin: 'Login with Google',
   btnGoogleRegister: 'Register with Google',
   btnResendOtpEmail: 'Resend Otp Email',
   btnConfirmAccount: 'Confirm Account',
-
+  btnDiscover: 'Discover',
+  btnViewDetails: 'View Details',
   btnLogin: 'Login',
   btnRegister: 'Register',
   btnLogout: 'Logout',

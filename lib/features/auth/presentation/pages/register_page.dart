@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/constants/app_assets.dart';
-import 'package:yemen_offers/core/presentation/widgets/custom_text_field.dart';
-import 'package:yemen_offers/core/presentation/widgets/dropdown_text_field.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/custom_text_field.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/dropdown_text_field.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
