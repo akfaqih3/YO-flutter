@@ -35,7 +35,6 @@ class MerchantProfileRepoImpl implements MerchantProfileRepo {
         userType: merchantEntity.userType,
         merchantInfo: MerchantInfoModel(
           merchantEntity.phone,
-          merchantEntity.idCommercial,
           merchantEntity.address,
         ),
       );

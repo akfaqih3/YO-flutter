@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yemen_offers/core/presentation/widgets/from_widget.dart';
 
 ////////////////////////////////////////
 // import 'package:flutter/material.dart';
@@ -65,9 +64,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
         duration: const Duration(milliseconds: 200),
         width: double.infinity,
         decoration: BoxDecoration(
-          boxShadow: _hasFocus
-              ? [BoxShadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 4))]
-              : [],
+          boxShadow:
+              _hasFocus
+                  ? [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 10,
+                      offset: Offset(0, 4),
+                    ),
+                  ]
+                  : [],
           borderRadius: BorderRadius.circular(50),
         ),
         child: TextFormField(
@@ -81,13 +87,24 @@ class _CustomTextFieldState extends State<CustomTextField> {
             floatingLabelBehavior: FloatingLabelBehavior.auto,
             filled: true,
             fillColor: widget.fillColor,
-            prefixIcon: widget.prefixIcon != null
-                ? Icon(widget.prefixIcon, color: widget.iconColor ?? Colors.black54)
-                : null,
-            suffixIcon: widget.suffixIcon != null
-                ? Icon(widget.suffixIcon, color: widget.iconColor ?? Colors.black54)
-                : null,
-            contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+            prefixIcon:
+                widget.prefixIcon != null
+                    ? Icon(
+                      widget.prefixIcon,
+                      color: widget.iconColor ?? Colors.black54,
+                    )
+                    : null,
+            suffixIcon:
+                widget.suffixIcon != null
+                    ? Icon(
+                      widget.suffixIcon,
+                      color: widget.iconColor ?? Colors.black54,
+                    )
+                    : null,
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 16,
+              horizontal: 20,
+            ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
               borderSide: BorderSide(color: widget.borderColor, width: 1.5),
@@ -98,10 +115,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
-              borderSide: BorderSide(color: widget.focusedBorderColor, width: 1),
+              borderSide: BorderSide(
+                color: widget.focusedBorderColor,
+                width: 1,
+              ),
             ),
           ),
-          validator: (value) => (value?.isEmpty ?? true) ? 'هذا الحقل مطلوب' : null,
+          validator:
+              (value) => (value?.isEmpty ?? true) ? 'هذا الحقل مطلوب' : null,
         ),
       ),
     );

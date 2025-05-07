@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
@@ -19,7 +20,7 @@ class OfferCardWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.toNamed(AppRoutes.offerDetails, arguments: {
-          'offerSlug': offer.slug,
+          ApiKeys.offerSlug: offer.slug,
         });
       },
       child: Directionality(

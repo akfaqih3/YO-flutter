@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:yemen_offers/core/cache/cache_helper.dart';
@@ -20,4 +21,15 @@ class ThemeService extends GetxService {
     await CacheHelper.saveData(CacheKeys.isDarkMode, !Get.isDarkMode);
     Get.changeThemeMode(Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
   }
+
+  //  static void setStatusBarTheme(Brightness brightness) {
+  //   SystemChrome.setSystemUIOverlayStyle(
+  //     SystemUiOverlayStyle(
+  //       statusBarColor: Colors.transparent,
+  //       statusBarIconBrightness:
+  //           brightness == Brightness.dark ? Brightness.light : Brightness.dark,
+  //     ),
+  //   );
+  // }
+
 }

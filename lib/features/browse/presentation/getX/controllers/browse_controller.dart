@@ -31,6 +31,8 @@ class BrowseController extends GetxController
   late TabController tabController;
   final selectedTabIndex = 0.obs;
 
+  final RxBool isRTL = true.obs;
+
   final sortOptions = ["price", "rating", "distance"];
 
   // query params
@@ -53,8 +55,13 @@ class BrowseController extends GetxController
     await getOfferCategories();
     await getOffers();
     await getStores();
+    _getIsRTL();
 
     _listenScrollController();
+  }
+
+  void _getIsRTL() {
+    isRTL(Get.locale?.languageCode == 'ar');
   }
 
   void _listenScrollController() {

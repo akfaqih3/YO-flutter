@@ -23,6 +23,8 @@ class Endpoint {
   static const String register = "${ApiConst.accountsApp}/user/register/";
   static const String confirmOtpEmail = "${ApiConst.accountsApp}/verify-otp/";
   static const String resendOtpEmail = "${ApiConst.accountsApp}/send-otp/";
+  static const String joinAsMerchant =
+      "${ApiConst.accountsApp}/join-as-merchant/";
 
   static const String fcmToken = "${ApiConst.notificationsApp}/fcm-token/";
 
@@ -86,7 +88,11 @@ class ApiKeys {
   static const String user = "user";
   static const String merchant = "merchant";
 
+  static const String merchantphone = "merchant_phone";
+  static const String merchantaddress = "merchant_address";
+
   static const String results = "results";
+  static const String store = "store";
 
   // query params
   static const String categoryParam = "category";
@@ -150,6 +156,9 @@ class ApiKeys {
   static const String storeLongitude = "longitude";
   static const String storeLatitude = "latitude";
   static const String storeSocialMedia = "social_media";
+  static const String facebookLink = "facebook";
+  static const String instagramLink = "instagram";
+  static const String snapchatLink = "snapchat";
 
   // offer keys
   static const String offerSlug = "slug";

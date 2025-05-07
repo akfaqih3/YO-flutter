@@ -19,7 +19,6 @@ class MerchantModel extends MerchantEntity {
          latitude: latitude,
          userType: userType,
          phone: merchantInfo.phone,
-         idCommercial: merchantInfo.idCommercial,
          address: merchantInfo.address,
        );
 
@@ -50,20 +49,18 @@ class MerchantModel extends MerchantEntity {
 
 class MerchantInfoModel {
   final String phone;
-  final String idCommercial;
   final String address;
 
-  MerchantInfoModel(this.phone, this.idCommercial, this.address);
+  MerchantInfoModel(this.phone, this.address);
 
   factory MerchantInfoModel.fromJson(Map<String, dynamic> json) {
     return MerchantInfoModel(
       json['phone'],
       json['id_commercial'],
-      json['address'],
     );
   }
 
   Map<String, dynamic> toJson() {
-    return {"phone": phone, "id_commercial": idCommercial, "address": address};
+    return {"phone": phone, "address": address};
   }
 }

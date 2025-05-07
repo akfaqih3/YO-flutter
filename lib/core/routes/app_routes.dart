@@ -38,4 +38,7 @@ class AppRoutes {
 
   // notification
   static const String notifications = '/notifications';
+
+  // no internet 
+  static const String noInternet = '/no_internet';
 }
