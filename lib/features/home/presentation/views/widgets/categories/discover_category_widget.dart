@@ -38,10 +38,10 @@ class DiscoverCategoryWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Icon(Icons.map_sharp,color: AppColors.black,),
+          Icon(Icons.map_sharp, color: AppColors.black),
           InkWell(
             onTap: () {
-              Get.toNamed(AppRoutes.offerList);
+              Get.toNamed(AppRoutes.nearbyOffers);
             },
             child: Container(
               margin: EdgeInsets.only(top: 8),

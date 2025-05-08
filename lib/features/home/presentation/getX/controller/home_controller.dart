@@ -104,10 +104,12 @@ class HomeController extends GetxController {
   }
 
   Future<void> refreshPage() async {
-    // await getRecommendations();
-    // await getCategories();
-    // await getStores();
-    // await getMostPopularOffers();
-    // await getLatestOffers();
+    if (networkService.isConnected.value) {
+      await getRecommendations();
+      await getCategories();
+      await getStores();
+      await getMostPopularOffers();
+      await getLatestOffers();
+    }
   }
 }

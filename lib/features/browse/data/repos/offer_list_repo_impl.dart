@@ -176,6 +176,7 @@ class OfferListRepoImpl implements OfferListRepo {
 
   @override
   Future<Either<Failure, List<OfferEntity>>> getOffersNearby({
+    double distance_km = 10,
     String? search,
     List<String>? offerCategory,
     List<String>? category,
@@ -191,23 +192,27 @@ class OfferListRepoImpl implements OfferListRepo {
     int index = 0,
     int size = 10,
   }) async {
-    final queryParams = _buildQueryParams(
-      search: search,
-      offerCategory: offerCategory,
-      category: category,
-      storeSlug: storeSlug,
-      price: price,
-      priceBefore: priceBefore,
-      startDate: startDate,
-      endDate: endDate,
-      discount: discount,
-      ordering: ordering,
-      latitude: latitude,
-      longitude: longitude,
-      index: index,
-      size: size,
-    );
-
+    final queryParams = {
+      ApiKeys.distanceKMParam: distance_km,
+      ApiKeys.searchParam: search,
+      ApiKeys.offerCategoryParam: offerCategory,
+      ApiKeys.categoryParam: category,
+      ApiKeys.storeSlugParam: storeSlug,
+      ApiKeys.priceMinParam: price?.start,
+      ApiKeys.priceMaxParam: price?.end,
+      ApiKeys.priceBeforeMinParam: priceBefore?.start,
+      ApiKeys.priceBeforeMaxParam: priceBefore?.end,
+      ApiKeys.startDateMinParam: startDate?.start,
+      ApiKeys.startDateMaxParam: startDate?.end,
+      ApiKeys.endDateMinParam: endDate?.start,
+      ApiKeys.endDateMaxParam: endDate?.end,
+      ApiKeys.discountParam: discount,
+      ApiKeys.orderingParam: ordering,
+      ApiKeys.latitudeParam: latitude,
+      ApiKeys.longitudeParam: longitude,
+      ApiKeys.indexParam: index,
+      ApiKeys.sizeParam: size,
+    };
     return _getOffers(_remoteDataSource.getOffersNearby, queryParams);
   }
 

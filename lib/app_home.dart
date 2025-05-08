@@ -64,6 +64,7 @@ class _AppHomeState extends State<AppHome> {
   }
 
   void openAppLink(Uri uri) {
+    
     if (uri.path.contains('/api/password_reset/confirm/')) {
       try {
         String token = uri.queryParameters['token'] ?? '';

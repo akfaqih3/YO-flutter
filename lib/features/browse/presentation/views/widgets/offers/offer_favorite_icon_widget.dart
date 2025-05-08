@@ -13,29 +13,27 @@ class OfferFavoriteIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       final favorites = favoriteController.favorites.value;
-      final offerFavorited =favorites.firstWhereOrNull((element) => element.offer.slug == offer.slug);
+      final offerFavorited = favorites.firstWhereOrNull(
+        (element) => element.offer.slug == offer.slug,
+      );
 
       return offerFavorited != null
           ? IconButton(
-              onPressed: () {
-                FavoriteController.removeOffer(offerFavorited.id);
-              },
-              icon: Icon(
-                Icons.favorite,
-                color: AppColors.primary,
-                size: 32,
-              ),
-            )
+            onPressed: () {
+              favoriteController.removeFromFavorites(offerFavorited.id);
+            },
+            icon: Icon(Icons.favorite, color: AppColors.primary, size: 32),
+          )
           : IconButton(
-              onPressed: () {
-                FavoriteController.saveOffer(offer.slug);
-              },
-              icon: Icon(
-                Icons.favorite_border,
-                color: AppColors.primary,
-                size: 32,
-              ),
-            );
+            onPressed: () {
+              favoriteController.saveToFavorites(offer.slug);
+            },
+            icon: Icon(
+              Icons.favorite_border,
+              color: AppColors.primary,
+              size: 32,
+            ),
+          );
     });
   }
 }

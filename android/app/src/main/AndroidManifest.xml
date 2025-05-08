@@ -59,6 +59,7 @@
                 <data android:scheme="https"/>
                 <data android:host="yemeni-offers"/>
                 <data android:host="yemeni-offers.com"/> -->
+                
             </intent-filter>
 
         </activity>

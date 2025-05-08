@@ -32,6 +32,7 @@ class AppRoutes {
   static const String categories = '/categories';
   static const String offerSearch = '/offer_search';
   static const String offerDetails = '/offer_details';
+  static const String nearbyOffers = '/nearby_offers';
 
   // search
   static const String search = '/search';
@@ -39,6 +40,6 @@ class AppRoutes {
   // notification
   static const String notifications = '/notifications';
 
-  // no internet 
+  // no internet
   static const String noInternet = '/no_internet';
 }

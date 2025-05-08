@@ -10,6 +10,7 @@ class GetOffersNearbyUseCase {
   GetOffersNearbyUseCase(this._repoImpl);
 
   Future<Either<Failure, List<OfferEntity>>> execute({
+    double distance_km = 10,
     String? search,
     List<String>? offerCategory,
     List<String>? category,
@@ -26,6 +27,7 @@ class GetOffersNearbyUseCase {
     int size = 10,
   }) {
     return _repoImpl.getOffersNearby(
+      distance_km: distance_km,
       search: search,
       offerCategory: offerCategory,
       category: category,
