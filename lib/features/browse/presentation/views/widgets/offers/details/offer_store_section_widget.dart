@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/browse/domain/entities/store_entity.dart';
 
@@ -98,10 +100,12 @@ class OfferStoreSectionWidget extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: (){
-                            // Get.toNamed(AppRoutes.storeDetails, arguments: store);
+                            Get.toNamed(AppRoutes.storeDetails, arguments: {
+                              ApiKeys.store: store,
+                            });
                           },
                           child: Text(
-                            " تفاصيل اكثر",
+                            btnViewDetails.tr,
                             style: TextStyle(
                               color: AppColors.black,
                               fontSize: 12,

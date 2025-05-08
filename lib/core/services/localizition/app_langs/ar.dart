@@ -47,6 +47,10 @@ Map<String, String> ar = {
   lblNoInternetMessage:
       'لا يوجد اتصال بالإنترنت حالياً.\nيرجى التحقق من الاتصال والمحاولة مرة أخرى.',
   lblOOOps: 'عذراً!',
+  lblPhone: 'الهاتف',
+  lblFacebook: 'فيسبوك',
+  lblInstagram: 'انستقرام',
+  lblSnapchat: 'السناب',
 
   lblWelcome: 'مرحبا بك ',
   lblHome: 'الرئيسية',
@@ -117,6 +121,7 @@ Map<String, String> ar = {
   btnConfirmAccount: 'تأكيد الحساب',
   btnDiscover: 'اكتشف',
   btnViewDetails: 'عرض التفاصيل',
+  btnCall: 'اتصل',
 
   btnLogin: 'تسجيل الدخول',
   btnRegister: 'إنشاء حساب',

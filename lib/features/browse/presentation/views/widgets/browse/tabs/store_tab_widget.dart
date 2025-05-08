@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/store_list_item_widget.dart';
+import 'package:yemen_offers/core/constants/api_constants.dart';
+import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/features/browse/domain/entities/store_entity.dart';
 
 class StoreTabWidget extends StatelessWidget {
@@ -19,12 +21,20 @@ class StoreTabWidget extends StatelessWidget {
         controller: scrollController,
         itemCount: stores.length,
         itemBuilder: (context, index) {
-          return StoreListItemWidget(
-            storeName: stores[index].name,
-            storeDescription: stores[index].description ?? "",
-            storeCategory: isRTL? stores[index].category.nameAr : stores[index].category.name,
-            storeAddress: stores[index].address ?? "",
-            imageUrl: stores[index].image ?? "",
+          return GestureDetector(
+            onTap: () {
+              Get.toNamed(
+                AppRoutes.storeDetails,
+                arguments: {ApiKeys.store: stores[index]},
+              );
+            },
+            child: StoreListItemWidget(
+              storeName: stores[index].name,
+              storeDescription: stores[index].description ?? "",
+              storeCategory: isRTL? stores[index].category.nameAr : stores[index].category.name,
+              storeAddress: stores[index].address ?? "",
+              imageUrl: stores[index].image ?? "",
+            ),
           );
         },
       ),

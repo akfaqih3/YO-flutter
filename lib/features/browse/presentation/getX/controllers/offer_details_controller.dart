@@ -68,7 +68,6 @@ class OfferDetailsController extends GetxController {
       );
 
       await SharePlus.instance.share(shareParams);
-
     } catch (e) {
       debugPrint('Error sharing: $e');
     }
