@@ -49,10 +49,7 @@ class CarouselImageWidget extends StatelessWidget {
           color: backgroundColor,
           borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
           image: DecorationImage(
-            image:
-                isNetworkImage
-                    ? NetworkImage(offer.image ?? "")
-                    : AssetImage(offer.image ?? "") as ImageProvider,
+            image:NetworkImage(offer.image ?? "") as ImageProvider,
             fit: fit,
             onError:
                 (exception, stackTrace) =>
@@ -120,7 +117,7 @@ class CarouselImageWidget extends StatelessWidget {
                         Text(
                           "${offer.priceAfter}${lblYemeniRial.tr}",
                           style: TextStyle(
-                            color: Colors.greenAccent,
+                            color: AppColors.primary,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),

@@ -18,7 +18,6 @@ class OfferListPage extends GetView<OfferListController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.background,
         title: Obx(() => Text(controller.offerListType.value.name)),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(100),

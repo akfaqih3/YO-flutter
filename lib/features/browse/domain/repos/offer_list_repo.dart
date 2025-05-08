@@ -54,6 +54,7 @@ abstract class OfferListRepo {
     int size = 10,
   });
   Future<Either<Failure, List<OfferEntity>>> getOffersNearby({
+    double distance_km = 10,
     String? search,
     List<String>? offerCategory,
     List<String>? category,

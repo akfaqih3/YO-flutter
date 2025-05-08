@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
 import 'package:yemen_offers/features/favorite/data/repos/favorite_repo_impl.dart';
+import 'package:yemen_offers/features/favorite/data/repos/share_offer_repo_impl.dart';
 import 'package:yemen_offers/features/favorite/data/sources/favorite_remote_data_source.dart';
+import 'package:yemen_offers/features/favorite/data/sources/share_offer_remote_data_source.dart';
+import 'package:yemen_offers/features/favorite/domain/use_cases/share_offer_user_case.dart';
 
 import '../../../domain/entities/favorite_entity.dart';
 import '../../../domain/use_cases/get_favorites_use_case.dart';
@@ -35,7 +38,7 @@ class FavoriteController extends GetxController {
     isLoading(false);
   }
 
-  Future<void> _saveToFavorites(String slug) async {
+  Future<void> saveToFavorites(String slug) async {
     final SaveToFavoriteUseCase saveToFavoriteUseCase = SaveToFavoriteUseCase(
       _favoriteRepo,
     );
@@ -46,27 +49,39 @@ class FavoriteController extends GetxController {
     );
   }
 
-  Future<void> _removeFromFavorites(int id) async {
+  Future<void> removeFromFavorites(int id) async {
     final RemoveFromFavoriteUseCase removeFromFavoriteUseCase =
         RemoveFromFavoriteUseCase(_favoriteRepo);
     final result = await removeFromFavoriteUseCase.execute(id);
     result.fold(
       (failure) => Get.snackbar("erroe", failure.message),
-      (_) =>  _getFavorites(),
+      (_) => _getFavorites(),
     );
     ;
   }
 
-  static saveOffer(String slug) async {
-    final FavoriteController favoriteController =
-        Get.find<FavoriteController>();
-
-    await favoriteController._saveToFavorites(slug);
+  Future<void> shareOfferUser(String offerSlug) async {
+    final ShareOfferUserCase shareOfferUserCase = ShareOfferUserCase(
+      ShareOfferRepoImpl(ShareOfferRemoteDataSourceImpl(ApiService())),
+    );
+    final result = await shareOfferUserCase.execute(offerSlug);
+    result.fold(
+      (failure) => Get.snackbar("erroe", failure.message),
+      (_) => Get.snackbar("success", "shared"),
+    );
   }
 
-  static removeOffer(int id) async {
-    final FavoriteController favoriteController =
-        Get.find<FavoriteController>();
-    await favoriteController._removeFromFavorites(id);
-  }
+  // static saveOffer(String slug) async {
+  //   final FavoriteController favoriteController =
+  //       Get.find<FavoriteController>();
+
+  //   await favoriteController._saveToFavorites(slug);
+  // }
+
+  // static removeOffer(int id) async {
+  //   final FavoriteController favoriteController =
+  //       Get.find<FavoriteController>();
+  //   await favoriteController._removeFromFavorites(id);
+  // }
+
 }

@@ -80,12 +80,9 @@ class OfferListController extends GetxController {
     offerCategoriesIsLoading(true);
     final GetOfferCategoriesUseCase getOfferCategoriesUseCase =
         GetOfferCategoriesUseCase(
-          BrowseRepoImpl(
-            BrowseRemoteDataSourceImpl(_apiService),
-          )
+          BrowseRepoImpl(BrowseRemoteDataSourceImpl(_apiService)),
         );
-    final result = await getOfferCategoriesUseCase.execute(
-    );
+    final result = await getOfferCategoriesUseCase.execute();
 
     result.fold(
       (failure) {
@@ -158,7 +155,6 @@ class OfferListController extends GetxController {
 
     await getOffers();
   }
-
 
   @override
   void dispose() {

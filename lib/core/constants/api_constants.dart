@@ -75,6 +75,8 @@ class Endpoint {
   static String mostPopularOffers = "${ApiConst.coreApp}/offers-most-popular/";
   static String latestOffers = "${ApiConst.coreApp}/offers-latest/";
 
+  static String shareOffer(String offerSlug) => "${offers}/${offerSlug}/share/";
+
   // recommendations
   static String offersRecommendations =
       "${ApiConst.recommendationsApp}/behavior-based/";
@@ -115,6 +117,7 @@ class ApiKeys {
   static const String searchParam = "search";
   static const String searchVectorParam = "vector_search";
   static const String limitParam = "limit";
+  static const String distanceKMParam = "distance_km";
 
   static const String limit = "limit";
   static const String index = "index";

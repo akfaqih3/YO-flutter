@@ -46,7 +46,9 @@ class OfferDetailsPage extends GetView<OfferDetailsController> {
                           const SizedBox(height: 16),
 
                           OfferDescriptionSectionWidget(
-                            description: offer.description ?? txtNoDescription.tr, controller: controller,
+                            description:
+                                offer.description ?? txtNoDescription.tr,
+                            controller: controller,
                           ),
                           const SizedBox(height: 16),
 
@@ -69,7 +71,7 @@ class OfferDetailsPage extends GetView<OfferDetailsController> {
 
                           OfferStoreSectionWidget(
                             store: offer.store,
-                            onTap: () => (){},
+                            onTap: () => () {},
                           ),
                         ],
                       ),
@@ -79,8 +81,10 @@ class OfferDetailsPage extends GetView<OfferDetailsController> {
 
                 OfferHeaderActionsWidget(
                   onBackPressed: () => Navigator.pop(context),
-                  onFavoritePressed: () => (){},
-                  onSharePressed: () => (){},
+                  onFavoritePressed: () => () {},
+                  onSharePressed: () {
+                    controller.shareOfferUser(context);
+                  },
                 ),
               ],
             );
@@ -89,8 +93,8 @@ class OfferDetailsPage extends GetView<OfferDetailsController> {
         final offer = controller.offer.value;
         if (offer == null) return const SizedBox.shrink();
         return OfferActionButtonsWidget(
-          onGetOfferPressed: () => (){},
-          onCallPressed: () =>(){},
+          onGetOfferPressed: () => () {},
+          onCallPressed: () => () {},
         );
       }),
     );

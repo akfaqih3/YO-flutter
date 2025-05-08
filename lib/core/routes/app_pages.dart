@@ -12,6 +12,7 @@ import 'package:yemen_offers/features/auth/presentation/pages/reset_password_pag
 import 'package:yemen_offers/features/browse/presentation/getX/browse_binding.dart';
 import 'package:yemen_offers/features/browse/presentation/views/pages/browse_page.dart';
 import 'package:yemen_offers/features/browse/presentation/views/pages/categories_page.dart';
+import 'package:yemen_offers/features/browse/presentation/views/pages/nearby_offers_page.dart';
 import 'package:yemen_offers/features/browse/presentation/views/pages/offer_details_page.dart';
 import 'package:yemen_offers/features/browse/presentation/views/pages/offer_list_page.dart';
 import 'package:yemen_offers/features/home/presentation/getX/home_binding.dart';
@@ -130,6 +131,11 @@ class AppPages {
     GetPage(
       name: AppRoutes.categories,
       page: () => CategoriesPage(),
+      binding: BrowseBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.nearbyOffers,
+      page: () => NearbyOffersPage(),
       binding: BrowseBinding(),
     ),
 
