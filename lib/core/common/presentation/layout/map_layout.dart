@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:collection/collection.dart';
+import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/constants/app_enums.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
@@ -253,10 +254,8 @@ class _MapLayoutState extends State<MapLayout> {
                                       });
                                       _popupController.hideAllPopups();
                                       Get.toNamed(
-                                        AppRoutes.offerList,
-                                        arguments: {
-                                          'offerListType': OfferListType.latest,
-                                        },
+                                        AppRoutes.storeDetails,
+                                        arguments: {ApiKeys.store: store},
                                       );
                                     },
                                     child: Text(

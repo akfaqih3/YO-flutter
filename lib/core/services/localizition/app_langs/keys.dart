@@ -41,6 +41,10 @@ const String lblNoInternet = 'no_internet';
 const String lblRefresh = 'refresh';
 const String lblNoInternetMessage = 'no_internet_message';
 const String lblOOOps = 'ooops';
+const String lblPhone = 'phone';
+const String lblFacebook = 'facebook';
+const String lblInstagram = 'instagram';
+const String lblSnapchat = 'snapchat';
 
 
 const String lblWelcome = 'Welcome';
@@ -110,6 +114,7 @@ const String btnResendOtpEmail = 'btn_resend_otp_email';
 const String btnConfirmAccount = 'btn_confirm_account';
 const String btnDiscover = 'btn_discover';
 const String btnViewDetails = 'btn_view_details';
+const String btnCall = 'btn_call';
 
 const String btnLogin = 'btn_login';
 const String btnRegister = 'btn_register';

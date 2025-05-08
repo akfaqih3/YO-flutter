@@ -4,7 +4,6 @@ import 'dio_config.dart';
 
 class ApiService extends getx.GetxService {
 
-  // make it singleton
   static ApiService? _instance;
   factory ApiService() {
     _instance ??= ApiService._();

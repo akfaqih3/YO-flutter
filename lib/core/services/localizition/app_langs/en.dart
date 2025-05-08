@@ -47,6 +47,10 @@ Map<String, String> en = {
   lblNoInternetMessage:
       'No Internet Connection.\nPlease check your connection and try again.',
   lblOOOps: 'Ooops!',
+  lblPhone: 'Phone',
+  lblFacebook: 'Facebook',
+  lblInstagram: 'Instagram',
+  lblSnapchat: 'Snapchat',
 
   //end
   lblWelcome: 'Welcome to ',
@@ -119,6 +123,8 @@ Map<String, String> en = {
   btnConfirmAccount: 'Confirm Account',
   btnDiscover: 'Discover',
   btnViewDetails: 'View Details',
+  btnCall: 'Call',
+
   btnLogin: 'Login',
   btnRegister: 'Register',
   btnLogout: 'Logout',

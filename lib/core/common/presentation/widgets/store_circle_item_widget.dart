@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
@@ -14,7 +15,9 @@ class StoreCircleItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRoutes.offerList, arguments: store.slug);
+        Get.toNamed(AppRoutes.storeDetails, arguments: {
+            ApiKeys.store: store,
+        });
       },
       child: SizedBox(
         width: 120,
@@ -36,19 +39,21 @@ class StoreCircleItemWidget extends StatelessWidget {
                     offset: const Offset(0, 4),
                   ),
                 ],
-                
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: Image.network(
                   store.image ?? "",
                   fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) =>
-                       Icon(Iconsax.shop, size: 64,color: AppColors.primary.withAlpha(200),),
+                  errorBuilder:
+                      (context, error, stackTrace) => Icon(
+                        Iconsax.shop,
+                        size: 64,
+                        color: AppColors.primary.withAlpha(200),
+                      ),
                 ),
               ),
-            )
-            ,
+            ),
             Text(
               store.name,
               textAlign: TextAlign.center,
