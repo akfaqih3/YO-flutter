@@ -58,6 +58,7 @@ class BrowseController extends GetxController
     _getIsRTL();
 
     _listenScrollController();
+   
   }
 
   void _getIsRTL() {
@@ -167,7 +168,6 @@ class BrowseController extends GetxController
     );
     offersIsLoading(false);
   }
-  
 
   Future<void> getStores() async {
     storesIsLoading(true);
@@ -195,6 +195,7 @@ class BrowseController extends GetxController
 
   @override
   void dispose() {
+    
     tabController.dispose();
     scrollController.dispose();
     super.dispose();

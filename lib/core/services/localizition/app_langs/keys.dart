@@ -46,7 +46,6 @@ const String lblFacebook = 'facebook';
 const String lblInstagram = 'instagram';
 const String lblSnapchat = 'snapchat';
 
-
 const String lblWelcome = 'Welcome';
 const String lblHome = 'home';
 const String lblLogin = 'login';
@@ -115,6 +114,24 @@ const String btnConfirmAccount = 'btn_confirm_account';
 const String btnDiscover = 'btn_discover';
 const String btnViewDetails = 'btn_view_details';
 const String btnCall = 'btn_call';
+const String btnFilter = 'btn_filter';
+
+// Filter Button
+const String lblFilters = 'filters';
+const String lblCategoreStores = 'stores';
+const String lblOfferTypes = 'offerTypes';
+const String lblDateRange = 'dateRange';
+const String lblMinDate = 'minDate';
+const String lblMaxDate = 'maxDate';
+const String lblPriceRange = 'priceRange';
+const String lblMinPrice = 'minPrice';
+const String lblMaxPrice = 'maxPrice';
+const String lblpercentage = 'percentage';
+const String lblMaxPercentage = 'maxPercentage';
+const String lblMinPercentage = 'minPercentage';
+const String lblSelectCatogrey = 'selectCategory';
+const String lblSelectStores = 'selectStores';
+const String lblSelectOfferTypes = 'selectOfferTypes';
 
 const String btnLogin = 'btn_login';
 const String btnRegister = 'btn_register';
