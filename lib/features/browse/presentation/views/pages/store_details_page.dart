@@ -8,7 +8,6 @@ import 'package:yemen_offers/features/browse/presentation/getX/controllers/store
 import 'package:yemen_offers/features/browse/presentation/views/widgets/offers/offers_list_vertical_widget.dart';
 import 'package:yemen_offers/features/browse/presentation/views/widgets/skeleton/offer_list_vertical_skeleton_widget.dart';
 import 'package:yemen_offers/features/browse/presentation/views/widgets/store/store_card_details_widget.dart';
-import 'package:yemen_offers/features/browse/presentation/views/widgets/store/homevertical_card_cuostm.dart';
 
 class StoreDetailsPage extends GetView<StoreDetailsController> {
   @override

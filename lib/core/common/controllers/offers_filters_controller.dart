@@ -61,21 +61,13 @@ class OffersFiltersController extends GetxController {
     await getOfferCategories();
   }
 
+  void selectCategories(List<String> categories) {
+    selectedCategories.assignAll(categories);
+    getStores();
+    getOfferCategories();
+  }
+
   Future<void> getCategories() async {
-    // if (categoriesController.categories.value.isNotEmpty) {
-    //   setCategories(categoriesController.categories.value);
-    //   return;
-    // }
-    // categoriesIsLoading(true);
-    // final GetCategoriesUseCase getCategoriesUseCase = GetCategoriesUseCase(
-    //   _browseRepoImpl,
-    // );
-    // final result = await getCategoriesUseCase.execute();
-    // result.fold(
-    //   (failure) => Get.snackbar("error", failure.message),
-    //   (success) => setCategories(success),
-    // );
-    // categoriesIsLoading(false);
     if (categoriesController.categories.value.isEmpty) {
       categoriesController.getCategories();
     }
@@ -123,6 +115,15 @@ class OffersFiltersController extends GetxController {
 
   void setStores(List<StoreEntity> storeEntities) {
     if (storeEntities.isNotEmpty) {
+      if (selectedCategories.value.isNotEmpty) {
+        storeEntities =
+            storeEntities.where((store) {
+              return selectedCategories.value.any(
+                (category) => store.category.slug == category,
+              );
+            }).toList();
+      }
+
       stores(
         storeEntities
             .map((store) => MultiSelectItem(store.slug, store.name))
@@ -133,6 +134,15 @@ class OffersFiltersController extends GetxController {
 
   void setOfferCategories(List<OfferCategoryEntity> offerCategoryEntities) {
     if (offerCategoryEntities.isNotEmpty) {
+      // if (selectedCategories.value.isNotEmpty) {
+      //   offerCategoryEntities =
+      //       offerCategoryEntities.where((offerCategory) {
+      //         return selectedCategories.value.any(
+      //           (category) => offerCategory.slug == category,
+      //         );
+      //       }).toList();
+      // }
+
       offerCategories(
         offerCategoryEntities
             .map(

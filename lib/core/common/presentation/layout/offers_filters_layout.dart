@@ -36,7 +36,9 @@ class OffersFiltersLayout extends StatelessWidget {
                     listType: MultiSelectListType.CHIP,
                     buttonText: Text('تصنيفات المتاجر'),
                     title: Text('اختر التصنيفات'),
-                    onConfirm: controller.selectedCategories,
+                    onConfirm: (values){
+                        controller.selectCategories(values);
+                    },
                     initialValue: controller.selectedCategories.value,
                   )),
             const SizedBox(height: 12),

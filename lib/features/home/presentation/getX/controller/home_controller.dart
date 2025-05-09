@@ -112,4 +112,18 @@ class HomeController extends GetxController {
       await getLatestOffers();
     }
   }
+
+
+
+  @override
+  void onClose() {
+    super.onClose();
+  }
+
+
+
+
+
+
+
 }
