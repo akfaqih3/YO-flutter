@@ -9,7 +9,7 @@ abstract class JoinAsMerchantRepo {
     required String phone,
     required String address,
     required String storeName,
-    required String storeDescription,
+    String? storeDescription,
     required String storeCategory,
     File? storeImage,
     required String storePhone,
@@ -17,6 +17,8 @@ abstract class JoinAsMerchantRepo {
     String? storeAddress,
     double? storeLongitude,
     double? storeLatitude,
-    Map<String, String?>? socialMedia,
+    String? facebook,
+    String? instagram,
+    String? snapchat,
   });
 }

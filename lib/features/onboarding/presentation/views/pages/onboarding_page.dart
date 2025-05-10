@@ -9,7 +9,8 @@ import 'package:yemen_offers/features/onboarding/presentation/views/widgets/onbo
 import 'package:yemen_offers/features/onboarding/presentation/views/widgets/onboarding_bottom_widget.dart';
 import 'package:yemen_offers/features/onboarding/presentation/views/widgets/onboarding_header_widget.dart';
 
-class OnboardingPage extends GetView<OnboardingController> {
+class OnboardingPage extends StatelessWidget {
+  final controller = Get.put(OnboardingController(), permanent: false);
   OnboardingPage({super.key});
 
   @override

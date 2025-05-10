@@ -87,8 +87,9 @@ Map<String, String> ar = {
   lblAreYouSureYouWantToDeleteThisCourse:
       'هل أنت متأكد أنك تريد حذف هذه الدورة؟',
   lblError: 'خطأ',
-
   txtNoDescription: 'لا يوجد وصف',
+  lblMerchantData: 'بيانات التاجر',
+  lblStoreData: 'بيانات المتاجر',
 
   // hnt
   hntWebsite: 'الموقع الإلكتروني',
@@ -122,6 +123,24 @@ Map<String, String> ar = {
   btnDiscover: 'اكتشف',
   btnViewDetails: 'عرض التفاصيل',
   btnCall: 'اتصل',
+  btnFilter: 'تصفية',
+
+  // Filter Button
+  lblFilters: 'الفلاتر',
+  lblCategoreStores: 'المتاجر',
+  lblOfferTypes: 'فئه العروض',
+  lblDateRange: 'تاريخ الانتهاء ',
+  lblMinDate: 'من ',
+  lblMaxDate: ' الئ',
+  lblPriceRange: ' السعر بعد',
+  lblMinPrice: 'السعر الأدنى',
+  lblMaxPrice: 'السعر الأقصى',
+  lblpercentage: 'النسبة (%)',
+  lblMaxPercentage: 'اكبر من اويساوي',
+  lblMinPercentage: 'اصغر من او يساوي',
+  lblSelectCatogrey: 'اختر فئات',
+  lblSelectStores: 'اختر متاجر',
+  lblSelectOfferTypes: 'اختر نوع عروض',
 
   btnLogin: 'تسجيل الدخول',
   btnRegister: 'إنشاء حساب',

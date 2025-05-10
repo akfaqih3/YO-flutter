@@ -105,24 +105,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
   }
 }
 
-// الصفحة الرئيسية للنموذج مع استدعاء CustomTextField مع ألوان للأيقونات
-class FormMarch extends StatelessWidget {
-  const FormMarch({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'نموذج التاجر',
-      theme: ThemeData(
-        fontFamily: 'Cairo',
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      home: const JoinMerchantPage(),
-    );
-  }
-}
-
 class JoinMerchantPage extends StatelessWidget {
   const JoinMerchantPage({super.key});
 

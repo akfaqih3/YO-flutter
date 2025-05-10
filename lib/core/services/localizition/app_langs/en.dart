@@ -89,8 +89,9 @@ Map<String, String> en = {
   lblAreYouSureYouWantToDeleteThisCourse:
       'Are you sure you want to delete this course?',
   lblError: 'Error',
-
   txtNoDescription: 'No Description',
+  lblMerchantData: 'Merchant Data',
+  lblStoreData: 'Store Data',
 
   // hnt
   hntWebsite: 'Website',
@@ -124,6 +125,24 @@ Map<String, String> en = {
   btnDiscover: 'Discover',
   btnViewDetails: 'View Details',
   btnCall: 'Call',
+  btnFilter: 'Filter',
+
+  // Filter Button
+  lblFilters: 'Filters',
+  lblCategoreStores: 'Stores',
+  lblOfferTypes: 'Offer Types',
+  lblDateRange: 'Date Range',
+  lblMinDate: 'From',
+  lblMaxDate: 'To',
+  lblPriceRange: 'Price Range',
+  lblMinPrice: 'Min Price',
+  lblMaxPrice: 'Max Price',
+  lblpercentage: 'Percentage',
+  lblMaxPercentage: 'Max Percentage',
+  lblMinPercentage: 'Min Percentage',
+  lblSelectCatogrey: 'Select Category',
+  lblSelectStores: 'Select Stores',
+  lblSelectOfferTypes: 'Select Offer Types',
 
   btnLogin: 'Login',
   btnRegister: 'Register',

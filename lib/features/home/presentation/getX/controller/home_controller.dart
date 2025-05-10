@@ -23,7 +23,7 @@ class HomeController extends GetxController {
   late final OfferListRepoImpl _offerListRepoImpl;
   late final BrowseRepoImpl _browseRepoImpl;
 
-  final RxList<CategoryEntity> categories = RxList<CategoryEntity>([]);
+  RxList<CategoryEntity> categories = RxList([]);
   RxList<OfferEntity> recommendationsOffers = RxList([]);
   RxList<OfferEntity> mostPopularOffers = RxList([]);
   RxList<OfferEntity> latestOffers = RxList([]);
@@ -45,8 +45,8 @@ class HomeController extends GetxController {
     _browseRepoImpl = BrowseRepoImpl(BrowseRemoteDataSourceImpl(_apiService));
 
     await getRecommendations();
-    await getCategories();
     await getStores();
+    await getCategories();
     await getMostPopularOffers();
     await getLatestOffers();
     if (!networkService.isConnected.value) {
@@ -112,4 +112,18 @@ class HomeController extends GetxController {
       await getLatestOffers();
     }
   }
+
+
+
+  @override
+  void onClose() {
+    super.onClose();
+  }
+
+
+
+
+
+
+
 }

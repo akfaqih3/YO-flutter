@@ -43,9 +43,9 @@ class OfferListRepoImpl implements OfferListRepo {
   }) {
     return {
       ApiKeys.searchParam: search,
-      ApiKeys.offerCategoryParam: offerCategory,
-      ApiKeys.categoryParam: category,
-      ApiKeys.storeSlugParam: storeSlug,
+      ApiKeys.offerCategoryParam: offerCategory?.join(','),
+      ApiKeys.categoryParam: category?.join(','),
+      ApiKeys.storeSlugParam: storeSlug?.join(','),
       ApiKeys.priceMinParam: price?.start,
       ApiKeys.priceMaxParam: price?.end,
       ApiKeys.priceBeforeMinParam: priceBefore?.start,
