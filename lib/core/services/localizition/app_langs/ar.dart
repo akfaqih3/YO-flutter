@@ -87,8 +87,9 @@ Map<String, String> ar = {
   lblAreYouSureYouWantToDeleteThisCourse:
       'هل أنت متأكد أنك تريد حذف هذه الدورة؟',
   lblError: 'خطأ',
-
   txtNoDescription: 'لا يوجد وصف',
+  lblMerchantData: 'بيانات التاجر',
+  lblStoreData: 'بيانات المتاجر',
 
   // hnt
   hntWebsite: 'الموقع الإلكتروني',

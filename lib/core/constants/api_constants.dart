@@ -1,6 +1,7 @@
 class ApiConst {
+  static const String domain = "http://10.0.2.2:8000";
   // static const String domain = "http://192.168.0.40:8000";
-  static const String domain = "http://yemeni-offers.com";
+  // static const String domain = "http://yemeni-offers.com";
   static const String baseUrl = "$domain/api/";
   static const int connectTimeout = 5000;
   static const int receiveTimeout = 5000;
@@ -90,8 +91,8 @@ class ApiKeys {
   static const String user = "user";
   static const String merchant = "merchant";
 
-  static const String merchantphone = "merchant_phone";
-  static const String merchantaddress = "merchant_address";
+  static const String merchantPhone = "merchant_phone";
+  static const String merchantAddress = "merchant_address";
 
   static const String results = "results";
   static const String store = "store";

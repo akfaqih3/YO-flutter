@@ -89,8 +89,9 @@ Map<String, String> en = {
   lblAreYouSureYouWantToDeleteThisCourse:
       'Are you sure you want to delete this course?',
   lblError: 'Error',
-
   txtNoDescription: 'No Description',
+  lblMerchantData: 'Merchant Data',
+  lblStoreData: 'Store Data',
 
   // hnt
   hntWebsite: 'Website',
