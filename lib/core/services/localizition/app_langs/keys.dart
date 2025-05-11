@@ -45,6 +45,8 @@ const String lblPhone = 'phone';
 const String lblFacebook = 'facebook';
 const String lblInstagram = 'instagram';
 const String lblSnapchat = 'snapchat';
+const String lblSearchByImage = 'search_by_image';
+const String lblSearchByVector = 'search_by_vector';
 
 const String lblWelcome = 'Welcome';
 const String lblHome = 'home';

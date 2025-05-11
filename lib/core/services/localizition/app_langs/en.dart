@@ -93,6 +93,8 @@ Map<String, String> en = {
   lblMerchantData: 'Merchant Data',
   lblStoreData: 'Store Data',
   lblNotifications: 'Notifications',
+  lblSearchByImage: ' by Image',
+  lblSearchByVector: ' by text',
 
   // hnt
   hntWebsite: 'Website',

@@ -91,6 +91,8 @@ Map<String, String> ar = {
   lblMerchantData: 'بيانات التاجر',
   lblStoreData: 'بيانات المتاجر',
   lblNotifications: 'الإشعارات',
+  lblSearchByImage: 'بصورة',
+  lblSearchByVector: ' نصي',
 
   // hnt
   hntWebsite: 'الموقع الإلكتروني',
