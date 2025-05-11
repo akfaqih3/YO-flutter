@@ -10,6 +10,7 @@ import 'package:yemen_offers/features/search/data/sources/search_remote_data_sou
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/search/domain/entities/offers_response_entity.dart';
 import 'package:yemen_offers/features/search/domain/repos/search_repo.dart';
+import 'package:dio/dio.dart' as dio;
 
 class SearchRepoImpl implements SearchRepo {
   final SearchRemoteDataSource _remoteDataSource;
@@ -26,7 +27,7 @@ class SearchRepoImpl implements SearchRepo {
       };
       final OffersResponseModel offersResponeModel = await _remoteDataSource
           .searchOffersByKeyword(queryParams);
-          
+
       return Right(OffersResponseEntity.fromModel(offersResponeModel));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));
@@ -34,13 +35,20 @@ class SearchRepoImpl implements SearchRepo {
   }
 
   @override
-  Future<Either<Failure, List<OfferEntity>>> searchOffesByImage(
+  Future<Either<Failure, OffersResponseEntity>> searchOffesByImage(
     File image,
   ) async {
     try {
-      final List<OfferModel> offers = await _remoteDataSource
-          .searchOffersByImage(image);
-      return Right(offerEntityFromModel(offers));
+      final dio.FormData formData = dio.FormData.fromMap({
+        ApiKeys.searchImageParam: await dio.MultipartFile.fromFile(
+          image.path,
+          filename: image.path.split('/').last,
+        ),
+      });
+
+      final OffersResponseModel offers = await _remoteDataSource
+          .searchOffersByImage(formData);
+      return Right(OffersResponseEntity.fromModel(offers));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));
     }

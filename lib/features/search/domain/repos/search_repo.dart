@@ -11,7 +11,5 @@ abstract class SearchRepo {
   Future<Either<Failure, OffersResponseEntity>> searchOffesByKeyword(
     String searchKeyword,
   );
-  Future<Either<Failure, List<OfferEntity>>> searchOffesByImage(
-    File image,
-  );
+  Future<Either<Failure, OffersResponseEntity>> searchOffesByImage(File image);
 }

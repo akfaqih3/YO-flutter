@@ -16,7 +16,7 @@ class SearchBarWidget extends StatelessWidget {
           labelText: "Search",
           border: OutlineInputBorder(),
         ),
-        onChanged: (value) => controller.searchOffersByKeyword(value),
+        // onChanged: (value) => controller.searchOffersByKeyword(),
       ),
     );
   }

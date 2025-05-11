@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:yemen_offers/core/constants/api_constants.dart';
+import 'package:yemen_offers/core/constants/app_enums.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 
@@ -109,9 +111,14 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
                     heroTag: 'imageSearch',
                     onPressed: () {
                       _toggleExpanded();
-                      Get.toNamed(AppRoutes.search);
+                      Get.toNamed(
+                        AppRoutes.search,
+                        arguments: {
+                          ApiKeys.searchParam: SearchOffersType.image,
+                        },
+                      );
                     },
-                    icon: const Icon(Icons.image_search,size: 24,),
+                    icon: const Icon(Icons.image_search, size: 24),
                     label: SizedBox(),
                     backgroundColor: Colors.transparent,
                     foregroundColor: AppColors.white,
@@ -157,9 +164,14 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
                     heroTag: 'textSearch',
                     onPressed: () {
                       _toggleExpanded();
-                      Get.toNamed(AppRoutes.search);
+                      Get.toNamed(
+                        AppRoutes.search,
+                        arguments: {
+                          ApiKeys.searchParam: SearchOffersType.vector,
+                        },
+                      );
                     },
-                    icon: const Icon(Iconsax.text,size: 24,),
+                    icon: const Icon(Iconsax.text, size: 24),
                     label: SizedBox(),
                     backgroundColor: Colors.transparent,
                     foregroundColor: AppColors.white,
