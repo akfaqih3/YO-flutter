@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:yemen_offers/core/constants/api_constants.dart';
+import 'package:yemen_offers/core/constants/app_enums.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 
 class FloatingActionBarWidget extends StatefulWidget {
@@ -51,11 +54,12 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
 
   @override
   Widget build(BuildContext context) {
+    final isRTL = Get.locale?.languageCode == 'ar';
     return SizedBox(
       width: 100,
       height: 200,
       child: Stack(
-        alignment: Alignment.bottomRight,
+        alignment: Alignment.bottomCenter,
         children: [
           // Background blur effect when expanded
           AnimatedOpacity(
@@ -78,8 +82,9 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
           AnimatedPositioned(
             duration: const Duration(milliseconds: 250),
             curve: Curves.easeInOut,
-            bottom: isExpanded ? 140 : 20,
-            right: isExpanded ? 0 : 15,
+            bottom: isExpanded ? 145 : 20,
+            right: isRTL ? 0 : 0,
+            left: isRTL ? 0 : 0,
             child: AnimatedOpacity(
               opacity: isExpanded ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 250),
@@ -87,6 +92,7 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
                 elevation: 4,
                 borderRadius: BorderRadius.circular(28),
                 child: Container(
+                  height: 48,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
@@ -109,10 +115,20 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
                     heroTag: 'imageSearch',
                     onPressed: () {
                       _toggleExpanded();
-                      Get.toNamed(AppRoutes.search);
+                      Get.toNamed(
+                        AppRoutes.search,
+                        arguments: {
+                          ApiKeys.searchParam: SearchOffersType.image,
+                        },
+                      );
                     },
-                    icon: const Icon(Icons.image_search,size: 24,),
-                    label: SizedBox(),
+                    icon: const Icon(Icons.image_search, size: 24),
+                    label: Text(
+                      lblSearchByImage.tr,
+                      style: Get.textTheme.bodyMedium!.apply(
+                        color: AppColors.white,
+                      ),
+                    ),
                     backgroundColor: Colors.transparent,
                     foregroundColor: AppColors.white,
                     elevation: 0,
@@ -126,8 +142,9 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
           AnimatedPositioned(
             duration: const Duration(milliseconds: 250),
             curve: Curves.easeInOut,
-            bottom: isExpanded ? 80 : 20,
-            right: isExpanded ? 0 : 15,
+            bottom: isExpanded ? 90 : 20,
+            right: isRTL ? 0 : 0,
+            left: isRTL ? 0 : 0,
             child: AnimatedOpacity(
               opacity: isExpanded ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 250),
@@ -135,6 +152,7 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
                 elevation: 4,
                 borderRadius: BorderRadius.circular(28),
                 child: Container(
+                  height: 48,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
@@ -155,12 +173,23 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
                   ),
                   child: FloatingActionButton.extended(
                     heroTag: 'textSearch',
+
                     onPressed: () {
                       _toggleExpanded();
-                      Get.toNamed(AppRoutes.search);
+                      Get.toNamed(
+                        AppRoutes.search,
+                        arguments: {
+                          ApiKeys.searchParam: SearchOffersType.vector,
+                        },
+                      );
                     },
-                    icon: const Icon(Iconsax.text,size: 24,),
-                    label: SizedBox(),
+                    icon: const Icon(Iconsax.text, size: 24),
+                    label: Text(
+                      lblSearchByVector.tr,
+                      style: Get.textTheme.bodyMedium!.apply(
+                        color: AppColors.white,
+                      ),
+                    ),
                     backgroundColor: Colors.transparent,
                     foregroundColor: AppColors.white,
                     elevation: 0,
@@ -180,10 +209,10 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.primary.withOpacity(0.4),
-                    blurRadius: isExpanded ? 12 : 8,
-                    spreadRadius: isExpanded ? 2 : 0,
-                    offset: const Offset(0, 4),
+                    // color: AppColors.background.withOpacity(0.4),
+                    // blurRadius: isExpanded ? 12 : 8,
+                    // spreadRadius: isExpanded ? 2 : 0,
+                    // offset: const Offset(0, 4),
                   ),
                 ],
               ),
@@ -205,7 +234,7 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
                   child: FloatingActionButton(
                     heroTag: 'mainFAB',
                     onPressed: _toggleExpanded,
-                    elevation: 0,
+                    elevation: 4,
                     backgroundColor: Colors.transparent,
                     foregroundColor: AppColors.white,
                     child: AnimatedRotation(

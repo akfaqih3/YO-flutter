@@ -9,3 +9,5 @@ Map<OfferListOrderBy, String> offerListOrderByToString = {
   OfferListOrderBy.priceAfter: 'price_after',
   OfferListOrderBy.discount: 'discount',
 };
+
+enum SearchOffersType { vector, image }

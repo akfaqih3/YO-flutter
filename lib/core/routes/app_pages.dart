@@ -31,7 +31,7 @@ import 'package:yemen_offers/features/onboarding/presentation/views/pages/splash
 import 'package:yemen_offers/features/profile/presentation/getX/profile_binding.dart';
 import 'package:yemen_offers/features/profile/presentation/pages/user_profile_page.dart';
 import 'package:yemen_offers/features/search/presentation/getX/search_binding.dart';
-import 'package:yemen_offers/features/search/presentation/views/search_page.dart';
+import 'package:yemen_offers/features/search/presentation/views/pages/search_page.dart';
 import 'package:yemen_offers/features/store/presentation/getX/store_binding.dart';
 import 'package:yemen_offers/features/store/presentation/pages/merchant_add_store_page.dart';
 import 'package:yemen_offers/features/store/presentation/pages/merchant_store_details_page.dart';

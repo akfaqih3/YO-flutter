@@ -117,6 +117,7 @@ class ApiKeys {
   static const String sizeParam = "size";
   static const String searchParam = "search";
   static const String searchVectorParam = "vector_search";
+  static const String searchImageParam = "image";
   static const String limitParam = "limit";
   static const String distanceKMParam = "distance_km";
   static const String radiusParam = "radius";

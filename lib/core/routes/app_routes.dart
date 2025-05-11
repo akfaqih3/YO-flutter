@@ -37,7 +37,7 @@ class AppRoutes {
   static const String storeListNearby = '/store_list_nearby';
 
   // search
-  static const String search = '/search';
+  static const String search = '/vector-search';
 
   // notification
   static const String notifications = '/notifications';

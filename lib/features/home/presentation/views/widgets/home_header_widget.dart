@@ -7,7 +7,7 @@ import 'package:yemen_offers/features/home/presentation/views/widgets/header/not
 
 class HomeHeaderWidget extends StatelessWidget {
   const HomeHeaderWidget({super.key, required this.controller});
-  final  controller;
+  final controller;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,11 @@ class HomeHeaderWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         // Expanded(child: AppSearchBarWidget()),
-        NotificationIconWidget(notificationCount: 3),
+        Obx(
+          () => NotificationIconWidget(
+            notificationCount: controller.notificationController.count.value,
+          ),
+        ),
         Obx(
           () => FavoriteIconWidget(
             favorites: controller.favoriteController.favorites.value,

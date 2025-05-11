@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:yemen_offers/core/constants/api_constants.dart';
+import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/notification/domain/entities/notification_entity.dart';
+import 'package:yemen_offers/features/notification/presentation/getX/controllers/notification_controller.dart';
 
 class NotificationItemWidget extends StatelessWidget {
   const NotificationItemWidget({super.key, required this.notification});
@@ -11,17 +15,17 @@ class NotificationItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      reverse: false,
+    return InkWell(
+      onTap:
+          () => Get.find<NotificationController>().openNotification(notification.id),
       child: Column(
-        textDirection: TextDirection.rtl,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 15, right: 15),
+            padding: const EdgeInsets.only(top: 15),
             child: Container(
-              width: 375,
-              height: 120,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              width: MediaQuery.of(context).size.width - 32,
+              height: 130,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
@@ -40,12 +44,7 @@ class NotificationItemWidget extends StatelessWidget {
                   width: 300,
                   height: 20,
                   decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30),
-                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
                     // color: Colors.blueAccent,
                   ),
                   child: Stack(
@@ -55,16 +54,15 @@ class NotificationItemWidget extends StatelessWidget {
                         right: 0,
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(50),
                             border: Border.all(color: Colors.grey, width: 1),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
+                                color: Get.theme.shadowColor,
                                 spreadRadius: 1,
                                 blurRadius: 4,
                               ),
                             ],
-                            color: Colors.white,
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(80),
@@ -85,8 +83,11 @@ class NotificationItemWidget extends StatelessWidget {
                           onPressed: () {},
                           icon: Icon(
                             size: 25,
-                            Icons.favorite_border,
-                            color: Colors.grey.shade600,
+                            Iconsax.notification,
+                            color:
+                                notification.isRead
+                                    ? AppColors.grey
+                                    : AppColors.primary,
                           ),
                         ),
                       ),
@@ -99,9 +100,9 @@ class NotificationItemWidget extends StatelessWidget {
                             notification.title ?? "",
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.grey.shade700,
-                              fontFamily: 'Khebrat Musamim',
+                              fontSize: 16,
+                              // color: AppColors.black,
+                              fontWeight: FontWeight.bold,
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -115,13 +116,7 @@ class NotificationItemWidget extends StatelessWidget {
                           width: 300,
                           child: Text(
                             notification.body ?? "",
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontFamily: 'Khebrat Musamim',
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: TextStyle(fontSize: 16),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
