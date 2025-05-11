@@ -34,6 +34,7 @@ class AppRoutes {
   static const String offerDetails = '/offer_details';
   static const String nearbyOffers = '/nearby_offers';
   static const String storeDetails = '/store_details';
+  static const String storeListNearby = '/store_list_nearby';
 
   // search
   static const String search = '/search';

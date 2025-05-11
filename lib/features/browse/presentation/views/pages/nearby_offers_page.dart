@@ -14,8 +14,11 @@ class NearbyOffersPage extends StatelessWidget {
           return controller.isOffersleading.value
               ? const Center(child: CircularProgressIndicator())
               : controller.offers.value.isEmpty
-                  ? const Center(child: Text('لا توجد عروض في المنطقة المحددة'))
-                  : MapLayout(offers: controller.offers.value, distanceKm: controller.distanceKM.value);
+              ? const Center(child: Text('لا توجد عروض في المنطقة المحددة'))
+              : MapLayout(
+                offers: controller.offers.value,
+                distanceKm: controller.distanceKM.value,
+              );
         }),
       ),
     );

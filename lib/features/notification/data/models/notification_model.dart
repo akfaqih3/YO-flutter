@@ -1,13 +1,16 @@
 import 'package:yemen_offers/features/browse/data/models/offer_model.dart';
 
 List<NotificationModel> NotificationModelsFromJson(dynamic json) =>
-    List<NotificationModel>.from(json.map((x) => NotificationModel.fromJson(x)));
+    List<NotificationModel>.from(
+      json.map((x) => NotificationModel.fromJson(x)),
+    );
 
 class NotificationModel {
   final int id;
   final String? title;
   final String? body;
-  final OfferModel offer;
+  // final OfferModel? offer;
+  final String? offer_image;
   final String type;
   final bool isRead;
   final DateTime createdAt;
@@ -16,7 +19,7 @@ class NotificationModel {
     required this.id,
     this.title,
     this.body,
-    required this.offer,
+    required this.offer_image,
     required this.type,
     required this.isRead,
     required this.createdAt,
@@ -27,7 +30,8 @@ class NotificationModel {
         id: json["id"],
         title: json["title"],
         body: json["body"],
-        offer: OfferModel.fromJson(json["offer"]),
+        // offer: OfferModel.fromJson(json["offer"]),
+        offer_image: json['offer_image'],
         type: json["type"],
         isRead: json["is_read"],
         createdAt: DateTime.parse(json["created_at"]),

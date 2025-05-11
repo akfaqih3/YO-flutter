@@ -14,8 +14,6 @@ import 'package:yemen_offers/features/auth/data/data_sources/login_local_data_so
 import 'package:yemen_offers/features/auth/data/models/login_model.dart';
 
 class AppHome extends StatefulWidget {
-  // const AppHome({super.key});
-
   const AppHome._internal();
   static final AppHome _singleton = AppHome._internal();
   factory AppHome() => _singleton;

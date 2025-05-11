@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yemen_offers/core/theme/colors.dart';
 
 class ActionButtonWidget extends StatelessWidget {
   const ActionButtonWidget({
@@ -16,11 +17,11 @@ class ActionButtonWidget extends StatelessWidget {
       height: 40,
       width: 40,
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.4),
+        color: AppColors.black.withAlpha(300),
         borderRadius: BorderRadius.circular(50),
       ),
       child: IconButton(
-        icon: Icon(icon, color: Colors.white, size: 20),
+        icon: Icon(icon, color: AppColors.white, size: 20),
         onPressed: onPressed,
         padding: EdgeInsets.zero,
       ),

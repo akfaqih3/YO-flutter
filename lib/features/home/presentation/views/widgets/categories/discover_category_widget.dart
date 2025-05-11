@@ -41,7 +41,7 @@ class DiscoverCategoryWidget extends StatelessWidget {
           Icon(Icons.map_sharp, color: AppColors.black),
           InkWell(
             onTap: () {
-              Get.toNamed(AppRoutes.nearbyOffers);
+              Get.toNamed(AppRoutes.storeListNearby);
             },
             child: Container(
               margin: EdgeInsets.only(top: 8),
