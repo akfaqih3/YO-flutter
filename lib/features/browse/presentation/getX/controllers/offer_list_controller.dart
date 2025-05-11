@@ -3,21 +3,15 @@ import 'package:get/get.dart';
 import 'package:yemen_offers/core/common/controllers/offers_filters_controller.dart';
 import 'package:yemen_offers/core/constants/app_enums.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
-import 'package:yemen_offers/features/browse/data/repos/browse_repo_impl.dart';
 import 'package:yemen_offers/features/browse/data/repos/offer_list_repo_impl.dart';
-import 'package:yemen_offers/features/browse/data/sources/browse_remote_data_source.dart';
 import 'package:yemen_offers/features/browse/data/sources/offer_list_remote_data_source.dart';
 import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_category_entity.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/browse/domain/entities/store_entity.dart';
-import 'package:yemen_offers/features/browse/domain/use_cases/get_categories_use_case.dart';
-import 'package:yemen_offers/features/browse/domain/use_cases/get_offer_categories_use_case.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_offers_latest_use_case.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_offers_most_popular_use_case.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_offers_nearby_use_case.dart';
-import 'package:yemen_offers/features/browse/domain/use_cases/get_stores_use_case.dart';
-import 'package:yemen_offers/features/home/presentation/getX/controller/home_controller.dart';
 
 class OfferListController extends GetxController {
   final ApiService _apiService = Get.find<ApiService>();
@@ -39,7 +33,7 @@ class OfferListController extends GetxController {
   RxBool offersIsLoading = true.obs;
 
   // query params
-  final Rx<OfferListOrderBy> sortBy = OfferListOrderBy.priceBefore.obs;
+  final Rx<OfferListOrderBy> sortBy = OfferListOrderBy.discount.obs;
   bool isAscending = true;
   RxString searchQuery = "".obs;
   int index = 0;
@@ -97,16 +91,16 @@ class OfferListController extends GetxController {
       offerCategory: offersFiltersController.selectedOfferCategories.value,
       category: offersFiltersController.selectedCategories.value,
       storeSlug: offersFiltersController.selectedStores.value,
-      // price: offersFiltersController.priceRange.value,
+      price: offersFiltersController.priceRange.value,
       // priceBefore: priceBefore.value,
       // startDate: startDate.value,
       // endDate: endDate.value,
-      // discount: offersFiltersController.discountMin.value,
-      // ordering: sortBy.value,
-      // latitude: latitudeParam.value,
-      // longitude: longitudeParam.value,
-      // index: index,
-      // size: size,
+      discount: offersFiltersController.discountMin.value,
+      ordering: offerListOrderByToString[sortBy.value],
+      latitude: latitudeParam.value,
+      longitude: longitudeParam.value,
+      index: index,
+      size: size,
     );
   }
 

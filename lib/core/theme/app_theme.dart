@@ -6,7 +6,7 @@ class AppTheme {
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: AppColors.background,
     cardColor: AppColors.lightSurface,
-    shadowColor: AppColors.black,
+    shadowColor: AppColors.black.withAlpha(300),
 
     appBarTheme: AppBarTheme(
       color: AppColors.background,
@@ -39,7 +39,6 @@ class AppTheme {
     //   minTileHeight: 64,
     //   style: ListTileStyle.drawer
     // ),
-
     buttonTheme: const ButtonThemeData(
       buttonColor: AppColors.primary,
       textTheme: ButtonTextTheme.primary,
@@ -84,7 +83,7 @@ class AppTheme {
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: AppColors.darkBackground,
     cardColor: AppColors.darkSurface,
-    shadowColor: AppColors.black,
+    shadowColor: AppColors.grey.withAlpha(300),
 
     appBarTheme: AppBarTheme(
       color: AppColors.darkBackground,
@@ -116,7 +115,6 @@ class AppTheme {
     //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     //   minTileHeight: 64,
     // ),
-
     buttonTheme: const ButtonThemeData(
       buttonColor: AppColors.primary,
       textTheme: ButtonTextTheme.primary,
