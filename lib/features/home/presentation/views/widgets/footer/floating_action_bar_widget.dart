@@ -54,11 +54,12 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
 
   @override
   Widget build(BuildContext context) {
+    final isRTL = Get.locale?.languageCode == 'ar';
     return SizedBox(
       width: 100,
       height: 200,
       child: Stack(
-        alignment: Alignment.bottomRight,
+        alignment: Alignment.bottomCenter,
         children: [
           // Background blur effect when expanded
           AnimatedOpacity(
@@ -82,7 +83,8 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
             duration: const Duration(milliseconds: 250),
             curve: Curves.easeInOut,
             bottom: isExpanded ? 145 : 20,
-            right: isExpanded ? 0 : 15,
+            right: isRTL ? 0 : 0,
+            left: isRTL ? 0 : 0,
             child: AnimatedOpacity(
               opacity: isExpanded ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 250),
@@ -141,7 +143,8 @@ class _FloatingActionBarWidgetState extends State<FloatingActionBarWidget>
             duration: const Duration(milliseconds: 250),
             curve: Curves.easeInOut,
             bottom: isExpanded ? 90 : 20,
-            right: isExpanded ? 0 : 15,
+            right: isRTL ? 0 : 0,
+            left: isRTL ? 0 : 0,
             child: AnimatedOpacity(
               opacity: isExpanded ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 250),

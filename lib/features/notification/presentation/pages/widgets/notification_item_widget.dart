@@ -6,6 +6,7 @@ import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/notification/domain/entities/notification_entity.dart';
+import 'package:yemen_offers/features/notification/presentation/getX/controllers/notification_controller.dart';
 
 class NotificationItemWidget extends StatelessWidget {
   const NotificationItemWidget({super.key, required this.notification});
@@ -16,7 +17,7 @@ class NotificationItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap:
-          () => Get.toNamed(AppRoutes.offerDetails, arguments: {ApiKeys.offerSlug: notification.offer_slug}),
+          () => Get.find<NotificationController>().openNotification(notification.id),
       child: Column(
         children: [
           Padding(
