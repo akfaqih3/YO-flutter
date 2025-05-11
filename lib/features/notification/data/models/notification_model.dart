@@ -9,7 +9,7 @@ class NotificationModel {
   final int id;
   final String? title;
   final String? body;
-  // final OfferModel? offer;
+  final String? offer_slug;
   final String? offer_image;
   final String type;
   final bool isRead;
@@ -19,7 +19,8 @@ class NotificationModel {
     required this.id,
     this.title,
     this.body,
-    required this.offer_image,
+    this.offer_slug,
+    this.offer_image,
     required this.type,
     required this.isRead,
     required this.createdAt,
@@ -30,7 +31,7 @@ class NotificationModel {
         id: json["id"],
         title: json["title"],
         body: json["body"],
-        // offer: OfferModel.fromJson(json["offer"]),
+        offer_slug: json["offer_slug"],
         offer_image: json['offer_image'],
         type: json["type"],
         isRead: json["is_read"],

@@ -84,6 +84,7 @@ const String lblError = 'error';
 const String txtNoDescription = 'no_description';
 const String lblMerchantData = 'merchant_data';
 const String lblStoreData = 'store_data';
+const String lblNotifications = 'notifications';
 
 const String hntWebsite = 'hint_website';
 const String hntAddress = 'hint_address';

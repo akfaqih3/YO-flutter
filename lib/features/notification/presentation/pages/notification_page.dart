@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/features/notification/presentation/getX/controllers/notification_controller.dart';
 import 'package:yemen_offers/features/notification/presentation/pages/widgets/notification_item_widget.dart';
 
@@ -9,7 +10,7 @@ class NotificationPage extends GetView<NotificationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("الإشعارات")),
+      appBar: AppBar(title: Text(lblNotifications.tr)),
       body: SafeArea(
         child: Obx(() {
           return Column(

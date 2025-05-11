@@ -92,6 +92,7 @@ Map<String, String> en = {
   txtNoDescription: 'No Description',
   lblMerchantData: 'Merchant Data',
   lblStoreData: 'Store Data',
+  lblNotifications: 'Notifications',
 
   // hnt
   hntWebsite: 'Website',

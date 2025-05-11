@@ -90,6 +90,7 @@ Map<String, String> ar = {
   txtNoDescription: 'لا يوجد وصف',
   lblMerchantData: 'بيانات التاجر',
   lblStoreData: 'بيانات المتاجر',
+  lblNotifications: 'الإشعارات',
 
   // hnt
   hntWebsite: 'الموقع الإلكتروني',

@@ -13,7 +13,7 @@ class NotificationEntity {
   final int id;
   final String? title;
   final String? body;
-  // final OfferEntity offer;
+  final String? offer_slug;
   final String? offer_image;
   final String type;
   final bool isRead;
@@ -23,6 +23,7 @@ class NotificationEntity {
     required this.id,
     this.title,
     this.body,
+    this.offer_slug,
     required this.offer_image,
     required this.type,
     required this.isRead,
@@ -34,6 +35,7 @@ class NotificationEntity {
         id: notificationModel.id,
         title: notificationModel.title,
         body: notificationModel.body,
+        offer_slug: notificationModel.offer_slug,
         offer_image: notificationModel.offer_image,
         type: notificationModel.type,
         isRead: notificationModel.isRead,

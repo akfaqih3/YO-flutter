@@ -18,6 +18,7 @@ class OfferDetailsController extends GetxController {
   RxString offerSlug = RxString("");
   Rx<OfferEntity?> offer = Rx<OfferEntity?>(null);
   final RxBool isDescriptionExpanded = false.obs;
+  final RxBool isOfferleading = false.obs;
 
   @override
   void onInit() async {
@@ -28,6 +29,7 @@ class OfferDetailsController extends GetxController {
   }
 
   Future<void> getOfferDetails() async {
+    isOfferleading(true);
     final GetOfferDetailsUseCase getOfferDetailsUseCase =
         GetOfferDetailsUseCase(_browseRepoImpl);
 
@@ -40,6 +42,7 @@ class OfferDetailsController extends GetxController {
         offer(offerEntity);
       },
     );
+    isOfferleading(false);
   }
 
   void toggleDescriptionExpanded() {
