@@ -72,6 +72,8 @@ class MerchantAddStoreController extends GetxController {
       if (storeToUpdate.value!.image != null) {
         imageFile.value = File.fromUri(Uri.parse(storeToUpdate.value!.image!));
       }
+    } else {
+      selectedCategory.value = categories.first.slug;
     }
   }
 
@@ -203,9 +205,7 @@ class MerchantAddStoreController extends GetxController {
       if (source != null) {
         final pickedFile = await ImagePicker().pickImage(source: source);
         if (pickedFile != null) {
-          imageFile.value = File(
-            pickedFile.path,
-          );
+          imageFile.value = File(pickedFile.path);
         }
       }
     });

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/form_items/email_text_field.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/form_items/password_text_field.dart';
 import 'package:yemen_offers/core/constants/app_assets.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/custom_text_field.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/dropdown_text_field.dart';
@@ -40,11 +42,10 @@ class RegisterPage extends GetView<RegisterController> {
                   validator: validateName,
                 ),
                 SizedBox(height: 8),
-                CustomTextField(
+                EmailTextField(
+                  controller: controller.emailController,
                   placeholder: hntEmail.tr,
                   prefixIcon: Icons.email,
-                  controller: controller.emailController,
-                  validator: validateEmail,
                 ),
                 SizedBox(height: 8),
                 DropdownTextField(
@@ -55,20 +56,16 @@ class RegisterPage extends GetView<RegisterController> {
                 ),
 
                 SizedBox(height: 8),
-                CustomTextField(
-                  obscureText: true,
+                PasswordTextField(
+                  controller: controller.passwordController,
                   placeholder: hntPassword.tr,
                   prefixIcon: Icons.lock,
-                  controller: controller.passwordController,
-                  validator: validatePassword,
                 ),
                 SizedBox(height: 8),
-                CustomTextField(
-                  obscureText: true,
+                PasswordTextField(
+                  controller: controller.confirmPasswordController,
                   placeholder: hntConfirmPassword.tr,
                   prefixIcon: Icons.lock,
-                  controller: controller.confirmPasswordController,
-                  validator: validatePassword,
                 ),
 
                 Obx(() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/form_items/password_text_field.dart';
 import 'package:yemen_offers/core/constants/app_assets.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/custom_text_field.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
@@ -20,20 +21,16 @@ class ConfirmResetPasswordPage extends GetView<ConfirmResetPasswordController> {
               child: Column(
                 children: [
                   const SizedBox(height: 64),
-                  CustomTextField(
+                  PasswordTextField(
                     placeholder: hntPassword.tr,
                     controller: controller.password,
                     prefixIcon: Icons.lock,
-                    obscureText: true,
-                    validator: validatePassword,
                   ),
                   const SizedBox(height: 8),
-                  CustomTextField(
+                  PasswordTextField(
                     placeholder: hntConfirmPassword.tr,
                     controller: controller.confirmPassword,
                     prefixIcon: Icons.lock,
-                    obscureText: true,
-                    validator: validatePassword,
                   ),
                   const SizedBox(height: 8),
 

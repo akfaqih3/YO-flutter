@@ -17,7 +17,7 @@ abstract class RegisterRemoteDataSource {
   Future<LoginModel> confirmOtpEmail(String email, String otp);
   Future<void> resendOtpEmail(String email);
 
-  Future<dynamic> joinAsMerchant(dio.FormData data);
+  Future<void> joinAsMerchant(dio.FormData data);
 }
 
 class RegisterRemoteDataSourceImpl implements RegisterRemoteDataSource {
@@ -68,11 +68,7 @@ class RegisterRemoteDataSourceImpl implements RegisterRemoteDataSource {
   }
 
   @override
-  Future<dynamic> joinAsMerchant(dio.FormData data) async {
-    final response = await _apiService.post(
-      Endpoint.joinAsMerchant,
-      data: data,
-    );
-    return response.data;
+  Future<void> joinAsMerchant(dio.FormData data) async {
+    await _apiService.post(Endpoint.joinAsMerchant, data: data);
   }
 }

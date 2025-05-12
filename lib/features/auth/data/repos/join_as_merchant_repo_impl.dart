@@ -19,7 +19,7 @@ class JoinAsMerchantRepoImpl implements JoinAsMerchantRepo {
   JoinAsMerchantRepoImpl({required this.registerRemoteDataSource});
 
   @override
-  Future<Either<Failure, MerchantModel>> JoinAsMerchant({
+  Future<Either<Failure, void>> JoinAsMerchant({
     required String phone,
     required String address,
     required String storeName,
@@ -53,10 +53,8 @@ class JoinAsMerchantRepoImpl implements JoinAsMerchantRepo {
         snapchat: snapchat,
       );
 
-      final dynamic response = await registerRemoteDataSource.joinAsMerchant(
-        data,
-      );
-      return right(MerchantModel.fromJson(response));
+      await registerRemoteDataSource.joinAsMerchant(data);
+      return right(null);
     } catch (e) {
       return left(Exceptions.handleCatch(e));
     }

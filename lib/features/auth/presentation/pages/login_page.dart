@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/form_items/email_text_field.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/form_items/password_text_field.dart';
 import 'package:yemen_offers/core/constants/app_assets.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
@@ -36,19 +38,17 @@ class LoginPage extends GetView<LoginController> {
                     key: controller.formKey,
                     child: Column(
                       children: [
-                        CustomTextField(
+                        EmailTextField(
+                          controller: controller.emailController,
                           placeholder: hntEmail.tr,
                           prefixIcon: Icons.email,
-                          controller: controller.emailController,
-                          validator: validateEmail,
                         ),
                         const SizedBox(height: 8),
-                        CustomTextField(
+
+                        PasswordTextField(
                           placeholder: hntPassword.tr,
                           prefixIcon: Icons.lock,
-                          obscureText: true,
                           controller: controller.passwordController,
-                          validator: validatePassword,
                         ),
                       ],
                     ),

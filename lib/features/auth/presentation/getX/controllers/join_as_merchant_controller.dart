@@ -7,6 +7,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
+import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/auth/data/data_sources/register_remote_data_source.dart';
@@ -16,6 +17,7 @@ import 'package:yemen_offers/features/auth/domain/use_cases/join_as_merchant_use
 import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/browse/presentation/getX/controllers/categories_controller.dart';
 import 'package:yemen_offers/features/home/presentation/getX/controller/home_controller.dart';
+import 'package:yemen_offers/features/profile/presentation/getX/controllers/user_profile_controller.dart';
 
 class JoinAsMerchantController extends GetxController {
   final ApiService _apiService = Get.find<ApiService>();
@@ -102,8 +104,8 @@ class JoinAsMerchantController extends GetxController {
           Get.snackbar("error", failure.message);
         },
         (merchant) {
-          print(merchant);
-          Get.snackbar("success", "joined as merchant");
+          Get.find<UserProfileController>().getProfile();
+          Get.toNamed(AppRoutes.merchantStores);
         },
       );
     }

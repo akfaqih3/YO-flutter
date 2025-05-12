@@ -21,7 +21,7 @@ class StoreListHorizontalWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 110,
+      height: 120,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(

@@ -17,6 +17,7 @@ import 'package:yemen_offers/features/offer/domain/use_cases/get_offer_category_
 import 'package:yemen_offers/features/offer/domain/use_cases/merchant_add_offer_use_case.dart';
 import 'package:yemen_offers/features/offer/domain/use_cases/merchant_update_offer_use_case.dart';
 import 'package:yemen_offers/features/store/domain/entities/merchant_store_etity.dart';
+import 'package:yemen_offers/features/store/presentation/getX/controllers/merchant_store_details_controller.dart';
 
 class MerchantAddUpdateOfferController extends GetxController {
   final OfferRepoImpl _offerRepoImpl = OfferRepoImpl(
@@ -42,6 +43,11 @@ class MerchantAddUpdateOfferController extends GetxController {
 
   RxBool isLoading = false.obs;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  void updateStartDate(String value) {
+    startDateController.text = value;
+    update(); // يعيد بناء GetBuilder
+  }
 
   @override
   void onInit() async {
@@ -106,6 +112,7 @@ class MerchantAddUpdateOfferController extends GetxController {
         },
       );
     }
+    Get.find<MerchantStoreDetailsController>().getOffers();
     isLoading(false);
   }
 
@@ -115,30 +122,30 @@ class MerchantAddUpdateOfferController extends GetxController {
       Get.snackbar("خطاء", "لم تقم بإختيار عرض أو متجر");
       return;
     }
-    if (formKey.currentState!.validate()){
+    if (formKey.currentState!.validate()) {
       final MerchantUpdateOfferUseCase merchantUpdateOfferUseCase =
-        MerchantUpdateOfferUseCase(_offerRepoImpl);
-    final result = await merchantUpdateOfferUseCase.execute(
-      store.value!.slug!,
-      offer.value!.slug!,
-      title: titleController.value.text,
-      description: descriptionController.value.text,
-      category: selectedOfferCategory.value,
-      image: imageFile.value,
-      priceBefore: double.tryParse(priceBeforeController.value.text),
-      priceAfter: double.tryParse(priceAfterController.value.text),
-      startDate: startDateController.value.text,
-      endDate: endDateController.value.text,
-    );
+          MerchantUpdateOfferUseCase(_offerRepoImpl);
+      final result = await merchantUpdateOfferUseCase.execute(
+        store.value!.slug!,
+        offer.value!.slug!,
+        title: titleController.value.text,
+        description: descriptionController.value.text,
+        category: selectedOfferCategory.value,
+        image: imageFile.value,
+        priceBefore: double.tryParse(priceBeforeController.value.text),
+        priceAfter: double.tryParse(priceAfterController.value.text),
+        startDate: startDateController.value.text,
+        endDate: endDateController.value.text,
+      );
 
-    result.fold(
-      (left) {
-        Get.snackbar("خطاء", left.message.toString());
-      },
-      (right) {
-        Get.back();
-      },
-    );
+      result.fold(
+        (left) {
+          Get.snackbar("خطاء", left.message.toString());
+        },
+        (right) {
+          Get.back();
+        },
+      );
     }
     isLoading(false);
   }

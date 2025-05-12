@@ -36,7 +36,6 @@ class JoinAsMerchantPage extends GetView<JoinAsMerchantController> {
                   controller: controller.addressController,
                   placeholder: hntAddress.tr,
                   prefixIcon: Icons.location_on_outlined,
-                  validator: validateAddress,
                 ),
                 Text(lblStoreData.tr),
 
@@ -62,7 +61,6 @@ class JoinAsMerchantPage extends GetView<JoinAsMerchantController> {
                   controller: controller.storeAddressController,
                   placeholder: hntAddress.tr,
                   prefixIcon: Icons.location_on_outlined,
-                  validator: validateAddress,
                 ),
 
                 Row(
