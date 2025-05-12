@@ -24,7 +24,7 @@ class StoreListItemWidget extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       elevation: 4,
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,

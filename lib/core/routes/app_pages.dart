@@ -17,6 +17,7 @@ import 'package:yemen_offers/features/browse/presentation/views/pages/offer_deta
 import 'package:yemen_offers/features/browse/presentation/views/pages/offer_list_page.dart';
 import 'package:yemen_offers/features/browse/presentation/views/pages/store_details_page.dart';
 import 'package:yemen_offers/features/browse/presentation/views/pages/store_list_nearby_page.dart';
+import 'package:yemen_offers/features/browse/presentation/views/pages/store_list_page.dart';
 import 'package:yemen_offers/features/home/presentation/getX/home_binding.dart';
 import 'package:yemen_offers/features/home/presentation/views/pages/home_page.dart';
 import 'package:yemen_offers/features/home/presentation/views/pages/main_page.dart';
@@ -156,6 +157,7 @@ class AppPages {
       page: () => StoreListNearbyPage(),
       binding: BrowseBinding(),
     ),
+    GetPage(name: AppRoutes.storeList, page: () => StoreListPage()),
 
     // search
     GetPage(
