@@ -9,6 +9,7 @@ import 'package:yemen_offers/core/common/presentation/widgets/custom_text_field.
 import 'package:yemen_offers/core/common/presentation/widgets/image_picker_field_widget.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/utils/map_util.dart';
+import 'package:yemen_offers/core/utils/validators.dart';
 import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/store/presentation/getX/controllers/merchant_add_store_controller.dart';
 
@@ -42,37 +43,54 @@ class AddStoreFormWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: SingleChildScrollView(
         child: Form(
+          key: controller.formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BuildCategoryDropdown(
-                controller: controller,
-                categories: categories,
-              ),
               CustomTextField(
                 controller: controller.nameController,
                 placeholder: hntStoreName.tr,
+                validator: validateName,
               ),
               CustomTextField(
                 controller: controller.phoneController,
                 placeholder: hntStorePhone.tr,
+                validator: validatephoneNumber,
               ),
-              CustomAddressTextField(
-                addressTextEditingController: controller.addressController,
-                latitude: controller.latitude,
-                longitude: controller.longitude,
+              Row(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: BuildCategoryDropdown(
+                      controller: controller,
+                      categories: categories,
+                    ),
+                  ),
+                  ImagePickerFieldWidget(
+                    onTap: () {
+                      controller.pickImage();
+                    },
+                    imagePath: controller.imageFile,
+                    labelText: hntStoreLogo.tr,
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    imageHeight: 80,
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: CustomAddressTextField(
+                  addressTextEditingController: controller.addressController,
+                  latitude: controller.latitude,
+                  longitude: controller.longitude,
+                ),
               ),
               CustomTextField(
                 controller: controller.websiteController,
                 placeholder: hntWebsite.tr,
+                validator: validateUrl,
               ),
-              ImagePickerFieldWidget(
-                onTap: () {
-                  controller.pickImage();
-                },
-                imagePath: controller.imageFile,
-                labelText: hntStoreLogo.tr,
-              ),
+
               CustomTextField(
                 controller: controller.descriptionController,
                 placeholder: hntStoreDescription.tr,
@@ -89,7 +107,7 @@ class AddStoreFormWidget extends StatelessWidget {
                 controller: controller.snapchatController,
                 placeholder: lblSnapchat.tr,
               ),
-              _buildSubmitButton(),
+              // _buildSubmitButton(),
               // _buildTextField(controller.nameController, "الاسم"),
               // _buildTextField(controller.phoneController, "الرقم الالكتروني"),
               // _buildAddressField(),

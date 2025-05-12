@@ -18,7 +18,8 @@ class ImagePickerFieldWidget extends StatelessWidget {
     this.imageHeight = 100,
     this.outerBorderColor = Colors.grey, // لون الإطار الخارجي
     this.outerBorderWidth = 0.8, // سمك الإطار الخارجي
-    this.outerBorderRadius = 12.0, // نصف قطر زوايا الإطار الخارجي
+    this.outerBorderRadius = 12.0,
+    this.width = double.infinity,
   });
 
   final VoidCallback onTap;
@@ -34,12 +35,14 @@ class ImagePickerFieldWidget extends StatelessWidget {
   final Color outerBorderColor;
   final double outerBorderWidth;
   final double outerBorderRadius;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Container(
+        width: width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(outerBorderRadius)),
           border: Border.all(
@@ -48,7 +51,7 @@ class ImagePickerFieldWidget extends StatelessWidget {
             color: outerBorderColor,
           ),
         ),
-        padding: const EdgeInsets.all(8), // إضافة تباعد داخلي للحاوية الخارجية
+        padding: const EdgeInsets.all(4), // إضافة تباعد داخلي للحاوية الخارجية
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -56,7 +59,6 @@ class ImagePickerFieldWidget extends StatelessWidget {
               labelText.tr,
               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 8),
             InkWell(
               onTap: onTap,
               borderRadius: BorderRadius.circular(borderRadius),
@@ -78,7 +80,7 @@ class ImagePickerFieldWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(borderRadius),
                             child: Image.file(
                               imagePath.value!,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                               width: double.infinity,
                               height: double.infinity,
                             ),

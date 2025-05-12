@@ -37,6 +37,7 @@ class RegisterController extends GetxController {
 
   final isRegisterLoading = false.obs;
   final isGoogleRegisterLoading = false.obs;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
@@ -45,34 +46,37 @@ class RegisterController extends GetxController {
   }
 
   Future<void> register() async {
-    if (nameController.text.isEmpty ||
-        emailController.text.isEmpty ||
-        genderController.text.isEmpty ||
-        passwordController.text.isEmpty ||
-        confirmPasswordController.text.isEmpty) {
-      Get.snackbar("Error", "يرجى ملء الحقول المطلوبة");
-      return;
+    // if (nameController.text.isEmpty ||
+    //     emailController.text.isEmpty ||
+    //     genderController.text.isEmpty ||
+    //     passwordController.text.isEmpty ||
+    //     confirmPasswordController.text.isEmpty) {
+    //   Get.snackbar("Error", "يرجى ملء الحقول المطلوبة");
+    //   return;
+    // }
+    if (formKey.currentState!.validate()) {
+      isRegisterLoading(true);
+      final registerUseCase = RegisterUseCase(registerRepoImpl);
+      final result = await registerUseCase.excute(
+        nameController.text,
+        emailController.text,
+        genderController.text,
+        passwordController.text,
+        confirmPasswordController.text,
+      );
+      result.fold(
+        (left) {
+          Get.snackbar("Error", left.message);
+        },
+        (right) {
+          CacheHelper.saveData(
+            CacheKeys.emailNotConfirmed,
+            emailController.text,
+          );
+          Get.toNamed(AppRoutes.confirmAccount);
+        },
+      );
     }
-    isRegisterLoading(true);
-    final registerUseCase = RegisterUseCase(registerRepoImpl);
-    final result = await registerUseCase.excute(
-      nameController.text,
-      emailController.text,
-      genderController.text,
-      passwordController.text,
-      confirmPasswordController.text,
-    );
-    result.fold(
-      (left) {
-        Get.snackbar("Error", left.message);
-      },
-      (right) {
-        CacheHelper.saveData(CacheKeys.emailNotConfirmed, emailController.text);
-        Get.toNamed(
-          AppRoutes.confirmAccount,
-        );
-      },
-    );
     isRegisterLoading(false);
   }
 

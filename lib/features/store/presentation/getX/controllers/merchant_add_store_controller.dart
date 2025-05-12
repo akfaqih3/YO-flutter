@@ -44,6 +44,8 @@ class MerchantAddStoreController extends GetxController {
   final instagramController = TextEditingController();
   final snapchatController = TextEditingController();
 
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   void onInit() async {
     super.onInit();
@@ -84,81 +86,85 @@ class MerchantAddStoreController extends GetxController {
   }
 
   void addStore() async {
-    isLoading(true);
-    final AddStoreUseCase addStoreUseCase = AddStoreUseCase(_storeRepoImpl);
-    final Map<String, String> socialMedia = {};
-    if (facebookController.value.text.isNotEmpty) {
-      socialMedia["facebook"] = facebookController.value.text;
-    }
-    if (instagramController.value.text.isNotEmpty) {
-      socialMedia["instagram"] = instagramController.value.text;
-    }
-    if (snapchatController.value.text.isNotEmpty) {
-      socialMedia["snapchat"] = snapchatController.value.text;
-    }
+    if (formKey.currentState!.validate()) {
+      isLoading(true);
+      final AddStoreUseCase addStoreUseCase = AddStoreUseCase(_storeRepoImpl);
+      final Map<String, String> socialMedia = {};
+      if (facebookController.value.text.isNotEmpty) {
+        socialMedia["facebook"] = facebookController.value.text;
+      }
+      if (instagramController.value.text.isNotEmpty) {
+        socialMedia["instagram"] = instagramController.value.text;
+      }
+      if (snapchatController.value.text.isNotEmpty) {
+        socialMedia["snapchat"] = snapchatController.value.text;
+      }
 
-    final result = await addStoreUseCase.execute(
-      name: nameController.value.text,
-      description: descriptionController.value.text,
-      category: selectedCategory.value,
-      image: imageFile.value,
-      phone: phoneController.value.text,
-      website: websiteController.value.text,
-      address: addressController.value.text,
-      longitude: 0.0,
-      latitude: 0.0,
-      socialMedia: socialMedia,
-    );
+      final result = await addStoreUseCase.execute(
+        name: nameController.value.text,
+        description: descriptionController.value.text,
+        category: selectedCategory.value,
+        image: imageFile.value,
+        phone: phoneController.value.text,
+        website: websiteController.value.text,
+        address: addressController.value.text,
+        longitude: 0.0,
+        latitude: 0.0,
+        socialMedia: socialMedia,
+      );
 
-    result.fold(
-      (left) {
-        Get.snackbar("خطاء", left.message.toString());
-      },
-      (right) {
-        Get.back();
-      },
-    );
+      result.fold(
+        (left) {
+          Get.snackbar("خطاء", left.message.toString());
+        },
+        (right) {
+          Get.back();
+        },
+      );
+    }
     isLoading(false);
   }
 
   void updateStore() async {
     isLoading(true);
-    final UpdateStoreUseCase updateStoreUseCase = UpdateStoreUseCase(
-      _storeRepoImpl,
-    );
-    final Map<String, String> socialMedia = {};
-    if (facebookController.value.text.isNotEmpty) {
-      socialMedia["facebook"] = facebookController.value.text;
-    }
-    if (instagramController.value.text.isNotEmpty) {
-      socialMedia["instagram"] = instagramController.value.text;
-    }
+    if (formKey.currentState!.validate()) {
+      final UpdateStoreUseCase updateStoreUseCase = UpdateStoreUseCase(
+        _storeRepoImpl,
+      );
+      final Map<String, String> socialMedia = {};
+      if (facebookController.value.text.isNotEmpty) {
+        socialMedia["facebook"] = facebookController.value.text;
+      }
+      if (instagramController.value.text.isNotEmpty) {
+        socialMedia["instagram"] = instagramController.value.text;
+      }
 
-    if (snapchatController.value.text.isNotEmpty) {
-      socialMedia["snapchat"] = snapchatController.value.text;
-    }
-    final result = await updateStoreUseCase.execute(
-      slug: storeToUpdate.value!.slug!,
-      name: nameController.value.text,
-      description: descriptionController.value.text,
-      category: selectedCategory.value,
-      image: imageFile.value,
-      phone: phoneController.value.text,
-      website: websiteController.value.text,
-      address: addressController.value.text,
-      longitude: 0.0,
-      latitude: 0.0,
-      socialMedia: socialMedia,
-    );
+      if (snapchatController.value.text.isNotEmpty) {
+        socialMedia["snapchat"] = snapchatController.value.text;
+      }
+      final result = await updateStoreUseCase.execute(
+        slug: storeToUpdate.value!.slug!,
+        name: nameController.value.text,
+        description: descriptionController.value.text,
+        category: selectedCategory.value,
+        image: imageFile.value,
+        phone: phoneController.value.text,
+        website: websiteController.value.text,
+        address: addressController.value.text,
+        longitude: 0.0,
+        latitude: 0.0,
+        socialMedia: socialMedia,
+      );
 
-    result.fold(
-      (left) {
-        Get.snackbar("خطاء", left.message.toString());
-      },
-      (right) {
-        Get.back();
-      },
-    );
+      result.fold(
+        (left) {
+          Get.snackbar("خطاء", left.message.toString());
+        },
+        (right) {
+          Get.back();
+        },
+      );
+    }
     isLoading(false);
   }
 
@@ -199,7 +205,7 @@ class MerchantAddStoreController extends GetxController {
         if (pickedFile != null) {
           imageFile.value = File(
             pickedFile.path,
-          ); // تحديث Rx<File?> باستخدام .value
+          );
         }
       }
     });

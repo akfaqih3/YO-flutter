@@ -39,6 +39,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
@@ -119,7 +120,10 @@ class MerchantStoreDetailsPage extends GetView<MerchantStoreDetailsController> {
 
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Get.toNamed(AppRoutes.merchantAddUpdateOffer);
+          Get.toNamed(
+            AppRoutes.merchantAddUpdateOffer,
+            arguments: {ApiKeys.store: controller.store.value!},
+          );
         },
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.white,

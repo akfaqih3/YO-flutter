@@ -164,4 +164,38 @@ Map<String, String> ar = {
   btnUpdate: 'تحديث',
   btnYes: 'نعم',
   btnNo: 'لا',
+
+  // validated messages
+  msgEmailRequired: 'البريد الإلكتروني مطلوب',
+  msgPasswordRequired: 'كلمة المرور مطلوبة',
+  msgConfirmPasswordRequired: 'تأكيد كلمة المرور مطلوبة',
+  msgNameRequired: 'الاسم مطلوب',
+  msgPhoneRequired: 'الهاتف مطلوب',
+  msgEmailInvalid: 'البريد الإلكتروني غير صحيح',
+  msgPasswordInvalid: 'كلمة المرور غير صحيحة',
+  msgConfirmPasswordInvalid: 'تأكيد كلمة المرور غير صحيحة',
+  msgNameInvalid: 'الاسم غير صحيح',
+  msgPhoneInvalid: 'الهاتف غير صحيح',
+  msgPasswordsDoNotMatch: 'كلمتا المرور غير متطابقتين',
+  msgEmailAlreadyExists: 'البريد الإلكتروني مسجل بالفعل',
+  msgInvalidOtp: 'رمز غير صحيح',
+  msgThisFieldIsRequired: 'هذا الحقل مطلوب',
+  msgUrlInvalid: 'الرابط غير صحيح',
+  msgUrlShouldContain: 'الرابط يجب أن يحتوي على ',
+  msgUrlShouldContainFacebook: 'الرابط يجب أن يحتوي على facebook.com',
+  msgUrlShouldContainInstagram: 'الرابط يجب أن يحتوي على instagram.com',
+  msgUrlShouldContainSnapchat: 'الرابط يجب أن يحتوي على snapchat.com',
+
+  // offer hints
+  hntOfferTitle: 'عنوان العرض',
+  hntOfferDescription: 'وصف العرض',
+  hntOfferCategory: 'الفئة العرض',
+  hntOfferImage: 'صورة العرض',
+  hntOfferPriceBefore: 'السعر قبل الخصم',
+  hntOfferPriceAfter: 'السعر بعد الخصم',
+  hntOfferStartDate: 'تاريخ البدء',
+  hntOfferEndDate: 'تاريخ الانتهاء',
+
+  btnAddOffer: 'إضافة العرض',
+  btnUpdateOffer: 'تحديث العرض',
 };
