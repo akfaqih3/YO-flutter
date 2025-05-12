@@ -95,6 +95,8 @@ Map<String, String> en = {
   lblNotifications: 'Notifications',
   lblSearchByImage: ' by Image',
   lblSearchByVector: ' by text',
+  lblAddStore: 'Add Store',
+  lblTapToUpload: 'Tap to upload',
 
   // hnt
   hntWebsite: 'Website',
@@ -103,6 +105,9 @@ Map<String, String> en = {
   hntStoreDescription: 'Store Description',
   hntStoreCategory: 'Store Category',
   hntStorePhone: 'Store Phone',
+  hntStoreLogo: 'Store Logo',
+  hntTakePhoto: 'Take Photo',
+  hntChoosePhoto: 'Choose Photo',
 
   hntOtp: 'Otp',
   hntGender: 'Gender',
@@ -129,6 +134,7 @@ Map<String, String> en = {
   btnViewDetails: 'View Details',
   btnCall: 'Call',
   btnFilter: 'Filter',
+  btnNewOffer: 'Add Offer',
 
   // Filter Button
   lblFilters: 'Filters',
@@ -160,4 +166,41 @@ Map<String, String> en = {
   btnUpdate: 'Update',
   btnYes: 'Yes',
   btnNo: 'No',
+
+  // validated messages
+  msgEmailRequired: 'Email is required',
+  msgPasswordRequired: 'Password is required',
+  msgConfirmPasswordRequired: 'Confirm password is required',
+  msgNameRequired: 'Name is required',
+  msgPhoneRequired: 'Phone is required',
+  msgEmailInvalid: 'Email is invalid',
+  msgPasswordInvalid: 'Password is invalid',
+  msgConfirmPasswordInvalid: 'Confirm password is invalid',
+  msgNameInvalid: 'Name is invalid',
+  msgPhoneInvalid: 'Phone is invalid',
+  msgPasswordsDoNotMatch: 'Passwords do not match',
+  msgEmailAlreadyExists: 'Email already exists',
+  msgInvalidOtp: 'Invalid OTP',
+  msgThisFieldIsRequired: 'This field is required',
+  msgUrlInvalid: 'Url is invalid',
+  msgUrlShouldContain: 'Url should contain ',
+  msgUrlShouldContainFacebook: 'Url should contain facebook.com',
+  msgUrlShouldContainInstagram: 'Url should contain instagram.com',
+  msgUrlShouldContainSnapchat: 'Url should contain snapchat.com',
+
+  // offer hints 
+  hntOfferTitle: 'Offer Title',
+  hntOfferDescription: 'Offer Description',
+  hntOfferCategory: 'Offer Category',
+  hntOfferImage: 'Offer Image',
+  hntOfferPriceBefore: 'Offer Price Before',
+  hntOfferPriceAfter: 'Offer Price After',
+  hntOfferStartDate: 'Offer Start Date',
+  hntOfferEndDate: 'Offer End Date',
+
+  btnAddOffer: 'Add Offer',
+  btnUpdateOffer: 'Update Offer',
+  
+
+
 };

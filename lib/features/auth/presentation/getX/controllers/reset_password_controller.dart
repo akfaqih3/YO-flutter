@@ -15,6 +15,8 @@ class ResetPasswordController extends GetxController {
   var email = ''.obs;
   var isLoading = false.obs;
 
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   void onInit() {
     super.onInit();
@@ -22,24 +24,22 @@ class ResetPasswordController extends GetxController {
   }
 
   void resetPassword() async {
-    if (emailController.text.isEmpty) {
-      Get.snackbar("Error", "يرجى إدخال البريد الإلكتروني");
-      return;
+    if (formKey.currentState!.validate()) {
+      isLoading(true);
+      Either result = await _resetPasswordUseCase.excute(emailController.text);
+      result.fold(
+        (left) {
+          Get.snackbar("Error", left.message);
+        },
+        (right) {
+          Get.snackbar(
+            "Success",
+            "تم إرسال رابط إعادة تعيين كلمة المرور الى البريد ${email.value}",
+          );
+          Get.offAllNamed(AppRoutes.login);
+        },
+      );
     }
-    isLoading(true);
-    Either result = await _resetPasswordUseCase.excute(emailController.text);
-    result.fold(
-      (left) {
-        Get.snackbar("Error", left.message);
-      },
-      (right) {
-        Get.snackbar(
-          "Success",
-          "تم إرسال رابط إعادة تعيين كلمة المرور الى البريد ${email.value}",
-        );
-        Get.offAllNamed(AppRoutes.login);
-      },
-    );
     isLoading(false);
   }
 }

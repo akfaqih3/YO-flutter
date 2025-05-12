@@ -47,6 +47,8 @@ const String lblInstagram = 'instagram';
 const String lblSnapchat = 'snapchat';
 const String lblSearchByImage = 'search_by_image';
 const String lblSearchByVector = 'search_by_vector';
+const String lblAddStore = 'add_store';
+const String lblTapToUpload = 'tap_to_upload';
 
 const String lblWelcome = 'Welcome';
 const String lblHome = 'home';
@@ -106,6 +108,9 @@ const String hntRole = 'hint_role';
 const String hntPhone = 'hint_phone';
 const String hntSelectSubject = 'hint_select_subject';
 const String hntPleaseSelectASubject = 'hint_please_select_a_subject';
+const String hntStoreLogo = 'hint_store_logo';
+const String hntTakePhoto = 'hint_take_photo';
+const String hntChoosePhoto = 'hint_choose_photo';
 
 const String btnNext = 'btn_next';
 const String btnSkip = 'btn_skip';
@@ -119,6 +124,7 @@ const String btnDiscover = 'btn_discover';
 const String btnViewDetails = 'btn_view_details';
 const String btnCall = 'btn_call';
 const String btnFilter = 'btn_filter';
+const String btnNewOffer = 'btn_new_offer';
 
 // Filter Button
 const String lblFilters = 'filters';
@@ -151,3 +157,38 @@ const String btnUpdate = 'btn_update';
 const String btnYes = 'btn_yes';
 const String btnNo = 'btn_no';
 const String btnFavorite = 'btn_favorite';
+
+// validated messages
+const String msgEmailRequired = 'Email is required';
+const String msgPasswordRequired = 'Password is required';
+const String msgConfirmPasswordRequired = 'Confirm password is required';
+const String msgNameRequired = 'Name is required';
+const String msgPhoneRequired = 'Phone is required';
+const String msgEmailInvalid = 'Email is invalid';
+const String msgPasswordInvalid = 'Password is invalid';
+const String msgConfirmPasswordInvalid = 'Confirm password is invalid';
+const String msgNameInvalid = 'Name is invalid';
+const String msgPhoneInvalid = 'Phone is invalid';
+const String msgPasswordsDoNotMatch = 'Passwords do not match';
+const String msgEmailAlreadyExists = 'Email already exists';
+const String msgInvalidOtp = 'Invalid OTP';
+const String msgThisFieldIsRequired = 'This field is required';
+const String msgUrlInvalid = 'Url is invalid';
+const String msgUrlShouldContain = 'Url should contain';
+const String msgUrlShouldContainFacebook = 'Url should contain facebook.com';
+const String msgUrlShouldContainInstagram = 'Url should contain instagram.com';
+const String msgUrlShouldContainSnapchat = 'Url should contain snapchat.com';
+// const String msgPrice
+
+// offer hints
+const String hntOfferTitle = 'hint_offer_title';
+const String hntOfferDescription = 'hint_offer_description';
+const String hntOfferCategory = 'hint_offer_category';
+const String hntOfferImage = 'hint_offer_image';
+const String hntOfferPriceBefore = 'hint_offer_price_before';
+const String hntOfferPriceAfter = 'hint_offer_price_after';
+const String hntOfferStartDate = 'hint_offer_start_date';
+const String hntOfferEndDate = 'hint_offer_end_date';
+
+const String btnAddOffer = 'btn_add_offer';
+const String btnUpdateOffer = 'btn_update_offer';

@@ -10,7 +10,7 @@ import 'package:yemen_offers/features/browse/domain/entities/store_entity.dart';
 class StoreMarkerPopupWidget extends StatelessWidget {
   const StoreMarkerPopupWidget({super.key, required this.store});
 
-  final StoreEntity? store;
+  final StoreEntity store;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,9 @@ class StoreMarkerPopupWidget extends StatelessWidget {
                 top: Radius.circular(12),
               ),
               child:
-                  store?.image != null
+                  store.image != null
                       ? Image.network(
-                        store?.image ?? '',
+                        store.image! ,
                         height: 100,
                         width: 100,
                         fit: BoxFit.cover,
@@ -44,14 +44,14 @@ class StoreMarkerPopupWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  store?.name ?? '',
+                  store.name ,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
                 ),
                 Text(
-                  "${lblcategory.tr}:${Get.locale?.languageCode == 'ar' ? store?.category.nameAr : store?.category.name}",
+                  "${lblcategory.tr}:${Get.locale?.languageCode == 'ar' ? store.category.nameAr : store.category.name}",
                   style: const TextStyle(fontSize: 14),
                 ),
                 Text(

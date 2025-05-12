@@ -16,7 +16,8 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController? controller;
   final TextInputType keyboardType;
   final bool obscureText;
-  final Color? iconColor; // هنا أضفنا لون الأيقونة
+  final Color? iconColor;
+  final String? Function(String?)? validator;
 
   const CustomTextField({
     Key? key,
@@ -30,7 +31,8 @@ class CustomTextField extends StatefulWidget {
     this.controller,
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
-    this.iconColor, // أضفنا هنا
+    this.iconColor,
+    this.validator, // أضفنا هنا
   }) : super(key: key);
 
   @override
@@ -121,8 +123,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ),
             ),
           ),
-          validator:
-              (value) => (value?.isEmpty ?? true) ? 'هذا الحقل مطلوب' : null,
+          validator: widget.validator,
         ),
       ),
     );

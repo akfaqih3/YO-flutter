@@ -1,10 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:yemen_offers/core/constants/api_constants.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
+import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/auth/data/data_sources/register_remote_data_source.dart';
 import 'package:yemen_offers/features/auth/data/repos/join_as_merchant_repo_impl.dart';
 import 'package:yemen_offers/features/auth/data/repos/register_repo_impl.dart';
@@ -34,13 +38,16 @@ class JoinAsMerchantController extends GetxController {
   final TextEditingController instagramLinkController = TextEditingController();
   final TextEditingController snapchatLinkController = TextEditingController();
 
+  final Rx<File?> imageFile = Rx<File?>(null);
+
   final selectedCategory = "".obs;
 
-  final Rx<File?> storeImage = Rx<File?>(null);
+  // final Rx<File?> storeImage = Rx<File?>(null);
 
-  bool _isLoading = false;
+  RxBool _isLoading = false.obs;
 
   final ImagePicker _imagePicker = ImagePicker();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void onInit() async {
@@ -67,44 +74,80 @@ class JoinAsMerchantController extends GetxController {
       return;
     }
 
-    final JoinAsMerchantUseCase joinAsMerchantUseCase = JoinAsMerchantUseCase(
-      _joinAsMerchantRepo,
-    );
+    if (formKey.currentState!.validate()) {
+      _isLoading(true);
+      final JoinAsMerchantUseCase joinAsMerchantUseCase = JoinAsMerchantUseCase(
+        _joinAsMerchantRepo,
+      );
 
-    final result = await joinAsMerchantUseCase.execute(
-      phone: phoneController.text,
-      address: addressController.text,
-      storeName: storeNameController.text,
-      storeDescription: storeDescriptionController.text,
-      storeCategory: selectedCategory.value,
-      storeImage: storeImage.value,
-      storePhone: storePhoneController.text,
-      storeWebsite: storeWebsiteController.text,
-      storeAddress: storeAddressController.text,
-      storeLongitude: 0,
-      storeLatitude: 0,
-      facebookLink: facebookLinkController.text.trim(),
-      instagramLink: instagramLinkController.text.trim(),
-      snapchatLink: snapchatLinkController.text.trim(),
-    );
+      final result = await joinAsMerchantUseCase.execute(
+        phone: phoneController.text,
+        address: addressController.text,
+        storeName: storeNameController.text,
+        storeDescription: storeDescriptionController.text,
+        storeCategory: selectedCategory.value,
+        storeImage: imageFile.value,
+        storePhone: storePhoneController.text,
+        storeWebsite: storeWebsiteController.text,
+        storeAddress: storeAddressController.text,
+        storeLongitude: 0,
+        storeLatitude: 0,
+        facebookLink: facebookLinkController.text.trim(),
+        instagramLink: instagramLinkController.text.trim(),
+        snapchatLink: snapchatLinkController.text.trim(),
+      );
 
-    result.fold(
-      (failure) {
-        Get.snackbar("error", failure.message);
-      },
-      (merchant) {
-        print(merchant);
-        Get.snackbar("success", "joined as merchant");
-      },
-    );
+      result.fold(
+        (failure) {
+          Get.snackbar("error", failure.message);
+        },
+        (merchant) {
+          print(merchant);
+          Get.snackbar("success", "joined as merchant");
+        },
+      );
+    }
+    _isLoading(false);
   }
 
-  void pickImage() async {
-    final pickedFile = await _imagePicker.pickImage(
-      source: ImageSource.gallery,
-    );
-    if (pickedFile != null) {
-      storeImage.value = File(pickedFile.path);
-    }
+  Future<void> pickImage() async {
+    await showModalBottomSheet<ImageSource>(
+      context: Get.context!, // استخدم Get.context إذا كنت تستخدم GetX
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                leading: const Icon(
+                  Iconsax.camera,
+                  color: AppColors.primary,
+                  size: 32,
+                ),
+                title: Text(hntTakePhoto.tr),
+                onTap: () => Navigator.pop(context, ImageSource.camera),
+              ),
+              ListTile(
+                leading: const Icon(
+                  Iconsax.image,
+                  color: AppColors.primary,
+                  size: 32,
+                ),
+                title: Text(hntChoosePhoto.tr),
+                onTap: () => Navigator.pop(context, ImageSource.gallery),
+              ),
+            ],
+          ),
+        );
+      },
+    ).then((ImageSource? source) async {
+      if (source != null) {
+        final pickedFile = await ImagePicker().pickImage(source: source);
+        if (pickedFile != null) {
+          imageFile.value = File(pickedFile.path);
+        }
+      }
+    });
   }
 }

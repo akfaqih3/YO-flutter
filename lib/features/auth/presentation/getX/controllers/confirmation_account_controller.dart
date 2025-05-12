@@ -16,6 +16,7 @@ class ConfirmAccountController extends GetxController {
   var email = ''.obs;
   final isloading = false.obs;
   final isResendOtpEmailLoading = false.obs;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
@@ -35,35 +36,37 @@ class ConfirmAccountController extends GetxController {
   }
 
   Future<void> confirmAccount() async {
+    if (formKey.currentState!.validate()) {
+      isloading(true);
 
-    if ( otpController.text.isEmpty) {
-      Get.snackbar("Error", "يرجى إدخال رمز التحقق الخاص بك");
-      return;
+      final ConfirmOtpEmailUseCase confirmOtpEmailUseCase =
+          ConfirmOtpEmailUseCase(registerRepoImpl);
+      final result = await confirmOtpEmailUseCase.excute(
+        email.value,
+        otpController.text,
+      );
+      result.fold(
+        (left) {
+          Get.snackbar("Error", left.message);
+        },
+        (right) {
+          Get.snackbar("Success", "تم تأكيد حساب بنجاح");
+          CacheHelper.removeData(CacheKeys.emailNotConfirmed);
+          Get.offAllNamed(AppRoutes.main);
+        },
+      );
     }
-    isloading(true);
-   
-    final ConfirmOtpEmailUseCase confirmOtpEmailUseCase = ConfirmOtpEmailUseCase(registerRepoImpl);
-    final result = await confirmOtpEmailUseCase.excute(email.value, otpController.text);
-    result.fold(
-      (left) {
-        Get.snackbar("Error", left.message);
-      },
-      (right) {
-        Get.snackbar("Success", "تم تأكيد حساب بنجاح");
-        CacheHelper.removeData(CacheKeys.emailNotConfirmed);
-        Get.offAllNamed(AppRoutes.main);
-      },
-    );
     isloading(false);
   }
 
   Future<void> resendOtpEmail() async {
-
     if (email.value.isEmpty) {
       return;
     }
     isResendOtpEmailLoading(true);
-    final ResendOtpEmailUseCase resendOtpEmailUseCase = ResendOtpEmailUseCase(registerRepoImpl);
+    final ResendOtpEmailUseCase resendOtpEmailUseCase = ResendOtpEmailUseCase(
+      registerRepoImpl,
+    );
     final result = await resendOtpEmailUseCase.excute(email.value);
     result.fold(
       (left) {

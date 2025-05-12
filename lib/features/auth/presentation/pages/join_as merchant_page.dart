@@ -6,9 +6,11 @@ import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/build_category_dropdown.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/custom_image_picker_field.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/custom_text_field.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
+import 'package:yemen_offers/core/theme/colors.dart';
+import 'package:yemen_offers/core/utils/validators.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/controllers/join_as_merchant_controller.dart';
-import 'package:yemen_offers/features/auth/presentation/pages/register_merchant_page.dart';
 
 class JoinAsMerchantPage extends GetView<JoinAsMerchantController> {
   @override
@@ -16,9 +18,10 @@ class JoinAsMerchantPage extends GetView<JoinAsMerchantController> {
     return Scaffold(
       appBar: AppBar(title: Text(lblJoinAsMerchant.tr)),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: SingleChildScrollView(
           child: Form(
+            key: controller.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -27,41 +30,61 @@ class JoinAsMerchantPage extends GetView<JoinAsMerchantController> {
                   controller: controller.phoneController,
                   placeholder: hntPhone.tr,
                   prefixIcon: Iconsax.call,
+                  validator: validatephoneNumber,
                 ),
                 CustomTextField(
                   controller: controller.addressController,
                   placeholder: hntAddress.tr,
                   prefixIcon: Icons.location_on_outlined,
+                  validator: validateAddress,
                 ),
-                SizedBox(height: 8),
                 Text(lblStoreData.tr),
-                Obx(
-                  () => BuildCategoryDropdown(
-                    controller: controller,
-                    categories: controller.categories.value,
-                  ),
-                ),
+
                 CustomTextField(
                   controller: controller.storeNameController,
                   placeholder: hntStoreName.tr,
                   prefixIcon: Icons.store,
+                  validator: validateName,
                 ),
                 CustomTextField(
                   controller: controller.storePhoneController,
                   placeholder: hntPhone.tr,
                   prefixIcon: Iconsax.call,
+                  validator: validatephoneNumber,
                 ),
                 CustomTextField(
                   controller: controller.storeWebsiteController,
                   placeholder: hntWebsite.tr,
                   prefixIcon: Icons.link,
+                  validator: validateUrl,
                 ),
                 CustomTextField(
                   controller: controller.storeAddressController,
                   placeholder: hntAddress.tr,
                   prefixIcon: Icons.location_on_outlined,
+                  validator: validateAddress,
                 ),
-                CustomImagePickerField(controller: controller),
+
+                Row(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      child: Obx(
+                        () => BuildCategoryDropdown(
+                          controller: controller,
+                          categories: controller.categories.value,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      child: CustomImagePickerField(
+                        controller: controller,
+                        height: 80,
+                      ),
+                    ),
+                  ],
+                ),
                 CustomTextField(
                   controller: controller.storeDescriptionController,
                   placeholder: hntStoreDescription.tr,
@@ -72,42 +95,58 @@ class JoinAsMerchantPage extends GetView<JoinAsMerchantController> {
                   controller: controller.facebookLinkController,
                   placeholder: lblFacebook.tr,
                   prefixIcon: Icons.facebook_outlined,
+                  validator: validateFacebookLink,
                 ),
                 CustomTextField(
                   controller: controller.instagramLinkController,
                   placeholder: lblInstagram.tr,
                   prefixIcon: Iconsax.instagram,
+                  validator: validateInstagramLink,
                 ),
                 CustomTextField(
                   controller: controller.snapchatLinkController,
                   placeholder: lblSnapchat.tr,
                   prefixIcon: Icons.snapchat_rounded,
+                  validator: validateSnapchatLink,
                 ),
 
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      controller.joinAsMerchant();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepOrange,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: Text(
-                      btnSend.tr,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ),
-                ),
+                // SizedBox(
+                //   width: double.infinity,
+                //   height: 50,
+                //   child: ElevatedButton(
+                //     onPressed: () {
+                //       controller.joinAsMerchant();
+                //     },
+                //     style: ElevatedButton.styleFrom(
+                //       backgroundColor: Colors.deepOrange,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(30),
+                //       ),
+                //     ),
+                //     child: Text(
+                //       btnSend.tr,
+                //       style: TextStyle(color: Colors.white, fontSize: 16),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
         ),
       ),
+
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          controller.joinAsMerchant();
+        },
+        label: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.4,
+          child: Text(btnSend.tr, textAlign: TextAlign.center),
+        ),
+        backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.white,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

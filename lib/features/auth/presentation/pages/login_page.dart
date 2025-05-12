@@ -5,6 +5,7 @@ import 'package:yemen_offers/core/routes/app_routes.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/custom_text_field.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
+import 'package:yemen_offers/core/utils/validators.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/controllers/login_controller.dart';
 
 class LoginPage extends GetView<LoginController> {
@@ -18,33 +19,39 @@ class LoginPage extends GetView<LoginController> {
           child: Container(
             height: MediaQuery.of(context).size.height,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 48),
- 
+
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    AppAssets.appLogo,
-                    width: 120,
-                  ),
+                  Image.asset(AppAssets.appLogo, width: 120),
                   const SizedBox(height: 24),
-              
+
                   Text(
                     lblLoginWelcome.tr,
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 24),
-                  CustomTextField(
-                    placeholder: hntEmail.tr,
-                    prefixIcon: Icons.email,
-                    controller: controller.emailController,
-                  ),
-                  const SizedBox(height: 8),
-                  CustomTextField(
-                    placeholder: hntPassword.tr,
-                    prefixIcon: Icons.lock,
-                    obscureText: true,
-                    controller: controller.passwordController,
+                  Form(
+                    key: controller.formKey,
+                    child: Column(
+                      children: [
+                        CustomTextField(
+                          placeholder: hntEmail.tr,
+                          prefixIcon: Icons.email,
+                          controller: controller.emailController,
+                          validator: validateEmail,
+                        ),
+                        const SizedBox(height: 8),
+                        CustomTextField(
+                          placeholder: hntPassword.tr,
+                          prefixIcon: Icons.lock,
+                          obscureText: true,
+                          controller: controller.passwordController,
+                          validator: validatePassword,
+                        ),
+                      ],
+                    ),
                   ),
                   Align(
                     alignment: Alignment.centerRight,
@@ -73,25 +80,24 @@ class LoginPage extends GetView<LoginController> {
                           );
                     }),
                   ),
-                  
+
                   const SizedBox(height: 16),
                   Obx(() {
                     return controller.isGoogleLoginLoading.value
                         ? const CircularProgressIndicator.adaptive()
                         // button google login wiht icon
                         : SizedBox(
-                            // width: MediaQuery.of(context).size.width * 0.5,
-                            child: OutlinedButton.icon(
-                              onPressed: () => controller.googleLogin(),
-                              icon: const Icon(Icons.g_mobiledata_rounded),
-                              label: Text(btnGoogleLogin.tr),
-                            )
-                          );
-                        
+                          // width: MediaQuery.of(context).size.width * 0.5,
+                          child: OutlinedButton.icon(
+                            onPressed: () => controller.googleLogin(),
+                            icon: const Icon(Icons.g_mobiledata_rounded),
+                            label: Text(btnGoogleLogin.tr),
+                          ),
+                        );
                   }),
                   const SizedBox(height: 32),
+
                   // line separator
-                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

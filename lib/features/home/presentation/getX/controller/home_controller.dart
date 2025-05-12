@@ -49,9 +49,9 @@ class HomeController extends GetxController {
     await getCategories();
     await getMostPopularOffers();
     await getLatestOffers();
-    if (!networkService.isConnected.value) {
-      Get.offAllNamed(AppRoutes.noInternet);
-    }
+    // if (!networkService.isConnected.value) {
+    //   Get.offAllNamed(AppRoutes.noInternet);
+    // }
   }
 
   Future<void> getRecommendations() async {

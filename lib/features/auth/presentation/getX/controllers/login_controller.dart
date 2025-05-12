@@ -23,6 +23,8 @@ class LoginController extends GetxController {
   final isLoginLoading = false.obs;
   final isGoogleLoginLoading = false.obs;
 
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   void onInit() {
     super.onInit();
@@ -30,25 +32,33 @@ class LoginController extends GetxController {
   }
 
   Future<void> login() async {
-    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
-      Get.snackbar("Error", "البريد الإلكتروني وكلمة المرور لا يمكن ان تكون فارغة");
-      return;
+    // if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+    //   Get.snackbar(
+    //     "Error",
+    //     "البريد الإلكتروني وكلمة المرور لا يمكن ان تكون فارغة",
+    //   );
+    //   return;
+    // }
+    if (formKey.currentState!.validate()) {
+      isLoginLoading(true);
+      Either result = await _loginUseCase.excute(
+        emailController.text,
+        passwordController.text,
+      );
+      result.fold(
+        (left) {
+          Get.snackbar("Error", left.message);
+        },
+        (right) {
+          Get.snackbar("Success", "تم تسجيل الدخول بنجاح");
+          Get.offAllNamed(AppRoutes.splash);
+        },
+      );
     }
-    isLoginLoading(true);
-    Either result = await _loginUseCase.excute(emailController.text, passwordController.text);
-    result.fold(
-      (left) {
-        Get.snackbar("Error", left.message);
-      },
-      (right) {
-        Get.snackbar("Success", "تم تسجيل الدخول بنجاح");
-        Get.offAllNamed(AppRoutes.splash);
-      },
-    );
     isLoginLoading(false);
   }
 
-   Future<void> googleLogin() async {
+  Future<void> googleLogin() async {
     isGoogleLoginLoading(true);
     final GoogleLoginUseCase googleLoginUseCase = GoogleLoginUseCase(loginRepo);
     Either result = await googleLoginUseCase.excute();
@@ -78,13 +88,9 @@ class LoginController extends GetxController {
       loginLocalDataSource: LoginLocalDataSourceImpl(),
     );
     final result = await LogoutUseCase(loginRepoImpl).excute();
-    result.fold(
-      (left) {
-        Get.snackbar("Error", left.message);
-      },
-      (right) {
-      },
-    );
+    result.fold((left) {
+      Get.snackbar("Error", left.message);
+    }, (right) {});
     Get.offAllNamed(AppRoutes.login);
   }
 

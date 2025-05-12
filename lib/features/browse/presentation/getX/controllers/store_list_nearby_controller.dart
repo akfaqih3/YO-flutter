@@ -45,8 +45,8 @@ class StoreListNearbyController extends GetxController {
     checkLocation();
     intiUserMarker();
     await getStores();
-    zoomToIncludeAllStores();
     await getOffers();
+    // zoomToIncludeAllStores();
   }
 
   void _initRepoImpl() {

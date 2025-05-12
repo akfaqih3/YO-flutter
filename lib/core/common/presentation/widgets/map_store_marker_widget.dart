@@ -17,7 +17,8 @@ class MapStoreMarkerWidget extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 30,
-              backgroundImage: NetworkImage(store.image ?? ''),
+              backgroundImage:
+                  store.image != null ? NetworkImage(store.image!) : null,
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
@@ -40,7 +41,7 @@ class MapStoreMarkerWidget extends StatelessWidget {
         SizedBox(
           width: 60,
           child: Text(
-            store.name ?? '',
+            store.name,
             maxLines: 1,
             textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),

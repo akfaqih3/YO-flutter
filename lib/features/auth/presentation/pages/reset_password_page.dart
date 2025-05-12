@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:yemen_offers/core/constants/app_assets.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/custom_text_field.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
+import 'package:yemen_offers/core/utils/validators.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/controllers/reset_password_controller.dart';
 
 class ResetPasswordPage extends GetView<ResetPasswordController> {
@@ -18,26 +19,27 @@ class ResetPasswordPage extends GetView<ResetPasswordController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Image.asset(
-                AppAssets.appLogo,
-                width: 120,
-              ),
+              Image.asset(AppAssets.appLogo, width: 120),
               const SizedBox(height: 64),
-              Column(
-                children: [
-                  CustomTextField(
-                    placeholder: hntEmail.tr,
-                    prefixIcon: Icons.email,
-                    controller: controller.emailController,
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      controller.resetPassword();
-                    },
-                    child: Text(btnForgotPassword.tr),
-                  ),
-                ],
+              Form(
+                key: controller.formKey,
+                child: Column(
+                  children: [
+                    CustomTextField(
+                      placeholder: hntEmail.tr,
+                      prefixIcon: Icons.email,
+                      controller: controller.emailController,
+                      validator: validateEmail,
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        controller.resetPassword();
+                      },
+                      child: Text(btnForgotPassword.tr),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
