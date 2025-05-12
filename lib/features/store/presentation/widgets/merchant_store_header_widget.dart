@@ -1,6 +1,10 @@
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:yemen_offers/core/constants/api_constants.dart';
+import 'package:yemen_offers/core/routes/app_routes.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
+import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/store/domain/entities/merchant_store_etity.dart';
 import 'package:yemen_offers/features/store/presentation/getX/controllers/merchant_stores_controller.dart';
 
@@ -23,7 +27,7 @@ class MerchantStoreHeaderWidget extends GetView<MerchantStoresController> {
           ),
         ],
       ),
-      child:  Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           // الصف العلوي: الصورة + الاسم + زر الاتصال
@@ -33,7 +37,6 @@ class MerchantStoreHeaderWidget extends GetView<MerchantStoresController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // الاسم مع الصورة الدائرية
-
 
                 // زر الاتصال
                 GestureDetector(
@@ -48,7 +51,7 @@ class MerchantStoreHeaderWidget extends GetView<MerchantStoresController> {
                       color: Colors.black,
                     ),
                     child: Row(
-                      children:  [
+                      children: [
                         Text(
                           "اتصال",
                           style: TextStyle(
@@ -66,13 +69,15 @@ class MerchantStoreHeaderWidget extends GetView<MerchantStoresController> {
                 ),
                 Row(
                   children: [
-
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'عماد السحامي',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                        Text(
+                          store.name,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
                         ),
                         const SizedBox(height: 8),
                         Container(
@@ -83,16 +88,27 @@ class MerchantStoreHeaderWidget extends GetView<MerchantStoresController> {
                           ),
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           child: Row(
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.arrow_forward_ios,
                                 color: Colors.white,
                                 size: 13,
                               ),
                               SizedBox(width: 4),
-                              Text(
-                                'تفاصيل أكثر',
-                                style: TextStyle(color: Colors.white, fontSize: 12),
+                              InkWell(
+                                onTap: () {
+                                  Get.toNamed(
+                                    AppRoutes.merchantAddStore,
+                                    arguments: {ApiKeys.store: store},
+                                  );
+                                },
+                                child: Text(
+                                  btnViewDetails.tr,
+                                  style: TextStyle(
+                                    color: AppColors.white,
+                                    fontSize: 12,
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -108,14 +124,13 @@ class MerchantStoreHeaderWidget extends GetView<MerchantStoresController> {
                         border: Border.all(color: Colors.grey[300]!),
                       ),
                       child: ClipOval(
-                        child: Image.asset(
-                          "Assets/promos/signUp_light.png",
-                          fit: BoxFit.cover,
-                        ),
+                        child:
+                            store.image != null
+                                ? Image.network(store.image!, fit: BoxFit.cover)
+                                : null,
                       ),
                     ),
                     const SizedBox(width: 10),
-
                   ],
                 ),
               ],
@@ -150,7 +165,7 @@ class MerchantStoreHeaderWidget extends GetView<MerchantStoresController> {
           //     ],
           //   ),
           // ),),
-/////////////////////////
+          /////////////////////////
         ],
       ),
     );

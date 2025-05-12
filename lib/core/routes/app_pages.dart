@@ -135,12 +135,12 @@ class AppPages {
       page: () => CategoriesPage(),
       binding: BrowseBinding(),
     ),
-    GetPage(
-      name: AppRoutes.nearbyOffers,
-      page: () => NearbyOffersPage(),
-      binding: BrowseBinding(),
-    ),
 
+    // GetPage(
+    //   name: AppRoutes.nearbyOffers,
+    //   page: () => NearbyOffersPage(),
+    //   binding: BrowseBinding(),
+    // ),
     GetPage(
       name: AppRoutes.offerDetails,
       page: () => OfferDetailsPage(),

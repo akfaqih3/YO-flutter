@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/controllers/join_as_merchant_controller.dart';
 
 class CustomImagePickerField extends StatelessWidget {
   const CustomImagePickerField({super.key, required this.controller});
 
-  final JoinAsMerchantController controller;
+  final controller;
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,7 @@ class CustomImagePickerField extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8)),
 
-          border: Border.all(
-            style: BorderStyle.solid,
-            width: 1.5,
-          ),
+          border: Border.all(style: BorderStyle.solid, width: 1.5),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +68,7 @@ class CustomImagePickerField extends StatelessWidget {
                                 ),
                                 SizedBox(height: 6),
                                 Text(
-                                  'Tap to upload',
+                                  lblTapToUpload.tr,
                                   style: TextStyle(color: Colors.grey[700]),
                                 ),
                               ],

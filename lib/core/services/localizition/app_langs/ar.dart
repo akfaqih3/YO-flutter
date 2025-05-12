@@ -93,6 +93,8 @@ Map<String, String> ar = {
   lblNotifications: 'الإشعارات',
   lblSearchByImage: 'بصورة',
   lblSearchByVector: ' نصي',
+  lblAddStore: 'إضافة متجر',
+  lblTapToUpload: 'انقر لتحميل',
 
   // hnt
   hntWebsite: 'الموقع الإلكتروني',
@@ -101,6 +103,9 @@ Map<String, String> ar = {
   hntStoreDescription: 'وصف المتجر',
   hntStoreCategory: 'الفئة المتجر',
   hntStorePhone: 'رقم الهاتف المتجر',
+  hntStoreLogo: 'شعار المتجر',
+  hntTakePhoto: 'التقط صورة',
+  hntChoosePhoto: 'اختر صورة',
 
   hntOtp: 'الرمز',
   hntGender: 'الجنس',
@@ -127,6 +132,7 @@ Map<String, String> ar = {
   btnViewDetails: 'عرض التفاصيل',
   btnCall: 'اتصل',
   btnFilter: 'تصفية',
+  btnNewOffer: ' عرض جديد',
 
   // Filter Button
   lblFilters: 'الفلاتر',

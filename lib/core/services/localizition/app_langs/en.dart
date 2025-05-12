@@ -95,6 +95,8 @@ Map<String, String> en = {
   lblNotifications: 'Notifications',
   lblSearchByImage: ' by Image',
   lblSearchByVector: ' by text',
+  lblAddStore: 'Add Store',
+  lblTapToUpload: 'Tap to upload',
 
   // hnt
   hntWebsite: 'Website',
@@ -103,6 +105,9 @@ Map<String, String> en = {
   hntStoreDescription: 'Store Description',
   hntStoreCategory: 'Store Category',
   hntStorePhone: 'Store Phone',
+  hntStoreLogo: 'Store Logo',
+  hntTakePhoto: 'Take Photo',
+  hntChoosePhoto: 'Choose Photo',
 
   hntOtp: 'Otp',
   hntGender: 'Gender',
@@ -129,6 +134,7 @@ Map<String, String> en = {
   btnViewDetails: 'View Details',
   btnCall: 'Call',
   btnFilter: 'Filter',
+  btnNewOffer: 'Add Offer',
 
   // Filter Button
   lblFilters: 'Filters',

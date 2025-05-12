@@ -36,7 +36,11 @@ class NotificationController extends GetxController {
       },
       (right) {
         notifications.value = right;
-        count.value = right.map((e) => e.isRead ? 0 : 1).reduce((a, b) => a + b);
+        if (right.isNotEmpty) {
+          count.value = right
+              .map((e) => e.isRead ? 0 : 1)
+              .reduce((a, b) => a + b);
+        }
       },
     );
   }

@@ -47,6 +47,8 @@ const String lblInstagram = 'instagram';
 const String lblSnapchat = 'snapchat';
 const String lblSearchByImage = 'search_by_image';
 const String lblSearchByVector = 'search_by_vector';
+const String lblAddStore = 'add_store';
+const String lblTapToUpload = 'tap_to_upload';
 
 const String lblWelcome = 'Welcome';
 const String lblHome = 'home';
@@ -106,6 +108,9 @@ const String hntRole = 'hint_role';
 const String hntPhone = 'hint_phone';
 const String hntSelectSubject = 'hint_select_subject';
 const String hntPleaseSelectASubject = 'hint_please_select_a_subject';
+const String hntStoreLogo = 'hint_store_logo';
+const String hntTakePhoto = 'hint_take_photo';
+const String hntChoosePhoto = 'hint_choose_photo';
 
 const String btnNext = 'btn_next';
 const String btnSkip = 'btn_skip';
@@ -119,6 +124,7 @@ const String btnDiscover = 'btn_discover';
 const String btnViewDetails = 'btn_view_details';
 const String btnCall = 'btn_call';
 const String btnFilter = 'btn_filter';
+const String btnNewOffer = 'btn_new_offer';
 
 // Filter Button
 const String lblFilters = 'filters';

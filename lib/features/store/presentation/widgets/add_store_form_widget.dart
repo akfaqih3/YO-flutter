@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/build_category_dropdown.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/custom_address_text_field.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/custom_image_picker_field.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/custom_text_field.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/image_picker_field_widget.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/utils/map_util.dart';
 import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
@@ -18,23 +22,21 @@ class AddStoreFormWidget extends StatelessWidget {
     final List<CategoryEntity> categories = controller.categories;
     storeToUpdate = controller.storeToUpdate;
 
-    if (storeToUpdate.value != null) {
-      controller.nameController.text = storeToUpdate.value!.name;
-      controller.descriptionController.text =
-          storeToUpdate.value!.description ?? "";
-      controller.selectedCategory(storeToUpdate.value!.category);
-      controller.phoneController.text = storeToUpdate.value!.phone;
-      controller.websiteController.text = storeToUpdate.value!.website ?? "";
-      controller.addressController.text = storeToUpdate.value!.address ?? "";
-      controller.facebookController.text =
-          storeToUpdate.value!.socialMedia?["facebook"] ?? "";
-      controller.instagramController.text =
-          storeToUpdate.value!.socialMedia?["instagram"] ?? "";
-      controller.twitterController.text =
-          storeToUpdate.value!.socialMedia?["twitter"] ?? "";
-      controller.youtubeController.text =
-          storeToUpdate.value!.socialMedia?["youtube"] ?? "";
-    }
+    // if (storeToUpdate.value != null) {
+    //   controller.nameController.text = storeToUpdate.value!.name;
+    //   controller.descriptionController.text =
+    //       storeToUpdate.value!.description ?? "";
+    //   controller.selectedCategory(storeToUpdate.value!.category);
+    //   controller.phoneController.text = storeToUpdate.value!.phone;
+    //   controller.websiteController.text = storeToUpdate.value!.website ?? "";
+    //   controller.addressController.text = storeToUpdate.value!.address ?? "";
+    //   controller.facebookController.text =
+    //       storeToUpdate.value!.socialMedia?["facebook"] ?? "";
+    //   controller.instagramController.text =
+    //       storeToUpdate.value!.socialMedia?["instagram"] ?? "";
+    //   controller.snapchatController.text =
+    //       storeToUpdate.value!.socialMedia?["snapchat"] ?? "";
+    // }
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -43,16 +45,61 @@ class AddStoreFormWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildTextField(controller.nameController, "الاسم"),
-              _buildTextField(controller.phoneController, "الرقم الالكتروني"),
-              _buildAddressField(),
-              _buildTextField(controller.websiteController, "الموقع"),
-              _buildTextField(controller.descriptionController, "الوصف"),
-              BuildCategoryDropdown(controller: controller, categories: categories),
-              _buildImagePicker(),
-              _buildSocialMediaFields(),
-              const SizedBox(height: 10),
+              BuildCategoryDropdown(
+                controller: controller,
+                categories: categories,
+              ),
+              CustomTextField(
+                controller: controller.nameController,
+                placeholder: hntStoreName.tr,
+              ),
+              CustomTextField(
+                controller: controller.phoneController,
+                placeholder: hntStorePhone.tr,
+              ),
+              CustomAddressTextField(
+                addressTextEditingController: controller.addressController,
+                latitude: controller.latitude,
+                longitude: controller.longitude,
+              ),
+              CustomTextField(
+                controller: controller.websiteController,
+                placeholder: hntWebsite.tr,
+              ),
+              ImagePickerFieldWidget(
+                onTap: () {
+                  controller.pickImage();
+                },
+                imagePath: controller.imageFile,
+                labelText: hntStoreLogo.tr,
+              ),
+              CustomTextField(
+                controller: controller.descriptionController,
+                placeholder: hntStoreDescription.tr,
+              ),
+              CustomTextField(
+                controller: controller.facebookController,
+                placeholder: lblFacebook.tr,
+              ),
+              CustomTextField(
+                controller: controller.instagramController,
+                placeholder: lblInstagram.tr,
+              ),
+              CustomTextField(
+                controller: controller.snapchatController,
+                placeholder: lblSnapchat.tr,
+              ),
               _buildSubmitButton(),
+              // _buildTextField(controller.nameController, "الاسم"),
+              // _buildTextField(controller.phoneController, "الرقم الالكتروني"),
+              // _buildAddressField(),
+              // _buildTextField(controller.websiteController, "الموقع"),
+              // _buildTextField(controller.descriptionController, "الوصف"),
+              // BuildCategoryDropdown(controller: controller, categories: categories),
+              // _buildImagePicker(),
+              // _buildSocialMediaFields(),
+              // const SizedBox(height: 10),
+              // _buildSubmitButton(),
             ],
           ),
         ),
@@ -68,31 +115,6 @@ class AddStoreFormWidget extends StatelessWidget {
         decoration: InputDecoration(
           labelText: label,
           border: OutlineInputBorder(),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAddressField() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: TextFormField(
-        controller: controller.addressController,
-        readOnly: true, // اجعل الحقل غير قابل للتحرير مباشرة
-        decoration: InputDecoration(
-          labelText: "العنوان",
-          border: OutlineInputBorder(),
-          suffixIcon: IconButton(
-            icon: Icon(Icons.map, color: Colors.blue),
-            onPressed:
-                () => {
-                  MapUtil.selectLocation(
-                    addressController: controller.addressController,
-                    latitude: controller.latitude,
-                    longitude: controller.longitude,
-                  ),
-                },
-          ),
         ),
       ),
     );
@@ -126,17 +148,6 @@ class AddStoreFormWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialMediaFields() {
-    return Column(
-      children: [
-        _buildTextField(controller.facebookController, "Facebook"),
-        _buildTextField(controller.instagramController, "Instagram"),
-        _buildTextField(controller.twitterController, "Twitter"),
-        _buildTextField(controller.youtubeController, "YouTube"),
-      ],
-    );
-  }
-
   Widget _buildSubmitButton() {
     return SizedBox(
       width: double.infinity,
@@ -146,9 +157,7 @@ class AddStoreFormWidget extends StatelessWidget {
                 storeToUpdate.value != null
                     ? controller.updateStore()
                     : controller.addStore(),
-        child: Text(
-          storeToUpdate.value != null ? "تعديل المتجر" : "إضافة متجر",
-        ),
+        child: Text(storeToUpdate.value != null ? btnUpdate.tr : btnDelete.tr),
       ),
     );
   }

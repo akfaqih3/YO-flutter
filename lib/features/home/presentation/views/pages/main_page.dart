@@ -31,9 +31,7 @@ class MainPage extends GetView<MainController> {
                     appName.tr,
                     style: TextStyle(color: AppColors.primary),
                   ),
-                  actions: [
-                    HomeHeaderWidget(controller: controller)
-                  ],
+                  actions: [HomeHeaderWidget(controller: controller)],
                 ),
 
                 body: Obx(() => controller.selected.value),
