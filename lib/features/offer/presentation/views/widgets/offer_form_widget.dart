@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/build_date_piker_field.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/build_offer_categories_dropdown.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/custom_text_field.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/form_items/descrbsion_text_field.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/image_picker_field_widget.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/utils/validators.dart';
@@ -37,9 +38,12 @@ class OfferFormWidget extends StatelessWidget {
               controller: controller.titleController,
               placeholder: hntOfferTitle.tr,
               prefixIcon: Icons.title,
+              iconColor: Colors.orange,
               validator: validateName,
             ),
-            CustomTextField(
+            DescrbsionTextField(
+              iconColor: Colors.blue,
+              maxLength: 500,
               controller: controller.descriptionController,
               placeholder: hntOfferDescription.tr,
               prefixIcon: Icons.description,
@@ -57,11 +61,13 @@ class OfferFormWidget extends StatelessWidget {
               controller: controller.priceBeforeController,
               placeholder: hntOfferPriceBefore.tr,
               prefixIcon: Icons.attach_money,
+              iconColor: Colors.green,
               validator: validatePriceBefore,
             ),
             CustomTextField(
               controller: controller.priceAfterController,
               placeholder: hntOfferPriceAfter.tr,
+              iconColor: Colors.green,
               prefixIcon: Icons.attach_money,
               validator: (value) {
                 return validatePriceAfter(
@@ -71,24 +77,31 @@ class OfferFormWidget extends StatelessWidget {
               },
             ),
             BuildDatePikerField(
+              iconColor: Colors.pink.shade100,
               controller: controller.startDateController,
               placeholder: hntOfferStartDate.tr,
               prefixIcon: Iconsax.calendar,
               validator: validateStartDate,
+              onDateSelected: (value) {
+                controller.updateStartDate(value);
+              },
             ),
             BuildDatePikerField(
+              iconColor: Colors.pink.shade100,
               controller: controller.endDateController,
               placeholder: hntOfferEndDate.tr,
               prefixIcon: Iconsax.calendar,
               firstDate:
                   controller.startDateController.text.isNotEmpty
-                      ? DateTime.parse(controller.startDateController.text)
-                      : DateTime.now(),
+                      ? DateTime.parse(
+                        controller.startDateController.text,
+                      ).add(Duration(days: 1))
+                      : DateTime.now().add(Duration(days: 1)),
               validator: (value) {
                 return validateEndDate(value, controller.startDateController);
               },
             ),
-      
+
             // CustomTextField(
             //   controller: controller.startDateController,
             //   placeholder: hntOfferStartDate.tr,

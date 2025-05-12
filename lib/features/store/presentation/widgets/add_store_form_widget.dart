@@ -1,14 +1,16 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/build_category_dropdown.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/custom_address_text_field.dart';
-import 'package:yemen_offers/core/common/presentation/widgets/custom_image_picker_field.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/custom_text_field.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/form_items/custom_phone_field.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/form_items/descrbsion_text_field.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/form_items/social_media_widget.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/image_picker_field_widget.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
-import 'package:yemen_offers/core/utils/map_util.dart';
 import 'package:yemen_offers/core/utils/validators.dart';
 import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
 import 'package:yemen_offers/features/store/presentation/getX/controllers/merchant_add_store_controller.dart';
@@ -50,12 +52,15 @@ class AddStoreFormWidget extends StatelessWidget {
               CustomTextField(
                 controller: controller.nameController,
                 placeholder: hntStoreName.tr,
+                prefixIcon: Icons.business,
+                iconColor: Colors.orange,
                 validator: validateName,
               ),
-              CustomTextField(
+              CustomPhoneField(
+                iconColor: Colors.green,
                 controller: controller.phoneController,
                 placeholder: hntStorePhone.tr,
-                validator: validatephoneNumber,
+                // validator: validatephoneNumber,
               ),
               Row(
                 children: [
@@ -88,24 +93,43 @@ class AddStoreFormWidget extends StatelessWidget {
               CustomTextField(
                 controller: controller.websiteController,
                 placeholder: hntWebsite.tr,
+                prefixIcon: Icons.language,
+                keyboardType: TextInputType.url,
+                iconColor: Colors.teal,
                 validator: validateUrl,
               ),
 
-              CustomTextField(
+              DescrbsionTextField(
+                iconColor: Colors.blue,
+                maxLength: 500,
                 controller: controller.descriptionController,
                 placeholder: hntStoreDescription.tr,
               ),
-              CustomTextField(
+              SocialUrlTextField(
+                platform: SocialPlatform.facebook,
                 controller: controller.facebookController,
                 placeholder: lblFacebook.tr,
+                prefixIcon: Icons.facebook,
+                suffixIcon: Icons.link,
+
+                iconColor: Colors.blue,
               ),
-              CustomTextField(
+              SocialUrlTextField(
+                platform: SocialPlatform.instagram,
                 controller: controller.instagramController,
                 placeholder: lblInstagram.tr,
+                prefixIcon: Iconsax.instagram5,
+                suffixIcon: Icons.link,
+
+                iconColor: Colors.purple,
               ),
-              CustomTextField(
+              SocialUrlTextField(
+                platform: SocialPlatform.snapchat,
                 controller: controller.snapchatController,
                 placeholder: lblSnapchat.tr,
+                prefixIcon: Icons.snapchat_sharp,
+                suffixIcon: Icons.link,
+                iconColor: Colors.yellow,
               ),
               // _buildSubmitButton(),
               // _buildTextField(controller.nameController, "الاسم"),

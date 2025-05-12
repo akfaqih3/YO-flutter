@@ -7,7 +7,9 @@ class GetStoresUseCase {
   final BrowseRepoImpl _browseRepoImpl;
   GetStoresUseCase(this._browseRepoImpl);
 
-  Future<Either<Failure, List<StoreEntity>>> execute() async {
-    return await _browseRepoImpl.getStores();
+  Future<Either<Failure, List<StoreEntity>>> execute({
+    List<String>? categories,
+  }) async {
+    return await _browseRepoImpl.getStores(categories: categories);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/common/presentation/widgets/form_items/email_text_field.dart';
 import 'package:yemen_offers/core/constants/app_assets.dart';
 import 'package:yemen_offers/core/common/presentation/widgets/custom_text_field.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
@@ -25,11 +26,10 @@ class ResetPasswordPage extends GetView<ResetPasswordController> {
                 key: controller.formKey,
                 child: Column(
                   children: [
-                    CustomTextField(
+                    EmailTextField(
+                      controller: controller.emailController,
                       placeholder: hntEmail.tr,
                       prefixIcon: Icons.email,
-                      controller: controller.emailController,
-                      validator: validateEmail,
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(

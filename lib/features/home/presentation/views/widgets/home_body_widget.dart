@@ -44,7 +44,9 @@ class HomeBodyWidget extends StatelessWidget {
           HomeSectionHeadingWidget(
             title: lblStores.tr,
             showActionButton: true,
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(AppRoutes.storeList);
+            },
             textColor: Colors.black,
             buttonTitle: btnViewAll.tr,
           ),

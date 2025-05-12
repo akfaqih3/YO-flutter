@@ -14,6 +14,7 @@ class BuildDatePikerField extends StatelessWidget {
   final DateTime? lastDate;
   final String? Function(String?)? validator;
   final Color? iconColor;
+  final void Function(String)? onDateSelected; // ✅ جديد
 
   const BuildDatePikerField({
     Key? key,
@@ -29,20 +30,41 @@ class BuildDatePikerField extends StatelessWidget {
     this.lastDate,
     this.validator,
     this.iconColor,
+    this.onDateSelected, // ✅ جديد
   }) : super(key: key);
 
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime now = DateTime.now();
+    DateTime now = DateTime.now();
+    DateTime firstDate = this.firstDate ?? now;
+
+    DateTime initialDate;
+
+    if (controller.text.isNotEmpty) {
+      DateTime? parsedDate = DateTime.tryParse(controller.text);
+      if (parsedDate != null && !parsedDate.isBefore(firstDate)) {
+        initialDate = parsedDate;
+      } else {
+        initialDate = firstDate;
+      }
+    } else {
+      initialDate = firstDate;
+    }
+
     final DateTime? pickedDate = await showDatePicker(
       context: context,
-      initialDate: initialDate ?? now,
-      firstDate: firstDate ?? DateTime(2000),
-      lastDate: lastDate ?? DateTime(2100),
+      initialDate: initialDate,
+      firstDate: firstDate,
+      lastDate: DateTime(2100),
     );
 
     if (pickedDate != null) {
-      final String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+      final formattedDate = pickedDate.toIso8601String().split('T').first;
       controller.text = formattedDate;
+
+      // ✅ استدعاء الكولباك إذا تم توفيره
+      if (onDateSelected != null) {
+        onDateSelected!(formattedDate);
+      }
     }
   }
 
@@ -62,14 +84,14 @@ class BuildDatePikerField extends StatelessWidget {
               floatingLabelBehavior: FloatingLabelBehavior.auto,
               filled: true,
               fillColor: fillColor,
-              prefixIcon: prefixIcon != null
-                  ? Icon(
-                      prefixIcon,
-                      color: iconColor ?? Colors.black54,
-                    )
-                  : null,
-              contentPadding:
-                  const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+              prefixIcon:
+                  prefixIcon != null
+                      ? Icon(prefixIcon, color: iconColor ?? Colors.black54)
+                      : null,
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 16,
+                horizontal: 20,
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50),
                 borderSide: BorderSide(color: borderColor, width: 1.5),

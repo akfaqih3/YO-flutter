@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
@@ -8,6 +10,8 @@ import 'package:yemen_offers/features/browse/data/sources/browse_remote_data_sou
 import 'package:yemen_offers/features/browse/domain/entities/offer_entity.dart';
 import 'package:yemen_offers/features/browse/domain/use_cases/get_offer_details_use_case.dart';
 import 'package:yemen_offers/features/favorite/presentation/getX/controllers/favorite_controller.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class OfferDetailsController extends GetxController {
   final ApiService _apiService = Get.find<ApiService>();
@@ -63,16 +67,28 @@ class OfferDetailsController extends GetxController {
       final Uri offerUri = Uri.parse(
         "http://yemeni-offers.com/api/core/offers/${offer.value!.slug}/",
       );
-
+      final XFile? imageFile = await _getImageFromCache(offer.value!.image!);
       final ShareParams shareParams = ShareParams(
         title: 'Check out this offer!',
         uri: offerUri,
+        previewThumbnail: imageFile,
         sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
       );
 
       await SharePlus.instance.share(shareParams);
     } catch (e) {
       debugPrint('Error sharing: $e');
+    }
+  }
+
+  Future<XFile?> _getImageFromCache(String imageUrl) async {
+    try {
+      final file = await DefaultCacheManager().getSingleFile(imageUrl);
+
+      return XFile(file.path);
+    } catch (e) {
+      print('Error fetching image from cache: $e');
+      return null;
     }
   }
 }

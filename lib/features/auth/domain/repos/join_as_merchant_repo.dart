@@ -5,7 +5,7 @@ import 'package:yemen_offers/core/errors/failures.dart';
 import 'package:yemen_offers/features/profile/data/models/merchant_model.dart';
 
 abstract class JoinAsMerchantRepo {
-  Future<Either<Failure, MerchantModel>> JoinAsMerchant({
+  Future<Either<Failure, void>> JoinAsMerchant({
     required String phone,
     required String address,
     required String storeName,

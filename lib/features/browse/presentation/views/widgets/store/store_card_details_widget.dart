@@ -31,7 +31,12 @@ class StoreCardDetailsWidget extends StatelessWidget {
         children: [
           // الصف العلوي: الصورة + الاسم + زر الاتصال
           Padding(
-            padding: const EdgeInsets.all(15),
+            padding: const EdgeInsets.only(
+              top: 15,
+              bottom: 15,
+              right: 8,
+              left: 8,
+            ),
             child: SizedBox(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -39,8 +44,8 @@ class StoreCardDetailsWidget extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        height: 60,
-                        width: 60,
+                        height: 75,
+                        width: 75,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Get.theme.scaffoldBackgroundColor,
@@ -90,26 +95,26 @@ class StoreCardDetailsWidget extends StatelessWidget {
                               maxLines: 1,
                             ),
                             SizedBox(width: 5),
-                            Text(
-                              "${lblPhone.tr}: ${store.phone}",
-                              style: const TextStyle(color: AppColors.grey),
-                              maxLines: 1,
-                            ),
-                            SizedBox(width: 5),
-                            Text(
-                              "${lblAdress.tr}: ${store.address}",
-                              style: const TextStyle(color: AppColors.grey),
-                              maxLines: 1,
-                            ),
+                            // Text(
+                            //   "${lblPhone.tr}: ${store.phone}",
+                            //   style: const TextStyle(color: AppColors.grey),
+                            //   maxLines: 1,
+                            // ),
+                            // SizedBox(width: 5),
+                            // Text(
+                            //   "${lblAdress.tr}: ${store.address}",
+                            //   style: const TextStyle(color: AppColors.grey),
+                            //   maxLines: 1,
+                            // ),
                           ],
                         ),
                       ),
-              
+
                       const SizedBox(width: 10),
                     ],
                   ),
                   SizedBox(
-                    width: 70,
+                    width: 75,
                     child: GestureDetector(
                       onTap: () {},
                       child: Container(
@@ -127,13 +132,19 @@ class StoreCardDetailsWidget extends StatelessWidget {
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color:
-                                    isDarkMode ? AppColors.black : AppColors.white,
+                                    isDarkMode
+                                        ? AppColors.black
+                                        : AppColors.white,
                                 fontSize: 15,
                               ),
                             ),
                             SizedBox(width: 4),
-                    
-                            Icon(Icons.phone, color: AppColors.primary, size: 14),
+
+                            Icon(
+                              Icons.phone,
+                              color: AppColors.primary,
+                              size: 14,
+                            ),
                           ],
                         ),
                       ),
@@ -145,46 +156,187 @@ class StoreCardDetailsWidget extends StatelessWidget {
           ),
 
           Padding(
-            padding: EdgeInsets.only(right: 20, top: 8),
+            padding: EdgeInsets.only(right: 20, top: 0, bottom: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // make this clickable to open url link
                 GestureDetector(
                   onTap: () async {
-                    launchUrl(Uri.parse(store.socialMedia?.facebook ?? ""));
+                    launchUrl(Uri.parse(store.website ?? ""));
                   },
-                  child: Text(
-                    "${lblFacebook.tr}: ${store.socialMedia?.facebook}",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                  child: Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.start, // يدفع المحتوى إلى اليمين
+                    children: [
+                      Icon(Iconsax.global, color: Colors.green),
+
+                      SizedBox(width: 5), // مسافة بسيطة بين النص والأيقونة
+                      Text(
+                        store.website ?? "",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () async {
+                        launchUrl(Uri.parse(store.socialMedia?.facebook ?? ""));
+                      },
+                      child: Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.start, // يدفع المحتوى إلى اليمين
+                        children: [
+                          Icon(
+                            Icons.facebook,
+                            size: 25,
+                            color: Colors.blue[800],
+                          ),
 
-                SizedBox(height: 4),
+                          SizedBox(width: 5), // مسافة بسيطة بين النص والأيقونة
+                          Text(
+                            "${lblFacebook.tr}",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 15, height: 15),
+
+                    // المووووووووقع
+                    SizedBox(width: 15, height: 10),
+                    /////////////////////////////////////////////////////////
+                    GestureDetector(
+                      onTap: () async {
+                        launchUrl(
+                          Uri.parse(store.socialMedia?.instagram ?? ""),
+                        );
+                      },
+                      child: Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.start, // يدفع المحتوى إلى اليمين
+                        children: [
+                          Icon(Iconsax.instagram, color: Colors.red),
+
+                          SizedBox(width: 5),
+                          Text(
+                            "${lblInstagram.tr}",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ), // مسافة بسيطة بين النص والأيقونة
+                          // SizedBox(width: 15,),
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 15, height: 15),
+                    // سناب شااات
+                    GestureDetector(
+                      onTap: () async {
+                        launchUrl(Uri.parse(store.socialMedia?.snapchat ?? ""));
+                      },
+                      child: Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.start, // يدفع المحتوى إلى اليمين
+                        children: [
+                          Icon(Iconsax.snapchat, color: Colors.yellow[700]),
+
+                          SizedBox(width: 5),
+                          Text(
+                            "${lblSnapchat.tr}",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ), // مسافة بسيطة بين النص والأيقونة
+
+                          SizedBox(width: 15),
+                        ],
+                      ),
+                    ),
+
+                    ////////////////////////////////////
+                  ],
+                ),
+
+                // السطررررررر الثاني  الانستقررررام
+                // Row(
+                //   children: [
+                //   GestureDetector(
+                //        onTap: () async {
+                //     launchUrl(Uri.parse(store.socialMedia?.instagram ?? ""));
+                //   },
+                //       child: Row(
+                //         mainAxisAlignment: MainAxisAlignment.start, // يدفع المحتوى إلى اليمين
+                //         children: [
+                //           Text(
+                //     "${lblInstagram.tr}",
+                //     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                //   ),
+                //           SizedBox(width: 5), // مسافة بسيطة بين النص والأيقونة
+                //           Icon(Icons.facebook, size: 20),
+                //           SizedBox(width: 15,),
+
+                //         ],
+                //       ),
+                // ),
+                //  SizedBox(width: 15,height:15 ,),
+                // // سناب شااات
+                // GestureDetector(
+                //       onTap: () async {
+                //     launchUrl(Uri.parse(store.socialMedia?.snapchat ?? ""));
+                //   },
+                //       child: Row(
+                //         mainAxisAlignment: MainAxisAlignment.start, // يدفع المحتوى إلى اليمين
+                //         children: [
+                //            Text(
+                //     "${lblSnapchat.tr}",
+                //     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                //   ),
+                //           SizedBox(width: 5), // مسافة بسيطة بين النص والأيقونة
+                //           Icon(Icons.facebook, size: 20),
+                //           SizedBox(width: 15,),
+
+                //         ],
+                //       ),
+                // ),
+
+                // ],),
 
                 // make this clickable to open url link
-                GestureDetector(
-                  onTap: () async {
-                    launchUrl(Uri.parse(store.socialMedia?.instagram ?? ""));
-                  },
-                  child: Text(
-                    "${lblInstagram.tr}: ${store.socialMedia?.instagram}",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                  ),
-                ),
-
-                SizedBox(height: 4),
+                SizedBox(height: 10),
 
                 // make this clickable to open url link
-                GestureDetector(
-                  onTap: () async {
-                    launchUrl(Uri.parse(store.socialMedia?.snapchat ?? ""));
-                  },
-                  child: Text(
-                    "${lblSnapchat.tr}: ${store.socialMedia?.snapchat}",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: () async {
+                //     launchUrl(Uri.parse(store.socialMedia?.instagram ?? ""));
+                //   },
+                //   child: Text(
+                //     "${lblInstagram.tr}: ${store.socialMedia?.instagram}",
+                //     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                //   ),
+                // ),
+
+                // SizedBox(height: 4),
+
+                // // make this clickable to open url link
+                // GestureDetector(
+                //   onTap: () async {
+                //     launchUrl(Uri.parse(store.socialMedia?.snapchat ?? ""));
+                //   },
+                //   child: Text(
+                //     "${lblSnapchat.tr}: ${store.socialMedia?.snapchat}",
+                //     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                //   ),
+                // ),
               ],
             ),
           ),

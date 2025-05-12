@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
@@ -10,7 +11,7 @@ class JoinAsMerchantUseCase {
 
   JoinAsMerchantUseCase(this._joinAsMerchantRepo);
 
-  Future<Either<Failure, MerchantEntity>> execute({
+  Future<Either<Failure, void>> execute({
     required String phone,
     required String address,
     required String storeName,

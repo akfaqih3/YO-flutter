@@ -54,9 +54,17 @@ class BrowseRepoImpl implements BrowseRepo {
   }
 
   @override
-  Future<Either<Failure, List<StoreEntity>>> getStores() async {
+  Future<Either<Failure, List<StoreEntity>>> getStores({
+    List<String>? categories,
+  }) async {
     try {
-      final List<StoreModel> stores = await _remoteDataSource.getStores();
+      final Map<String, dynamic> queryParams = {};
+      if (categories != null) {
+        queryParams[ApiKeys.categoryParam] = categories?.join(',');
+      }
+      final List<StoreModel> stores = await _remoteDataSource.getStores(
+        queryParams: queryParams,
+      );
       return Right(storeEntityFromModel(stores));
     } catch (e) {
       return Left(Exceptions.handleCatch(e));

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
-import 'package:yemen_offers/features/auth/presentation/getX/controllers/join_as_merchant_controller.dart';
 
 class CustomImagePickerField extends StatelessWidget {
   const CustomImagePickerField({
@@ -44,11 +43,11 @@ class CustomImagePickerField extends StatelessWidget {
               ),
               child: Obx(
                 () =>
-                    controller.storeImage.value != null
+                    controller.imageFile.value != null
                         ? ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Image.file(
-                            controller.storeImage.value!,
+                            controller.imageFile.value!,
                             fit: BoxFit.cover,
                             width: double.infinity,
                             height: double.infinity,

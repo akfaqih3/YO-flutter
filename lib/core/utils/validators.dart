@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 
@@ -188,7 +189,7 @@ String? validateSnapchatLink(String? value) {
   if (value == null || value.isEmpty) {
     return null;
   }
-  if (!AppRegex.snapchatLink.hasMatch(value)) {
+  if (AppRegex.snapchatLink.hasMatch(value)) {
     return msgUrlShouldContainSnapchat.tr;
   }
 }
@@ -202,7 +203,10 @@ String? validateStartDate(String? value) {
   }
 }
 
-String? validateEndDate(String? value, startDateController) {
+String? validateEndDate(
+  String? value,
+  TextEditingController startDateController,
+) {
   if (value == null || value.isEmpty) {
     return 'الرجاء إدخال تاريخ الانتهاء';
   }
@@ -213,7 +217,15 @@ String? validateEndDate(String? value, startDateController) {
   final startDate = DateTime.tryParse(startText);
   final endDate = DateTime.tryParse(value);
 
-  if (startDate != null && endDate != null && endDate.isBefore(startDate)) {
+  if (startDate == null) {
+    return 'تنسيق تاريخ البدء غير صحيح';
+  }
+
+  if (endDate == null) {
+    return 'تنسيق تاريخ الانتهاء غير صحيح';
+  }
+
+  if (endDate.isBefore(startDate)) {
     return 'تاريخ الانتهاء يجب أن يكون بعد تاريخ البدء';
   }
 
