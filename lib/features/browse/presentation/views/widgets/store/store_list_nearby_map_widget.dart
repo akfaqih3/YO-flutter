@@ -20,126 +20,122 @@ class StoreListNearbyMapWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('المتجر القريب')),
-      body: Stack(
-        children: [
-          FlutterMap(
-            mapController: controller.mapController.value,
-            options: MapOptions(
-              initialCenter: controller.userLocation.value,
-              // initialZoom: 14,
-              onTap: (tapPosition, point) {
-                controller.popupController.hideAllPopups();
-              },
+    return Stack(
+      children: [
+        FlutterMap(
+          mapController: controller.mapController.value,
+          options: MapOptions(
+            initialCenter: controller.userLocation.value,
+            // initialZoom: 14,
+            onTap: (tapPosition, point) {
+              controller.popupController.hideAllPopups();
+            },
+          ),
+          children: [
+            TileLayer(
+              urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+              userAgentPackageName: 'com.example.yourapp',
             ),
-            children: [
-              TileLayer(
-                urlTemplate:
-                    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'com.example.yourapp',
-              ),
-              Obx(() {
-                return controller.storeMarkers.value.isEmpty
-                    ? MarkerLayer(
-                      markers: [
-                        const Marker(
-                          point: LatLng(0, 0),
-                          width: 50,
-                          height: 50,
-                          child: const Icon(
-                            Icons.person_pin_circle,
-                            color: AppColors.primary,
-                            size: 40,
-                          ),
+            Obx(() {
+              return controller.storeMarkers.value.isEmpty
+                  ? MarkerLayer(
+                    markers: [
+                      const Marker(
+                        point: LatLng(0, 0),
+                        width: 50,
+                        height: 50,
+                        child: const Icon(
+                          Icons.person_pin_circle,
+                          color: AppColors.primary,
+                          size: 40,
                         ),
-                      ],
-                    )
-                    : MarkerLayer(
-                      markers: [
-                        controller.userMarker.value!,
-                        ...controller.storeMarkers.value,
-                      ],
-                    );
-              }),
+                      ),
+                    ],
+                  )
+                  : MarkerLayer(
+                    markers: [
+                      controller.userMarker.value!,
+                      ...controller.storeMarkers.value,
+                    ],
+                  );
+            }),
 
-              CircleLayer(
-                circles: [
-                  CircleMarker(
-                    point: controller.userLocation.value,
-                    color: AppColors.primary.withOpacity(0.2),
-                    borderStrokeWidth: 2,
-                    useRadiusInMeter: true,
-                    radius:
-                        controller.radius.value *
-                        1000, // الشعاع بالكيلومتر * 1000
-                    borderColor: AppColors.primary,
-                  ),
-                ],
+            CircleLayer(
+              circles: [
+                CircleMarker(
+                  point: controller.userLocation.value,
+                  color: AppColors.primary.withOpacity(0.2),
+                  borderStrokeWidth: 2,
+                  useRadiusInMeter: true,
+                  radius:
+                      controller.radius.value *
+                      1000, // الشعاع بالكيلومتر * 1000
+                  borderColor: AppColors.primary,
+                ),
+              ],
+            ),
+
+            PopupMarkerLayer(
+              options: PopupMarkerLayerOptions(
+                markers: controller.storeMarkers.value,
+                popupController: controller.popupController,
+                markerTapBehavior: MarkerTapBehavior.togglePopup(),
+                popupDisplayOptions: PopupDisplayOptions(
+                  builder: (context, marker) {
+                    controller.selectedStore.value;
+                    return marker.child;
+                  },
+                ),
               ),
+            ),
+          ],
+        ),
 
-              PopupMarkerLayer(
-                options: PopupMarkerLayerOptions(
-                  markers: controller.storeMarkers.value,
-                  popupController: controller.popupController,
-                  markerTapBehavior: MarkerTapBehavior.togglePopup(),
-                  popupDisplayOptions: PopupDisplayOptions(
-                    builder: (context, marker) {
-                      controller.selectedStore.value;
-                      return marker.child;
+        Obx(() {
+          return controller.offers.value == null
+              ? const SizedBox()
+              : Positioned(
+                top: 8,
+                left: 8,
+                right: 8,
+                child: SizedBox(
+                  height: 200,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    separatorBuilder: (_, __) => const SizedBox(width: 8),
+                    itemCount: controller.offers.value.length,
+                    itemBuilder: (context, index) {
+                      final offer = controller.offers.value[index];
+                      return SizedBox(
+                        width: 250,
+                        child: CarouselImageWidget(
+                          width: 250,
+                          offer: offer,
+                          borderRadius: 16,
+                        ),
+                      );
                     },
                   ),
                 ),
-              ),
-            ],
+              );
+        }),
+        // 🔘 زر الرجوع لموقع المستخدم
+        Positioned(
+          bottom: 20,
+          right: 20,
+          child: FloatingActionButton(
+            heroTag: "goToUserLocation",
+            backgroundColor: Colors.white,
+            onPressed: () {
+              controller.mapController.value.move(
+                controller.userLocation.value,
+                14,
+              );
+            },
+            child: const Icon(Icons.my_location, color: AppColors.primary),
           ),
-
-          Obx(() {
-            return controller.offers.value == null
-                ? const SizedBox()
-                : Positioned(
-                  top: 8,
-                  left: 8,
-                  right: 8,
-                  child: SizedBox(
-                    height: 200,
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      separatorBuilder: (_, __) => const SizedBox(width: 8),
-                      itemCount: controller.offers.value.length,
-                      itemBuilder: (context, index) {
-                        final offer = controller.offers.value[index];
-                        return SizedBox(
-                          width: 250,
-                          child: CarouselImageWidget(
-                            width: 250,
-                            offer: offer,
-                            borderRadius: 16,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                );
-          }),
-          // 🔘 زر الرجوع لموقع المستخدم
-          Positioned(
-            bottom: 20,
-            right: 20,
-            child: FloatingActionButton(
-              heroTag: "goToUserLocation",
-              backgroundColor: Colors.white,
-              onPressed: () {
-                controller.mapController.value.move(
-                  controller.userLocation.value,
-                  14,
-                );
-              },
-              child: const Icon(Icons.my_location, color: Colors.red),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

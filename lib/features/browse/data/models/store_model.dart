@@ -16,6 +16,8 @@ class StoreModel {
   String slug;
   SocialMediaModel? socialMedia;
   String? website;
+  String? distance;
+  String? total;
 
   StoreModel({
     required this.category,
@@ -29,6 +31,8 @@ class StoreModel {
     required this.slug,
     this.socialMedia,
     this.website,
+    this.distance,
+    this.total,
   });
 
   factory StoreModel.fromJson(Map<String, dynamic> json) => StoreModel(
@@ -46,6 +50,8 @@ class StoreModel {
             ? null
             : SocialMediaModel.fromJson(json["social_media"]),
     website: json["website"],
+    distance: json["distance"].toString(),
+    total: json["total"].toString(),
   );
 
   Map<String, dynamic> toJson() => {
