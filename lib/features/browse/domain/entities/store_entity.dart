@@ -18,6 +18,8 @@ class StoreEntity {
   String slug;
   StoreSocialMediaEntity? socialMedia;
   String? website;
+  String? distance;
+  String? total;
 
   StoreEntity({
     required this.category,
@@ -31,6 +33,8 @@ class StoreEntity {
     required this.slug,
     this.socialMedia,
     this.website,
+    this.distance,
+    this.total,
   });
 
   factory StoreEntity.fromModel(StoreModel storeModel) => StoreEntity(
@@ -48,6 +52,8 @@ class StoreEntity {
             ? null
             : StoreSocialMediaEntity.fromModel(storeModel.socialMedia!),
     website: storeModel.website,
+    distance: storeModel.distance,
+    total: storeModel.total,
   );
 }
 
@@ -57,11 +63,7 @@ class StoreSocialMediaEntity {
   String? instagram;
   String? snapchat;
 
-  StoreSocialMediaEntity({
-    this.facebook,
-    this.instagram,
-    this.snapchat,
-  });
+  StoreSocialMediaEntity({this.facebook, this.instagram, this.snapchat});
 
   factory StoreSocialMediaEntity.fromModel(SocialMediaModel socialMediaModel) =>
       StoreSocialMediaEntity(

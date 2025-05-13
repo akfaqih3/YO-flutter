@@ -95,6 +95,7 @@ Map<String, String> ar = {
   lblSearchByVector: ' نصي',
   lblAddStore: 'إضافة متجر',
   lblTapToUpload: 'انقر لتحميل',
+  lblNearbyStores: 'متاجر قريبة',
 
   // hnt
   hntWebsite: 'الموقع الإلكتروني',

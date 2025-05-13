@@ -99,7 +99,7 @@ class _AppHomeState extends State<AppHome> {
   _login(LoginModel loginModel) async {
     final LoginLocalDataSource loginLocalDataSource =
         LoginLocalDataSourceImpl();
-    await loginLocalDataSource.saveToken(loginModel);
+    loginLocalDataSource.saveToken(loginModel);
     await FcmTokenServices.sendFCMTokenToServer();
   }
 }

@@ -38,6 +38,7 @@ class StoreListNearbyController extends GetxController {
   final RxList<Marker> storeMarkers = RxList([]);
   final PopupController popupController = PopupController();
 
+
   @override
   void onInit() async {
     super.onInit();

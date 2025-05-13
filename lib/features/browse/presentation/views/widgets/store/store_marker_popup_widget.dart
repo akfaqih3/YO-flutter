@@ -29,9 +29,9 @@ class StoreMarkerPopupWidget extends StatelessWidget {
               child:
                   store.image != null
                       ? Image.network(
-                        store.image! ,
-                        height: 100,
-                        width: 100,
+                        store.image!,
+                        height: 80,
+                        width: 80,
                         fit: BoxFit.cover,
                       )
                       : Icon(
@@ -44,7 +44,7 @@ class StoreMarkerPopupWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  store.name ,
+                  store.name,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,

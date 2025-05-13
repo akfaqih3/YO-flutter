@@ -28,7 +28,7 @@ class MapStoreMarkerWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
-                "3",
+                store.distance ?? '0',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 10,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/services/localizition/app_langs/keys.dart';
 import 'package:yemen_offers/core/theme/colors.dart';
 import 'package:yemen_offers/features/auth/presentation/getX/controllers/join_as_merchant_controller.dart';
 import 'package:yemen_offers/features/search/presentation/getX/controllers/search_controller.dart';
@@ -65,7 +66,7 @@ class SearchImageWidget extends StatelessWidget {
                                 ),
                                 SizedBox(height: 6),
                                 Text(
-                                  'Tap to upload',
+                                  lblTapToUpload.tr,
                                   style: TextStyle(color: AppColors.primary),
                                 ),
                               ],

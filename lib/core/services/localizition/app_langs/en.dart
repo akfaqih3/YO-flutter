@@ -97,6 +97,7 @@ Map<String, String> en = {
   lblSearchByVector: ' by text',
   lblAddStore: 'Add Store',
   lblTapToUpload: 'Tap to upload',
+  lblNearbyStores: 'Nearby Stores',
 
   // hnt
   hntWebsite: 'Website',

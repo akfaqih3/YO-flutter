@@ -70,7 +70,11 @@ class LoginPage extends GetView<LoginController> {
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Obx(() {
                       return controller.isLoginLoading.value
-                          ? const CircularProgressIndicator()
+                          ? Center(
+                            child: const CircularProgressIndicator(
+                              color: AppColors.primary,
+                            ),
+                          )
                           : SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
