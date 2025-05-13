@@ -18,6 +18,7 @@ class ConfirmResetPasswordPage extends GetView<ConfirmResetPasswordController> {
           children: [
             Image.asset(AppAssets.appLogo, width: 120),
             Form(
+              key: controller.formKey,
               child: Column(
                 children: [
                   const SizedBox(height: 64),
