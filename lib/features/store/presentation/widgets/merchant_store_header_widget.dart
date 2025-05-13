@@ -32,43 +32,33 @@ class MerchantStoreHeaderWidget extends GetView<MerchantStoresController> {
         children: [
           // الصف العلوي: الصورة + الاسم + زر الاتصال
           Padding(
-            padding: const EdgeInsets.all(15),
+            padding: const EdgeInsets.only(
+              top: 15,
+              bottom: 15,
+              left: 5,
+              right: 5,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // الاسم مع الصورة الدائرية
-
-                // زر الاتصال
-                GestureDetector(
-                  onTap: () {
-                    // هنا تضع منطق الاتصال
-                  },
-                  child: Container(
-                    height: 30,
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.black,
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          "اتصال",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(width: 4),
-
-                        Icon(Icons.phone, color: Colors.white, size: 14),
-                      ],
-                    ),
-                  ),
-                ),
                 Row(
                   children: [
+                    Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.amber,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey[300]!),
+                      ),
+                      child: ClipOval(
+                        child:
+                            store.image != null
+                                ? Image.network(store.image!, fit: BoxFit.cover)
+                                : null,
+                      ),
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -115,23 +105,38 @@ class MerchantStoreHeaderWidget extends GetView<MerchantStoresController> {
                         ),
                       ],
                     ),
-                    Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.amber,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.grey[300]!),
-                      ),
-                      child: ClipOval(
-                        child:
-                            store.image != null
-                                ? Image.network(store.image!, fit: BoxFit.cover)
-                                : null,
-                      ),
-                    ),
+
                     const SizedBox(width: 10),
                   ],
+                ),
+                // زر الاتصال
+                GestureDetector(
+                  onTap: () {
+                    // هنا تضع منطق الاتصال
+                  },
+                  child: Container(
+                    height: 30,
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.black,
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          "اتصال",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                        SizedBox(width: 4),
+
+                        Icon(Icons.phone, color: Colors.white, size: 14),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),

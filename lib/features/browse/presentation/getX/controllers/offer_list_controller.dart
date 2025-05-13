@@ -59,6 +59,10 @@ class OfferListController extends GetxController {
     _initRepos();
     _getSelectedOfferListType();
     await getOffers();
+
+    sortBy.listen((event) async {
+      await getOffers();
+    });
   }
 
   void _initRepos() {

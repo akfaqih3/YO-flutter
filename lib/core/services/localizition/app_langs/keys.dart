@@ -143,6 +143,18 @@ const String lblSelectCatogrey = 'selectCategory';
 const String lblSelectStores = 'selectStores';
 const String lblSelectOfferTypes = 'selectOfferTypes';
 
+// lables for order by
+const String lblOrderBy = 'orderBy';
+const String lblOrderByPriceBefore = 'orderByPriceBefore';
+const String lblOrderByPriceAfter = 'orderByPriceAfter';
+const String lblOrderByStartDate = 'orderByStartDate';
+const String lblOrderByEndDate = 'orderByEndDate';
+const String lblOrderByDiscount = 'orderByDiscount';
+const String lblOrderByDistance = 'orderByDistance';
+const String lblOrderByLatest = 'orderByLatest';
+const String lblOrderByMostPopular = 'orderByMostPopular';
+const String lblOrderByNearby = 'orderByNearby';
+
 const String btnLogin = 'btn_login';
 const String btnRegister = 'btn_register';
 const String btnLogout = 'btn_logout';

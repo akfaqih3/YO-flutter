@@ -153,6 +153,18 @@ Map<String, String> en = {
   lblSelectStores: 'Select Stores',
   lblSelectOfferTypes: 'Select Offer Types',
 
+  // lables for order by
+  lblOrderBy: 'Order By',
+  lblOrderByPriceBefore: 'Price Before',
+  lblOrderByPriceAfter: 'Price After',
+  lblOrderByStartDate: 'Start Date',
+  lblOrderByEndDate: 'End Date',
+  lblOrderByDiscount: 'Discount',
+  lblOrderByDistance: 'Distance',
+  lblOrderByLatest: 'Latest',
+  lblOrderByMostPopular: 'Popularity',
+  lblOrderByNearby: 'nearest',
+
   btnLogin: 'Login',
   btnRegister: 'Register',
   btnLogout: 'Logout',
@@ -188,7 +200,7 @@ Map<String, String> en = {
   msgUrlShouldContainInstagram: 'Url should contain instagram.com',
   msgUrlShouldContainSnapchat: 'Url should contain snapchat.com',
 
-  // offer hints 
+  // offer hints
   hntOfferTitle: 'Offer Title',
   hntOfferDescription: 'Offer Description',
   hntOfferCategory: 'Offer Category',
@@ -200,7 +212,4 @@ Map<String, String> en = {
 
   btnAddOffer: 'Add Offer',
   btnUpdateOffer: 'Update Offer',
-  
-
-
 };

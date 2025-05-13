@@ -1,7 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:get/get.dart';
 import 'package:yemen_offers/core/constants/api_constants.dart';
+import 'package:yemen_offers/core/constants/app_enums.dart';
 import 'package:yemen_offers/core/errors/exceptions.dart';
 import 'package:yemen_offers/core/errors/failures.dart';
+import 'package:yemen_offers/core/services/location_service.dart';
 import 'package:yemen_offers/features/browse/data/models/category_model.dart';
 import 'package:yemen_offers/features/browse/data/models/offer_category_model.dart';
 import 'package:yemen_offers/features/browse/data/models/offer_model.dart';
@@ -106,11 +109,22 @@ class BrowseRepoImpl implements BrowseRepo {
     try {
       final Map<String, dynamic> queryParams = {
         ApiKeys.offerCategories: offerCategories,
-        ApiKeys.ordering: sortBy,
+        ApiKeys.orderingParam: sortBy,
         ApiKeys.searchParam: searchQuery,
         ApiKeys.index: index,
         ApiKeys.size: size,
       };
+      if (sortBy == offerListTypeToString[OfferListType.nearby]) {
+        if (Get.find<LocationService>().latitude.value != 0.0 &&
+            Get.find<LocationService>().longitude.value != 0.0) {
+          queryParams[ApiKeys.latitude] = Get.find<LocationService>().latitude;
+          queryParams[ApiKeys.longitude] =
+              Get.find<LocationService>().longitude;
+        } else {
+          queryParams[ApiKeys.orderingParam] =
+              offerListTypeToString[OfferListType.latest];
+        }
+      }
 
       final List<OfferModel> offers = await _remoteDataSource
           .getOffersByCategory(categorySlug, queryParams);
