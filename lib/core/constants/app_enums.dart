@@ -1,5 +1,11 @@
 enum OfferListType { latest, mostPopular, nearby }
 
+Map<OfferListType, String> offerListTypeToString = {
+  OfferListType.latest: 'latest',
+  OfferListType.mostPopular: 'popular',
+  OfferListType.nearby: 'nearby',
+};
+
 enum OfferListOrderBy { startDate, end_date, priceBefore, priceAfter, discount }
 
 Map<OfferListOrderBy, String> offerListOrderByToString = {

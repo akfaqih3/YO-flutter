@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:yemen_offers/core/constants/app_enums.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
 import 'package:yemen_offers/features/browse/data/repos/browse_repo_impl.dart';
 import 'package:yemen_offers/features/browse/data/sources/browse_remote_data_source.dart';
@@ -33,7 +34,7 @@ class BrowseController extends GetxController
 
   final RxBool isRTL = true.obs;
 
-  final sortOptions = ["price", "rating", "distance"];
+  final Rx<OfferListType> orderingOptions = OfferListType.nearby.obs;
 
   // query params
   final RxString sortBy = "price".obs;
@@ -58,7 +59,10 @@ class BrowseController extends GetxController
     _getIsRTL();
 
     _listenScrollController();
-   
+
+    orderingOptions.listen((event) async {
+      await getOffers();
+    });
   }
 
   void _getIsRTL() {
@@ -144,7 +148,7 @@ class BrowseController extends GetxController
       return await useCase.execute(
         selectedCategory.value!.slug,
         offerCategories: selectedOfferCategories.value,
-        sortBy: isAscending ? sortBy.value : "-${sortBy.value}",
+        sortBy: offerListTypeToString[orderingOptions.value]!,
         searchQuery: searchQuery.value.trim(),
         index: index,
         size: size,
@@ -195,7 +199,6 @@ class BrowseController extends GetxController
 
   @override
   void dispose() {
-    
     tabController.dispose();
     scrollController.dispose();
     super.dispose();
