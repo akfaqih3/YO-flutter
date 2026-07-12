@@ -1,0 +1,93 @@
+import 'package:get/get.dart';
+import 'package:yemen_offers/core/network/api_service.dart';
+import 'package:yemen_offers/core/routes/app_routes.dart';
+import 'package:yemen_offers/features/offer/data/repos/offer_repo_impl.dart';
+import 'package:yemen_offers/features/offer/data/sources/offer_remote_data_source.dart';
+import 'package:yemen_offers/features/offer/domain/entities/merchant_offer_entity.dart';
+import 'package:yemen_offers/features/offer/domain/use_cases/merchant_get_offers_use_case.dart';
+import 'package:yemen_offers/features/store/data/repos/store_repo_impl.dart';
+import 'package:yemen_offers/features/store/data/sources/store_remote_data_source.dart';
+import 'package:yemen_offers/features/store/domain/entities/merchant_store_etity.dart';
+import 'package:yemen_offers/features/store/domain/use_cases/get_store_details_use_case.dart';
+
+class MerchantStoreDetailsController extends GetxController {
+  final ApiService apiService = Get.find<ApiService>();
+  late StoreRepoImpl _storeRepoImpl;
+
+  Rx<MerchantStoreEtity?> store = Rx<MerchantStoreEtity?>(null);
+  RxList<MerchantOfferEntity> offers = RxList<MerchantOfferEntity>();
+
+  RxBool isLoading = false.obs;
+  RxBool isOffersLoading = false.obs;
+
+  @override
+  void onInit() async {
+    initRepoImpl();
+    super.onInit();
+    store(Get.arguments);
+    getOffers();
+  }
+
+  
+  void initRepoImpl() {
+    _storeRepoImpl = StoreRepoImpl(
+      StoreRemoteDataSourceImpl(apiService),
+    );
+  }
+
+  void getStoreDetails() async {
+    isLoading(true);
+    final GetStoreDetailsUseCase getStoreDetailsUseCase =
+        GetStoreDetailsUseCase(_storeRepoImpl);
+    final result = await getStoreDetailsUseCase.execute(store.value!.slug!);
+
+    result.fold(
+      (left) {
+        Get.snackbar("خطاء", left.message.toString());
+      },
+      (right) {
+        store(right);
+      },
+    );
+    isLoading(false);
+  }
+
+  void getOffers() async {
+    final OfferRepoImpl _offerRepoImpl = OfferRepoImpl(
+      OfferRemoteDataSourceImpl(apiService),
+    );
+    isOffersLoading(true);
+    if (store.value == null) {
+      Get.snackbar("خطاء", "لم تقم بإختيار متجر");
+      return;
+    }
+    final MerchantGetOffersUseCase merchantGetOffersUseCase =
+        MerchantGetOffersUseCase(_offerRepoImpl);
+    final result = await merchantGetOffersUseCase.execute(store.value!.slug!);
+
+    result.fold(
+      (left) {
+        Get.snackbar("خطاء", left.message.toString());
+      },
+      (right) {
+        offers.clear();
+        offers.addAll(right);
+      },
+    );
+    isOffersLoading(false);
+  }
+
+  void getOfferDetails(MerchantOfferEntity offer) async {
+    Get.toNamed(
+      AppRoutes.merchantOfferDetails,
+      arguments: {'offer': offer, 'store': store.value},
+    );
+  }
+
+  void goToAddOffer() {
+    Get.toNamed(
+      AppRoutes.merchantAddUpdateOffer,
+      arguments: {'store': store.value},
+    );
+  }
+}

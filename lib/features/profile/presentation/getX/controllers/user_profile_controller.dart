@@ -1,0 +1,121 @@
+import 'package:get/get.dart';
+import 'package:yemen_offers/core/network/api_service.dart';
+import 'package:yemen_offers/core/services/localizition/language_service.dart';
+import 'package:yemen_offers/core/services/theme_service.dart';
+import 'package:yemen_offers/features/profile/data/repos/user_profile_repo_empl.dart';
+import 'package:yemen_offers/features/profile/data/sources/user_profile_remote_data_source.dart';
+import 'package:yemen_offers/features/profile/domain/entities/user_entity.dart';
+import 'package:yemen_offers/features/profile/domain/use_cases/user_profile_use_case.dart';
+
+class UserProfileController extends GetxController {
+  final UserProfileRepoImpl _userProfileRepo = UserProfileRepoImpl(
+    UserProfileRemoteDataSourceImpl(Get.find<ApiService>()),
+  );
+  final loading = false.obs;
+  Rx<UserEntity?> user = Rx<UserEntity?>(null);
+  final RxBool isDark = RxBool(false);
+
+  // languages dropdown
+  final selectedLanguage = Rx<String>('ar');
+  final Rx<Map<String, String>> languages = Rx<Map<String, String>>({
+    'العربية': 'ar',
+    'English': 'en',
+  });
+
+  @override
+  void onInit() {
+    super.onInit();
+    getProfile();
+    getMode();
+    getLanguages();
+  }
+
+  void getLanguages() {
+    final languages = Get.locale!.languageCode;
+    selectedLanguage(languages);
+  }
+
+  void changeLanguage(String language) {
+    selectedLanguage(language);
+    LanguageService().changeLanguage(language);
+  }
+
+  void getMode() {
+    isDark(Get.isDarkMode);
+  }
+
+  void toggleMode(value) {
+    isDark(value);
+    ThemeService().toggleMode();
+  }
+
+  Future<void> getProfile() async {
+    loading(true);
+    final GetUserProfileUseCase getUserProfileUseCase = GetUserProfileUseCase(
+      _userProfileRepo,
+    );
+    final result = await getUserProfileUseCase.execute();
+    result.fold(
+      (left) {
+        Get.snackbar("Error", left.message);
+      },
+      (right) {
+        user(right);
+      },
+    );
+    loading(false);
+  }
+
+  Future<void> updateUser({
+    required String name,
+    required String email,
+    required String gender,
+    required String userType,
+  }) async {
+    loading(true);
+    final UpdateUserProfileUseCase updateUserUseCase = UpdateUserProfileUseCase(
+      _userProfileRepo,
+    );
+    final UserEntity userEntity = UserEntity(
+      email: email,
+      name: name,
+      gender: gender,
+      userType: userType,
+    );
+    final result = await updateUserUseCase.execute(userEntity);
+    result.fold(
+      (left) {
+        Get.snackbar("Error", left.message);
+      },
+      (right) {
+        Get.snackbar("Success", "تم تحديث البيانات بنجاح");
+      },
+    );
+    loading(false);
+  }
+
+  Future<void> changePassword({
+    required String oldPassword,
+    required String newPassword,
+    required String confirmPassword,
+  }) async {
+    loading(true);
+    final ChangePasswordUseCase changePasswordUseCase = ChangePasswordUseCase(
+      _userProfileRepo,
+    );
+    final result = await changePasswordUseCase.execute(
+      oldPassword,
+      newPassword,
+      confirmPassword,
+    );
+    result.fold(
+      (left) {
+        Get.snackbar("Error", left.message);
+      },
+      (right) {
+        Get.snackbar("Success", "تم تغيير كلمة المرور بنجاح");
+      },
+    );
+    loading(false);
+  }
+}

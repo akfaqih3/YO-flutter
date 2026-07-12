@@ -1,0 +1,38 @@
+import 'dart:io';
+
+import 'package:dartz/dartz.dart';
+import 'package:yemen_offers/core/errors/failures.dart';
+import 'package:yemen_offers/features/browse/domain/entities/category_entity.dart';
+import 'package:yemen_offers/features/store/domain/entities/merchant_store_etity.dart';
+
+abstract class StoreRepo {
+  Future<Either<Failure, List<CategoryEntity>>> getCategories();
+  Future<Either<Failure, MerchantStoreEtity>> getStoreDetails(String slug);
+  Future<Either<Failure, List<MerchantStoreEtity>>> getStores();
+  Future<Either<Failure, void>> addStore(
+    String name,
+    String? description,
+    String category,
+    File? image,
+    String phone,
+    String? website,
+    String? address,
+    double? longitude,
+    double? latitude,
+    Map<String, String>? socialMedia,
+  );
+  Future<Either<Failure, void>> updateStore(
+    String slug,
+    String name,
+    String? description,
+    String category,
+    File? image,
+    String phone,
+    String? website,
+    String? address,
+    double? longitude,
+    double? latitude,
+    Map<String, String>? socialMedia,
+  );
+  Future<Either<Failure, void>> deleteStore(String slug);
+}
