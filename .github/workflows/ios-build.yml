@@ -85,7 +85,7 @@ jobs:
         if: steps.detect.outputs.type == 'reactnative' || steps.detect.outputs.type == 'expo'
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Restore node_modules cache
         if: steps.detect.outputs.type == 'reactnative' || steps.detect.outputs.type == 'expo'
@@ -189,13 +189,13 @@ jobs:
           DERIVED_DATA_PATH="${GITHUB_WORKSPACE}/DerivedData"
 
           if [ "$PROJECT_TYPE" = "flutter" ]; then
-            cd ..
+            cd "${{ github.workspace }}"
             if [ "$CONFIGURATION" = "Debug" ]; then
               echo "Building Flutter iOS Debug..."
-              flutter build ios --debug --no-codesign
+              flutter build ios --debug --no-codesign --simulator
             else
               echo "Building Flutter iOS Release..."
-              flutter build ios --release --no-codesign
+              flutter build ios --release --no-codesign --simulator
             fi
             cd "$IOS_PATH"
           elif [ "$PROJECT_TYPE" = "reactnative" ] || [ "$PROJECT_TYPE" = "expo" ]; then
@@ -287,7 +287,7 @@ jobs:
             # For unsigned builds, find .app and create IPA
             if [ "$PROJECT_TYPE" = "flutter" ]; then
               # Flutter outputs to build/ios/iphoneos/
-              APP_PATH=$(find "${GITHUB_WORKSPACE}/build/ios/iphoneos" -name "*.app" -type d | head -1)
+              APP_PATH=$(find "${GITHUB_WORKSPACE}/build/ios/iphoneos" "${GITHUB_WORKSPACE}/build/ios/iphonesimulator" -name "*.app" -type d 2>/dev/null | head -1)
             else
               # Native and React Native/Expo use DerivedData
               APP_PATH=$(find "$DERIVED_DATA_PATH/Build/Products/${CONFIGURATION}-iphoneos" -name "*.app" -type d | head -1)
@@ -298,13 +298,16 @@ jobs:
               exit 1
             fi
             echo "Found app at: $APP_PATH"
-            cd ..
-            mkdir -p build/Payload
-            cp -R "$APP_PATH" build/Payload/
-            cd build
-            zip -rq "$BUILD_ID.ipa" Payload
+            
+            mkdir -p "${GITHUB_WORKSPACE}/build/Payload"
+            cp -R "$APP_PATH" "${GITHUB_WORKSPACE}/build/Payload/"
+            
+            cd "${GITHUB_WORKSPACE}/build"
+            zip -rq "${BUILD_ID}.ipa" Payload
             rm -rf Payload
-            echo "Created unsigned IPA: build/$BUILD_ID.ipa"
+            
+            echo "Created unsigned IPA successfully at: ${GITHUB_WORKSPACE}/build/${BUILD_ID}.ipa"
+            ls -lh "${GITHUB_WORKSPACE}/build/${BUILD_ID}.ipa"
           fi
 
       - name: Upload IPA artifact

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart ';
+import 'package:get/get.dart';
 import 'package:yemen_offers/core/network/api_service.dart';
 import 'package:yemen_offers/core/services/location_service.dart';
 import 'package:yemen_offers/features/browse/data/repos/offer_list_repo_impl.dart';
