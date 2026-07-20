@@ -20,6 +20,10 @@ abstract class DioErrorHandler {
         return ServerFailure("تعذر الاتصال بالخادم.");
       case DioExceptionType.unknown:
         return ServerFailure("حدث خطأ غير متوقع.");
+
+      default:
+        return ServerFailure("خطأ غير معروف.");
+        
     }
   }
 
