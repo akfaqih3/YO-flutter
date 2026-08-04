@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="screenshots/logo.png" alt="Yemen Offers Logo" width="150">
+
 # 🇾🇪 Yemen Offers
 
 **A full-featured marketplace app connecting consumers with the best deals and offers across Yemen.**
@@ -11,7 +13,7 @@
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=flat)
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=flat)
 
-[![Preview](https://img.shields.io/badge/Preview-Coming_Soon-purple?style=for-the-badge)](#)
+[![Preview](https://img.shields.io/badge/Preview-Available_📱-purple?style=for-the-badge)](#-screenshots)
 
 </div>
 
@@ -28,6 +30,19 @@
 - 🔐 **Authentication** — Secure JWT-based login, registration, and password reset
 - 🌙 **Dark Mode** — Built-in light and dark theme support
 - 🌐 **Deep Linking** — URI-based navigation for password reset flows
+
+---
+
+## 📱 Screenshots
+
+<div align="center">
+
+| | | |
+|:---:|:---:|:---:|
+| <img src="screenshots/home.png" alt="Home" width="200"> | <img src="screenshots/offer_details.png" alt="Offer Details" width="200"> | <img src="screenshots/nearby_offers.png" alt="Nearby Offers" width="200"> |
+| <img src="screenshots/merchant_dashboard.png" alt="Merchant Dashboard" width="200"> | <img src="screenshots/store_management.png" alt="Store Management" width="200"> | <img src="screenshots/latest_offers.png" alt="Latest Offers" width="200"> |
+| <img src="screenshots/most_popular.png" alt="Most Popular" width="200"> | <img src="screenshots/add_offer.png" alt="Add Offer" width="200"> | <img src="screenshots/login_success.png" alt="Login Success" width="200"> |
+</div>
 
 ---
 
