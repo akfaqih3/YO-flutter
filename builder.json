@@ -1,0 +1,17 @@
+{
+  "project": "YO-flutter",
+  "platform": "ios",
+  "github": {
+    "owner": "akfaqih3",
+    "repo": "YO-flutter"
+  },
+  "ios": {
+    "path": "ios"
+  },
+  "flutter": {
+    "version": "3.44.6",
+    "watch": {}
+  },
+  "reactNative": {},
+  "mobai": {}
+}
