@@ -2,20 +2,23 @@
 
 <img src="screenshots/logo.png" alt="Yemen Offers Logo" width="150">
 
-# 🇾🇪 Yemen Offers
+# Yemen Offers
 
-**Flutter mobile application for the Yemen Offers platform — a marketplace connecting consumers with deals and offers across Yemen.**
+**A Flutter marketplace app connecting consumers with deals and offers across Yemen.**
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.7+-02569B?style=flat&logo=flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-3.7-0175C2?style=flat&logo=dart&logoColor=white)
-![GetX](https://img.shields.io/badge/State_Management-Getx-6366F1?style=flat)
+![GetX](https://img.shields.io/badge/State_Management-GetX-6366F1?style=flat)
 ![Architecture](https://img.shields.io/badge/Architecture-Clean_Architecture-10B981?style=flat)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=flat)
-![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=flat)
 
-[![Preview](https://img.shields.io/badge/Preview-Available_📱-purple?style=for-the-badge)](#-screenshots)
+[Getting Started](#-getting-started) • [Architecture](#%EF%B8%8F-architecture) • [Features](#-features-overview) • [Screenshots](#-screenshots)
 
 </div>
+
+---
+
+## Demo Preview
 
 <div align="center">
 
@@ -25,25 +28,20 @@
 
 ---
 
-## ✨ Highlights
+## Highlights
 
 - **Feature-first Clean Architecture** — Self-contained feature modules with `data/domain/presentation` layers
-- **GetX State Management** — Reactive state, dependency injection, and named routing
-- **JWT Authentication** — Email/password login, Google OAuth, OTP verification, password reset via deep links
+- **GetX** — Reactive state management, dependency injection, and named routing
+- **JWT Authentication** — Email/password login, Google OAuth via browser redirect, OTP verification, password reset via deep links
 - **Dual-role Platform** — Separate consumer and merchant flows
 - **Smart Search** — Vector keyword search and image-based offer search
 - **Interactive Maps** — Google Maps and OpenStreetMap with store markers and popups
-- **Image Upload** — Camera/gallery image picking for stores and offers
-- **Shimmer Loading** — Skeleton placeholders for all major content lists
-- **Dark Mode** — Full light/dark theme with persistence
 - **Bilingual (AR/EN)** — Arabic and English with RTL support and language switching
 - **Push Notifications** — Firebase Cloud Messaging with rich image notifications
-- **Deep Linking** — URI-based navigation for password reset and OAuth callbacks
-- **Offline Cache** — Hive local storage for tokens, preferences, and settings
 
 ---
 
-## 📱 Screenshots
+## Screenshots
 
 ### Home & Browse
 
@@ -60,24 +58,21 @@
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 This project follows **Clean Architecture** with a **feature-first** organization. Each feature is self-contained with its own `data`, `domain`, and `presentation` layers.
 
 ### Layer Flow
 
-```
-UI (Pages & Widgets)
-        ↓
-Controller (GetX)
-        ↓
-Use Case (Single-purpose business logic)
-        ↓
-Repository (Abstract interface)
-        ↓
-Data Source (Remote API / Local cache)
-        ↓
-REST API
+```mermaid
+graph TD
+    UI["UI (Pages & Widgets)"] --> Controller["Controller (GetX)"]
+    Controller --> UseCase["Use Case"]
+    UseCase --> Repository["Repository"]
+    Repository --> Remote["Remote Data Source"]
+    Remote --> API["REST API"]
+    Repository --> Local["Local Data Source"]
+    Local --> Hive["Hive Cache"]
 ```
 
 ### Layer Responsibilities
@@ -93,19 +88,9 @@ REST API
 | **Model** | `data/models/` | JSON serialization (`fromJson`/`toJson`). Maps to entities. |
 | **Entity** | `domain/entities/` | Pure business objects. No framework dependencies. |
 
-### Core Principles
-
-| Principle | Implementation |
-|-----------|---------------|
-| **Separation of Concerns** | Each layer has a single, well-defined responsibility |
-| **Dependency Inversion** | Domain defines interfaces; Data implements them |
-| **Repository Pattern** | Abstract repos in Domain, concrete impls in Data |
-| **Functional Error Handling** | `Either<Failure, T>` from `dartz` throughout the data flow |
-| **Reactive State** | GetX `.obs` types with `Obx` widget bindings |
-
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 lib/
@@ -120,7 +105,7 @@ lib/
 │   │   ├── presentation/
 │   │   │   ├── layout/                    # Reusable layout wrappers
 │   │   │   ├── no_internet_page.dart      # No internet screen
-│   │   │   └── widgets/                   # 18+ shared widgets
+│   │   │   └── widgets/                   # 23 shared widgets
 │   │   └── services/                      # Network monitoring service
 │   ├── constants/                         # API endpoints, cache keys, enums, assets
 │   ├── errors/                            # Failure hierarchy, Dio exception mapping
@@ -144,11 +129,9 @@ lib/
     └── onboarding/                        # Splash, onboarding walkthrough
 ```
 
-> Each feature follows the same `data/` → `domain/` → `presentation/` structure. The `auth` feature is expanded above as a reference.
-
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -160,51 +143,34 @@ lib/
 ### Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/your-username/YO-flutter.git
 cd YO-flutter
-
-# Install dependencies
 flutter pub get
-
-# Run code generation (if needed)
-dart run build_runner build --delete-conflicting-outputs
-```
-
-### Verify Setup
-
-```bash
-# Check Flutter environment
-flutter doctor
-
-# Analyze for issues
-flutter analyze
-
-# Run tests
-flutter test
 ```
 
 ### Run
 
 ```bash
-# Development
 flutter run
+```
 
-# Release build
+### Build
+
+```bash
 flutter build apk --release
 ```
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 ### API Base URL
 
 Update `lib/core/constants/api_constants.dart` to point to your backend:
 
 ```dart
-static const String domain = 'http://YOUR_SERVER_IP:8000';
-static const String baseUrl = '$domain/api/';
+static const String domain = "http://YOUR_SERVER_IP";
+static const String baseUrl = "$domain/api/";
 ```
 
 ### Firebase
@@ -219,222 +185,115 @@ Google Maps requires an API key configured in:
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-### State Management & DI
+### Core
 
-| Package | Version | Why |
-|---------|---------|-----|
-| [get](https://pub.dev/packages/get) | `^4.7.2` | Reactive state management, dependency injection, named routing, and bindings — all in one package |
-
-### Networking
-
-| Package | Version | Why |
-|---------|---------|-----|
-| [dio](https://pub.dev/packages/dio) | `^5.8.0+1` | HTTP client with interceptors for automatic JWT token attachment and request configuration |
-| [internet_connection_checker_plus](https://pub.dev/packages/internet_connection_checker_plus) | `^2.7.1` | Real-time internet connectivity verification |
-| [connectivity_plus](https://pub.dev/packages/connectivity_plus) | `^6.1.3` | Network type detection (WiFi vs mobile) |
-
-### Local Storage
-
-| Package | Version | Why |
-|---------|---------|-----|
-| [hive](https://pub.dev/packages/hive) | `^2.2.3` | Lightweight key-value NoSQL for tokens and preferences |
-| [hive_flutter](https://pub.dev/packages/hive_flutter) | `^1.1.0` | Hive Flutter initialization |
-
-### Functional Programming
-
-| Package | Version | Why |
-|---------|---------|-----|
-| [dartz](https://pub.dev/packages/dartz) | `^0.10.1` | `Either<Failure, T>` for type-safe error handling without exceptions |
+| Package | Purpose |
+|---------|---------|
+| [get](https://pub.dev/packages/get) `^4.7.2` | State management, DI, and routing |
+| [dio](https://pub.dev/packages/dio) `^5.8.0+1` | HTTP client with JWT interceptors |
+| [hive](https://pub.dev/packages/hive) `^2.2.3` | Local key-value storage |
+| [dartz](https://pub.dev/packages/dartz) `^0.10.1` | Functional error handling (`Either<Failure, T>`) |
 
 ### Location & Maps
 
-| Package | Version | Why |
-|---------|---------|-----|
-| [geolocator](https://pub.dev/packages/geolocator) | `^13.0.3` | GPS location services with permission handling |
-| [google_maps_flutter](https://pub.dev/packages/google_maps_flutter) | `^2.11.0` | Google Maps widget for store locations |
-| [flutter_map](https://pub.dev/packages/flutter_map) | `^8.1.1` | OpenStreetMap widget for nearby offers/stores |
-| [flutter_map_marker_popup](https://pub.dev/packages/flutter_map_marker_popup) | `^8.0.1` | Popup overlays on map markers |
-| [geocoding](https://pub.dev/packages/geocoding) | `^3.0.0` | Address ↔ coordinate conversion |
-| [latlong2](https://pub.dev/packages/latlong2) | `^0.9.1` | Latitude/longitude types for flutter_map |
+| Package | Purpose |
+|---------|---------|
+| [geolocator](https://pub.dev/packages/geolocator) `^13.0.3` | GPS location services |
+| [google_maps_flutter](https://pub.dev/packages/google_maps_flutter) `^2.11.0` | Google Maps widget |
+| [flutter_map](https://pub.dev/packages/flutter_map) `^8.1.1` | OpenStreetMap widget |
+| [geocoding](https://pub.dev/packages/geocoding) `^3.0.0` | Address ↔ coordinate conversion |
+
+### Firebase & Notifications
+
+| Package | Purpose |
+|---------|---------|
+| [firebase_core](https://pub.dev/packages/firebase_core) `^3.13.0` | Firebase initialization |
+| [firebase_messaging](https://pub.dev/packages/firebase_messaging) `^15.2.5` | Push notifications via FCM |
+| [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) `^19.1.0` | Local notification display |
 
 ### UI & Media
 
-| Package | Version | Why |
-|---------|---------|-----|
-| [cached_network_image](https://pub.dev/packages/cached_network_image) | `^3.4.1` | Disk-cached network images with placeholder support |
-| [image_picker](https://pub.dev/packages/image_picker) | `^1.1.2` | Camera/gallery image selection for store and offer forms |
-| [carousel_slider](https://pub.dev/packages/carousel_slider) | `^5.0.0` | Image carousel for home recommendations |
-| [shimmer](https://pub.dev/packages/shimmer) | `^3.0.0` | Shimmer loading skeleton effects |
-| [lottie](https://pub.dev/packages/lottie) | `^3.3.1` | Lottie animation support |
-| [iconsax](https://pub.dev/packages/iconsax) | `^0.0.8` | Extended icon pack |
+| Package | Purpose |
+|---------|---------|
+| [cached_network_image](https://pub.dev/packages/cached_network_image) `^3.4.1` | Disk-cached network images |
+| [image_picker](https://pub.dev/packages/image_picker) `^1.1.2` | Camera/gallery image selection |
+| [carousel_slider](https://pub.dev/packages/carousel_slider) `^5.0.0` | Image carousel |
+| [shimmer](https://pub.dev/packages/shimmer) `^3.0.0` | Shimmer loading skeletons |
+| [lottie](https://pub.dev/packages/lottie) `^3.3.1` | Lottie animations |
 
 ### Navigation & Links
 
-| Package | Version | Why |
-|---------|---------|-----|
-| [app_links](https://pub.dev/packages/app_links) | `^6.4.0` | Deep linking for password reset and OAuth callbacks |
-| [url_launcher](https://pub.dev/packages/url_launcher) | `^6.3.1` | Open external URLs, maps, and phone dialer |
-| [share_plus](https://pub.dev/packages/share_plus) | `^11.0.0` | Share offer content to other apps |
+| Package | Purpose |
+|---------|---------|
+| [app_links](https://pub.dev/packages/app_links) `^6.4.0` | Deep linking for password reset and OAuth callbacks |
+| [url_launcher](https://pub.dev/packages/url_launcher) `^6.3.1` | Open external URLs, maps, phone dialer |
+| [share_plus](https://pub.dev/packages/share_plus) `^11.0.0` | Share offer content to other apps |
 
-### Notifications & Firebase
+### Connectivity
 
-| Package | Version | Why |
-|---------|---------|-----|
-| [firebase_core](https://pub.dev/packages/firebase_core) | `^3.13.0` | Firebase initialization |
-| [firebase_messaging](https://pub.dev/packages/firebase_messaging) | `^15.2.5` | Push notifications via FCM |
-| [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) | `^19.1.0` | Local notification display with rich content |
-
-### Forms & Input
-
-| Package | Version | Why |
-|---------|---------|-----|
-| [multi_select_flutter](https://pub.dev/packages/multi_select_flutter) | `^4.1.3` | Multi-select dropdown for category filtering |
-| [intl](https://pub.dev/packages/intl) | `^0.20.2` | Date formatting and internationalization utilities |
+| Package | Purpose |
+|---------|---------|
+| [internet_connection_checker_plus](https://pub.dev/packages/internet_connection_checker_plus) `^2.7.1` | Internet access verification |
+| [connectivity_plus](https://pub.dev/packages/connectivity_plus) `^6.1.3` | Network type detection |
 
 ---
 
-## 📦 Features Overview
+## Features Overview
 
-### 🔐 Authentication
+### Consumer Features
 
-- **Email/Password Login** — JWT-based with access and refresh tokens
-- **Google OAuth** — Opens browser for Google login, receives tokens via deep link
-- **Registration** — Form with validation, OTP email verification
-- **Password Reset** — Email deep link flow with token-based confirmation
-- **Join as Merchant** — Upgrade consumer account to merchant role
-- **Logout** — Token invalidation, FCM token removal, cache cleanup
+| Feature | Description |
+|---------|-------------|
+| **Home Feed** | Image carousel, categories grid, most popular offers, latest offers, scrollable store list |
+| **Browse** | Category browsing, filterable offer/store lists, offer details with pricing and map, store details with contact info and social links |
+| **Nearby** | Map-based view of nearby offers and stores with marker popups |
+| **Search** | Vector keyword search and image-based visual search |
+| **Favorites** | Save/remove favorites, dedicated favorites page, share offers |
 
-### 🏠 Home Feed
+### Merchant Features
 
-- **Image Carousel** — Recommendation banners with auto-scroll and indicators
-- **Categories Grid** — Quick-access category navigation
-- **Most Popular Offers** — Horizontally scrollable popular deals
-- **Latest Offers** — Recently added offers
-- **Horizontal Store List** — Scrollable store cards
+| Feature | Description |
+|---------|-------------|
+| **Store Management** | Create, edit, and manage stores with name, description, address, category, map location, and social links |
+| **Offer Management** | Create, edit, and manage offers with title, description, pricing, discount, date range, image, and categories |
+| **Offer Analytics** | View offer performance (views, clicks, shares, favorites) |
 
-### 📂 Browse
+### Shared Features
 
-- **Category Browsing** — Browse offers and stores by category with tab switching
-- **Offer Lists** — Filterable and sortable offer lists (by date, price, discount)
-- **Offer Details** — Full offer view with image, pricing, store info, map, and share
-- **Store Details** — Store profile with contact info, social links, and map location
-- **Nearby Offers** — Map-based view of nearby deals
-- **Nearby Stores** — Map view with marker popups for local stores
-
-### 🔍 Search
-
-- **Keyword Search** — Vector-based text search for offers
-- **Image Search** — Upload an image to find visually similar offers
-
-### ❤️ Favorites
-
-- **Save/Remove** — Toggle favorite status on any offer
-- **Favorites Page** — Dedicated list of saved offers
-- **Share** — Share offer content to other apps
-
-### 🏪 Merchant — Store Management
-
-- **Create Store** — Form with name, description, address, category, map location, social links
-- **Edit Store** — Update store details
-- **Store Details** — View store with map and associated offers
-- **Store List** — Manage all merchant stores
-
-### 🎯 Merchant — Offer Management
-
-- **Create Offer** — Form with title, description, pricing, discount percentage, date range, image, categories
-- **Edit Offer** — Update offer details
-- **Offer Details** — View offer with analytics (views, clicks, shares, favorites)
-- **Offer List** — Manage all merchant offers
-
-### 👤 Profile
-
-- **User Profile** — View and update profile information
-- **Change Password** — Secure password change
-- **Dark Mode Toggle** — Persistent theme switching
-- **Language Switcher** — Arabic/English with RTL support
-- **Merchant Profile** — Merchant-specific commercial information
-
-### 🔔 Notifications
-
-- **Push Notifications** — Firebase Cloud Messaging for real-time alerts
-- **Rich Notifications** — Image download and display in notification tray
-- **Notification List** — View notification history
-
-### 🚀 Onboarding
-
-- **Splash Screen** — Animated logo with scale and fade transitions
-- **Onboarding Walkthrough** — 3-page intro with indicators (shown on first launch)
+| Feature | Description |
+|---------|-------------|
+| **Authentication** | Email/password login, Google OAuth via browser redirect, registration with OTP verification, password reset via deep links, join as merchant |
+| **Profile** | View/update profile, change password, merchant profile |
+| **Theme** | Full light/dark theme with persistence via Hive |
+| **Language** | Arabic and English with RTL support and language switching |
+| **Notifications** | Push notifications via FCM with rich image support |
+| **Onboarding** | Animated splash screen, 3-page onboarding walkthrough on first launch |
 
 ---
 
-## 🎨 Theme System
+## Theme System
 
-### Material 3
-
-The app uses Material 3 with both light and dark `ThemeData` configurations.
-
-### Color Palette
-
-| Role | Light Mode | Dark Mode |
-|------|------------|-----------|
-| **Primary** | `#FF5F0C` (orange) | `#FF5F0C` |
-| **Secondary** | `#01236A` (dark blue) | `#4A90D9` |
-| **Background** | `#F2F2F7` | `#1C1C1E` |
-| **Surface** | `#FFFFFF` | `#2C2C2E` |
-| **Text Primary** | `#1C1C1E` | `#FFFFFF` |
-| **Text Secondary** | `#8E8E93` | `#CCCCCC` |
-| **Error** | `#FF3B30` | `#FF453A` |
-
-### Dark Mode
-
-Dark mode is persisted via Hive and toggled from the profile page. `ThemeService` manages the switch by calling `Get.changeThemeMode()`.
-
-### Spacing System
-
-Defined in `lib/core/theme/spacing.dart`:
-
-| Token | Value |
-|-------|-------|
-| `small` | 8px |
-| `medium` | 16px |
-| `large` | 24px |
-
-### Typography
-
-Text styles are centralized in `lib/core/theme/text_styles.dart` with predefined `headline`, `subtitle`, `bodyText`, and `buttonText` styles.
+- **Material 3** with full light and dark `ThemeData` configurations
+- **Dark Mode** — Persisted via Hive, toggled from profile page
+- **Typography** — Centralized text styles in `lib/core/theme/text_styles.dart`
+- **Spacing System** — `small` (8px), `medium` (16px), `large` (24px) in `lib/core/theme/spacing.dart`
 
 ---
 
-## 🔄 State Management
+## State Management
 
-### GetX Patterns
+The app uses **GetX** for reactive state management:
 
-**Reactive State:**
-```dart
-RxList<OfferEntity> mostPopularOffers = RxList([]);
-RxBool isMostPopularOffersLoading = true.obs;
-```
-
-**Controller Lifecycle:**
-- Controllers extend `GetxController`
-- State is managed via `Rx` types and `Obx` widgets
-- Loading flags control skeleton/content switching
-
-**Bindings:**
-- Each route has a binding class that registers controllers and repositories
-- Global singletons (`ApiService`, `ThemeService`, `LocationService`, `NetworkService`) registered in `AppBinding` with `permanent: true`
-- Feature bindings use `fenix: true` for re-creation on route revisit
-
-**Navigation:**
-- Named routes defined in `lib/core/routes/app_routes.dart`
-- Route-to-page mapping in `lib/core/routes/app_pages.dart`
-- Methods: `Get.toNamed()`, `Get.offAllNamed()`, `Get.offNamed()`, `Get.back()`
+- **Reactive State** — `Rx` types (`RxList`, `RxBool`, etc.) with `Obx` widget bindings
+- **Controller Lifecycle** — Controllers extend `GetxController`, state managed via `Rx` types
+- **Bindings** — Each route has a binding class registering controllers and repositories via GetX DI
+- **Navigation** — Named routes with `Get.toNamed()`, `Get.offAllNamed()`, `Get.back()`
 
 ---
 
-## 🔗 Dependency Injection
+## Dependency Injection
 
 ### Global Singletons
 
@@ -449,182 +308,13 @@ Registered in `AppBinding` (applied to `GetMaterialApp`):
 
 ### Feature-level DI
 
-Each feature binding registers its own controllers and repositories:
-
-```dart
-class AuthBinding extends Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut(() => LoginRepoImpl(Get.find<ApiService>()));
-    Get.lazyPut(() => LoginController(Get.find<LoginRepoImpl>()));
-  }
-}
-```
-
-### Pattern
-
-1. Domain defines abstract repository interfaces
-2. Data implements them with data sources
-3. Bindings wire implementations to controllers
-4. Controllers call use cases, which call repositories
+Each feature binding registers its own controllers and repositories using `Get.lazyPut()` with `fenix: true` for re-creation on route revisit.
 
 ---
 
-## 🧩 Adding a New Feature
+## Networking
 
-Follow the existing Clean Architecture pattern:
-
-```
-lib/features/your_feature/
-├── data/
-│   ├── models/                  # JSON serializable models
-│   ├── sources/                 # Remote data source (API calls)
-│   └── repos/                   # Repository implementation
-├── domain/
-│   ├── entities/                # Business objects
-│   ├── repos/                   # Abstract repository interface
-│   └── use_cases/               # Single-purpose business logic
-└── presentation/
-    ├── views/
-    │   ├── pages/               # Full-screen pages
-    │   └── widgets/             # Reusable UI components
-    └── getX/
-        ├── controllers/         # GetxController state management
-        └── binding.dart         # Dependency injection setup
-```
-
-### Steps
-
-1. **Entity** — Define the business object in `domain/entities/`
-2. **Repository Interface** — Define the contract in `domain/repos/`
-3. **Use Case** — Encapsulate business logic in `domain/use_cases/`
-4. **Model** — Create the JSON model in `data/models/`
-5. **Data Source** — Implement API calls in `data/sources/`
-6. **Repository Impl** — Wire data sources to domain in `data/repos/`
-7. **Controller** — Manage UI state in `presentation/getX/controllers/`
-8. **Binding** — Register dependencies in `presentation/getX/binding.dart`
-9. **Route** — Add the route in `lib/core/routes/app_pages.dart` and `app_routes.dart`
-
----
-
-## 📊 Error Handling
-
-The project uses a functional error handling pattern with `dartz`:
-
-### Failure Hierarchy
-
-```
-Failure (abstract, message: String)
-├── ServerFailure    — API/Dio errors
-├── CacheFailure     — Local storage errors
-└── NetworkFailure   — Connectivity errors
-```
-
-### Dio Exception Mapping
-
-`DioErrorHandler` maps every `DioExceptionType` to a user-facing message:
-
-| Exception | Behavior |
-|-----------|----------|
-| `connectionTimeout` | Connection timeout message |
-| `sendTimeout` | Send timeout message |
-| `receiveTimeout` | Receive timeout message |
-| `badResponse` | HTTP status-specific messages (400, 401, 403, 404, 500) |
-| `cancel` | Request cancelled message |
-| `connectionError` | No connection message |
-
-### Flow
-
-```
-DataSource (throws exception)
-        ↓
-Repository (catches → returns Left(Failure))
-        ↓
-Use Case (passes through)
-        ↓
-Controller (calls .fold() → shows snackbar on failure)
-```
-
----
-
-## 💾 Caching
-
-### Hive Storage
-
-Single Hive box (`APP_CACHE`) stores:
-
-| Key | Purpose |
-|-----|---------|
-| `ACCESS_TOKEN` | JWT access token |
-| `REFRESH_TOKEN` | JWT refresh token |
-| `IS_FIRST_OPEN` | First launch detection (onboarding gate) |
-| `IS_DARK_MODE` | Theme preference |
-| `APP_LANG` | Selected language |
-| `EMAIL_NOT_CONFIRMED` | Email confirmation state |
-
-### Cache Helper
-
-`CacheHelper` provides a simple static API:
-- `saveData(key, value)` — Store a value
-- `getData(key)` — Retrieve a value
-- `removeData(key)` — Delete a value
-- `clearCache()` — Clear all cached data
-
----
-
-## 🌐 Localization
-
-### Supported Languages
-
-| Language | Code | RTL |
-|----------|------|-----|
-| Arabic | `ar` | Yes |
-| English | `en` | No |
-
-### Implementation
-
-- **GetX Translations** — 150+ translation keys in `lib/core/services/localizition/`
-- **Language Switching** — Available in profile page, persisted to Hive
-- **Default Language** — Arabic (`"ar"`)
-- **RTL Awareness** — Layout adjustments based on `Get.locale?.languageCode`
-
-### Usage
-
-```dart
-Text('lblOffers'.tr)  // Resolves to current locale string
-```
-
----
-
-## 🗺️ Maps
-
-### Dual Map Provider
-
-| Provider | Use Case |
-|----------|----------|
-| **Google Maps** | Store location display, external map opening |
-| **OpenStreetMap (flutter_map)** | Nearby offers/stores map view with custom markers |
-
-### Location Services
-
-- **GPS** — Primary location source via `geolocator`
-- **IP Fallback** — Falls back to IP-based geolocation when GPS unavailable
-- **Reactive** — Lat/lng updates propagate through GetX observables
-
-### Map Features
-
-- Custom store markers with popup details
-- Marker clustering for dense areas
-- "Open in Google Maps" for directions
-- Location picker for store creation
-
----
-
-## 📡 Networking
-
-### Dio Configuration
-
-- **Base URL:** `http://yemeni-offers.com/api/`
+- **Base URL:** Configured in `lib/core/constants/api_constants.dart`
 - **Timeouts:** 5000ms connect, 5000ms receive
 - **Auth Interceptor:** Automatically attaches `Bearer <token>` to every request
 
@@ -644,39 +334,42 @@ Text('lblOffers'.tr)  // Resolves to current locale string
 
 ---
 
-## 📋 User Experience
+## Error Handling
 
-### Loading States
+Functional error handling with `dartz`:
 
-- **Shimmer Skeletons** — 8 skeleton widgets for offer cards, categories, images, and lists
-- **Circular Progress Indicators** — Page-level loading for detail screens
-- **RxBool Flags** — Every controller has loading state observables
-
-### Form Validation
-
-15+ validators in `lib/core/utils/validators.dart`:
-- Email format validation
-- Password strength (min length, complexity)
-- Phone number (Yemeni prefixes: 77, 78, 73, 70, 71)
-- URL and social media link validation
-- Latitude/longitude format
-- Address validation
-- All messages localized in Arabic and English
-
-### Empty States
-
-- No internet page with illustration and retry
-- Category/offer list pages handle empty results
-
-### Smooth Navigation
-
-- Named route navigation with GetX
-- Route middlewares for onboarding flow
-- Deep link handling for external entry points
+- **Failure Hierarchy** — `ServerFailure`, `CacheFailure`, `NetworkFailure` extending abstract `Failure`
+- **Dio Error Mapping** — Every `DioExceptionType` mapped to user-facing messages
+- **Flow** — DataSource throws → Repository catches → returns `Left(Failure)` → Controller calls `.fold()` → shows snackbar on failure
 
 ---
 
-## 🏭 Engineering Highlights
+## Caching
+
+Single Hive box (`APP_CACHE`) stores:
+
+| Key | Purpose |
+|-----|---------|
+| `ACCESS_TOKEN` | JWT access token |
+| `REFRESH_TOKEN` | JWT refresh token |
+| `IS_FIRST_OPEN` | First launch detection (onboarding gate) |
+| `IS_DARK_MODE` | Theme preference |
+| `APP_LANG` | Selected language |
+| `EMAIL_NOT_CONFIRMED` | Email confirmation state |
+
+---
+
+## User Experience
+
+- **Shimmer Skeletons** — Loading placeholders for all major content lists
+- **Circular Progress Indicators** — Page-level loading for detail screens
+- **Form Validation** — 16 validators covering email, password, phone (Yemeni prefixes), URLs, social media links, lat/long, addresses — all localized in Arabic and English
+- **Empty States** — No internet page with illustration and retry, empty category/offer lists
+- **Smooth Navigation** — Named route navigation with GetX, route middlewares for onboarding flow, deep link handling for external entry points
+
+---
+
+## Engineering Highlights
 
 | Practice | Implementation |
 |----------|----------------|
@@ -687,7 +380,7 @@ Text('lblOffers'.tr)  // Resolves to current locale string
 | **Functional Error Handling** | `Either<Failure, T>` with typed failure hierarchy |
 | **Reactive State Management** | GetX `.obs` types with `Obx` widget bindings |
 | **Centralized Constants** | API endpoints, cache keys, assets, enums in dedicated files |
-| **Reusable Widgets** | 18+ shared widgets in `core/common/presentation/widgets/` |
+| **Reusable Widgets** | 23 shared widgets in `core/common/presentation/widgets/` |
 | **Interceptor-based Auth** | Automatic JWT token attachment via Dio interceptor |
 | **Persistent Preferences** | Theme, language, and auth state persisted via Hive |
 | **Localization** | Full Arabic/English support with RTL awareness |
@@ -695,21 +388,34 @@ Text('lblOffers'.tr)  // Resolves to current locale string
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ```bash
-# Run all tests
 flutter test
-
-# Run with coverage
 flutter test --coverage
 ```
 
-> **Note:** Test infrastructure is in place. Unit and widget tests should be added for each feature module.
+> **Note:** No automated tests are currently implemented. Contributions welcome.
 
 ---
 
-## 🤝 Contributing
+## Project Metrics
+
+| Metric | Count |
+|--------|-------|
+| Feature Modules | 10 |
+| Screens | 30 |
+| Controllers | 30 |
+| Shared Widgets | 23 |
+| Translation Keys | 186 |
+| Validators | 16 |
+| Services | 6 |
+| Map Providers | 2 (Google Maps, OpenStreetMap) |
+| Supported Languages | 2 (Arabic, English) |
+
+---
+
+## Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -735,9 +441,9 @@ chore:    maintenance tasks
 
 ---
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ---
 
